@@ -1,3 +1,30 @@
+import Link from "next/link";
+import globalData from "../../../lib/preBuildScripts/static/globalData.json";
+import Image from "next/image";
+import FooterDestinations from "./FooterDestinations";
+import FooterConnections from "./FooterConnections";
+import FooterSocial from "./FooterSocial";
 export default function Footer() {
-  return <div>Footer</div>;
+  const { connections, destinations, main, social_media } =
+    globalData.tenantDetails.data;
+  return (
+    <footer className="text-white">
+      <FooterDestinations destinations={destinations} />
+
+      <div className="footer-content bg-[#555555] py-[30px]">
+        <div className="container">
+          <FooterConnections connections={connections} />
+          <div className="footer-bottom flex justify-between items-center mt-[60px]">
+            <div className="copy-right">
+              <p className="text-[14px] uppercase">
+                &copy; {new Date().getFullYear()}{" "}
+                {globalData.tenantDetails.name}. All rights reserved
+              </p>
+            </div>
+            <FooterSocial social_media={social_media} />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
