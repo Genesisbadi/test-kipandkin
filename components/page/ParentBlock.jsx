@@ -20,6 +20,7 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
             key={block.key + block?.order?.toString()}
             block={block.data}
             index={block?.order}
+            mediaHandler={block?.mediaHandler}
           />
         );
       })}
