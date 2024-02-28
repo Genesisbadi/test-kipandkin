@@ -10,23 +10,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "main-black": "#323232",
-        "dim-black": "#282828",
+        primary: "#691a31",
       },
       fontFamily: {
         lato: ["lato", ...defaultTheme.fontFamily.sans],
       },
     },
     screens: {
-      "4sm": "361px",
-      "3sm": "375px",
-      "2sm": "426px",
+      xxs: "380px",
+      xs: "480px",
       sm: "640px",
       md: "768px",
       lg: "1024px",
-      xl: "1280px",
-      "2xl": "1345px",
-      "3xl": "1536px",
+      xl: "1200px",
     },
   },
   plugins: [require("tw-elements/dist/plugin.cjs")],
