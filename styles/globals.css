@@ -46,3 +46,11 @@ ol {
   transform: translateX(0);
   transition: all ease 0.3s;
 }
+
+.referral {
+  display: none !important;
+  position: fixed;
+  left: -99999px;
+  height: 0;
+  width: 0;
+}

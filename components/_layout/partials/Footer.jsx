@@ -4,13 +4,14 @@ import Image from "next/image";
 import FooterDestinations from "./FooterDestinations";
 import FooterConnections from "./FooterConnections";
 import FooterSocial from "./FooterSocial";
+import FooterJuicer from "./FooterJuicer";
 export default function Footer() {
   const { connections, destinations, main, social_media } =
     globalData.tenantDetails.data;
   return (
     <footer className="text-white">
+      <FooterJuicer juicer_id={main.juicer_id} />
       <FooterDestinations destinations={destinations} />
-
       <div className="footer-content bg-[#555555] py-[30px]">
         <div className="container">
           <FooterConnections connections={connections} />
