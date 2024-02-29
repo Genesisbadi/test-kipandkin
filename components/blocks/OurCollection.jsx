@@ -6,7 +6,7 @@ export default function OurCollection({ block, mediaHandler }) {
   return (
     <>
       <section className="w-full">
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {collection.contents.map((item, i) => (
             <>
               <div key={i} className="flex relative">
@@ -27,18 +27,18 @@ export default function OurCollection({ block, mediaHandler }) {
                   <span className="text-white font-[700] text-[20px] pb-[20px]">
                     {item.title}
                   </span>
-                  <div className="flex gap-x-5">
+                  <div className="flex flex-col 2sm:flex-row gap-y-3 2sm:gap-y-0 gap-x-5 px-3 w-full justify-center">
                     {item.data.main.book_now_button_link && (
                       <Link
                         href={item.data.main.book_now_button_link}
-                        className={`text-white text-sm bg-primary hover:bg-secondary py-5 px-8 uppercase`}
+                        className={`w-full 2sm:w-auto text-center text-white text-sm bg-primary hover:bg-secondary py-5 px-8 sm:px-3 xl:px-8 uppercase`}
                       >
                         Book Now
                       </Link>
                     )}
                     <Link
                       href={item.route_url || []}
-                      className={`text-sm text-white border border-white py-5 px-8 hover:bg-white hover:text-secondary uppercase`}
+                      className={`w-full 2sm:w-auto text-center text-sm text-white border border-white py-5 px-8 sm:px-3 xl:px-8 hover:bg-white hover:text-secondary uppercase`}
                     >
                       More Details
                     </Link>
