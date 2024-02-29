@@ -1,5 +1,6 @@
+"use client";
+
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
-import Locales from "@/components/_layout/partials/Locales";
 import persistentStore from "@/lib/store/persistentStore";
 import Link from "next/link";
 import globalState from "@/lib/store/globalState";
@@ -10,10 +11,9 @@ import MainMenuMobile from "./MainMenuMobile";
 
 export default function Menu() {
   const ready = globalState((state) => state.ready);
-  const locale = persistentStore((state) => state.locale);
   const { tenantDetails, menus, locales } = globalData;
-  const defaultLocale = locales.find((n) => n.is_default);
   const [isMobile, setIsMobile] = useState();
+  const { parentNodes } = menus;
 
   const getWindowWidth = () => {
     if (window.innerWidth <= 1199) {
@@ -24,13 +24,9 @@ export default function Menu() {
   };
   useEffect(() => {
     window.removeEventListener("resize", getWindowWidth);
-    // window.removeEventListener("load", getWindowWidth);
-
+    getWindowWidth();
     window.addEventListener("resize", getWindowWidth);
-    window.addEventListener("load", getWindowWidth);
   }, []);
-
-  const { parentNodes } = menus;
 
   return (
     <>

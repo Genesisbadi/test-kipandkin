@@ -3,9 +3,9 @@ import Image from "next/image";
 export default function CallToActions({ block }) {
   const { block_title, items } = block.main;
   return (
-    <section className="#F1F1F1 py-[30px]">
+    <section className="bg-[#F1F1F1] overflow-hidden py-[30px]">
       <div className="container">
-        <h2 className="text-center text-primary text-[30px] mb-[30px]">
+        <h2 className="text-center text-primary text-[25px] mb-[30px]">
           {block_title}
         </h2>
         {items?.length > 0 && (
