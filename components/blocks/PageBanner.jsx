@@ -2,9 +2,8 @@ import Image from "next/image";
 
 export default function Block({ block, mediaHandler }) {
   const { title, image } = block.main;
-  const media = "/Banner-Safe-Space-Desktop.jpg";
+  const media = "/images/Banner-Safe-Space-Desktop.jpg";
 
-  console.log(block.main);
   return (
     <section className="w-full">
       <div className="reltive w-full flex justify-center items-center">
