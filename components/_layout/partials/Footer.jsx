@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="footer-content bg-[#555555] py-[30px]">
         <div className="container">
           <FooterConnections connections={connections} />
-          <div className="footer-bottom flex justify-between items-center mt-[60px]">
+          <div className="footer-bottom flex flex-wrap justify-between items-center mt-[60px]">
             <div className="copy-right">
               <p className="text-[14px] uppercase">
                 &copy; {new Date().getFullYear()}{" "}
