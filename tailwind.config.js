@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#691a31",
+        secondary: "#86764e",
       },
       fontFamily: {
         lato: ["lato", ...defaultTheme.fontFamily.sans],

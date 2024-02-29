@@ -11,17 +11,17 @@ export default function OurCollection({ block, mediaHandler }) {
             <>
               <div key={i} className="flex relative">
                 <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-                {console.log(
-                  "boang",
-                  item.mediaHandler["main.thumbnail"]?.[0].conversions.Thumbnail
-                )}
                 <Image
-                  src={item.mediaHandler["main.thumbnail"]?.[0].original || []}
-                  alt="test"
+                  src={
+                    item.mediaHandler["main.thumbnail"]?.[0].conversions
+                      .thumbnail ||
+                    item.mediaHandler["main.thumbnail"]?.[0].original
+                  }
+                  alt={item.title}
                   height={1000}
                   width={1000}
                   quality={100}
-                  className="w-full h-full sm:max-h-[630px] sm:min-h-[630px]"
+                  className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
                 />
                 <div className="flex flex-col absolute w-full h-full items-center justify-center z-[2]">
                   <span className="text-white font-[700] text-[20px] pb-[20px]">
@@ -31,14 +31,14 @@ export default function OurCollection({ block, mediaHandler }) {
                     {item.data.main.book_now_button_link && (
                       <Link
                         href={item.data.main.book_now_button_link}
-                        className={`text-white text-sm bg-[#691a31] hover:bg-[#86764e] py-5 px-8 uppercase`}
+                        className={`text-white text-sm bg-primary hover:bg-secondary py-5 px-8 uppercase`}
                       >
                         Book Now
                       </Link>
                     )}
                     <Link
                       href={item.route_url || []}
-                      className={`text-sm text-white border border-white py-5 px-8 hover:bg-white hover:text-[#86764e] uppercase`}
+                      className={`text-sm text-white border border-white py-5 px-8 hover:bg-white hover:text-secondary uppercase`}
                     >
                       More Details
                     </Link>
