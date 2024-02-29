@@ -11,7 +11,9 @@ export default function DefaultLayout(props) {
   return (
     <>
       <Menu />
-      {props.children}
+      <main id="main-content" className="main-content grow">
+        {props.children}
+      </main>
       {showLazy && <Footer />}
     </>
   );
