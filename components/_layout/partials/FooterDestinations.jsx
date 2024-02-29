@@ -6,7 +6,10 @@ export default function FooterDestinations({ destinations }) {
       {destinations?.destination_items && (
         <div className="footer-strip destinations flex flex-wrap">
           {destinations?.destination_items?.map((item, index) => (
-            <div className="max-w-[16.66%] w-full" key={index}>
+            <div
+              className="sm:max-w-[50%] md:max-w-[33.33%] xl:max-w-[16.66%] w-full"
+              key={index}
+            >
               <Link
                 href={item.link}
                 className="flex justify-center bg-[#333] items-center min-h-[250px] relative"

@@ -30,3 +30,13 @@ ol {
     margin-right: auto;
   }
 }
+
+#header-mobile {
+  transform: translateX(-100%);
+  transition: all ease 0.3s;
+}
+
+.mobile-menu-opened #header-mobile {
+  transform: translateX(0);
+  transition: all ease 0.3s;
+}
