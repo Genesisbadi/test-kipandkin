@@ -12,6 +12,8 @@ module.exports = {
       colors: {
         primary: "#691a31",
         secondary: "#86764e",
+        "dark-pink": "#d4bebe",
+        "dark-gold": "#c5baa6",
       },
       fontFamily: {
         lato: ["lato", ...defaultTheme.fontFamily.sans],
