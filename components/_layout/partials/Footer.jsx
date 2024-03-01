@@ -6,6 +6,7 @@ import FooterConnections from "./footer/FooterConnections";
 import FooterSocial from "./footer/FooterSocial";
 import FooterJuicer from "./footer/FooterJuicer";
 import FooterMenu from "./footer/FooterMenu";
+import FooterNewsletter from "./footer/FooterNewsletter";
 export default function Footer() {
   const { connections, destinations, main, social_media } =
     globalData.tenantDetails.data;
@@ -13,6 +14,7 @@ export default function Footer() {
   return (
     <footer className="text-white">
       <FooterJuicer juicer_id={main.juicer_id} />
+      <FooterNewsletter />
       <FooterDestinations destinations={destinations} />
       <div className="footer-content bg-[#555555] py-[30px]">
         <div className="container">
