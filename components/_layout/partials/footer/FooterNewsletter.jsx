@@ -24,9 +24,9 @@ export default function FooterNewsletter() {
             />
             <button
               type="submit"
-              className="w-full sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out"
+              className="w-full text-uppercase sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out"
             >
-              Subscribe
+              Submit
             </button>
           </div>
           <div className="text-[#555] text-[12px] mt-[15px] relative">
@@ -37,7 +37,7 @@ export default function FooterNewsletter() {
               id="agree"
             />
             <label
-              for="agree"
+              htmlFor="agree"
               className="pl-[20px] block leading-4  select-none cursor-pointer"
             >
               I Agree to the {tenantDetails.name}{" "}

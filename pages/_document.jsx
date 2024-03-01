@@ -13,7 +13,7 @@ export default function Document() {
           data-next-font="size-adjust"
         />
       </Head>
-      <body>
+      <body className="text-[#555555]">
         <Main />
         <NextScript />
       </body>

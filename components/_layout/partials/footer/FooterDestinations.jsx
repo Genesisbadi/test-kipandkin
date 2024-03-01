@@ -84,7 +84,7 @@ export default function FooterDestinations({ destinations }) {
   return (
     <>
       {destinations?.destination_items && (
-        <section className="footer-strip pt-[30px]">
+        <section className="footer-strip text-white pt-[30px]">
           <h2 className="text-center text-primary text-[25px] mb-[30px]">
             {destinations?.block_title || "Our Destinations"}
           </h2>
