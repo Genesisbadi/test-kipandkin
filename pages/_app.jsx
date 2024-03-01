@@ -5,10 +5,9 @@ import DefaultLayout from "@/components/_layout/DefaultLayout";
 import globalState from "@/lib/store/globalState";
 import persistentStore from "@/lib/store/persistentStore";
 import { useEffect } from "react";
+import NextTopLoader from "nextjs-toploader";
 
 import { Montserrat } from "next/font/google";
-
-import NextTopLoader from "nextjs-toploader";
 
 const primary = Montserrat({
   weight: ["400", "700"],

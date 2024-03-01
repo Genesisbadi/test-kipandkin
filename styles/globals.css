@@ -54,3 +54,12 @@ ol {
   height: 0;
   width: 0;
 }
+
+@layer utilities {
+  .connections .odd img {
+    max-width: 100px;
+  }
+  .connections .even img {
+    max-width: 65px;
+  }
+}
