@@ -2,10 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-
-export default function Slider({ block, mediaHandler }) {
-  const { slider_items } = block.main;
-
+export default function FooterDestinations({ destinations }) {
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -55,55 +52,66 @@ export default function Slider({ block, mediaHandler }) {
       </div>
     );
   };
-
   var settings = {
     dots: false,
-    infinite: false,
-    fade: true,
+    infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 6,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
   };
-
   return (
-    <section className="slider relative">
-      <Slick {...settings}>
-        {slider_items.map((item, index) => (
-          <div className="w-full relative" key={index}>
-            <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-
-            {mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-              ?.conversions.desktop && (
-              <Image
-                className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
-                src={
-                  mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-                    ?.conversions.desktop
-                }
-                width={1920}
-                height={750}
-                alt={item.title}
-              />
-            )}
-
-            <div className="min-h-[750px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-              <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>
-              <div
-                className="mb-[15px]"
-                dangerouslySetInnerHTML={{ __html: item.description }}
-              />
-              <Link
-                className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                href={item.link}
-              >
-                Discovery More
-              </Link>
-            </div>
-          </div>
-        ))}
-      </Slick>
-    </section>
+    <>
+      {destinations?.destination_items && (
+        <section className="footer-strip pt-[30px]">
+          <h2 className="text-center text-primary text-[25px] mb-[30px]">
+            {destinations?.block_title || "Our Destinations"}
+          </h2>
+          <Slick {...settings}>
+            {destinations?.destination_items?.map((item, index) => (
+              <div key={index}>
+                <Link
+                  href={item?.link || "#"}
+                  className="flex justify-center bg-[#333] items-center min-h-[250px] relative"
+                  target="_blank"
+                >
+                  <Image
+                    src={item?.image || `/static/destination1.jpg`}
+                    width={350}
+                    height={350}
+                    alt={item.title}
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                  />
+                  <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
+                    {item.title}
+                  </h3>
+                </Link>
+              </div>
+            ))}
+          </Slick>
+        </section>
+      )}
+    </>
   );
 }

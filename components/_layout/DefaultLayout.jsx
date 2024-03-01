@@ -1,6 +1,7 @@
 import Menu from "@/layout/partials/Menu";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
+
 export default function DefaultLayout(props) {
   const showLazy = globalState((state) => state.showLazy);
   const Footer = () => {
@@ -10,7 +11,9 @@ export default function DefaultLayout(props) {
   return (
     <>
       <Menu />
-      {props.children}
+      <main id="main-content" className="main-content grow">
+        {props.children}
+      </main>
       {showLazy && <Footer />}
     </>
   );

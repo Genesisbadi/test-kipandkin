@@ -22,6 +22,12 @@ ul {
 ol {
   list-style: decimal;
 }
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  max-width: 100%;
+}
 
 @media (min-width: 1200px) {
   .container {
@@ -29,4 +35,22 @@ ol {
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+#header-mobile {
+  transform: translateX(-100%);
+  transition: all ease 0.3s;
+}
+
+.mobile-menu-opened #header-mobile {
+  transform: translateX(0);
+  transition: all ease 0.3s;
+}
+
+.referral {
+  display: none !important;
+  position: fixed;
+  left: -99999px;
+  height: 0;
+  width: 0;
 }
