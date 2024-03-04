@@ -39,7 +39,7 @@ export default function Feature({ block }) {
         <h2 className="text-secondary1 text-[20px] tracking-[2px] mb-[10px] tracking-[2px]">
           {title}
         </h2>
-        <hr class="w-[80px] border border-dark-gold mb-[20px]" />
+        <hr className="w-[80px] border border-dark-gold mb-[20px]" />
         <div
           className="text-secondary1 mb-[30px]"
           dangerouslySetInnerHTML={{ __html: description }}
