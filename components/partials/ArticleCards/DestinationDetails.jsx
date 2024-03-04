@@ -8,13 +8,17 @@ import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 
 import destinationEntriesData from "@/lib/preBuildScripts/static/destinations.json";
+import Link from "next/link";
 
 export default function DestinationDetails({ block, page }) {
   const destinations = destinationEntriesData.destinationEntriesData;
   const [destination, setDestination] = useState();
   const { title } = block;
   const feature = block.data.main.items;
+  const links = block.data.main.button_items;
   const router = useRouter();
+
+  console.log("links", links);
 
   // const { isValidating, error } = CONTENTAPI.getContentsSwr(
   //   `/destinations/entries?`,
@@ -137,6 +141,27 @@ export default function DestinationDetails({ block, page }) {
             );
           })}
         </div>
+        {links && links.length > 0 && (
+          <div
+            className={`flex flex-col sm:flex-row w-full gap-y-3 sm:gap-y-0 justify-center px-5 2xl:px-0 gap-x-3 bg-white`}
+          >
+            {links.map((item, i) => {
+              return (
+                <Link
+                  key={i}
+                  href={item.button_url || "#"}
+                  className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                    !item.button_label || !links
+                      ? "border-none"
+                      : "border border-secondary my-[50px]"
+                  } text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                >
+                  {item.button_label}
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </article>
     </>
   );
