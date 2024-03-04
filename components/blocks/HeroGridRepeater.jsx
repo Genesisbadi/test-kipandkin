@@ -36,7 +36,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                 <Link
                   className="inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
                   href={item.link}
-                  target={item.link.includes("https:") ? "" : ""}
+                  target={item.link.includes("http:") ? "_blank" : "_self"}
                 >
                   Discover More
                 </Link>
