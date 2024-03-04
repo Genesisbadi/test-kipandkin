@@ -8,7 +8,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
           <div
-            className="flex flex-col max-w-[33.33%] w-full px-[3px]"
+            className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
             key={index}
           >
             <Image
