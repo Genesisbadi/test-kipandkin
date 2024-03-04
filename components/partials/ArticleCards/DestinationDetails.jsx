@@ -18,8 +18,6 @@ export default function DestinationDetails({ block, page }) {
   const links = block.data.main.button_items;
   const router = useRouter();
 
-  console.log("links", links);
-
   // const { isValidating, error } = CONTENTAPI.getContentsSwr(
   //   `/destinations/entries?`,
   //   {
@@ -67,7 +65,7 @@ export default function DestinationDetails({ block, page }) {
           }
           width={1920}
           height={1080}
-          className="w-full h-full  object cover absolute top-0 left-0"
+          className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
           <h1 className="text-[42px] text-white relative z-[3]">{title}</h1>
@@ -125,15 +123,15 @@ export default function DestinationDetails({ block, page }) {
 
                 <div className="flex w-full md:w-1/2 bg-primary items-center">
                   <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-0">
-                    <span className="text-dark-gold text-[20px] tracking-[2px]">
+                    <span className="text-secondary2 text-[20px] tracking-[2px]">
                       {item.title}
                     </span>
-                    <hr className="w-[80px] border border-dark-gold" />
+                    <hr className="w-[80px] border border-secondary2" />
                     <div
                       dangerouslySetInnerHTML={{
                         __html: block.data.main.description,
                       }}
-                      className="text-dark-pink pt-5"
+                      className="text-secondary1 pt-5"
                     />
                   </div>
                 </div>
