@@ -9,10 +9,19 @@ const DestinationPage = dynamic(() =>
     (module) => module.default
   )
 );
+
+const OurCollectionPage = dynamic(() =>
+  import("../../components/page/OurCollectionPage").then(
+    (module) => module.default
+  )
+);
+
 export default function DynamicPage({ page, blocks }) {
   switch (page?.content?.id) {
     case "destinations":
       return <DestinationPage page={page} />;
+    case "our-collection":
+      return <OurCollectionPage page={page} />;
     default:
       return <ParentBlock page={page} blocks={blocks} />;
   }
