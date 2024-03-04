@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 import DropdownArrow from "@/components/icons/DropdownArrow";
+import { useRouter } from "next/router";
 
 export default function MainMenu({ parentNodes, ...props }) {
+  const router = useRouter();
+
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
 
@@ -77,7 +80,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                   ) : (
                     <>
                       <Link
-                        className="text-primary flex items-center uppercase"
+                        className={`text-primary flex items-center uppercase ${
+                          item.url.includes(router.asPath) ? "active" : ""
+                        }`}
                         href={item.url}
                         target={item.target}
                       >
@@ -110,7 +115,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
-                      className="text-primary flex items-center uppercase hover:text-[#000]"
+                      className={`text-primary flex items-center uppercase hover:text-[#000] ${
+                        item.url.includes(router.asPath) ? "active" : ""
+                      }`}
                       href={item.url}
                       target={item.target}
                     >

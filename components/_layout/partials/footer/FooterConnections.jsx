@@ -25,7 +25,7 @@ export default function footerConnections({ connections }) {
               } border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[30px] mb-[15px] `}
             >
               <h2
-                className={`uppercase text-[18px] w-full lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
+                className={`uppercase text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
               >
                 {item?.title}
               </h2>

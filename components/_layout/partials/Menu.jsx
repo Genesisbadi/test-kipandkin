@@ -30,9 +30,12 @@ export default function Menu() {
 
   return (
     <>
-      <header>
+      <header
+        id="header"
+        className="sticky top-0 z-[100] bg-white shadow-[0_2px_2px_-2px_rgba(0,0,0,.15)]"
+      >
         <div className="flex items-center py-[10px] xl:py-0 justify-center xl:justify-between">
-          <div className="pl-[30px]">
+          <div className="xl:pl-[30px] relative z-[1]">
             <Link href="/">
               <Image
                 src={tenantDetails?.data?.main?.tenant_logo}
