@@ -11,13 +11,16 @@ module.exports = {
     extend: {
       colors: {
         primary: "#691a31",
+        primary1: "#85764D",
+        secondary: "#86764e",
+        secondary1: "#c5baa6",
+        secondary2: "#d4bebe",
       },
-      fontFamily: {
-        lato: ["lato", ...defaultTheme.fontFamily.sans],
-      },
+      fontFamily: {},
     },
     screens: {
       xxs: "380px",
+      "2sm": "426px",
       xs: "480px",
       sm: "640px",
       md: "768px",

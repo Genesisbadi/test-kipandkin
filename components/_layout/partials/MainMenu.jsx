@@ -1,8 +1,11 @@
 import Link from "next/link";
 
 import DropdownArrow from "@/components/icons/DropdownArrow";
+import { useRouter } from "next/router";
 
 export default function MainMenu({ parentNodes, ...props }) {
+  const router = useRouter();
+
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
 
@@ -12,7 +15,7 @@ export default function MainMenu({ parentNodes, ...props }) {
           parent.label.toLowerCase() === "reservations"
             ? "right-[0]"
             : "left-[0]"
-        } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%)] transition opacity-[0] invisible group-hover:visible	group-hover:opacity-[1]`}
+        } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%-10px)] transition opacity-[0] invisible group-hover:visible	group-hover:opacity-[1]`}
       >
         <div className="w-full bg-[#d4bebe] transition translate-y-[10px] relative group-hover:translate-y-[0]">
           <span
@@ -77,7 +80,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                   ) : (
                     <>
                       <Link
-                        className="text-primary flex items-center uppercase"
+                        className={`text-primary flex items-center uppercase ${
+                          item.url.includes(router.asPath) ? "active" : ""
+                        }`}
                         href={item.url}
                         target={item.target}
                       >
@@ -110,7 +115,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
-                      className="text-primary flex items-center uppercase hover:text-[#000]"
+                      className={`text-primary flex items-center uppercase hover:text-[#000] ${
+                        item.url.includes(router.asPath) ? "active" : ""
+                      }`}
                       href={item.url}
                       target={item.target}
                     >

@@ -2,55 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: "lato";
-    font-display: swap;
-    font-weight: 100;
-    src: url("/fonts/lato300.woff2") format("woff2");
+@layer utilities {
+  .connections .odd img {
+    max-width: 100px;
   }
-}
+  .connections .even img {
+    max-width: 65px;
+  }
+  * {
+    line-height: 27px;
+  }
 
-* {
-  line-height: 27px;
-}
+  ul {
+    list-style: disc;
+  }
 
-ul {
-  list-style: disc;
-}
-
-ol {
-  list-style: decimal;
-}
-.container {
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 1200px) {
+  ol {
+    list-style: decimal;
+  }
   .container {
-    max-width: 1140px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
+
+  #header-mobile {
+    transform: translateX(-100%);
+    transition: all ease 0.3s;
+  }
+
+  .mobile-menu-opened #header-mobile {
+    transform: translateX(0);
+    transition: all ease 0.3s;
+  }
+
+  .referral {
+    display: none !important;
+    position: fixed;
+    left: -99999px;
+    height: 0;
+    width: 0;
+  }
+  @media (max-width: 1199px) {
+    .mobile-menu-opened {
+      overflow: hidden;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
 }
 
-#header-mobile {
-  transform: translateX(-100%);
-  transition: all ease 0.3s;
-}
-
-.mobile-menu-opened #header-mobile {
-  transform: translateX(0);
-  transition: all ease 0.3s;
-}
-
-.referral {
-  display: none !important;
-  position: fixed;
-  left: -99999px;
-  height: 0;
-  width: 0;
+@layer base {
+  .remove-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

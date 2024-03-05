@@ -68,15 +68,21 @@ export default function FooterDestinations({ destinations }) {
         },
       },
       {
-        breakpoint: 767,
+        breakpoint: 991,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
         },
       },
     ],
@@ -84,7 +90,7 @@ export default function FooterDestinations({ destinations }) {
   return (
     <>
       {destinations?.destination_items && (
-        <section className="footer-strip pt-[30px]">
+        <section className="footer-strip text-white pt-[30px]">
           <h2 className="text-center text-primary text-[25px] mb-[30px]">
             {destinations?.block_title || "Our Destinations"}
           </h2>
