@@ -8,7 +8,6 @@ export default function OurCollection({ block, mediaHandler }) {
       <section className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {collection.contents.map((item, i) => (
-            <>
               <div key={i} className="flex relative">
                 <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
                 <Image
@@ -45,7 +44,6 @@ export default function OurCollection({ block, mediaHandler }) {
                   </div>
                 </div>
               </div>
-            </>
           ))}
         </div>
       </section>

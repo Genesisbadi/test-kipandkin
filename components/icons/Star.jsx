@@ -1,11 +1,12 @@
 export default function Star({ ...props }) {
-  const { color, width, height } = props;
+  const { color, width, height, className } = props;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={width || "34.585"}
       height={height || "32.981"}
       viewBox="0 0 34.585 32.981"
+      className={className}
     >
       <g id="star_bold" transform="translate(0)">
         <path
