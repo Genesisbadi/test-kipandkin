@@ -108,7 +108,7 @@ export default function DiscoverBlog({ block }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-col px-[5px] md:max-w-[50%]">
+        <div className="w-full flex relative flex-col px-[5px] md:max-w-[50%]">
           {blogEntries && blogEntries.length > 0 && (
             <>
               <Slick className="grow slide-fill" {...settings}>
@@ -116,17 +116,19 @@ export default function DiscoverBlog({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Image
-                        src={featured_image}
-                        width={500}
-                        height={300}
-                        alt={item.title}
-                        className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
-                      />
-                      <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                      <div className="min-h-[150px] lg:min-h-[100%] z-1 relative flex justify-center items-center text-white">
-                        <h3>{item.title}</h3>
-                      </div>
+                      <Link href={item.route_url}>
+                        <Image
+                          src={featured_image}
+                          width={500}
+                          height={300}
+                          alt={item.title}
+                          className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
+                        />
+                        <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
+                        <div className="min-h-[150px] relative lg:min-h-[100%] text-[25px] z-[2] relative flex justify-center items-center text-white">
+                          <h3>{item.title}</h3>
+                        </div>
+                      </Link>
                     </div>
                   );
                 })}
