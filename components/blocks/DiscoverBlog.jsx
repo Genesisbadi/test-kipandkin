@@ -1,0 +1,149 @@
+import Link from "next/link";
+import Image from "next/image";
+// import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discoverBlog.json";
+import Slick from "react-slick";
+import "slick-carousel/slick/slick.css";
+
+import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
+export default function DiscoverBlog({ block }) {
+  const { title, description, link } = block.main;
+  const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
+
+  const NextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${
+          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+        } absolute top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
+        onClick={onClick}
+      >
+        <svg
+          className="!fill-white"
+          width={25}
+          height={54}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 27 44"
+        >
+          <path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" />
+        </svg>
+      </div>
+    );
+  };
+  const PrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${
+          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+        } absolute top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
+        onClick={onClick}
+      >
+        <svg
+          className="!fill-white"
+          xmlns="http://www.w3.org/2000/svg"
+          width={25}
+          height={54}
+          viewBox="0 0 19.349 30"
+        >
+          <path
+            id="_002-right-arrow"
+            data-name="002-right-arrow"
+            d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
+            transform="translate(-86.981)"
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 5000,
+    adaptiveHeight: true,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
+
+  return (
+    <section className="overflow-hidden py-[5px]">
+      <div className="flex flex-wrap mx-[-5px] relative">
+        <div className="px-[5px] w-full md:max-w-[50%]">
+          <div className="flex justify-between items-start md:items-end h-full relative bg-[#f1f1f1] min-h-[350px] p-[15px]">
+            <div className="absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
+              <Image
+                src={`/static/ph_map.png`}
+                width={300}
+                height={300}
+                alt="Hello World"
+              />
+            </div>
+            <div className="relative md:absolute w-full top-0 right-0 max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
+              <h2 className="text-primary text-[25px]">{title}</h2>
+              {description && (
+                <div
+                  className="py-[30px] text-[14px]"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              )}
+              {link && (
+                <div>
+                  <Link
+                    href={link}
+                    target={
+                      link ? (link.includes("http") ? "_blank" : "_self") : ""
+                    }
+                    className="inline-block text-center text-[14px] md:text-[16px] text-primary md:min-w-[200px] border border-primary py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-primary"
+                  >
+                    Explore Now
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex flex-col px-[5px] md:max-w-[50%]">
+          {blogEntries && blogEntries.length > 0 && (
+            <>
+              <Slick className="grow slide-fill" {...settings}>
+                {blogEntries.map((item, index) => {
+                  const { featured_image, description, title } = item.data.main;
+                  return (
+                    <div key={index} className="relative">
+                      <Image
+                        src={featured_image}
+                        width={500}
+                        height={300}
+                        alt={item.title}
+                        className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
+                      />
+                      <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
+                      <div className="min-h-[150px] lg:min-h-[100%] z-1 relative flex justify-center items-center text-white">
+                        <h3>{item.title}</h3>
+                      </div>
+                    </div>
+                  );
+                })}
+              </Slick>
+            </>
+          )}
+          <div className="flex justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
+            <span className="text-[25px]">Discovery Blog</span>
+            <Link
+              href="/blog"
+              className="inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+            >
+              Explore Now
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
