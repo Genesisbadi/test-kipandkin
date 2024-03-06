@@ -9,7 +9,7 @@ export default function FooterSocial({ social_media }) {
     <>
       {social_media?.media_links && (
         <>
-          <div className="social-media mt-[15px] flex items-center ">
+          <div className="social-media mt-[15px] flex flex-wrap  items-center ">
             {social_media?.media_links?.map((item, index) => (
               <div key={index} className="px-[10px]">
                 <Link
