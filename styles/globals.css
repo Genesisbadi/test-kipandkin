@@ -60,6 +60,10 @@
 }
 
 @layer base {
+  .slide-fill .slick-list,
+  .slide-fill .slick-list div {
+    height: 100% !important;
+  }
   .remove-highlight {
     -webkit-tap-highlight-color: transparent;
   }
