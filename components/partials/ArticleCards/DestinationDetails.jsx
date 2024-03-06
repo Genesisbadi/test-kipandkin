@@ -131,7 +131,7 @@ export default function DestinationDetails({ block, page }) {
                       dangerouslySetInnerHTML={{
                         __html: block.data.main.description,
                       }}
-                      className="text-secondary pt-5"
+                      className="text-secondary1 pt-5"
                     />
                   </div>
                 </div>
