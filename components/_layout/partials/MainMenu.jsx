@@ -8,7 +8,6 @@ export default function MainMenu({ parentNodes, ...props }) {
 
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
-
     return (
       <div
         className={`${
@@ -27,9 +26,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                   : "right-[10px]"
               }`}
           ></span>
-          {itemChildren.map((item, index) => (
+          {itemChildren?.map((item, index) => (
             <div className="" key={index}>
-              {item.url.includes("nolink") ? (
+              {item?.url?.includes("nolink") ? (
                 <>{item.label}</>
               ) : (
                 <>
@@ -65,7 +64,7 @@ export default function MainMenu({ parentNodes, ...props }) {
             {item.label.toLowerCase() === "reservations" ? (
               <>
                 <div className="bg-primary text-white py-[20px] px-[30px]">
-                  {item.url.includes("nolink") ? (
+                  {item?.url?.includes("nolink") ? (
                     <>
                       <span className="uppercase flex items-center cursor-default">
                         {item.label}{" "}
@@ -81,9 +80,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <>
                       <Link
                         className={`text-primary flex items-center uppercase ${
-                          item.url.includes(router.asPath) ? "active" : ""
+                          item?.url?.includes(router.asPath) ? "active" : ""
                         }`}
-                        href={item.url}
+                        href={item?.url}
                         target={item.target}
                       >
                         {item.label}
@@ -100,7 +99,7 @@ export default function MainMenu({ parentNodes, ...props }) {
               </>
             ) : (
               <>
-                {item.url.includes("nolink") ? (
+                {item?.url?.includes("nolink") ? (
                   <>
                     <span className="flex items-center uppercase text-primary cursor-default">
                       {item.label}
@@ -116,9 +115,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                   <>
                     <Link
                       className={`text-primary flex items-center uppercase hover:text-[#000] ${
-                        item.url.includes(router.asPath) ? "active" : ""
+                        item?.url?.includes(router.asPath) ? "active" : ""
                       }`}
-                      href={item.url}
+                      href={item?.url || "#"}
                       target={item.target}
                     >
                       {item.label}
@@ -133,7 +132,6 @@ export default function MainMenu({ parentNodes, ...props }) {
                 )}
               </>
             )}
-
             {item?.children && item?.children?.length > 0 && (
               <>
                 <DropdownMenu parent={item} itemChildren={item.children} />

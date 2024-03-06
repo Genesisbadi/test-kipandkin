@@ -15,6 +15,7 @@ export default function MeetingsEvensDetails({ block, page }) {
   console.log(page, "events");
 
   const [selectedValue, setSelectedValue] = useState(0);
+  const [currentVenue, setCurrentVenue] = useState(venue[0]);
 
   const getDefaultValue = () => {
     let article = venue[0]?.title || "";
@@ -40,6 +41,8 @@ export default function MeetingsEvensDetails({ block, page }) {
     }
 
     handleCloseModal();
+    let defaultVenue = venue[0]?.title || "";
+    return { label: defaultVenue, value: defaultVenue };
   };
 
   useEffect(() => {
@@ -189,6 +192,14 @@ export default function MeetingsEvensDetails({ block, page }) {
             // value={selectedValue}
             defaultValue={getDefaultValue()}
             onChange={(e) => setSelectedValue(Number(e.target.value))}
+            options={venue?.map((item, index) => {
+            onChange={(e) =>
+              setSelectedValue(() => {
+                Number(e.value);
+                const curVenue = venue.find((obj) => obj.title === e.value);
+                setCurrentVenue(curVenue);
+              })
+            }
             options={venue?.map((item, index) => {
               return {
                 label: item?.title,
