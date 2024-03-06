@@ -5,7 +5,7 @@ import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import CustomSelect from "@/components/forms/CustomSelect";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import VenueDescription from "@/components/nodes/meetings-events/VenueDescription";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 
@@ -23,7 +23,6 @@ export default function MeetingsEvensDetails({ block, page }) {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalOverlayRef = useRef(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -34,20 +33,6 @@ export default function MeetingsEvensDetails({ block, page }) {
     setIsModalOpen(false);
     document.body.style.overflow = "";
   };
-
-  const handleOverlayClick = (e) => {
-    if (modalOverlayRef.current && modalOverlayRef.current.contains(e.target)) {
-      handleCloseModal();
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleOverlayClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOverlayClick);
-    };
-  }, []);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
