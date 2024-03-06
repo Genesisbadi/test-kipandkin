@@ -21,6 +21,9 @@ const MeetingsEventsPage = dynamic(() =>
     (module) => module.default
   )
 );
+const BlogPage = dynamic(() =>
+  import("../../components/page/BlogPage").then((module) => module.default)
+);
 
 export default function DynamicPage({ page, blocks }) {
   switch (page?.content?.id) {
@@ -30,11 +33,9 @@ export default function DynamicPage({ page, blocks }) {
       return <OurCollectionPage page={page} />;
     case "meetings-events-article":
       return <MeetingsEventsPage page={page} />;
+    case "blog":
+      return <BlogPage page={page} />;
     default:
       return <ParentBlock page={page} blocks={blocks} />;
   }
 }
-
-// export default function DynamicPage({ page, blocks }) {
-//   return "Test";
-// }
