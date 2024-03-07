@@ -126,7 +126,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
       {isOpen && (
         <div
           ref={modalOverlayRef}
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-[99999] transition-opacity duration-700 ease-in-out opacity-100"
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-[100] transition-opacity duration-700 ease-in-out opacity-100"
         >
           <span
             className="absolute top-[20px] right-[20px] cursor-pointer text-[30px] font-semibold text-[#ccc] hover:text-white"
