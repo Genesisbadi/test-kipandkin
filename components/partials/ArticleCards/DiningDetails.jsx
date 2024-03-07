@@ -176,17 +176,15 @@ export default function DiningDetails({ block, page }) {
               <div className="pb-7">
                 {schedules.map((item, idx) => {
                   return (
-                    <>
-                      <div key={idx}>
-                        <span>{item.title}</span>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: item.time,
-                          }}
-                          className="text-[18px] font-[700] leading-[25px] "
-                        />
-                      </div>
-                    </>
+                    <div key={idx}>
+                      <span>{item.title}</span>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: item.time,
+                        }}
+                        className="text-[18px] font-[700] leading-[25px] "
+                      />
+                    </div>
                   );
                 })}
               </div>
@@ -194,19 +192,17 @@ export default function DiningDetails({ block, page }) {
                 <div className={`flex flex-col w-full gap-y-3`}>
                   {button_links.map((item, i) => {
                     return (
-                      <>
-                        <Link
-                          key={i}
-                          href={item.button_url || "#"}
-                          className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                            item.variant === "filled"
-                              ? "bg-primary text-white"
-                              : "border border-secondary text-secondary"
-                          } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
-                        >
-                          {item.button_label}
-                        </Link>
-                      </>
+                      <Link
+                        key={i}
+                        href={item.button_url || "#"}
+                        className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                          item.variant === "filled"
+                            ? "bg-primary text-white"
+                            : "border border-secondary text-secondary"
+                        } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                      >
+                        {item.button_label}
+                      </Link>
                     );
                   })}
                   {file_label && (
