@@ -17,14 +17,18 @@ export default function MeetingsEvensDetails({ block, page }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
+  // console.log("meetings", page.data.main);
+
   const getDefaultValue = () => {
     let defaultVenue = venues[0]?.title || "";
     return { label: defaultVenue, value: defaultVenue };
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (imageIndex) => {
+    setSelectedImageIndex(imageIndex);
     setIsModalOpen(true);
     document.body.style.overflow = "hidden";
   };
@@ -105,7 +109,6 @@ export default function MeetingsEvensDetails({ block, page }) {
           slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
-          dots: true,
         },
       },
       {
@@ -154,7 +157,6 @@ export default function MeetingsEvensDetails({ block, page }) {
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
           )}
-          {}
           {venues.length > 0 && (
             <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
               Select Venue:
@@ -194,39 +196,66 @@ export default function MeetingsEvensDetails({ block, page }) {
                 />
               )}
             </div>
-            <ModalImage
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              title={currentVenue.title}
-              content={currentVenue.image}
-            />
-            {/* <VenueDescription description={currentVenue.description} /> */}
             <div
               className="text-[14px] text-[#555] leading-[21px] my-[30px]"
               dangerouslySetInnerHTML={{
                 __html: currentVenue.description,
               }}
             />
-            {currentVenue.buttons.length > 0 && (
+            {currentVenue?.buttons?.length > 0 && (
               <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
                 <div className="flex flex-wrap justify-center ">
-                  {currentVenue.buttons.map((item, index) => (
+                  {currentVenue?.buttons?.map((item, index) => (
                     <Link
                       key={index}
-                      href={item.button_link}
+                      href={item?.button_link}
                       className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
                         item.button_variant === "dark"
                           ? "text-white bg-primary"
                           : "border-secondary"
                       } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                     >
-                      {item.button_label}
+                      {item?.button_label}
                     </Link>
                   ))}
                 </div>
               </div>
             )}
           </div>
+        )}
+        <div className="flex w-full bg-white py-[30px]">
+          {currentVenue?.images && (
+            <div className="flex flex-col w-full">
+              <Slick {...settings} className="h-[330px] lg:h-[530px]">
+                {currentVenue?.images.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex"
+                    onClick={() => handleOpenModal(index)}
+                  >
+                    <Image
+                      alt="#"
+                      src={item}
+                      width={630}
+                      height={530}
+                      className="w-full h-[330px] lg:h-[530px] object-cover"
+                    />
+                  </div>
+                ))}
+              </Slick>
+            </div>
+          )}
+        </div>
+        {isModalOpen && (
+          <ModalImage
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            title={currentVenue.title}
+            content={
+              currentVenue.image || currentVenue.images[selectedImageIndex]
+            }
+            images={currentVenue.images || []}
+          />
         )}
       </article>
     </>
