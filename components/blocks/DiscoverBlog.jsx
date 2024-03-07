@@ -15,7 +15,7 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
@@ -36,7 +36,7 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
@@ -125,7 +125,7 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="min-h-[150px] relative lg:min-h-[100%] text-[25px] z-[2] relative flex justify-center items-center text-white">
+                        <div className="px-[50px] text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative flex justify-center items-center text-white">
                           <h3>{item.title}</h3>
                         </div>
                       </Link>
