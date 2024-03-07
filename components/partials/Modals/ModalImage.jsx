@@ -32,6 +32,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
     const { className, style, onClick } = props;
     return (
       <div
+        data-tag="NextArrow"
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
         } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer transition-all duration-300`}
@@ -58,6 +59,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
     const { className, style, onClick } = props;
     return (
       <div
+        data-tag="PrevArrow"
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
         } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer transition-all duration-300`}

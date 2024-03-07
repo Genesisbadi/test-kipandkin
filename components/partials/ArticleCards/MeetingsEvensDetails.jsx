@@ -36,6 +36,8 @@ export default function MeetingsEvensDetails({ block, page }) {
     document.body.style.overflow = "";
   };
 
+  const imagesLength = currentVenue?.images.length;
+
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -97,7 +99,7 @@ export default function MeetingsEvensDetails({ block, page }) {
     slidesToShow: 3,
     slidesToScroll: 1,
     cssEase: "linear",
-    arrows: true,
+    arrows: imagesLength > 3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -115,6 +117,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          arrows: true,
         },
       },
       {
@@ -122,6 +125,7 @@ export default function MeetingsEvensDetails({ block, page }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: true,
         },
       },
     ],
