@@ -17,8 +17,6 @@ export default function MeetingsEvensDetails({ block, page }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
-  // console.log("meetings", page.data.main);
-
   const getDefaultValue = () => {
     let defaultVenue = venues[0]?.title || "";
     return { label: defaultVenue, value: defaultVenue };
@@ -225,7 +223,7 @@ export default function MeetingsEvensDetails({ block, page }) {
         )}
         <div className="flex w-full bg-white py-[30px]">
           {currentVenue?.images && (
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full slick-gallery">
               <Slick {...settings} className="h-[330px] lg:h-[530px]">
                 {currentVenue?.images.map((item, index) => (
                   <div
@@ -234,7 +232,7 @@ export default function MeetingsEvensDetails({ block, page }) {
                     onClick={() => handleOpenModal(index)}
                   >
                     <Image
-                      alt="#"
+                      alt={currentVenue.title}
                       src={item}
                       width={630}
                       height={530}

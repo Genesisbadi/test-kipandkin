@@ -10,7 +10,9 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
     if (
       modalOverlayRef.current &&
       modalOverlayRef.current.contains(e.target) &&
-      e.target.tagName !== "IMG"
+      e.target.tagName !== "IMG" &&
+      e.target.dataset.tag !== "NextArrow" &&
+      e.target.dataset.tag !== "PrevArrow"
     ) {
       onClose();
     }
@@ -37,6 +39,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
       >
         <div className="flex items-center h-full">
           <svg
+            data-tag="NextArrow"
             width={25}
             height={54}
             xmlns="http://www.w3.org/2000/svg"
@@ -62,9 +65,10 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
       >
         <div className="flex items-center h-full">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
+            data-tag="PrevArrow"
             width={25}
             height={54}
+            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 19.349 30"
           >
             <path
@@ -125,7 +129,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-[99999] transition-opacity duration-700 ease-in-out opacity-100"
         >
           <span
-            className="absolute top-[20px] right-[20px] cursor-pointer text-[30px] text-[#ccc] hover:text-white"
+            className="absolute top-[20px] right-[20px] cursor-pointer text-[30px] font-semibold text-[#ccc] hover:text-white"
             onClick={onClose}
           >
             X
