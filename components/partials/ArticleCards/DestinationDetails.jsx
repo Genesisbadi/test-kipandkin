@@ -77,6 +77,7 @@ export default function DestinationDetails({ block, page }) {
           <div className="flex flex-col pb-[40px]">
             <span className="text-center pb-3">Other Destination</span>
             <CustomSelect
+              className="react-select"
               id="destinationSelect"
               instanceId="destinationSelect"
               // value={getDefaultValue()}

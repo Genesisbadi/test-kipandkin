@@ -161,6 +161,7 @@ export default function OurCollectionDetails({ block, page }) {
               More from our collection
             </span>
             <CustomSelect
+              className="react-select"
               id="ourCollectionSelect"
               instanceId="ourCollectionSelect"
               // value={getDefaultValue()}
