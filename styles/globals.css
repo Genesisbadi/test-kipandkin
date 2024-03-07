@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --primary: #691a31;
+}
+
 @layer utilities {
   .connections .odd img {
     max-width: 100px;
@@ -54,7 +58,7 @@
 
   @media (min-width: 1200px) {
     .container {
-      max-width: 1140px;
+      max-width: 980px;
     }
   }
 }

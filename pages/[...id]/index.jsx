@@ -21,11 +21,12 @@ const MeetingsEventsPage = dynamic(() =>
     (module) => module.default
   )
 );
+const BlogPage = dynamic(() =>
+  import("../../components/page/BlogPage").then((module) => module.default)
+);
 
 const DiningPage = dynamic(() =>
-  import("../../components/page/DiningPage").then(
-    (module) => module.default
-  )
+  import("../../components/page/DiningPage").then((module) => module.default)
 );
 
 export default function DynamicPage({ page, blocks }) {
@@ -36,13 +37,11 @@ export default function DynamicPage({ page, blocks }) {
       return <OurCollectionPage page={page} />;
     case "meetings-events-article":
       return <MeetingsEventsPage page={page} />;
-      case "dining":
-        return <DiningPage page={page} />;
+    case "dining":
+      return <DiningPage page={page} />;
+    case "blog":
+      return <BlogPage page={page} />;
     default:
       return <ParentBlock page={page} blocks={blocks} />;
   }
 }
-
-// export default function DynamicPage({ page, blocks }) {
-//   return "Test";
-// }
