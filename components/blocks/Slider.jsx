@@ -65,6 +65,15 @@ export default function Slider({ block, mediaHandler }) {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          arrows: false,
+          dots: true,
+        },
+      },
+    ],
   };
 
   return (
@@ -88,7 +97,7 @@ export default function Slider({ block, mediaHandler }) {
               />
             )}
 
-            <div className="min-h-[750px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+            <div className="py-[50px] md:min-h-[500px] lg:min-h-[750px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
               <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>
               <div
                 className="mb-[15px]"

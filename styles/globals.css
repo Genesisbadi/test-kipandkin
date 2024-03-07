@@ -4,9 +4,24 @@
 
 body {
   --primary: #691a31;
+  --dropdownBorder: #ebbbc9;
 }
 
 @layer utilities {
+  .react-select {
+    text-transform: uppercase;
+  }
+  .react-select,
+  .react-select * {
+    color: var(--primary) !important;
+  }
+  .react-select > div {
+    border: 1px solid var(--dropdownBorder) !important;
+    outline: none;
+  }
+  .react-select > div > div:nth-child(2) > span {
+    display: none;
+  }
   .connections .odd img {
     max-width: 100px;
   }
@@ -64,11 +79,23 @@ body {
 }
 
 @layer base {
+  .book-modal .modal-content {
+    animation: modalIn 0.3s;
+  }
   .slide-fill .slick-list,
   .slide-fill .slick-list div {
     height: 100% !important;
   }
   .remove-highlight {
     -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes modalIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }

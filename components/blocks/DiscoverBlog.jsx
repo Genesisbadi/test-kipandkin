@@ -15,7 +15,7 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
@@ -36,7 +36,7 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
@@ -76,7 +76,7 @@ export default function DiscoverBlog({ block }) {
       <div className="flex flex-wrap mx-[-5px] relative">
         <div className="px-[5px] w-full md:max-w-[50%]">
           <div className="flex justify-between items-start md:items-end h-full relative bg-[#f1f1f1] min-h-[350px] p-[15px]">
-            <div className="absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
+            <div className="absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] md:opacity-[.3] xl:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
               <Image
                 src={`/static/ph_map.png`}
                 width={300}
@@ -125,7 +125,7 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="min-h-[150px] relative lg:min-h-[100%] text-[25px] z-[2] relative flex justify-center items-center text-white">
+                        <div className="px-[50px] text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative flex justify-center items-center text-white">
                           <h3>{item.title}</h3>
                         </div>
                       </Link>
@@ -135,8 +135,10 @@ export default function DiscoverBlog({ block }) {
               </Slick>
             </>
           )}
-          <div className="flex justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
-            <span className="text-[25px]">Discovery Blog</span>
+          <div className="flex justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
+              Discovery Blog
+            </span>
             <Link
               href="/blog"
               className="inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"

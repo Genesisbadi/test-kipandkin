@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 export default function OurCollectionDetails({ block, page }) {
   const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
@@ -33,8 +35,15 @@ export default function OurCollectionDetails({ block, page }) {
   const handleSelectChange = (option) => {
     const selectedRoute = option?.value;
 
-    setSelectedValue(selectedRoute);
-    router.push(selectedRoute);
+    NProgress.start();
+    router
+      .push(selectedRoute)
+      .then(() => {
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
   };
 
   useEffect(() => {
@@ -104,7 +113,7 @@ export default function OurCollectionDetails({ block, page }) {
 
   var settings = {
     dots: false,
-    infinite: false,
+    // infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -118,8 +127,6 @@ export default function OurCollectionDetails({ block, page }) {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
-          dots: true,
         },
       },
       {
@@ -127,7 +134,6 @@ export default function OurCollectionDetails({ block, page }) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
         },
       },
       {
@@ -141,7 +147,7 @@ export default function OurCollectionDetails({ block, page }) {
   };
   return (
     <>
-      <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}
@@ -151,55 +157,60 @@ export default function OurCollectionDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h1 className="text-[42px] text-white relative z-[3]">{title}</h1>
+          <h1 className="text-[42px] px-5 text-center text-white relative z-[3]">
+            {title}
+          </h1>
         )}
       </section>
       <article>
-        <div className="container px-5 2xl:px-0 py-[50px]">
-          <div className="flex flex-col pb-[40px]">
-            <span className="text-center text-sm pb-3">
-              More from our collection
-            </span>
-            <CustomSelect
-              id="ourCollectionSelect"
-              instanceId="ourCollectionSelect"
-              // value={getDefaultValue()}
-              defaultValue={getDefaultValue()}
-              onChange={handleSelectChange}
-              options={ourCollection?.map((d, index) => {
-                return {
-                  label: d?.title,
-                  value: d?.route_url,
-                };
+        <div className="w-full bg-[#f1f1f1]">
+          <div className="container px-5 2xl:px-0 py-[50px] ">
+            <div className="flex flex-col pb-[40px]">
+              <span className="text-center text-sm pb-3">
+                More from our collection
+              </span>
+              <CustomSelect
+                className="react-select"
+                id="ourCollectionSelect"
+                instanceId="ourCollectionSelect"
+                // value={getDefaultValue()}
+                defaultValue={getDefaultValue()}
+                onChange={handleSelectChange}
+                options={ourCollection?.map((d, index) => {
+                  return {
+                    label: d?.title,
+                    value: d?.route_url,
+                  };
+                })}
+              />
+            </div>
+            <div className="flex flex-col py-5">
+              <div
+                dangerouslySetInnerHTML={{ __html: subtitle }}
+                className="text-primary text-[22px] leading-[25px] text-center pb-[30px]"
+              />
+              <div
+                dangerouslySetInnerHTML={{ __html: description }}
+                className="text-[14px] leading-[25px]"
+              />
+            </div>
+            <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+              {button_links.map((item, idx) => {
+                return (
+                  <Link
+                    key={idx}
+                    href="#"
+                    className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                      item.variant === "filled"
+                        ? "text-white bg-primary"
+                        : "border-secondary"
+                    } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                  >
+                    {item.btn_label}
+                  </Link>
+                );
               })}
-            />
-          </div>
-          <div className="flex flex-col py-5">
-            <div
-              dangerouslySetInnerHTML={{ __html: subtitle }}
-              className="text-primary text-[22px] leading-[25px] text-center pb-[30px]"
-            />
-            <div
-              dangerouslySetInnerHTML={{ __html: description }}
-              className="text-[14px] leading-[25px]"
-            />
-          </div>
-          <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
-            {button_links.map((item, idx) => {
-              return (
-                <Link
-                  key={idx}
-                  href="#"
-                  className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                    item.variant === "filled"
-                      ? "text-white bg-primary"
-                      : "border-secondary"
-                  } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                >
-                  {item.btn_label}
-                </Link>
-              );
-            })}
+            </div>
           </div>
         </div>
         {images_title && images?.length > 0 && (
