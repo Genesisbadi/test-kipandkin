@@ -15,7 +15,10 @@ export default function Block({ block, mediaHandler }) {
         className="w-full object-cover absolute top-0 left-0 h-full"
       />
       <div className="w-full flex relative items-center justify-center h-[calc(100vh-68px)]">
-        {title && <h1 className="text-[42px] text-white">{title}</h1>}
+        <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span>
+        {title && (
+          <h1 className="text-[42px] text-white relative z-[20]">{title}</h1>
+        )}
       </div>
     </section>
   );
