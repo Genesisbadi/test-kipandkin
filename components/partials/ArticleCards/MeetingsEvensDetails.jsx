@@ -37,6 +37,7 @@ export default function MeetingsEvensDetails({ block, page }) {
   };
 
   const imagesLength = currentVenue?.images.length;
+  let imagesDisplay = imagesLength < 3 ? imagesLength : 3;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -96,8 +97,8 @@ export default function MeetingsEvensDetails({ block, page }) {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: imagesDisplay,
+    slidesToScroll: imagesDisplay,
     cssEase: "linear",
     arrows: imagesLength > 3,
     nextArrow: <NextArrow />,
@@ -106,9 +107,10 @@ export default function MeetingsEvensDetails({ block, page }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: imagesDisplay,
+          slidesToScroll: imagesDisplay,
           infinite: true,
+          arrows: imagesLength > 3,
         },
       },
       {
@@ -118,6 +120,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           slidesToScroll: 2,
           initialSlide: 2,
           arrows: true,
+          arrows: imagesLength > 2,
         },
       },
       {
@@ -126,6 +129,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
+          arrows: imagesLength > 1,
         },
       },
     ],
