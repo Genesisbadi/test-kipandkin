@@ -79,11 +79,23 @@ body {
 }
 
 @layer base {
+  .book-modal .modal-content {
+    animation: modalIn 0.3s;
+  }
   .slide-fill .slick-list,
   .slide-fill .slick-list div {
     height: 100% !important;
   }
   .remove-highlight {
     -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes modalIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
   }
 }
