@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 export default function OurCollectionDetails({ block, page }) {
   const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
@@ -33,8 +35,15 @@ export default function OurCollectionDetails({ block, page }) {
   const handleSelectChange = (option) => {
     const selectedRoute = option?.value;
 
-    setSelectedValue(selectedRoute);
-    router.push(selectedRoute);
+    NProgress.start();
+    router
+      .push(selectedRoute)
+      .then(() => {
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
   };
 
   useEffect(() => {
@@ -138,7 +147,7 @@ export default function OurCollectionDetails({ block, page }) {
   };
   return (
     <>
-      <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}
@@ -161,6 +170,7 @@ export default function OurCollectionDetails({ block, page }) {
                 More from our collection
               </span>
               <CustomSelect
+                className="react-select"
                 id="ourCollectionSelect"
                 instanceId="ourCollectionSelect"
                 // value={getDefaultValue()}

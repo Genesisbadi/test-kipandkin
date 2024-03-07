@@ -13,6 +13,7 @@ const primary = Montserrat({
   subsets: ["latin"],
 });
 export default function App({ Component, pageProps }) {
+  const showLazy = globalState((state) => state.showLazy);
   const { page } = pageProps;
   useEffect(() => {
     const locale = page?.locale;
@@ -21,18 +22,36 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     globalState.setState({ ready: true });
+
     const handleInteraction = () => {
       globalState.setState({
         showLazy: true,
       });
     };
+
+    const removeInteractionListeners = () => {
+      document.removeEventListener("scroll", handleInteraction, {
+        passive: true,
+      });
+      document.addEventListener("click", handleInteraction, { passive: true });
+      document.removeEventListener("mousemove", handleInteraction, {
+        passive: true,
+      });
+      document.removeEventListener("touchstart", handleInteraction, {
+        passive: true,
+      });
+    };
+
     document.addEventListener("scroll", handleInteraction, { passive: true });
+    document.addEventListener("click", handleInteraction, { passive: true });
     document.addEventListener("mousemove", handleInteraction, {
       passive: true,
     });
     document.addEventListener("touchstart", handleInteraction, {
       passive: true,
     });
+
+    return removeInteractionListeners;
   }, []);
   return (
     <div

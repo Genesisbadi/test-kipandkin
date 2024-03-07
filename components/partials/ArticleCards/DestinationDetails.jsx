@@ -10,6 +10,9 @@ import { useRouter } from "next/router";
 import destinationEntriesData from "@/lib/preBuildScripts/static/destinations.json";
 import Link from "next/link";
 
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
 export default function DestinationDetails({ block, page }) {
   const destinations = destinationEntriesData.destinationEntriesData;
   const [destination, setDestination] = useState();
@@ -18,27 +21,22 @@ export default function DestinationDetails({ block, page }) {
   const links = block.data.main.button_items;
   const router = useRouter();
 
-  // const { isValidating, error } = CONTENTAPI.getContentsSwr(
-  //   `/destinations/entries?`,
-  //   {
-  //     render: "destination",
-  //     revalidateOnFocus: false,
-  //     onSuccess: (res) => {
-  //       if (res) {
-  //         setDestination(dataFormatter.deserialize(res.data));
-  //       }
-  //     },
-  //   }
-  // );
-
   const route_url = page.route_url;
   const [selectedValue, setSelectedValue] = useState(page.route_url);
 
   const handleSelectChange = (option) => {
     const selectedRoute = option?.value;
 
-    setSelectedValue(selectedRoute);
-    router.push(selectedRoute);
+    NProgress.start();
+
+    router
+      .push(selectedRoute)
+      .then(() => {
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
   };
 
   useEffect(() => {
@@ -55,7 +53,7 @@ export default function DestinationDetails({ block, page }) {
 
   return (
     <>
-      <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}
@@ -77,6 +75,7 @@ export default function DestinationDetails({ block, page }) {
           <div className="flex flex-col pb-[40px]">
             <span className="text-center pb-3">Other Destination</span>
             <CustomSelect
+              className="react-select"
               id="destinationSelect"
               instanceId="destinationSelect"
               // value={getDefaultValue()}

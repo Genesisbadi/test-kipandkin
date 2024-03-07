@@ -21,7 +21,6 @@ export default function DiningDetails({ block, page }) {
     image_offer,
     description_offer,
   } = page.data.main;
-  console.log("page", page.data.main);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -151,9 +150,11 @@ export default function DiningDetails({ block, page }) {
                 )}
               </div>
               <div className="flex flex-col">
-                <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
-                  {award_title}
-                </span>
+                {award_title && (
+                  <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
+                    {award_title}
+                  </span>
+                )}
                 <div className="flex gap-x-10">
                   {award_images?.map((item, i) => {
                     return (
@@ -175,17 +176,15 @@ export default function DiningDetails({ block, page }) {
               <div className="pb-7">
                 {schedules.map((item, idx) => {
                   return (
-                    <>
-                      <div key={idx}>
-                        <span>{item.title}</span>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: item.time,
-                          }}
-                          className="text-[18px] font-[700] leading-[25px] "
-                        />
-                      </div>
-                    </>
+                    <div key={idx}>
+                      <span>{item.title}</span>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: item.time,
+                        }}
+                        className="text-[18px] font-[700] leading-[25px] "
+                      />
+                    </div>
                   );
                 })}
               </div>
@@ -193,19 +192,17 @@ export default function DiningDetails({ block, page }) {
                 <div className={`flex flex-col w-full gap-y-3`}>
                   {button_links.map((item, i) => {
                     return (
-                      <>
-                        <Link
-                          key={i}
-                          href={item.button_url || "#"}
-                          className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                            item.variant === "filled"
-                              ? "bg-primary text-white"
-                              : "border border-secondary text-secondary"
-                          } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
-                        >
-                          {item.button_label}
-                        </Link>
-                      </>
+                      <Link
+                        key={i}
+                        href={item.button_url || "#"}
+                        className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                          item.variant === "filled"
+                            ? "bg-primary text-white"
+                            : "border border-secondary text-secondary"
+                        } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                      >
+                        {item.button_label}
+                      </Link>
                     );
                   })}
                   {file_label && (
@@ -254,29 +251,37 @@ export default function DiningDetails({ block, page }) {
                 Dining Offer
               </span>
               <div className="flex w-full bg-white">
-                <div className="w-1/2">
-                  <Image
-                    alt={title_offer}
-                    src={image_offer}
-                    width={628}
-                    height={280}
-                    className="w-full h-[280px] object-cover"
-                  />
-                </div>
+                {image_offer && (
+                  <div className="w-1/2">
+                    <Image
+                      alt={title_offer}
+                      src={image_offer}
+                      width={628}
+                      height={280}
+                      className="w-full h-[280px] object-cover"
+                    />
+                  </div>
+                )}
+
                 <div className="flex flex-col justify-between w-1/2 p-5">
                   <div className="flex flex-col">
-                    <span className="text-primary text-[20px] text-center ">
-                      {title_offer}
-                    </span>
+                    {title_offer && (
+                      <span className="text-primary text-[20px] text-center ">
+                        {title_offer}
+                      </span>
+                    )}
+
                     <div className="w-full flex justify-center py-5">
                       <hr className="border- border-primary w-[30px]" />
                     </div>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: description_offer,
-                      }}
-                      className="text-[14px] text-center leading-[25px] "
-                    />
+                    {description_offer && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: description_offer,
+                        }}
+                        className="text-[14px] text-center leading-[25px] "
+                      />
+                    )}
                   </div>
                   <Link
                     href={"#"}

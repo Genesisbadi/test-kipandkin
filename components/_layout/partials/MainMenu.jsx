@@ -52,7 +52,9 @@ export default function MainMenu({ parentNodes, ...props }) {
       {parentNodes?.map((item, index) => (
         <div
           className={`item relative  ${
-            item.label.toLowerCase() !== "reservations" ? "px-[15px]" : ""
+            item.label.toLowerCase() !== "reservations"
+              ? "px-[10px] xxl:px-[15px]"
+              : ""
           } ${item.children ? "dropdown group" : ""} `}
           key={index}
         >
@@ -69,7 +71,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       <span className="uppercase flex items-center cursor-default">
                         {item.label}{" "}
                         <DropdownArrow
-                          className="ml-[5px] top-[-4px] border-white relative"
+                          className="ml-[5px] top-[-2px] xxl:top-[-4px] border-white relative"
                           width={7}
                           height={7}
                           item={item}
@@ -87,7 +89,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       >
                         {item.label}
                         <DropdownArrow
-                          className="ml-[5px] top-[-4px] border-white relative"
+                          className="ml-[5px] top-[-2px] xxl:top-[-4px] border-white relative"
                           width={7}
                           height={7}
                           item={item}
@@ -104,7 +106,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <span className="flex items-center uppercase text-primary cursor-default">
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-4px] border-primary relative"
+                        className="ml-[5px] top-[-2px] xxl:top-[-4px] border-primary relative"
                         width={7}
                         height={7}
                         item={item}
@@ -122,7 +124,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                     >
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-4px] border-primary relative"
+                        className="ml-[5px] top-[-2px] xxl:top-[-4px] border-primary relative"
                         width={7}
                         height={7}
                         item={item}

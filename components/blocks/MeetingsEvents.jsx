@@ -4,8 +4,6 @@ export default function Block({ block, mediaHandler }) {
   const { title } = block.main;
   const image = "/images/Banner-Safe-Space-Desktop.jpg";
 
-  console.log(block.main, "");
-
   return (
     <section className="w-full">
       {/* <div className="reltive w-full flex justify-center items-center">
