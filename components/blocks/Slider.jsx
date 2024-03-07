@@ -97,7 +97,7 @@ export default function Slider({ block, mediaHandler }) {
               />
             )}
 
-            <div className="py-[50px] md:min-h-[500px] lg:min-h-[750px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+            <div className="py-[50px] min-h-[calc(100vh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
               <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>
               <div
                 className="mb-[15px]"
