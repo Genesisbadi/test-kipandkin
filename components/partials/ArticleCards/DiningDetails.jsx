@@ -150,9 +150,11 @@ export default function DiningDetails({ block, page }) {
                 )}
               </div>
               <div className="flex flex-col">
-                <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
-                  {award_title}
-                </span>
+                {award_title && (
+                  <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
+                    {award_title}
+                  </span>
+                )}
                 <div className="flex gap-x-10">
                   {award_images?.map((item, i) => {
                     return (
@@ -253,29 +255,37 @@ export default function DiningDetails({ block, page }) {
                 Dining Offer
               </span>
               <div className="flex w-full bg-white">
-                <div className="w-1/2">
-                  <Image
-                    alt={title_offer}
-                    src={image_offer}
-                    width={628}
-                    height={280}
-                    className="w-full h-[280px] object-cover"
-                  />
-                </div>
+                {image_offer && (
+                  <div className="w-1/2">
+                    <Image
+                      alt={title_offer}
+                      src={image_offer}
+                      width={628}
+                      height={280}
+                      className="w-full h-[280px] object-cover"
+                    />
+                  </div>
+                )}
+
                 <div className="flex flex-col justify-between w-1/2 p-5">
                   <div className="flex flex-col">
-                    <span className="text-primary text-[20px] text-center ">
-                      {title_offer}
-                    </span>
+                    {title_offer && (
+                      <span className="text-primary text-[20px] text-center ">
+                        {title_offer}
+                      </span>
+                    )}
+
                     <div className="w-full flex justify-center py-5">
                       <hr className="border- border-primary w-[30px]" />
                     </div>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: description_offer,
-                      }}
-                      className="text-[14px] text-center leading-[25px] "
-                    />
+                    {description_offer && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: description_offer,
+                        }}
+                        className="text-[14px] text-center leading-[25px] "
+                      />
+                    )}
                   </div>
                   <Link
                     href={"#"}
