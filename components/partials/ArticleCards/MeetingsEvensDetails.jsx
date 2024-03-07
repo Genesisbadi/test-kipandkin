@@ -222,7 +222,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           </div>
         )}
         <div className="flex w-full bg-white py-[30px]">
-          {currentVenue?.images && (
+          {currentVenue?.images.length > 0 && (
             <div className="flex flex-col w-full slick-gallery">
               <Slick {...settings} className="h-[330px] lg:h-[530px]">
                 {currentVenue?.images.map((item, index) => (
