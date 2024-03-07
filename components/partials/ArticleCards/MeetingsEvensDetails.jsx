@@ -36,8 +36,8 @@ export default function MeetingsEvensDetails({ block, page }) {
     document.body.style.overflow = "";
   };
 
-  const imagesLength = currentVenue?.images.length;
-  let imagesDisplay = imagesLength < 3 ? imagesLength : 3;
+  const imagesLength = currentVenue?.images?.length ?? 0;
+  let imagesDisplay = imagesLength < 3 ? 2 : 3;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -233,7 +233,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           </div>
         )}
         <div className="flex w-full bg-white py-[30px]">
-          {currentVenue?.images.length > 0 && (
+          {imagesLength > 0 && (
             <div className="flex flex-col w-full slick-gallery">
               <Slick {...settings} className="h-[330px] lg:h-[530px]">
                 {currentVenue?.images.map((item, index) => (
