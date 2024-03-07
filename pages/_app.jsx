@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
   }, [page]);
 
   useEffect(() => {
-    globalState.setState({ ready: true, showLazy: false });
+    globalState.setState({ ready: true });
 
     const handleInteraction = () => {
       globalState.setState({

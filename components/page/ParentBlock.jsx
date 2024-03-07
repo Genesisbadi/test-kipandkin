@@ -24,6 +24,8 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
           />
         );
       })}
+
+      {console.log(showLazy)}
       {showLazy && (
         <>
           {lazyBlocks.map((block) => {
