@@ -169,30 +169,31 @@ export default function MeetingsEvensDetails({ block, page }) {
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
           )}
-          {}
           {venues.length > 0 && (
-            <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
-              Select Venue:
-            </div>
-          )}
-          {venues.length > 0 && (
-            <CustomSelect
-              // value={selectedValue}
-              defaultValue={getDefaultValue()}
-              onChange={(e) =>
-                setSelectedValue(() => {
-                  Number(e.value);
-                  const curVenue = venues.find((obj) => obj.title === e.value);
-                  setCurrentVenue(curVenue);
-                })
-              }
-              options={venues?.map((item, index) => {
-                return {
-                  label: item?.title,
-                  value: item?.title,
-                };
-              })}
-            />
+            <>
+              <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
+                Select Venue:
+              </div>
+              <CustomSelect
+                // value={selectedValue}
+                defaultValue={getDefaultValue()}
+                onChange={(e) =>
+                  setSelectedValue(() => {
+                    Number(e.value);
+                    const curVenue = venues.find(
+                      (obj) => obj.title === e.value
+                    );
+                    setCurrentVenue(curVenue);
+                  })
+                }
+                options={venues?.map((item, index) => {
+                  return {
+                    label: item?.title,
+                    value: item?.title,
+                  };
+                })}
+              />
+            </>
           )}
         </div>
 

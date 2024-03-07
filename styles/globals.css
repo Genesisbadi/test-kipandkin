@@ -4,9 +4,24 @@
 
 body {
   --primary: #691a31;
+  --dropdownBorder: #ebbbc9;
 }
 
 @layer utilities {
+  .react-select {
+    text-transform: uppercase;
+  }
+  .react-select,
+  .react-select * {
+    color: var(--primary) !important;
+  }
+  .react-select > div {
+    border: 1px solid var(--dropdownBorder) !important;
+    outline: none;
+  }
+  .react-select > div > div:nth-child(2) > span {
+    display: none;
+  }
   .connections .odd img {
     max-width: 100px;
   }
