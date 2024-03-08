@@ -37,6 +37,7 @@ export default function MeetingsEvensDetails({ block, page }) {
   };
 
   const imagesLength = currentVenue?.images?.length ?? 0;
+
   let imagesDisplay = imagesLength < 3 ? 2 : 3;
 
   const NextArrow = (props) => {
