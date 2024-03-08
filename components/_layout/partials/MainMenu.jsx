@@ -14,20 +14,20 @@ export default function MainMenu({ parentNodes, ...props }) {
           parent.label.toLowerCase() === "reservations"
             ? "right-[0]"
             : "left-[0]"
-        } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%-10px)] transition opacity-[0] invisible group-hover:visible	group-hover:opacity-[1]`}
+        } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%-20px)] transition opacity-[0] invisible`}
       >
-        <div className="w-full bg-[#d4bebe] transition translate-y-[10px] relative group-hover:translate-y-[0]">
+        <div className="w-full bg-secondary2 transition translate-y-[10px] relative">
           <span
-            className={`absolute top-[-10px]  z-[20] w-[0] h-[0] border-r-[10px] border-b-[10px] 
+            className={`caret absolute top-[-10px]  z-[20] w-[0] h-[0] border-r-[10px] border-b-[10px] 
               border-l-[10px] border-solid border-r-transparent
-              border-l-transparent border-b-[#d4bebe]  ${
+              border-l-transparent border-b-secondary2  ${
                 parent.label.toLowerCase() !== "reservations"
                   ? "left-[10px]"
                   : "right-[10px]"
               }`}
           ></span>
           {itemChildren?.map((item, index) => (
-            <div className="" key={index}>
+            <div className={`${item.children ? "dropdown" : ""}`} key={index}>
               {item?.url?.includes("nolink") ? (
                 <>{item.label}</>
               ) : (
@@ -39,6 +39,14 @@ export default function MainMenu({ parentNodes, ...props }) {
                   >
                     {item.label}
                   </Link>
+                  {item?.children && item?.children?.length > 0 && (
+                    <>
+                      <DropdownMenu
+                        parent={item}
+                        itemChildren={item.children}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -55,7 +63,7 @@ export default function MainMenu({ parentNodes, ...props }) {
             item.label.toLowerCase() !== "reservations"
               ? "px-[10px] xxl:px-[15px]"
               : ""
-          } ${item.children ? "dropdown group" : ""} `}
+          } ${item.children ? "dropdown" : ""} `}
           key={index}
         >
           <div

@@ -5,6 +5,7 @@
 body {
   --primary: #691a31;
   --dropdownBorder: #ebbbc9;
+  --secondary2: "#d4bebe";
 }
 
 @layer utilities {
@@ -88,6 +89,30 @@ body {
   }
   .remove-highlight {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  #header .dropdown:hover > div > .dropdown-menu,
+  #header .dropdown .dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: inherit;
+    transform: translateY(0);
+    transition: all ease 0.3s;
+  }
+  #header .dropdown-menu {
+    transform: translateY(10px);
+    transition: all ease 0.3s;
+  }
+  #header .dropdown-menu .dropdown-menu {
+    top: -10px !important;
+    padding-top: 0 !important;
+    left: 100% !important;
+  }
+  #header .dropdown-menu .dropdown-menu > div {
+    border-left: 3px solid var(--primary);
+  }
+
+  #header .dropdown-menu .dropdown-menu .caret {
+    display: none;
   }
 }
 

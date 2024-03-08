@@ -145,7 +145,7 @@ export default function MainMenuMobile({ ...props }) {
           <>
             <div
               id="header-mobile"
-              className="fixed max-h-[100vh] overflow-y-auto transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] lg:max-w-[420px] z-[999] w-full h-full left-0 top-0"
+              className="fixed max-h-[100vh] overflow-y-auto transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0"
             >
               <div className="sticky flex justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
                 <Image
@@ -182,21 +182,6 @@ export default function MainMenuMobile({ ...props }) {
                         onClick={item.children ? showChildren : closeMenu}
                       >
                         {item.label}
-                        {item.children && (
-                          <svg
-                            class="w-6 h-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"
-                            ></path>
-                          </svg>
-                        )}
                       </div>
                     );
                   }
