@@ -36,6 +36,9 @@ export default function MeetingsEvensDetails({ block, page }) {
     document.body.style.overflow = "";
   };
 
+  const imagesLength = currentVenue?.images?.length ?? 0;
+  let imagesDisplay = imagesLength < 3 ? 2 : 3;
+
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -94,19 +97,20 @@ export default function MeetingsEvensDetails({ block, page }) {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: imagesDisplay,
+    slidesToScroll: imagesDisplay,
     cssEase: "linear",
-    arrows: true,
+    arrows: imagesLength > 3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: imagesDisplay,
+          slidesToScroll: imagesDisplay,
           infinite: true,
+          arrows: imagesLength > 3,
         },
       },
       {
@@ -115,6 +119,8 @@ export default function MeetingsEvensDetails({ block, page }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          arrows: true,
+          arrows: imagesLength > 2,
         },
       },
       {
@@ -122,6 +128,8 @@ export default function MeetingsEvensDetails({ block, page }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: true,
+          arrows: imagesLength > 1,
         },
       },
     ],
@@ -225,7 +233,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           </div>
         )}
         <div className="flex w-full bg-white py-[30px]">
-          {currentVenue?.images && (
+          {imagesLength > 0 && (
             <div className="flex flex-col w-full slick-gallery">
               <Slick {...settings} className="h-[330px] lg:h-[530px]">
                 {currentVenue?.images.map((item, index) => (
