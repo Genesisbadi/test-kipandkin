@@ -6,19 +6,19 @@ import "slick-carousel/slick/slick.css";
 const ModalImage = ({ isOpen, onClose, title, content, images }) => {
   const modalOverlayRef = useRef(null);
 
-  const handleOverlayClick = (e) => {
-    if (
-      modalOverlayRef.current &&
-      modalOverlayRef.current.contains(e.target) &&
-      e.target.tagName !== "IMG" &&
-      e.target.dataset.tag !== "NextArrow" &&
-      e.target.dataset.tag !== "PrevArrow"
-    ) {
-      onClose();
-    }
-  };
-
   useEffect(() => {
+    const handleOverlayClick = (e) => {
+      if (
+        modalOverlayRef.current &&
+        modalOverlayRef.current.contains(e.target) &&
+        e.target.tagName !== "IMG" &&
+        e.target.dataset.tag !== "NextArrow" &&
+        e.target.dataset.tag !== "PrevArrow"
+      ) {
+        onClose();
+      }
+    };
+
     document.addEventListener("mousedown", handleOverlayClick);
 
     return () => {
