@@ -4,7 +4,7 @@ export default function Block({ page, block, mediaHandler }) {
   const { title } = block.main;
   return (
     <section className="relative flex items-center justify-center w-full bg-[#f1f1f1]">
-      <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+      {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
       <Image
         alt={title || "#"}
         src={
