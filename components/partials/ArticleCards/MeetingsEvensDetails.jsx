@@ -12,7 +12,7 @@ import ModalImage from "@/components/partials/Modals/ModalImage";
 export default function MeetingsEvensDetails({ block, page }) {
   const meetingsEvents = meetingsEventsEntriesData.meetingsEventsEntriesData;
   const { title } = block;
-  const { mediaHandler, description, venues } = page.data.main;
+  const { description, venues } = page.data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
@@ -137,12 +137,13 @@ export default function MeetingsEvensDetails({ block, page }) {
   };
   return (
     <>
-      <article>
+      <article className="bg-[#f1f1f1]">
         <div className="relative min-h-[100vh] text-white flex items-center justify-center">
           <Image
             alt={title}
             src={
-              mediaHandler?.main?.meda.conversions.image ||
+              page.mediaHandler["main.image"]?.[0].conversions.desktop ||
+              page.mediaHandler["main.image"]?.[0].original ||
               "../images/image_makati-large.jpg"
             }
             width={1920}
@@ -160,7 +161,7 @@ export default function MeetingsEvensDetails({ block, page }) {
           )}
           {description && (
             <div
-              className="text-[14px] text-[#555] leading-[21px] my-[30px]"
+              className="meetings_events text-[14px] text-[#555] my-[30px]"
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
           )}
@@ -207,7 +208,7 @@ export default function MeetingsEvensDetails({ block, page }) {
               )}
             </div>
             <div
-              className="text-[14px] text-[#555] leading-[21px] my-[30px]"
+              className="meetings_events text-[14px] text-[#555] my-[30px]"
               dangerouslySetInnerHTML={{
                 __html: currentVenue.description,
               }}
@@ -233,7 +234,7 @@ export default function MeetingsEvensDetails({ block, page }) {
             )}
           </div>
         )}
-        <div className="flex w-full bg-white py-[30px]">
+        <div className="flex w-full bg-[#f1f1f1] py-[30px]">
           {imagesLength > 0 && (
             <div className="flex flex-col w-full slick-gallery">
               <Slick {...settings} className="h-[330px] lg:h-[530px]">
