@@ -2,7 +2,7 @@ import CustomSelect from "../forms/CustomSelect";
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Select({ block }) {
+export default function Selection({ block }) {
   const { title, description, selection_label, selections, buttons } =
     block.main;
 
