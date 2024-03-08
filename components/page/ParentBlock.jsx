@@ -19,11 +19,13 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
           <Component
             key={block.key + block?.order?.toString()}
             block={block.data}
+            page={page}
             index={block?.order}
             mediaHandler={block?.mediaHandler}
           />
         );
       })}
+
       {showLazy && (
         <>
           {lazyBlocks.map((block) => {
@@ -32,6 +34,7 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
               <Component
                 key={block.key + block?.order?.toString()}
                 block={block.data}
+                page={page}
                 index={block?.order}
                 mediaHandler={block?.mediaHandler}
               />

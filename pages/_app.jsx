@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
   }, [page]);
 
   useEffect(() => {
-    globalState.setState({ ready: true, showLazy: false });
+    globalState.setState({ ready: true });
 
     const handleInteraction = () => {
       globalState.setState({
@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }) {
   }, []);
   return (
     <div
-      className={`text-dim-black ${primary.className} text-[16px] flex flex-col min-h-[100vh]`}
+      className={`text-dim-black ${primary.className} text-[16px] flex flex-col min-h-[102vh]`}
     >
       <DefaultLayout>
         <Component {...pageProps} />

@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import ModalImage from "@/components/partials/Modals/ModalImage";
 
 export default function OurCollectionDetails({ block, page }) {
   const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
@@ -25,6 +26,8 @@ export default function OurCollectionDetails({ block, page }) {
     virtual_url,
     awards_title,
     award_images,
+    button_file_label,
+    link_file,
   } = page.data.main;
 
   const router = useRouter();
@@ -55,6 +58,20 @@ export default function OurCollectionDetails({ block, page }) {
     let formattedName =
       ourCollectionName.charAt(0).toUpperCase() + ourCollectionName.slice(1);
     return { label: formattedName, value: router.asPath };
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleOpenModal = (imageIndex) => {
+    setSelectedImageIndex(imageIndex);
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "";
   };
 
   const NextArrow = (props) => {
@@ -194,23 +211,34 @@ export default function OurCollectionDetails({ block, page }) {
                 className="text-[14px] leading-[25px]"
               />
             </div>
-            <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-              {button_links.map((item, idx) => {
-                return (
+            {button_links && button_links.length > 0 && (
+              <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+                {button_links.map((item, idx) => {
+                  return (
+                    <Link
+                      key={idx}
+                      href="#"
+                      className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                        item.variant === "filled"
+                          ? "text-white bg-primary"
+                          : "border-secondary"
+                      } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                    >
+                      {item.btn_label}
+                    </Link>
+                  );
+                })}
+                {button_file_label && link_file && (
                   <Link
-                    key={idx}
-                    href="#"
-                    className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                      item.variant === "filled"
-                        ? "text-white bg-primary"
-                        : "border-secondary"
-                    } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                    href={link_file || "#"}
+                    target="_blank"
+                    className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                   >
-                    {item.btn_label}
+                    {button_file_label}
                   </Link>
-                );
-              })}
-            </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
         {images_title && images?.length > 0 && (
@@ -219,10 +247,14 @@ export default function OurCollectionDetails({ block, page }) {
               <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
                 {images_title}
               </span>
-              <Slick {...settings}>
-                {images?.map((item, i) => {
+              <Slick {...settings} className="h-[330px] lg:h-[530px]">
+                {images?.map((item, idx) => {
                   return (
-                    <div key={i} className="flex">
+                    <div
+                      key={idx}
+                      className="flex cursor-pointer"
+                      onClick={() => handleOpenModal(idx)}
+                    >
                       <Image
                         alt={images_title}
                         src={item}
@@ -236,6 +268,17 @@ export default function OurCollectionDetails({ block, page }) {
               </Slick>
             </div>
           </div>
+        )}
+
+        {/* MODAL HERE */}
+        {isModalOpen && (
+          <ModalImage
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            title={images.title}
+            content={images || images[selectedImageIndex]}
+            images={images || []}
+          />
         )}
         <div className="container px-5 2xl:px-0">
           {virtual_title && virtual_url?.length > 0 && (
@@ -262,9 +305,9 @@ export default function OurCollectionDetails({ block, page }) {
                   {awards_title}
                 </span>
                 <div className="flex gap-x-10">
-                  {award_images?.map((item, i) => {
+                  {award_images?.map((item, idx) => {
                     return (
-                      <div key={i} className="flex flex-wrap">
+                      <div key={idx} className="flex flex-wrap">
                         <Image
                           alt={"Banner"}
                           src={item}
