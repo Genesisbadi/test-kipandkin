@@ -31,6 +31,9 @@ const OfferDetails = dynamic(() =>
 const DiningPage = dynamic(() =>
   import("../../components/page/DiningPage").then((module) => module.default)
 );
+const FaqsPage = dynamic(() =>
+  import("../../components/page/FaqsPage").then((module) => module.default)
+);
 
 export default function DynamicPage({ page, blocks }) {
   const pageTitle = page.metaData.title || page.name;
@@ -60,6 +63,9 @@ export default function DynamicPage({ page, blocks }) {
       break;
     case "offers":
       ComponentToRender = OfferDetails;
+      break;
+    case "frequently-asked-questions":
+      ComponentToRender = FaqsPage;
       break;
     default:
       ComponentToRender = ParentBlock;
