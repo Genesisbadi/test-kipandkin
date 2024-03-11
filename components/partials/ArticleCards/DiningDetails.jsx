@@ -272,7 +272,11 @@ export default function DiningDetails({ block, page }) {
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             title={gallery_images.title}
-            content={gallery_images || gallery_images[selectedImageIndex]}
+            content={
+              gallery_images && gallery_images.length > 0
+                ? gallery_images[selectedImageIndex]
+                : null
+            }
             images={gallery_images || []}
           />
         )}

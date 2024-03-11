@@ -276,7 +276,9 @@ export default function OurCollectionDetails({ block, page }) {
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             title={images.title}
-            content={images || images[selectedImageIndex]}
+            content={
+              images && images.length > 0 ? images[selectedImageIndex] : null
+            }
             images={images || []}
           />
         )}
