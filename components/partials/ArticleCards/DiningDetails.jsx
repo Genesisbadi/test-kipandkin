@@ -5,8 +5,10 @@ import { useState } from "react";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import ModalImage from "@/components/partials/Modals/ModalImage";
+import globalState from "@/lib/store/globalState";
 
 export default function DiningDetails({ block, page }) {
+  const showLazy = globalState((state) => state.showLazy);
   const { title } = block;
   const {
     subtitle,
@@ -140,185 +142,183 @@ export default function DiningDetails({ block, page }) {
           <h2 className="text-[42px] text-white relative z-[3]">{title}</h2>
         )}
       </section>
-      <article>
-        <div className="container py-[50px]">
-          <div className="flex w-full gap-x-[100px]">
-            <div className="flex flex-col w-3/4">
-              <div className="flex flex-col pb-[30px]">
-                {subtitle && (
-                  <div
-                    dangerouslySetInnerHTML={{ __html: subtitle }}
-                    className="text-[22px] text-primary leading-[25px] pb-[20px]"
-                  />
-                )}
-                {description && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: description,
-                    }}
-                    className="text-[14px] leading-[25px] "
-                  />
-                )}
-              </div>
-              {award_images && award_images.length > 0 && (
-                <div className="flex flex-col">
-                  <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
-                    Awards
-                  </span>
-                  <div className="flex gap-x-10">
-                    {award_images?.map((item, i) => {
-                      return (
-                        <div key={i} className="flex flex-wrap">
-                          <Image
-                            alt={"Banner"}
-                            src={item}
-                            width={160}
-                            height={160}
-                            className="w-full lg:h-[160px] object-cover"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col w-1/4">
-              <div className="pb-7">
-                {schedules.map((item, idx) => {
-                  return (
-                    <div key={idx}>
-                      <span>{item.title}</span>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: item.time,
-                        }}
-                        className="text-[18px] font-[700] leading-[25px] "
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-              {button_links && button_links.length > 0 && (
-                <div className={`flex flex-col w-full gap-y-3`}>
-                  {button_links.map((item, idx) => {
-                    return (
-                      <Link
-                        key={idx}
-                        href={item.button_url || "#"}
-                        className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                          item.variant === "filled"
-                            ? "bg-primary text-white"
-                            : "border border-secondary text-secondary"
-                        } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
-                      >
-                        {item.button_label}
-                      </Link>
-                    );
-                  })}
-                  {file_label && (
-                    <Link
-                      href={file_link || "#"}
-                      target="_blank"
-                      className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                    >
-                      {file_label}
-                    </Link>
+      {showLazy && (
+        <article>
+          <div className="container py-[50px]">
+            <div className="flex w-full gap-x-[100px]">
+              <div className="flex flex-col w-3/4">
+                <div className="flex flex-col pb-[30px]">
+                  {subtitle && (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: subtitle }}
+                      className="text-[22px] text-primary leading-[25px] pb-[20px]"
+                    />
+                  )}
+                  {description && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: description,
+                      }}
+                      className="text-[14px] leading-[25px] "
+                    />
                   )}
                 </div>
-              )}
-            </div>
-          </div>
-          <FooterReviews />
-        </div>
-        {gallery_images && gallery_images?.length > 0 && (
-          <div className="flex w-full bg-[#f1f1f1] pt-10 pb-[50px]">
-            <div className="flex flex-col w-full">
-              <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                Gallery
-              </span>
-              <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                {gallery_images?.map((item, idx) => {
-                  return (
-                    <div
-                      key={idx}
-                      className="flex cursor-pointer"
-                      onClick={() => handleOpenModal(idx)}
-                    >
-                      <Image
-                        alt={"Dining Gallery Carousel"}
-                        src={item || "../images/image_makati-large.jpg"}
-                        width={628}
-                        height={529}
-                        className="w-full lg:h-[529px] object-cover"
-                      />
+                {award_images && award_images.length > 0 && (
+                  <div className="flex flex-col">
+                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
+                      Award
+                    </span>
+                    <div className="flex gap-x-10">
+                      {award_images?.map((item, i) => {
+                        return (
+                          <div key={i} className="flex flex-wrap">
+                            <Image
+                              alt={"Banner"}
+                              src={item}
+                              width={160}
+                              height={160}
+                              className="w-full lg:h-[160px] object-cover"
+                            />
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </Slick>
-            </div>
-          </div>
-        )}
-        {/* MODAL HERE */}
-        {isModalOpen && (
-          <ModalImage
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            title={gallery_images.title}
-            content={
-              gallery_images && gallery_images.length > 0
-                ? gallery_images[selectedImageIndex]
-                : null
-            }
-            images={gallery_images || []}
-          />
-        )}
-        {/* {title_offer && image_offer && (
-          <div className="w-full bg-[#f1f1f1]">
-            <div className="container pb-[50px]">
-              <div className="flex flex-col w-full">
-                <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
-                  Dining Offer
-                </span>
-                <div className="flex w-full bg-white">
-                  <div className="w-1/2">
-                    <Image
-                      alt={title_offer}
-                      src={image_offer || "#"}
-                      width={628}
-                      height={280}
-                      className="w-full h-[280px] object-cover"
-                    />
                   </div>
-                  <div className="flex flex-col justify-between w-1/2 p-5">
-                    <div className="flex flex-col">
-                      <span className="text-primary text-[20px] text-center ">
-                        {title_offer}
-                      </span>
-                      <div className="w-full flex justify-center py-5">
-                        <hr className="border- border-primary w-[30px]" />
+                )}
+              </div>
+              <div className="flex flex-col w-1/4">
+                <div className="pb-7">
+                  {schedules.map((item, idx) => {
+                    return (
+                      <div key={idx}>
+                        <span>{item.title}</span>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: item.time,
+                          }}
+                          className="text-[18px] font-[700] leading-[25px] "
+                        />
                       </div>
+                    );
+                  })}
+                </div>
+                {button_links && button_links.length > 0 && (
+                  <div className={`flex flex-col w-full gap-y-3`}>
+                    {button_links.map((item, idx) => {
+                      return (
+                        <Link
+                          key={idx}
+                          href={item.button_url || "#"}
+                          className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                            item.variant === "filled"
+                              ? "bg-primary text-white"
+                              : "border border-secondary text-secondary"
+                          } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                        >
+                          {item.button_label}
+                        </Link>
+                      );
+                    })}
+                    {file_label && (
+                      <Link
+                        href={file || "#"}
+                        target="_blank"
+                        className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                      >
+                        {file_label}
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+            <FooterReviews />
+          </div>
+          {gallery_images && gallery_images?.length > 0 && (
+            <div className="flex w-full bg-[#f1f1f1] pt-10 pb-[50px]">
+              <div className="flex flex-col w-full">
+                <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+                  Gallery
+                </span>
+                <Slick {...settings} className="h-[330px] lg:h-[530px]">
+                  {gallery_images?.map((item, idx) => {
+                    return (
                       <div
-                        dangerouslySetInnerHTML={{
-                          __html: description_offer,
-                        }}
-                        className="text-[14px] text-center leading-[25px] "
+                        key={idx}
+                        className="flex cursor-pointer"
+                        onClick={() => handleOpenModal(idx)}
+                      >
+                        <Image
+                          alt={"Carousel Gallery"}
+                          src={item}
+                          width={628}
+                          height={529}
+                          className="w-full lg:h-[529px] object-cover"
+                        />
+                      </div>
+                    );
+                  })}
+                </Slick>
+              </div>
+            </div>
+          )}
+          {/* MODAL HERE */}
+          {isModalOpen && (
+            <ModalImage
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              title={gallery_images.title}
+              content={gallery_images || gallery_images[selectedImageIndex]}
+              images={gallery_images || []}
+            />
+          )}
+          {/* {title_offer && image_offer && (
+            <div className="w-full bg-[#f1f1f1]">
+              <div className="container pb-[50px]">
+                <div className="flex flex-col w-full">
+                  <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
+                    Dining Offer
+                  </span>
+                  <div className="flex w-full bg-white">
+                    <div className="w-1/2">
+                      <Image
+                        alt={title_offer}
+                        src={image_offer || "#"}
+                        width={628}
+                        height={280}
+                        className="w-full h-[280px] object-cover"
                       />
                     </div>
-                    <Link
-                      href={"#"}
-                      target="_blank"
-                      className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                    >
-                      View Offer
-                    </Link>
+                    <div className="flex flex-col justify-between w-1/2 p-5">
+                      <div className="flex flex-col">
+                        <span className="text-primary text-[20px] text-center ">
+                          {title_offer}
+                        </span>
+                        <div className="w-full flex justify-center py-5">
+                          <hr className="border- border-primary w-[30px]" />
+                        </div>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: description_offer,
+                          }}
+                          className="text-[14px] text-center leading-[25px] "
+                        />
+                      </div>
+                      <Link
+                        href={"#"}
+                        target="_blank"
+                        className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                      >
+                        View Offer
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )} */}
-      </article>
+          )} */}
+        </article>
+      )}
     </>
   );
 }

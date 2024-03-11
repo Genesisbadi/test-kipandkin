@@ -25,7 +25,7 @@ export default function Selection({ block }) {
           )}
           {description && (
             <div
-              className="selection text-[14px] text-[#555] mb-[20px]"
+              className="description text-[14px] text-[#555] mb-[20px]"
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
           )}

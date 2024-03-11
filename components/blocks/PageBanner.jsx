@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Block({ page, block, mediaHandler }) {
   const { title } = block.main;
   return (
-    <section className="relative flex items-center justify-center w-full bg-[#f1f1f1]">
+    <div className="relative flex items-center justify-center w-full bg-[#f1f1f1]">
       <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
       <Image
         alt={title || "#"}
@@ -17,14 +17,14 @@ export default function Block({ page, block, mediaHandler }) {
       />
       <div className="w-full flex relative items-center justify-center h-[calc(100vh-68px)]">
         <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span>
-        <h2
+        <div
           className={`text-[42px] text-white relative z-[20] ${
             title ? "" : "hidden"
           }`}
         >
           {title || page.name}
-        </h2>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

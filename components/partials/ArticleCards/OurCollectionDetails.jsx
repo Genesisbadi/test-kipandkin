@@ -10,8 +10,10 @@ import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import ModalImage from "@/components/partials/Modals/ModalImage";
+import globalState from "@/lib/store/globalState";
 
 export default function OurCollectionDetails({ block, page }) {
+  const showLazy = globalState((state) => state.showLazy);
   const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
   const { title } = block;
   const {
@@ -177,170 +179,153 @@ export default function OurCollectionDetails({ block, page }) {
           </h2>
         )}
       </section>
-      <article>
-        <div className="w-full bg-[#f1f1f1]">
-          <div className="container px-5 2xl:px-0 py-[50px] ">
-            <div className="flex flex-col pb-[40px]">
-              <span className="text-center text-sm pb-3">
-                More from our collection
-              </span>
-              <CustomSelect
-                className="react-select"
-                id="ourCollectionSelect"
-                instanceId="ourCollectionSelect"
-                // value={getDefaultValue()}
-                defaultValue={getDefaultValue()}
-                onChange={handleSelectChange}
-                options={ourCollection?.map((d, index) => {
-                  return {
-                    label: d?.title,
-                    value: d?.route_url,
-                  };
-                })}
-              />
-            </div>
-            <div className="flex flex-col">
-              {content_title && (
+      {showLazy && (
+        <article>
+          <div className="w-full bg-[#f1f1f1]">
+            <div className="container px-5 2xl:px-0 py-[50px] ">
+              <div className="flex flex-col pb-[40px]">
+                <span className="text-center text-sm pb-3">
+                  More from our collection
+                </span>
+                <CustomSelect
+                  className="react-select"
+                  id="ourCollectionSelect"
+                  instanceId="ourCollectionSelect"
+                  // value={getDefaultValue()}
+                  defaultValue={getDefaultValue()}
+                  onChange={handleSelectChange}
+                  options={ourCollection?.map((d, index) => {
+                    return {
+                      label: d?.title,
+                      value: d?.route_url,
+                    };
+                  })}
+                />
+              </div>
+              <div className="flex flex-col py-5">
                 <div
-                  dangerouslySetInnerHTML={{ __html: content_title }}
+                  dangerouslySetInnerHTML={{ __html: subtitle }}
                   className="text-primary text-[22px] leading-[25px] text-center pb-[30px]"
                 />
-              )}
-              {(description || image) && (
-                <div className="relative">
-                  {description && (
-                    <div
-                      dangerouslySetInnerHTML={{ __html: description }}
-                      className="text-[14px] leading-[25px]  pb-[30px]"
-                    />
-                  )}
-                  {image && (
-                    <Image
-                      alt={"Title" + content_title}
-                      src={image}
-                      width={1920}
-                      height={1080}
-                      className="w-full h-full object-cover top-0 left-0"
-                    />
+                <div
+                  dangerouslySetInnerHTML={{ __html: description }}
+                  className="text-[14px] leading-[25px]"
+                />
+              </div>
+              {button_links && button_links.length > 0 && (
+                <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+                  {button_links.map((item, idx) => {
+                    return (
+                      <Link
+                        key={idx}
+                        href="#"
+                        className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                          item.variant === "filled"
+                            ? "text-white bg-primary"
+                            : "border-secondary"
+                        } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                      >
+                        {item.btn_label}
+                      </Link>
+                    );
+                  })}
+                  {button_file_label && link_file && (
+                    <Link
+                      href={link_file || "#"}
+                      target="_blank"
+                      className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                    >
+                      {button_file_label}
+                    </Link>
                   )}
                 </div>
               )}
             </div>
-            {button_links && button_links.length > 0 && (
-              <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-                {button_links.map((item, idx) => {
-                  return (
-                    <Link
-                      key={idx}
-                      href="#"
-                      className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                        item.variant === "filled"
-                          ? "text-white bg-primary"
-                          : "border-secondary"
-                      } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                    >
-                      {item.btn_label}
-                    </Link>
-                  );
-                })}
-                {button_file_label && link_file && (
-                  <Link
-                    href={link_file || "#"}
-                    target="_blank"
-                    className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                  >
-                    {button_file_label}
-                  </Link>
-                )}
-              </div>
-            )}
           </div>
-        </div>
-        {images && images?.length > 0 && (
-          <div className="flex w-full bg-white pt-10 pb-[50px]">
-            <div className="flex flex-col w-full">
-              <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                Gallery
-              </span>
-              <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                {images?.map((item, idx) => {
-                  return (
-                    <div
-                      key={idx}
-                      className="flex cursor-pointer"
-                      onClick={() => handleOpenModal(idx)}
-                    >
-                      <Image
-                        alt={images_title}
-                        src={item}
-                        width={628}
-                        height={529}
-                        className="w-full lg:h-[529px] object-cover"
-                      />
-                    </div>
-                  );
-                })}
-              </Slick>
-            </div>
-          </div>
-        )}
-
-        {/* MODAL HERE */}
-        {isModalOpen && (
-          <ModalImage
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            title={images.title}
-            content={
-              images && images.length > 0 ? images[selectedImageIndex] : null
-            }
-            images={images || []}
-          />
-        )}
-        <div className="container px-5 2xl:px-0">
-          {virtual_url && virtual_url?.length > 0 && (
-            <div className="flex w-full justify-center pt-10 pb-[50px]">
+          {images && images?.length > 0 && (
+            <div className="flex w-full bg-white pt-10 pb-[50px]">
               <div className="flex flex-col w-full">
                 <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  Virtual Tour
+                  Gallery
                 </span>
-                <div className="flex w-ful">
-                  <iframe
-                    className="bg-[#ddd] "
-                    width="100%"
-                    height="500"
-                    src={virtual_url}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-          {award_images && award_images?.length > 0 && (
-            <div className="flex w-full justify-center pt-10 pb-[50px]">
-              <div className="flex flex-col">
-                <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  Awards
-                </span>
-                <div className="flex gap-x-10">
-                  {award_images?.map((item, idx) => {
+                <Slick {...settings} className="h-[330px] lg:h-[530px]">
+                  {images?.map((item, idx) => {
                     return (
-                      <div key={idx} className="flex flex-wrap">
+                      <div
+                        key={idx}
+                        className="flex cursor-pointer"
+                        onClick={() => handleOpenModal(idx)}
+                      >
                         <Image
-                          alt={"Banner"}
+                          alt={images_title}
                           src={item}
-                          width={160}
-                          height={194}
-                          className="w-full lg:h-[194px] object-cover"
+                          width={628}
+                          height={529}
+                          className="w-full lg:h-[529px] object-cover"
                         />
                       </div>
                     );
                   })}
-                </div>
+                </Slick>
               </div>
             </div>
           )}
-        </div>
-      </article>
+
+          {/* MODAL HERE */}
+          {isModalOpen && (
+            <ModalImage
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              title={images.title}
+              content={images || images[selectedImageIndex]}
+              images={images || []}
+            />
+          )}
+          <div className="container px-5 2xl:px-0">
+            {virtual_url && virtual_url?.length > 0 && (
+              <div className="flex w-full justify-center pt-10 pb-[50px]">
+                <div className="flex flex-col w-full">
+                  <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+                    Virtual Tour
+                  </span>
+                  <div className="flex w-ful">
+                    <iframe
+                      className="bg-[#ddd] "
+                      width="100%"
+                      height="500"
+                      src={virtual_url}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {award_images && award_images?.length > 0 && (
+              <div className="flex w-full justify-center pt-10 pb-[50px]">
+                <div className="flex flex-col">
+                  <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+                    Awards
+                  </span>
+                  <div className="flex gap-x-10">
+                    {award_images?.map((item, idx) => {
+                      return (
+                        <div key={idx} className="flex flex-wrap">
+                          <Image
+                            alt={"Banner"}
+                            src={item}
+                            width={160}
+                            height={194}
+                            className="w-full lg:h-[194px] object-cover"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </article>
+      )}
     </>
   );
 }

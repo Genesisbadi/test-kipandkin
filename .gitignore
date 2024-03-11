@@ -40,4 +40,4 @@ yarn-error.log*
 /lib/preBuildScripts/static/globalData.json
 /lib/preBuildScripts/static/currencyData.json
 
-/lib/preBuildScripts/static 
+# /lib/preBuildScripts/static/
