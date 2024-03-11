@@ -1,0 +1,186 @@
+import Image from "next/image";
+import Slick from "react-slick";
+import "slick-carousel/slick/slick.css";
+import { useState } from "react";
+import ModalImage from "@/components/partials/Modals/ModalImage";
+import Link from "next/link";
+
+export default function CarouselGallery({ block }) {
+  const { title, images, buttons } = block.main;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleOpenModal = (imageIndex) => {
+    setSelectedImageIndex(imageIndex);
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "";
+  };
+
+  const imagesLength = images?.length ?? 0;
+  let imagesDisplay = imagesLength < 3 ? 2 : 3;
+
+  const NextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${
+          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        onClick={onClick}
+      >
+        <div className="flex items-center h-full">
+          <svg
+            width={25}
+            height={54}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 27 44"
+          >
+            <path
+              d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"
+              fill="#fff"
+            />
+          </svg>
+        </div>
+      </div>
+    );
+  };
+  const PrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} ${
+          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        onClick={onClick}
+      >
+        <div className="flex items-center h-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={25}
+            height={54}
+            viewBox="0 0 19.349 30"
+          >
+            <path
+              id="_002-right-arrow"
+              data-name="002-right-arrow"
+              d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
+              transform="translate(-86.981)"
+              fill="#fff"
+            />
+          </svg>
+        </div>
+      </div>
+    );
+  };
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: imagesDisplay,
+    slidesToScroll: imagesDisplay,
+    cssEase: "linear",
+    arrows: imagesLength > 3,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: imagesDisplay,
+          slidesToScroll: imagesDisplay,
+          infinite: true,
+          arrows: imagesLength > 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          arrows: true,
+          arrows: imagesLength > 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          arrows: imagesLength > 1,
+        },
+      },
+    ],
+  };
+
+  return (
+    <section className="pt-[20px] md:pt-[40px]">
+      {title && (
+        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] mb-[20px] md:mb-[30px]">
+          {title}
+        </h2>
+      )}
+      <div className="flex w-full bg-white">
+        {imagesLength > 0 && (
+          <div className="flex flex-col w-full slick-gallery">
+            <Slick {...settings} className="h-[330px] lg:h-[530px]">
+              {images.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex"
+                  onClick={() => handleOpenModal(index)}
+                >
+                  <Image
+                    alt={title}
+                    src={item}
+                    width={630}
+                    height={530}
+                    className="w-full h-[330px] lg:h-[530px] object-cover"
+                  />
+                </div>
+              ))}
+            </Slick>
+          </div>
+        )}
+      </div>
+      {isModalOpen && (
+        <ModalImage
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title={title}
+          content={images[selectedImageIndex]}
+          images={images || []}
+        />
+      )}
+      <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
+        {buttons?.length > 0 && (
+          <div className="flex flex-wrap justify-center ">
+            {buttons?.map((item, index) => (
+              <Link
+                key={index}
+                href={item?.button_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm ${
+                  item.button_variant === "dark"
+                    ? "text-white bg-primary"
+                    : "border-secondary"
+                } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+              >
+                {item?.button_label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
