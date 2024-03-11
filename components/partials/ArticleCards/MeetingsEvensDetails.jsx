@@ -165,7 +165,7 @@ export default function MeetingsEvensDetails({ block, page }) {
               )}
               {description && (
                 <div
-                  className="meetings_events text-[14px] text-[#555] my-[30px]"
+                  className="description text-[14px] text-[#555] my-[30px]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 ></div>
               )}
@@ -212,7 +212,7 @@ export default function MeetingsEvensDetails({ block, page }) {
                   )}
                 </div>
                 <div
-                  className="meetings_events text-[14px] text-[#555] my-[30px]"
+                  className="description text-[14px] text-[#555] my-[30px]"
                   dangerouslySetInnerHTML={{
                     __html: currentVenue.description,
                   }}

@@ -1,38 +1,20 @@
-.meetings_events p,
-.description_block p,
-.selection p {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+.description {
   line-height: 21px;
 }
-.meetings_events ol {
-  display: block;
-  list-style-type: decimal;
+.description > p:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+.description ol,
+.description ul {
   padding-left: 15px;
 }
-.selection ul {
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  line-height: 21px;
+
+.description li {
+  margin-bottom: 5px;
 }
 
-.meetings_events ol li {
-  line-height: 21px;
-}
-
-.meetings_events li a {
+.description a {
   text-decoration: none;
   background-color: transparent;
   color: var(--primary);
-}
-.selection li {
-  line-height: 21px;
 }
