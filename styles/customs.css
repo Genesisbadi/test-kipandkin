@@ -1,4 +1,5 @@
-.meetings_events p {
+.meetings_events p,
+.description_block p {
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
@@ -9,6 +10,10 @@
 .meetings_events ol {
   display: block;
   list-style-type: decimal;
+}
+.description_block ul {
+  display: block;
+  list-style-type: disc;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0px;
@@ -25,4 +30,8 @@
   text-decoration: none;
   background-color: transparent;
   color: var(--primary);
+}
+
+.description_block li {
+  line-height: 21px;
 }
