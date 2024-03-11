@@ -150,7 +150,7 @@ export default function MeetingsEvensDetails({ block, page }) {
             height={1080}
             className="w-full h-full  object-cover absolute top-0 left-0"
           />
-          <h1 className="relative text-[42px]">{title}</h1>
+          <h2 className="relative text-[42px]">{title}</h2>
         </div>
 
         <div className="container py-[30px]">

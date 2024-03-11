@@ -174,9 +174,9 @@ export default function OurCollectionDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h1 className="text-[42px] px-5 text-center text-white relative z-[3]">
+          <h2 className="text-[42px] px-5 text-center text-white relative z-[3]">
             {title}
-          </h1>
+          </h2>
         )}
       </section>
       <article>

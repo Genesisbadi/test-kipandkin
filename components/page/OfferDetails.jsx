@@ -17,9 +17,9 @@ export default function OfferDetails({ page }) {
   return (
     <article className="bg-[#F1F1F1]">
       <div className="container">
-        <h1 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
+        <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
           {title}
-        </h1>
+        </h2>
 
         {image && (
           <Image
