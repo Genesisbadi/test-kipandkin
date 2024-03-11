@@ -142,7 +142,7 @@ export default function DiningDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h1 className="text-[42px] text-white relative z-[3]">{title}</h1>
+          <h2 className="text-[42px] text-white relative z-[3]">{title}</h2>
         )}
       </section>
       <article>

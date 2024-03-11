@@ -17,13 +17,13 @@ export default function Block({ page, block, mediaHandler }) {
       />
       <div className="w-full flex relative items-center justify-center h-[calc(100vh-68px)]">
         <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span>
-        <h1
+        <h2
           className={`text-[42px] text-white relative z-[20] ${
             title ? "" : "hidden"
           }`}
         >
           {title || page.name}
-        </h1>
+        </h2>
       </div>
     </section>
   );
