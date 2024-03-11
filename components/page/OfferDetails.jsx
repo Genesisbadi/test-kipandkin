@@ -3,7 +3,9 @@ import CustomSelect from "@/components/forms/CustomSelect";
 import { useState } from "react";
 import VenueDescription from "../nodes/meetings-events/VenueDescription";
 import ButtonsRepeater from "../partials/buttons/ButtonsRepeater";
+import globalState from "@/lib/store/globalState";
 export default function OfferDetails({ page }) {
+  const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
   const { description, image, venues } = data.main;
 
@@ -37,47 +39,57 @@ export default function OfferDetails({ page }) {
           />
         )}
 
-        {venues.length > 0 && (
+        {showLazy && (
           <>
-            <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
-              Select Venue:
-            </div>
-            <CustomSelect
-              // value={selectedValue}
-              className="react-select"
-              defaultValue={getDefaultValue()}
-              onChange={(e) =>
-                setSelectedValue(() => {
-                  Number(e.value);
-                  const curVenue = venues.find((obj) => obj.title === e.value);
-                  setCurrentVenue(curVenue);
-                })
-              }
-              options={venues?.map((item, index) => {
-                return {
-                  label: item?.title,
-                  value: item?.title,
-                };
-              })}
-            />
+            {venues.length > 0 && (
+              <>
+                <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
+                  Select Venue:
+                </div>
+                <CustomSelect
+                  // value={selectedValue}
+                  className="react-select"
+                  defaultValue={getDefaultValue()}
+                  onChange={(e) =>
+                    setSelectedValue(() => {
+                      Number(e.value);
+                      const curVenue = venues.find(
+                        (obj) => obj.title === e.value
+                      );
+                      setCurrentVenue(curVenue);
+                    })
+                  }
+                  options={venues?.map((item, index) => {
+                    return {
+                      label: item?.title,
+                      value: item?.title,
+                    };
+                  })}
+                />
+              </>
+            )}
           </>
         )}
       </div>
 
-      {currentVenue && (
+      {showLazy && (
         <>
-          <div className="container mt-[30px] pb-[50px]">
-            {currentVenue.description && (
-              <VenueDescription
-                className="bg-white shadow-md px-[40px] py-[30px] mb-[50px]"
-                description={currentVenue.description}
-              />
-            )}
+          {currentVenue && (
+            <>
+              <div className="container mt-[30px] pb-[50px]">
+                {currentVenue.description && (
+                  <VenueDescription
+                    className="bg-white shadow-md px-[40px] py-[30px] mb-[50px]"
+                    description={currentVenue.description}
+                  />
+                )}
 
-            {currentVenue.buttons.length > 0 && (
-              <ButtonsRepeater buttons={currentVenue.buttons} />
-            )}
-          </div>
+                {currentVenue.buttons.length > 0 && (
+                  <ButtonsRepeater buttons={currentVenue.buttons} />
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
     </article>

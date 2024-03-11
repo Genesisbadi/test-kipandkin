@@ -8,8 +8,10 @@ import CustomSelect from "@/components/forms/CustomSelect";
 import { useEffect, useState } from "react";
 import VenueDescription from "@/components/nodes/meetings-events/VenueDescription";
 import ModalImage from "@/components/partials/Modals/ModalImage";
+import globalState from "@/lib/store/globalState";
 
 export default function MeetingsEvensDetails({ block, page }) {
+  const showLazy = globalState((state) => state.showLazy);
   const meetingsEvents = meetingsEventsEntriesData.meetingsEventsEntriesData;
   const { title } = block;
   const { description, venues } = page.data.main;
@@ -150,113 +152,117 @@ export default function MeetingsEvensDetails({ block, page }) {
             height={1080}
             className="w-full h-full  object-cover absolute top-0 left-0"
           />
-          <h2 className="relative text-[42px]">{title}</h2>
+          {title && <div className="relative text-[42px]">{title}</div>}
         </div>
 
-        <div className="container py-[30px]">
-          {title && (
-            <h2 className="text-primary text-[20px] tracking-[1px]">
-              {page.data.main.title}
-            </h2>
-          )}
-          {description && (
-            <div
-              className="meetings_events text-[14px] text-[#555] my-[30px]"
-              dangerouslySetInnerHTML={{ __html: description }}
-            ></div>
-          )}
-          {venues.length > 0 && (
-            <>
-              <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
-                Select Venue:
-              </div>
-              <CustomSelect
-                // value={selectedValue}
-                className="react-select"
-                defaultValue={getDefaultValue()}
-                onChange={(e) =>
-                  setSelectedValue(() => {
-                    Number(e.value);
-                    const curVenue = venues.find(
-                      (obj) => obj.title === e.value
-                    );
-                    setCurrentVenue(curVenue);
-                  })
-                }
-                options={venues?.map((item, index) => {
-                  return {
-                    label: item?.title,
-                    value: item?.title,
-                  };
-                })}
-              />
-            </>
-          )}
-        </div>
-
-        {currentVenue && (
-          <div className="container pb-[50px]">
-            <div onClick={handleOpenModal}>
-              {currentVenue.image && (
-                <Image
-                  src={currentVenue.image}
-                  width={1200}
-                  height={500}
-                  alt={currentVenue.title}
-                  className="w-full h-full object-cover"
-                />
+        {showLazy && (
+          <>
+            <div className="container py-[30px]">
+              {page.data.main.title && (
+                <h2 className="text-primary text-[20px] tracking-[1px]">
+                  {page.data.main.title}
+                </h2>
+              )}
+              {description && (
+                <div
+                  className="meetings_events text-[14px] text-[#555] my-[30px]"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                ></div>
+              )}
+              {venues.length > 0 && (
+                <>
+                  <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
+                    Select Venue:
+                  </div>
+                  <CustomSelect
+                    // value={selectedValue}
+                    className="react-select"
+                    defaultValue={getDefaultValue()}
+                    onChange={(e) =>
+                      setSelectedValue(() => {
+                        Number(e.value);
+                        const curVenue = venues.find(
+                          (obj) => obj.title === e.value
+                        );
+                        setCurrentVenue(curVenue);
+                      })
+                    }
+                    options={venues?.map((item, index) => {
+                      return {
+                        label: item?.title,
+                        value: item?.title,
+                      };
+                    })}
+                  />
+                </>
               )}
             </div>
-            <div
-              className="meetings_events text-[14px] text-[#555] my-[30px]"
-              dangerouslySetInnerHTML={{
-                __html: currentVenue.description,
-              }}
-            />
-            {currentVenue?.buttons?.length > 0 && (
-              <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
-                <div className="flex flex-wrap justify-center ">
-                  {currentVenue?.buttons?.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item?.button_link}
-                      className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                        item.button_variant === "dark"
-                          ? "text-white bg-primary"
-                          : "border-secondary"
-                      } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                    >
-                      {item?.button_label}
-                    </Link>
-                  ))}
+
+            {currentVenue && (
+              <div className="container pb-[50px]">
+                <div onClick={handleOpenModal}>
+                  {currentVenue.image && (
+                    <Image
+                      src={currentVenue.image}
+                      width={1200}
+                      height={500}
+                      alt={currentVenue.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
+                <div
+                  className="meetings_events text-[14px] text-[#555] my-[30px]"
+                  dangerouslySetInnerHTML={{
+                    __html: currentVenue.description,
+                  }}
+                />
+                {currentVenue?.buttons?.length > 0 && (
+                  <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
+                    <div className="flex flex-wrap justify-center ">
+                      {currentVenue?.buttons?.map((item, index) => (
+                        <Link
+                          key={index}
+                          href={item?.button_link}
+                          className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                            item.button_variant === "dark"
+                              ? "text-white bg-primary"
+                              : "border-secondary"
+                          } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                        >
+                          {item?.button_label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        )}
-        <div className="flex w-full bg-[#f1f1f1] py-[30px]">
-          {imagesLength > 0 && (
-            <div className="flex flex-col w-full slick-gallery">
-              <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                {currentVenue?.images.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex"
-                    onClick={() => handleOpenModal(index)}
-                  >
-                    <Image
-                      alt={currentVenue.title}
-                      src={item}
-                      width={630}
-                      height={530}
-                      className="w-full h-[330px] lg:h-[530px] object-cover"
-                    />
-                  </div>
-                ))}
-              </Slick>
+            <div className="flex w-full bg-[#f1f1f1] py-[30px]">
+              {imagesLength > 0 && (
+                <div className="flex flex-col w-full slick-gallery">
+                  <Slick {...settings} className="h-[330px] lg:h-[530px]">
+                    {currentVenue?.images.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex"
+                        onClick={() => handleOpenModal(index)}
+                      >
+                        <Image
+                          alt={currentVenue.title}
+                          src={item}
+                          width={630}
+                          height={530}
+                          className="w-full h-[330px] lg:h-[530px] object-cover"
+                        />
+                      </div>
+                    ))}
+                  </Slick>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
         {isModalOpen && (
           <ModalImage
             isOpen={isModalOpen}

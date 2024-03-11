@@ -11,6 +11,7 @@
 .meetings_events ol {
   display: block;
   list-style-type: decimal;
+  padding-left: 15px;
 }
 .selection ul {
   display: block;

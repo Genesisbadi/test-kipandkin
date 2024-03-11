@@ -33,20 +33,41 @@ const DiningPage = dynamic(() =>
 );
 
 export default function DynamicPage({ page, blocks }) {
+  const pageTitle = page.metaData.title || page.name;
+  const titleElement = (
+    <h1 hidden className="hidden opacity-0 invisible">
+      {page.metaData.title || page.name}
+    </h1>
+  );
+
+  let ComponentToRender;
+
   switch (page?.content?.id) {
     case "destinations":
-      return <DestinationPage page={page} />;
+      ComponentToRender = DestinationPage;
+      break;
     case "our-collection":
-      return <OurCollectionPage page={page} />;
+      ComponentToRender = OurCollectionPage;
+      break;
     case "meetings-events-article":
-      return <MeetingsEventsPage page={page} />;
+      ComponentToRender = MeetingsEventsPage;
+      break;
     case "dining":
-      return <DiningPage page={page} />;
+      ComponentToRender = DiningPage;
+      break;
     case "blog":
-      return <BlogPage page={page} />;
+      ComponentToRender = BlogPage;
+      break;
     case "offers":
-      return <OfferDetails page={page} />;
+      ComponentToRender = OfferDetails;
+      break;
     default:
-      return <ParentBlock page={page} blocks={blocks} />;
+      ComponentToRender = ParentBlock;
   }
+  return (
+    <>
+      {titleElement}
+      <ComponentToRender page={page} blocks={blocks} />
+    </>
+  );
 }
