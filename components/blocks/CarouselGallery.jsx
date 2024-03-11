@@ -6,7 +6,7 @@ import ModalImage from "@/components/partials/Modals/ModalImage";
 import Link from "next/link";
 
 export default function CarouselGallery({ block }) {
-  const { title, images, buttons } = block.main;
+  const { title, images, button_link } = block.main;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -161,23 +161,16 @@ export default function CarouselGallery({ block }) {
         />
       )}
       <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
-        {buttons?.length > 0 && (
+        {button_link && (
           <div className="flex flex-wrap justify-center ">
-            {buttons?.map((item, index) => (
-              <Link
-                key={index}
-                href={item?.button_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm ${
-                  item.button_variant === "dark"
-                    ? "text-white bg-primary"
-                    : "border-secondary"
-                } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-              >
-                {item?.button_label}
-              </Link>
-            ))}
+            <Link
+              href={button_link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-[30px] py-[20px] text-center text-xs 2sm:text-sm border border-secondary text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300"
+            >
+              View More Photos
+            </Link>
           </div>
         )}
       </div>
