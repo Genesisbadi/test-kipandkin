@@ -1,0 +1,29 @@
+.description h2,
+.description h3 {
+  font-size: 20px;
+  color: var(--primary);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.description p {
+  line-height: 21px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+.description strong {
+  margin-bottom: 20px;
+}
+.description ol,
+.description ul {
+  padding-left: 40px;
+}
+.description li {
+  font-size: 14px;
+  line-height: 21px;
+}
+.description a {
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--primary);
+}
