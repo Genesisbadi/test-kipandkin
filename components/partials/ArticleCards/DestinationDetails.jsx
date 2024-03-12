@@ -11,7 +11,6 @@ import destinationEntriesData from "@/lib/preBuildScripts/static/destinations.js
 import Link from "next/link";
 
 import NProgress from "nprogress";
-import "nprogress/nprogress.css";
 import globalState from "@/lib/store/globalState";
 
 export default function DestinationDetails({ block, page }) {
