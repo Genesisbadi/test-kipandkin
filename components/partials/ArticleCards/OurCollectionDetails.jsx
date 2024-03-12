@@ -277,7 +277,7 @@ export default function OurCollectionDetails({ block, page }) {
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               title={images.title}
-              content={images || images[selectedImageIndex]}
+              content={images[selectedImageIndex]}
               images={images || []}
             />
           )}

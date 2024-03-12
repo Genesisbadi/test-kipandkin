@@ -166,7 +166,7 @@ export default function DiningDetails({ block, page }) {
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
                     <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
-                      Award
+                      Awards / Recognitions
                     </span>
                     <div className="flex gap-x-10">
                       {award_images?.map((item, i) => {
@@ -268,7 +268,7 @@ export default function DiningDetails({ block, page }) {
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               title={gallery_images.title}
-              content={gallery_images || gallery_images[selectedImageIndex]}
+              content={gallery_images[selectedImageIndex]}
               images={gallery_images || []}
             />
           )}
