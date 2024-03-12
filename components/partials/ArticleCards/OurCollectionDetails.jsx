@@ -19,18 +19,16 @@ export default function OurCollectionDetails({ block, page }) {
     subtitle,
     inner_banner,
     mobile_banner,
-    description,
     button_links,
     images,
     images_title,
-    virtual_title,
     virtual_url,
-    awards_title,
     award_images,
     button_file_label,
     link_file,
   } = page.data.main;
 
+  const { content_title, description, image } = page.data.contents;
   const router = useRouter();
 
   const route_url = page.route_url;
@@ -243,11 +241,11 @@ export default function OurCollectionDetails({ block, page }) {
               )}
             </div>
           </div>
-          {images_title && images?.length > 0 && (
+          {images && images?.length > 0 && (
             <div className="flex w-full bg-white pt-10 pb-[50px]">
               <div className="flex flex-col w-full">
                 <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  {images_title}
+                  Gallery
                 </span>
                 <Slick {...settings} className="h-[330px] lg:h-[530px]">
                   {images?.map((item, idx) => {
@@ -278,16 +276,16 @@ export default function OurCollectionDetails({ block, page }) {
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               title={images.title}
-              content={images || images[selectedImageIndex]}
+              content={images[selectedImageIndex]}
               images={images || []}
             />
           )}
           <div className="container px-5 2xl:px-0">
-            {virtual_title && virtual_url?.length > 0 && (
+            {virtual_url && virtual_url?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col w-full">
                   <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                    {virtual_title}
+                    Virtual Tour
                   </span>
                   <div className="flex w-ful">
                     <iframe
@@ -300,11 +298,11 @@ export default function OurCollectionDetails({ block, page }) {
                 </div>
               </div>
             )}
-            {awards_title && award_images?.length > 0 && (
+            {award_images && award_images?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col">
                   <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                    {awards_title}
+                    Awards
                   </span>
                   <div className="flex gap-x-10">
                     {award_images?.map((item, idx) => {

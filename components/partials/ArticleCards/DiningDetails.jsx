@@ -13,18 +13,13 @@ export default function DiningDetails({ block, page }) {
   const {
     subtitle,
     description,
-    file,
-    file_label,
-    award_title,
     award_images,
     button_links,
     schedules,
-    gallery_title,
     gallery_images,
-    title_offer,
-    image_offer,
-    description_offer,
   } = page.data.main;
+
+  const { file_label, file_link } = page.data.file_button;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -168,28 +163,28 @@ export default function DiningDetails({ block, page }) {
                     />
                   )}
                 </div>
-                <div className="flex flex-col">
-                  {award_title && (
+                {award_images && award_images.length > 0 && (
+                  <div className="flex flex-col">
                     <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
-                      {award_title}
+                      Awards / Recognitions
                     </span>
-                  )}
-                  <div className="flex gap-x-10">
-                    {award_images?.map((item, i) => {
-                      return (
-                        <div key={i} className="flex flex-wrap">
-                          <Image
-                            alt={"Banner"}
-                            src={item}
-                            width={160}
-                            height={160}
-                            className="w-full lg:h-[160px] object-cover"
-                          />
-                        </div>
-                      );
-                    })}
+                    <div className="flex gap-x-10">
+                      {award_images?.map((item, i) => {
+                        return (
+                          <div key={i} className="flex flex-wrap">
+                            <Image
+                              alt={"Banner"}
+                              src={item}
+                              width={160}
+                              height={160}
+                              className="w-full lg:h-[160px] object-cover"
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className="flex flex-col w-1/4">
                 <div className="pb-7">
@@ -239,11 +234,11 @@ export default function DiningDetails({ block, page }) {
             </div>
             <FooterReviews />
           </div>
-          {gallery_title && gallery_images?.length > 0 && (
+          {gallery_images && gallery_images?.length > 0 && (
             <div className="flex w-full bg-[#f1f1f1] pt-10 pb-[50px]">
               <div className="flex flex-col w-full">
                 <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  {gallery_title}
+                  Gallery
                 </span>
                 <Slick {...settings} className="h-[330px] lg:h-[530px]">
                   {gallery_images?.map((item, idx) => {
@@ -254,9 +249,7 @@ export default function DiningDetails({ block, page }) {
                         onClick={() => handleOpenModal(idx)}
                       >
                         <Image
-                          alt={
-                            gallery_title || "../images/image_makati-large.jpg"
-                          }
+                          alt={"Carousel Gallery"}
                           src={item}
                           width={628}
                           height={529}
@@ -275,11 +268,11 @@ export default function DiningDetails({ block, page }) {
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               title={gallery_images.title}
-              content={gallery_images || gallery_images[selectedImageIndex]}
+              content={gallery_images[selectedImageIndex]}
               images={gallery_images || []}
             />
           )}
-          {title_offer && image_offer && (
+          {/* {title_offer && image_offer && (
             <div className="w-full bg-[#f1f1f1]">
               <div className="container pb-[50px]">
                 <div className="flex flex-col w-full">
@@ -323,7 +316,7 @@ export default function DiningDetails({ block, page }) {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
         </article>
       )}
     </>
