@@ -223,13 +223,17 @@ export default function DiningDetails({ block, page }) {
                       );
                     })}
                     {file_label && (
-                      <Link
-                        href={file_link || "#"}
-                        target="_blank"
-                        className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                      >
-                        {file_label}
-                      </Link>
+                      <>
+                        {file_link && (
+                          <Link
+                            href={file_link}
+                            target="_blank"
+                            className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                          >
+                            {file_label}
+                          </Link>
+                        )}
+                      </>
                     )}
                   </div>
                 )}

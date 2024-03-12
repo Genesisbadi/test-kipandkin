@@ -85,7 +85,7 @@ export default function MainMenuMobile({ ...props }) {
                 className="bg-gray-900 backdrop-blur w-full h-full absolute top-0 left-0 bg-opacity-[.3]"
                 onClick={closeBooking}
               ></span>
-              <div class="modal-content select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
+              <div className="modal-content select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
                 <div className="sticky flex justify-between top-0 bg-white text-primary pt-[20px] pb-[15px] font-bold text-[20px]">
                   <span>Choose a destination:</span>
 
@@ -94,7 +94,7 @@ export default function MainMenuMobile({ ...props }) {
                     className="hover:opacity-[.5] relative right-[-10px]"
                   >
                     <svg
-                      class="w-[30px] h-[30px] fill-primary"
+                      className="w-[30px] h-[30px] fill-primary"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -117,7 +117,7 @@ export default function MainMenuMobile({ ...props }) {
                         className="inline-flex items-center gap-x-[5px] py-2 text-gray-800 transition hover:font-bold hover:text-primary"
                       >
                         <svg
-                          class="w-6 h-6"
+                          className="w-6 h-6"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -160,7 +160,7 @@ export default function MainMenuMobile({ ...props }) {
                   onClick={closeMenu}
                 >
                   <svg
-                    class="w-[30px] h-[30px] fill-primary"
+                    className="w-[30px] h-[30px] fill-primary"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >

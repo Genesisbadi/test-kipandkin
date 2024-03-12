@@ -6,6 +6,13 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
   const showLazy = globalState((state) => state.showLazy);
   const activeBlocks = blocks.slice(0, initialBlocks);
   const lazyBlocks = blocks.slice(initialBlocks);
+
+  const hasTitleBlock = blocks.find((object) => object.key === "Title");
+
+  if (hasTitleBlock) {
+    initialBlocks = 2;
+  }
+
   useEffect(() => {
     if (blocks.length <= initialBlocks) {
       globalState.setState({ showLazy: true });
