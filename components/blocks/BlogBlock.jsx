@@ -56,7 +56,6 @@ export default function BlogBlock({ block }) {
   }, []);
 
   const filterByCategory = (e) => {
-    console.log("clicked!");
     if (e?.target?.getAttribute("id")) {
       setSelectedCategory(e.target.getAttribute("id"));
       setCurrentPage(1);
@@ -95,6 +94,12 @@ export default function BlogBlock({ block }) {
     };
 
     const getArticles = async (page) => {
+      // console.log("routerInitial", router.query.category);
+      if (router?.query?.category && !selectedCategory) {
+        // console.log("routerLoaded", router.query.category);
+        setSelectedCategory(router.query.category);
+      }
+
       setLoading(true);
       setHasPrevPage(false);
       setHasNextPage(false);
@@ -112,12 +117,18 @@ export default function BlogBlock({ block }) {
         setArticles(res.data);
         setLoading(false);
 
+        console.log(res);
+
         if (res.data.links.prev) {
           setHasPrevPage(true);
+        } else {
+          setHasPrevPage(false);
         }
 
         if (res.data.links.next) {
           setHasNextPage(true);
+        } else {
+          setHasNextPage(false);
         }
 
         if (res.status === 200) {
