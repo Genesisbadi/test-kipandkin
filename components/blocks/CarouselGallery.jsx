@@ -11,8 +11,6 @@ export default function CarouselGallery({ block }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  console.log(block.main, "data");
-
   const handleOpenModal = (imageIndex) => {
     setSelectedImageIndex(imageIndex);
     setIsModalOpen(true);
