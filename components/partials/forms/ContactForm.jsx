@@ -10,30 +10,21 @@ export default function ContactForm({ form }) {
   const [errors, setErrors] = useState([]);
   const findClass = (field) => {
     switch (field) {
-      case "name":
-        return "border outline-0 border-[#C9AAE1] rounded-[5px] h-[35px] text-[#424242] p-[10px] w-[100%]";
       case "message":
-        return "w-full rounded-[5px] border-[1px] border-[#C9AAE1] py-[8.5px] px-3 min-h-[100px] col-span-2";
-      case "file":
-        return "";
-      case "multi_select":
-      case "single_select":
-        return "react-select cursor-pointer border-[1px] rounded-[5px] h-[35px] pt-[1px] text-sm";
-      case "radio_list":
-        return "cursor-pointer";
+        return "!min-h-[150px]";
       default:
-        return "border outline-0 border-[#C9AAE1] rounded-[5px] h-[35px] text-[#424242] p-[10px] w-[100%]";
+        return "";
     }
   };
   const findWrapperClass = (field) => {
     switch (field) {
       case "message":
-      case "name":
-        return "col-span-2";
-      case "radio_list":
-        return "flex flex-col";
+      // case "name":
+      //   return "col-span-2";
+      // case "radio_list":
+      //   return "flex flex-col";
       default:
-        return "col-span-2 sm:col-span-1";
+        return "";
     }
   };
   const [token, setToken] = useState();
@@ -57,13 +48,17 @@ export default function ContactForm({ form }) {
                 })
               }
             >
-              <div className="text-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col">
                 {fields.map((field) => (
                   <Fragment key={field?.state_name}>
                     <FormField
                       {...field}
-                      className={findClass(field?.state_name)}
-                      wrapperclassname={findWrapperClass(field?.state_name)}
+                      className={`border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] ${findClass(
+                        field?.state_name
+                      )}`}
+                      wrapperclassname={`${findWrapperClass(
+                        field?.state_name
+                      )} mb-[15px]`}
                       error={isError(
                         errors,
                         section?.state_name,
@@ -75,21 +70,47 @@ export default function ContactForm({ form }) {
               </div>
 
               {form?.attributes?.uses_captcha && (
-                <RenderCaptcha setToken={setToken} />
+                <>
+                  <RenderCaptcha setToken={setToken} />
+                </>
               )}
-              <div className="flex flex-col mt-[18px]">
-                <div className="mt-[18px]">
+              <div className="mt-[18px]">
+                {formData.uploading || formData.submitLoading ? (
                   <button
-                    disabled={formData.uploading || formData.submitLoading}
-                    className={`${
-                      !formData.uploading && !formData.submitLoading
-                        ? "cursor-pointer bg-[#994cd7]"
-                        : "cursor-not-allowed bg-[#c696ed]"
-                    }  rounded-[10px] text-[#FFFFFF] text-[15px] flex justify-center items-center w-[95px] h-[40px] font-[600]`}
+                    type="button"
+                    class="bg-primary py-[10px] text-[#FFFFFF] text-[15px] flex justify-center items-center min-w-[95px] px-[15px] uppercase opacity-[.5]"
+                    disabled
                   >
-                    Submit
+                    <svg
+                      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      ></circle>
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Sending...
                   </button>
-                </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="bg-primary py-[10px] text-[#FFFFFF] text-[15px] flex justify-center items-center min-w-[95px] px-[15px] uppercase"
+                  >
+                    Send
+                  </button>
+                )}
               </div>
             </form>
           </Fragment>

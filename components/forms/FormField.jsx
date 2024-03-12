@@ -12,7 +12,7 @@ export default function FormField(props) {
     ...props,
     name: props?.state_name,
     label: props?.title,
-    placeholder: `${props?.title}${required ? "*" : ""}`,
+    // placeholder: `${props?.title}${required ? "*" : ""}`,
   };
   const errortype = props?.errortype || "text";
   delete inputProps.reorder;
@@ -26,6 +26,13 @@ export default function FormField(props) {
       case "textarea":
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <Textarea
               {...inputProps}
               className={`${fieldClass} ${
@@ -40,6 +47,13 @@ export default function FormField(props) {
       case "select":
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <Select
               instanceId={inputProps.state_name}
               {...inputProps}
@@ -55,6 +69,13 @@ export default function FormField(props) {
       case "radio":
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <Radio
               {...inputProps}
               className={`${fieldClass} ${
@@ -69,6 +90,13 @@ export default function FormField(props) {
       case "file":
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <FileInput
               {...inputProps}
               className={`${fieldClass} ${
@@ -83,6 +111,13 @@ export default function FormField(props) {
       case "checkbox":
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <Checkbox {...inputProps} />
             {error && errortype === "text" && (
               <div className="text-[12px] mt-[2px] text-red-600">{error}</div>
@@ -92,6 +127,13 @@ export default function FormField(props) {
       default:
         return (
           <div className={props?.wrapperclassname}>
+            <label
+              htmlFor={props?.state_name}
+              className="text-[14px] mb-[5px] block"
+            >
+              {props?.title}
+              {required ? " *" : ""}
+            </label>
             <Input
               {...inputProps}
               className={`${fieldClass} ${
