@@ -6,7 +6,7 @@ import ModalImage from "@/components/partials/Modals/ModalImage";
 import Link from "next/link";
 
 export default function CarouselGallery({ block }) {
-  const { title, images, buttons } = block.main;
+  const { title, images, button_link, variation } = block.main;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -122,16 +122,25 @@ export default function CarouselGallery({ block }) {
   };
 
   return (
-    <section className="pt-[20px] md:pt-[40px]">
+    <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
       {title && (
-        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] mb-[20px] md:mb-[30px]">
+        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] md:mb-[30px]">
           {title}
         </h2>
       )}
-      <div className="flex w-full bg-white">
+      <div
+        className={`${
+          variation.length === 0 ? "container pb-[30px]" : ""
+        } flex w-full`}
+      >
         {imagesLength > 0 && (
           <div className="flex flex-col w-full slick-gallery">
-            <Slick {...settings} className="h-[330px] lg:h-[530px]">
+            <Slick
+              {...settings}
+              className={`${
+                variation.length === 0 ? "h-[260px]" : "h-[330px] lg:h-[530px]"
+              }`}
+            >
               {images.map((item, index) => (
                 <div
                   key={index}
@@ -143,7 +152,11 @@ export default function CarouselGallery({ block }) {
                     src={item}
                     width={630}
                     height={530}
-                    className="w-full h-[330px] lg:h-[530px] object-cover"
+                    className={`${
+                      variation.length === 0
+                        ? "h-[260px]"
+                        : "h-[330px] lg:h-[530px]"
+                    } w-full object-cover`}
                   />
                 </div>
               ))}
@@ -160,27 +173,20 @@ export default function CarouselGallery({ block }) {
           images={images || []}
         />
       )}
-      <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
-        {buttons?.length > 0 && (
+      {button_link && (
+        <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
           <div className="flex flex-wrap justify-center ">
-            {buttons?.map((item, index) => (
-              <Link
-                key={index}
-                href={item?.button_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm ${
-                  item.button_variant === "dark"
-                    ? "text-white bg-primary"
-                    : "border-secondary"
-                } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-              >
-                {item?.button_label}
-              </Link>
-            ))}
+            <Link
+              href={button_link || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-[30px] py-[20px] text-center text-xs 2sm:text-sm border border-secondary text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300"
+            >
+              View More Photos
+            </Link>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
