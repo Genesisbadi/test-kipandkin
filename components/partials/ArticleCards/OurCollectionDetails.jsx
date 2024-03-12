@@ -8,7 +8,6 @@ import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NProgress from "nprogress";
-import "nprogress/nprogress.css";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 
