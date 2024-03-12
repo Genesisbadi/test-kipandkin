@@ -20,13 +20,8 @@ export default function DiningDetails({ block, page }) {
   } = page.data.main;
 
   const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
-  const {
-    route_url,
-    mediaHandler,
-    title: diningOfferTitle,
-    data,
-  } = diningOffer;
-  const diningOfferDescription = data?.main?.description;
+  const { route_url, title: diningOfferTitle, data } = diningOffer;
+
   const { file_label, file_link } = page.data.file_button;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -291,10 +286,7 @@ export default function DiningDetails({ block, page }) {
                     <div className="w-full md:w-1/2">
                       <Image
                         alt={"test"}
-                        src={
-                          mediaHandler[`main.image`][0].conversions?.desktop ||
-                          mediaHandler[`main.image`][0].original
-                        }
+                        src={data.main.featured_image}
                         width={628}
                         height={280}
                         className="w-full h-[300px] object-cover"
@@ -310,7 +302,7 @@ export default function DiningDetails({ block, page }) {
                         </div>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: diningOfferDescription,
+                            __html: data.main.description,
                           }}
                           className="text-[14px] text-center leading-[25px] line-clamp-4 "
                         />
