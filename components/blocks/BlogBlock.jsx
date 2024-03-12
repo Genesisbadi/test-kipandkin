@@ -117,8 +117,6 @@ export default function BlogBlock({ block }) {
         setArticles(res.data);
         setLoading(false);
 
-        console.log(res);
-
         if (res.data.links.prev) {
           setHasPrevPage(true);
         } else {
