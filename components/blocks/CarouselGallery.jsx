@@ -6,10 +6,12 @@ import ModalImage from "@/components/partials/Modals/ModalImage";
 import Link from "next/link";
 
 export default function CarouselGallery({ block }) {
-  const { title, images, button_link } = block.main;
+  const { title, images, button_link, variation } = block.main;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  console.log(block.main, "data");
 
   const handleOpenModal = (imageIndex) => {
     setSelectedImageIndex(imageIndex);
@@ -128,10 +130,19 @@ export default function CarouselGallery({ block }) {
           {title}
         </h2>
       )}
-      <div className="flex w-full bg-white">
+      <div
+        className={`${
+          variation.length === 0 ? "container" : ""
+        } flex w-full bg-white`}
+      >
         {imagesLength > 0 && (
           <div className="flex flex-col w-full slick-gallery">
-            <Slick {...settings} className="h-[330px] lg:h-[530px]">
+            <Slick
+              {...settings}
+              className={`${
+                variation.length === 0 ? "h-[260px]" : "h-[330px] lg:h-[530px]"
+              }`}
+            >
               {images.map((item, index) => (
                 <div
                   key={index}
@@ -143,7 +154,11 @@ export default function CarouselGallery({ block }) {
                     src={item}
                     width={630}
                     height={530}
-                    className="w-full h-[330px] lg:h-[530px] object-cover"
+                    className={`${
+                      variation.length === 0
+                        ? "h-[260px]"
+                        : "h-[330px] lg:h-[530px]"
+                    } w-full object-cover`}
                   />
                 </div>
               ))}
@@ -160,8 +175,8 @@ export default function CarouselGallery({ block }) {
           images={images || []}
         />
       )}
-      <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
-        {button_link && (
+      {button_link && (
+        <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
           <div className="flex flex-wrap justify-center ">
             <Link
               href={button_link || "#"}
@@ -172,8 +187,8 @@ export default function CarouselGallery({ block }) {
               View More Photos
             </Link>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
