@@ -122,16 +122,16 @@ export default function CarouselGallery({ block }) {
   };
 
   return (
-    <section className="pt-[20px] md:pt-[40px]">
+    <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
       {title && (
-        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] mb-[20px] md:mb-[30px]">
+        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] md:mb-[30px]">
           {title}
         </h2>
       )}
       <div
         className={`${
-          variation.length === 0 ? "container" : ""
-        } flex w-full bg-white`}
+          variation.length === 0 ? "container pb-[30px]" : ""
+        } flex w-full`}
       >
         {imagesLength > 0 && (
           <div className="flex flex-col w-full slick-gallery">
