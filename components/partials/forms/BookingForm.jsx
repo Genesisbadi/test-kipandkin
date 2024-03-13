@@ -10,9 +10,11 @@ import User from "@/components/icons/User";
 import ArrowDown from "@/components/icons/ArrowDown";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
+import config from "site.config";
 
 export default function BookingForm({ ...props }) {
   const { booking_id } = globalData.tenantDetails.data.main;
+  const { bookingUrl } = config;
 
   const calendarRef = useRef(null);
 
@@ -109,12 +111,8 @@ export default function BookingForm({ ...props }) {
     console.log("submittedd!!");
     setShowCalendar(false);
     setShowGuests(false);
-    console.log(
-      process.env.NEXT_PUBLIC_BOOKING_URL +
-        `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${departureDate}&arrive=${arrivalDate}`
-    );
     window.open(
-      process.env.NEXT_PUBLIC_BOOKING_URL +
+      bookingUrl +
         `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${departureDate}&arrive=${arrivalDate}`
     );
   };
