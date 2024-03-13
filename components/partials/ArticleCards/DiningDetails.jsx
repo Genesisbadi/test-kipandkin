@@ -111,7 +111,7 @@ export default function DiningDetails({ block, page }) {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -142,14 +142,16 @@ export default function DiningDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[42px] text-white relative z-[3]">{title}</h2>
+          <h2 className="text-[35px] md:text-[42px] text-white relative z-[3]">
+            {title}
+          </h2>
         )}
       </section>
       {showLazy && (
         <article>
           <div className="container py-[50px]">
-            <div className="flex w-full gap-x-[100px]">
-              <div className="flex flex-col w-3/4">
+            <div className="flex flex-col md:flex-row w-full sm:gap-x-[70px] lg:gap-x-100">
+              <div className="flex flex-col w-full md:w-3/4">
                 <div className="flex flex-col pb-[30px]">
                   {subtitle && (
                     <div
@@ -189,9 +191,9 @@ export default function DiningDetails({ block, page }) {
                   </div>
                 )}
               </div>
-              <div className="flex flex-col w-1/4">
-                <div className="">
-                  {schedules?.map((item, idx) => {
+              <div className="flex flex-col w-full md:w-1/4">
+                <div className="pb-7">
+                  {schedules.map((item, idx) => {
                     return (
                       <div key={idx}>
                         <span className="flex pb-3">{item.title}</span>
@@ -260,7 +262,7 @@ export default function DiningDetails({ block, page }) {
                           src={item}
                           width={628}
                           height={529}
-                          className="w-full lg:h-[529px] object-cover"
+                          className="w-full h-[330px] lg:h-[529px] object-cover"
                         />
                       </div>
                     );
