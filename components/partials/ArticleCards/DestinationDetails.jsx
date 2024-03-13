@@ -1,9 +1,5 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Select from "react-select";
-import Jsona from "jsona";
-const dataFormatter = new Jsona();
-import CONTENTAPI from "@/lib/api/content/request";
 import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 
@@ -21,8 +17,6 @@ export default function DestinationDetails({ block, page }) {
   const feature = block.data.main.items;
   const links = block.data.main.button_items;
   const router = useRouter();
-
-  const route_url = page.route_url;
   const [selectedValue, setSelectedValue] = useState(page.route_url);
 
   const handleSelectChange = (option) => {
@@ -80,7 +74,7 @@ export default function DestinationDetails({ block, page }) {
                 className="react-select"
                 id="destinationSelect"
                 instanceId="destinationSelect"
-                // value={getDefaultValue()}
+                value={getDefaultValue()}
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
                 options={destinations?.map((d, index) => {
