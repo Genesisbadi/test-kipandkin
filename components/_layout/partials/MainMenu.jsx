@@ -5,7 +5,8 @@ import { useRouter } from "next/router";
 
 export default function MainMenu({ parentNodes, ...props }) {
   const router = useRouter();
-
+  const { tenantDetails } = props;
+  const { phone, email } = tenantDetails.data.main;
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
     return (
