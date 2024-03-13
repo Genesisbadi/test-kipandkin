@@ -175,6 +175,7 @@ export default function ModalImage1({ ...props }) {
     setIsOpen(false);
     const popup = document.querySelector(".modal-root");
     popup.remove();
+    document.body.style.overflow = "unset";
   };
   useEffect(() => {
     const modal = document.querySelector(".modal-root");
@@ -187,6 +188,7 @@ export default function ModalImage1({ ...props }) {
 
     if (isOpen) {
       document.body.appendChild(modalAppend);
+      document.body.style.overflow = "hidden";
 
       root.render(
         <React.StrictMode>

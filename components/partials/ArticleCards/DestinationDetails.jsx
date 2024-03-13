@@ -39,11 +39,10 @@ export default function DestinationDetails({ block, page }) {
   }, [page.route_url]);
 
   const getDefaultValue = () => {
-    // setSelectedValue(router?.asPath);
-    let destinationName = router.asPath.split("/").pop();
-    let formattedName =
-      destinationName.charAt(0).toUpperCase() + destinationName.slice(1);
-    return { label: formattedName, value: router.asPath };
+    return {
+      label: page.title,
+      value: page.route_url,
+    };
   };
 
   return (
