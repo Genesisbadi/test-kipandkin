@@ -46,11 +46,16 @@ export default function Menu() {
             </Link>
           </div>
           {!isMobile ? (
-            <MainMenu className="hidden xl:flex" parentNodes={parentNodes} />
+            <MainMenu
+              className="hidden xl:flex"
+              tenantDetails={tenantDetails}
+              parentNodes={parentNodes}
+            />
           ) : (
             <MainMenuMobile
               className="block xl:hidden"
               parentNodes={parentNodes}
+              tenantDetails={tenantDetails}
             />
           )}
         </div>

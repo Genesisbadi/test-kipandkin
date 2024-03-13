@@ -108,9 +108,11 @@ export default function BookingForm({ ...props }) {
   };
 
   const submitBooking = () => {
-    console.log("submittedd!!");
     setShowCalendar(false);
     setShowGuests(false);
+    setGuestChildren({ min: 0, value: 0 });
+    setGuestAdult({ min: 1, value: 1 });
+    setSelectionRange({ key: "selection" });
     window.open(
       bookingUrl +
         `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${departureDate}&arrive=${arrivalDate}`
@@ -126,7 +128,7 @@ export default function BookingForm({ ...props }) {
   return (
     <>
       {booking_id && (
-        <div className="absolute backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-50 border-t-[1px] border-[#fff] select-none">
+        <div className="absolute backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-70 border-t-[1px] border-[#fff] select-none">
           <div className="flex justify-end text-[14px] h-full">
             <div className="text-primary py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase">
               Quick book
@@ -143,7 +145,7 @@ export default function BookingForm({ ...props }) {
               )}
             </span>
             <div
-              className="form-item relative flex items-center border-r-[1px] border-[#a7a7a7] px-[15px] cursor-pointer"
+              className="form-item min-w-[160px] relative flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
               onClick={toggleCalendar}
             >
               <Calendar className="mr-[10px]" />
@@ -151,7 +153,7 @@ export default function BookingForm({ ...props }) {
             </div>
 
             <div
-              className="form-item flex items-center border-r-[1px] border-[#a7a7a7] px-[15px] cursor-pointer"
+              className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
               onClick={toggleCalendar}
             >
               <Calendar className="mr-[10px]" />
@@ -165,7 +167,7 @@ export default function BookingForm({ ...props }) {
                       Adult{guestAdult.value > 1 ? "s" : ""}:
                     </span>
 
-                    <div className="flex items-center w-full max-w-[25%] px-[15px] py-[10px] relative">
+                    <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
                       {guestAdult.value}
                       <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
                         <button
@@ -190,7 +192,7 @@ export default function BookingForm({ ...props }) {
                       Children:
                     </span>
 
-                    <div className="flex items-center w-full max-w-[25%] px-[15px] py-[10px] relative">
+                    <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
                       {console.log(guestChildren.value)}
                       {guestChildren.value}
                       <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
@@ -215,7 +217,7 @@ export default function BookingForm({ ...props }) {
               )}
             </span>
             <div
-              className="form-item flex items-center border-r-[1px] border-[#a7a7a7] px-[15px] cursor-pointer"
+              className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
               onClick={toggleGuest}
             >
               <User className="mr-[10px]" />
@@ -224,7 +226,7 @@ export default function BookingForm({ ...props }) {
             </div>
 
             <div
-              className="bg-primary text-white items-center py-[10px] px-[15px] uppercase cursor-pointer hover:bg-[#555]"
+              className="bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555]"
               onClick={submitBooking}
             >
               Check Availability
