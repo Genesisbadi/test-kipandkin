@@ -193,7 +193,6 @@ export default function BookingForm({ ...props }) {
                     </span>
 
                     <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
-                      {console.log(guestChildren.value)}
                       {guestChildren.value}
                       <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
                         <button

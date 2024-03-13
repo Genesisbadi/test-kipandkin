@@ -3,13 +3,23 @@ import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import dynamic from "next/dynamic";
+import globalState from "@/lib/store/globalState";
+import { Fragment } from "react";
 
 const BookingForm = dynamic(() => import("../partials/forms/BookingForm"), {
   loading: () => <p>Loading...</p>,
 });
 
 export default function Slider({ block, mediaHandler }) {
-  const { slider_items } = block.main;
+  let { slider_items } = block.main;
+  const showLazy = globalState((state) => state.showLazy);
+
+  const initialSlides = 1;
+  if (showLazy === true) {
+    slider_items = slider_items.slice(0, slider_items.length);
+  } else {
+    slider_items = slider_items.slice(0, initialSlides);
+  }
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -100,6 +110,7 @@ export default function Slider({ block, mediaHandler }) {
                 width={1920}
                 height={750}
                 alt={item.title}
+                loading="eager"
               />
             )}
 
