@@ -195,7 +195,7 @@ export default function MeetingsEvensDetails({ block, page }) {
             </div>
 
             {currentVenue && (
-              <div className="container pb-[50px]">
+              <div className="container pb-[50px] mt-[30px]">
                 <div onClick={handleOpenModal}>
                   {currentVenue.image && (
                     <Image

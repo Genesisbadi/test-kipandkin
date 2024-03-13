@@ -53,10 +53,10 @@ export default function OurCollectionDetails({ block, page }) {
   }, [page.route_url]);
 
   const getDefaultValue = () => {
-    let ourCollectionName = router.asPath.split("/").pop();
-    let formattedName =
-      ourCollectionName.charAt(0).toUpperCase() + ourCollectionName.slice(1);
-    return { label: formattedName, value: router.asPath };
+    return {
+      label: page.title,
+      value: page.route_url,
+    };
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
