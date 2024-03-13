@@ -110,6 +110,7 @@ export default function Slider({ block, mediaHandler }) {
                 width={1920}
                 height={750}
                 alt={item.title}
+                loading="eager"
               />
             )}
 
