@@ -148,8 +148,8 @@ export default function BlogBlock({ block }) {
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
       <div className="container">
-        <div className="flex mx-[-15px]">
-          <div className="max-w-[70%] w-full px-[15px]">
+        <div className="flex flex-wrap mx-[-15px]">
+          <div className="lg:max-w-[70%] w-full px-[15px]">
             {loading ? (
               <>
                 {Array.from({ length: 2 }, (_, index) => (
@@ -264,14 +264,18 @@ export default function BlogBlock({ block }) {
               </div>
             )}
           </div>
-          <div className="w-full max-w-[30%] px-[15px]">
+          <div className="w-full lg:max-w-[30%] px-[15px]">
             {blogCategories.taxonomyTerms &&
               blogCategories.taxonomyTerms.length > 0 && (
-                <div className="bg-[#E2E2E2] p-[50px]">
+                <div className="sticky top-[80px] bg-[#E2E2E2] p-[50px]">
                   <ul className="pl-[15px]">
                     {blogCategories.taxonomyTerms.map((item, index) => (
                       <li
-                        className={`cursor-pointer hover:text-primary mb-[15px] border-b-[#ccc] border-b-[1px] pb-[10px] text-[14px] ${
+                        className={`${
+                          loading
+                            ? "cursor-not-allowed pointer-events-none opacity-[.5]"
+                            : ""
+                        } cursor-pointer hover:text-primary mb-[15px] border-b-[#ccc] border-b-[1px] pb-[10px] text-[14px] ${
                           selectedCategory === item.id ? "font-bold" : ""
                         }`}
                         onClick={filterByCategory}

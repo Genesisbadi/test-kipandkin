@@ -53,10 +53,10 @@ export default function OurCollectionDetails({ block, page }) {
   }, [page.route_url]);
 
   const getDefaultValue = () => {
-    let ourCollectionName = router.asPath.split("/").pop();
-    let formattedName =
-      ourCollectionName.charAt(0).toUpperCase() + ourCollectionName.slice(1);
-    return { label: formattedName, value: router.asPath };
+    return {
+      label: page.title,
+      value: page.route_url,
+    };
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -173,7 +173,7 @@ export default function OurCollectionDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[42px] px-5 text-center text-white relative z-[3]">
+          <h2 className="text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]">
             {title}
           </h2>
         )}
@@ -260,7 +260,7 @@ export default function OurCollectionDetails({ block, page }) {
                           src={item}
                           width={628}
                           height={529}
-                          className="w-full lg:h-[529px] object-cover"
+                          className="w-full h-[330px] lg:h-[529px] object-cover"
                         />
                       </div>
                     );
@@ -304,16 +304,19 @@ export default function OurCollectionDetails({ block, page }) {
                   <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
                     Awards
                   </span>
-                  <div className="flex gap-x-10">
+                  <div className="flex flex-wrap  gap-x-5 items-center gap-y-5 justify-center">
                     {award_images?.map((item, idx) => {
                       return (
-                        <div key={idx} className="flex flex-wrap">
+                        <div
+                          key={idx}
+                          className="flex w-full 2sm:w-auto justify-center"
+                        >
                           <Image
                             alt={"Banner"}
                             src={item}
                             width={160}
                             height={194}
-                            className="w-full lg:h-[194px] object-cover"
+                            className="2sm:w-full h-full 2sm:min-h-[100px] 2sm:max-h-[139px] object-cover"
                           />
                         </div>
                       );

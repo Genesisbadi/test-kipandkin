@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import VenueDescription from "@/components/nodes/meetings-events/VenueDescription";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
+import styles from "@/styles/description.module.css";
 
 export default function MeetingsEvensDetails({ block, page }) {
   const showLazy = globalState((state) => state.showLazy);
@@ -157,15 +158,10 @@ export default function MeetingsEvensDetails({ block, page }) {
 
         {showLazy && (
           <>
-            <div className="container py-[30px]">
-              {page.data.main.title && (
-                <h2 className="text-primary text-[20px] tracking-[1px]">
-                  {page.data.main.title}
-                </h2>
-              )}
+            <div className="container pt-[20px] sm:pt-[30px]">
               {description && (
                 <div
-                  className="description text-[14px] text-[#555] my-[30px]"
+                  className={`${styles.description} my-[30px]`}
                   dangerouslySetInnerHTML={{ __html: description }}
                 ></div>
               )}
@@ -199,7 +195,7 @@ export default function MeetingsEvensDetails({ block, page }) {
             </div>
 
             {currentVenue && (
-              <div className="container pb-[50px]">
+              <div className="container pb-[50px] mt-[30px]">
                 <div onClick={handleOpenModal}>
                   {currentVenue.image && (
                     <Image
@@ -212,7 +208,7 @@ export default function MeetingsEvensDetails({ block, page }) {
                   )}
                 </div>
                 <div
-                  className="description text-[14px] text-[#555] my-[30px]"
+                  className={`${styles.description} my-[30px]`}
                   dangerouslySetInnerHTML={{
                     __html: currentVenue.description,
                   }}
@@ -238,7 +234,7 @@ export default function MeetingsEvensDetails({ block, page }) {
                 )}
               </div>
             )}
-            <div className="flex w-full bg-[#f1f1f1] py-[30px]">
+            <div className="flex w-full bg-[#f1f1f1] pt-[10px] pb-[30px]">
               {imagesLength > 0 && (
                 <div className="flex flex-col w-full slick-gallery">
                   <Slick {...settings} className="h-[330px] lg:h-[530px]">

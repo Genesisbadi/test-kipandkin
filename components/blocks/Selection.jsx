@@ -1,6 +1,7 @@
 import CustomSelect from "../forms/CustomSelect";
 import { useState } from "react";
 import Link from "next/link";
+import styles from "@/styles/description.module.css";
 
 export default function Selection({ block }) {
   const { title, description, selection_label, selections, buttons } =
@@ -25,14 +26,14 @@ export default function Selection({ block }) {
           )}
           {description && (
             <div
-              className="description text-[14px] text-[#555] mb-[20px]"
+              className={`${styles.description} mb-[20px]`}
               dangerouslySetInnerHTML={{ __html: description }}
             ></div>
           )}
         </div>
         {selections.length > 0 && (
           <>
-            <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
+            <div className="text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]">
               {selection_label}:
             </div>
             <CustomSelect
@@ -58,7 +59,7 @@ export default function Selection({ block }) {
           </>
         )}
         <div
-          className="selection text-[14px] text-[#555] my-[30px]"
+          className={`${styles.description} my-[30px]`}
           dangerouslySetInnerHTML={{
             __html: currentSelection.description,
           }}

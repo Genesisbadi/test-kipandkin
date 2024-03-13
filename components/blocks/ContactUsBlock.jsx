@@ -1,0 +1,84 @@
+import Link from "next/link";
+import ContactForm from "@/components/partials/forms/ContactForm";
+export default function ContactUsBlock({ block }) {
+  const { description, offices, form } = block.main;
+  return (
+    <section className="bg-[#F1F1F1] py-[10px]">
+      <div className="container">
+        <div className="flex flex-wrap mx-[-15px]">
+          <div className="w-full mb-[15px] md:mb-0 md:max-w-[50%] px-[15px]">
+            <div className="bg-white shadow-md p-[20px] sticky top-[85px]">
+              {description && (
+                <div
+                  className="text-[14px] mb-[20px]"
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              )}
+              <ContactForm form={form} />
+            </div>
+          </div>
+
+          <div className="w-full md:max-w-[50%] px-[15px]">
+            {offices && offices.length > 0 && (
+              <div className="offices">
+                {offices.map((item, index) => (
+                  <div key={index} className="mb-[15px]">
+                    {item?.map && (
+                      <iframe
+                        className="w-full mb-[15px] "
+                        src={item?.map}
+                        width={500}
+                        height={200}
+                      />
+                    )}
+                    <div className="bg-white text-[14px] shadow-md p-[20px]">
+                      <h2 className="text-primary text-[18px] mb-[15px]">
+                        {item?.title}
+                      </h2>
+                      {item?.address && (
+                        <div className="mb-[16px]">
+                          <span className="float-left mr-[5px]">Address:</span>
+                          <span
+                            dangerouslySetInnerHTML={{ __html: item?.address }}
+                          />
+                        </div>
+                      )}
+
+                      {item?.email && (
+                        <div className="mb-[16px]">
+                          <Link
+                            className="text-primary hover:underline"
+                            href={`mailto: ${item.email}`}
+                          >
+                            <span className="float-left mr-[5px]">Email:</span>
+                            <span>{item.email}</span>
+                          </Link>
+                        </div>
+                      )}
+                      {item?.website && (
+                        <div className="mb-[16px]">
+                          <Link
+                            className="text-primary hover:underline"
+                            href={item.website}
+                            target={
+                              item.website.includes("http") ? "_blank" : "_self"
+                            }
+                          >
+                            <span className="float-left mr-[5px]">
+                              Website:
+                            </span>
+                            <span>{item.website}</span>
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

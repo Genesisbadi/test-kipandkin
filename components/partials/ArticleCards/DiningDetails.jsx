@@ -19,6 +19,9 @@ export default function DiningDetails({ block, page }) {
     gallery_images,
   } = page.data.main;
 
+  const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
+  const { route_url, title: diningOfferTitle, data } = diningOffer;
+
   const { file_label, file_link } = page.data.file_button;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -108,7 +111,7 @@ export default function DiningDetails({ block, page }) {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 767,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -139,14 +142,16 @@ export default function DiningDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[42px] text-white relative z-[3]">{title}</h2>
+          <h2 className="text-[35px] md:text-[42px] text-white relative z-[3]">
+            {title}
+          </h2>
         )}
       </section>
       {showLazy && (
         <article>
           <div className="container py-[50px]">
-            <div className="flex w-full gap-x-[100px]">
-              <div className="flex flex-col w-3/4">
+            <div className="flex flex-col md:flex-row w-full sm:gap-x-[70px] lg:gap-x-100">
+              <div className="flex flex-col w-full md:w-3/4">
                 <div className="flex flex-col pb-[30px]">
                   {subtitle && (
                     <div
@@ -186,17 +191,17 @@ export default function DiningDetails({ block, page }) {
                   </div>
                 )}
               </div>
-              <div className="flex flex-col w-1/4">
+              <div className="flex flex-col w-full md:w-1/4">
                 <div className="pb-7">
                   {schedules.map((item, idx) => {
                     return (
                       <div key={idx}>
-                        <span>{item.title}</span>
+                        <span className="flex pb-3">{item.title}</span>
                         <div
                           dangerouslySetInnerHTML={{
                             __html: item.time,
                           }}
-                          className="text-[18px] font-[700] leading-[25px] "
+                          className="text-[18px] font-[700] leading-[25px] pb-3"
                         />
                       </div>
                     );
@@ -257,7 +262,7 @@ export default function DiningDetails({ block, page }) {
                           src={item}
                           width={628}
                           height={529}
-                          className="w-full lg:h-[529px] object-cover"
+                          className="w-full h-[330px] lg:h-[529px] object-cover"
                         />
                       </div>
                     );
@@ -276,42 +281,42 @@ export default function DiningDetails({ block, page }) {
               images={gallery_images || []}
             />
           )}
-          {/* {title_offer && image_offer && (
+          {diningOfferTitle && (
             <div className="w-full bg-[#f1f1f1]">
-              <div className="container pb-[50px]">
+              <div className="container py-[50px]">
                 <div className="flex flex-col w-full">
                   <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
                     Dining Offer
                   </span>
-                  <div className="flex w-full bg-white">
-                    <div className="w-1/2">
+                  <div className="flex flex-col md:flex-row w-full bg-white">
+                    <div className="w-full md:w-1/2">
                       <Image
-                        alt={title_offer}
-                        src={image_offer || "#"}
+                        alt={"test"}
+                        src={data.main.featured_image}
                         width={628}
                         height={280}
-                        className="w-full h-[280px] object-cover"
+                        className="w-full h-[300px] object-cover"
                       />
                     </div>
-                    <div className="flex flex-col justify-between w-1/2 p-5">
+                    <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
                       <div className="flex flex-col">
                         <span className="text-primary text-[20px] text-center ">
-                          {title_offer}
+                          {diningOfferTitle}
                         </span>
                         <div className="w-full flex justify-center py-5">
                           <hr className="border- border-primary w-[30px]" />
                         </div>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: description_offer,
+                            __html: data.main.description,
                           }}
-                          className="text-[14px] text-center leading-[25px] "
+                          className="text-[14px] text-center leading-[25px] line-clamp-4 "
                         />
                       </div>
                       <Link
-                        href={"#"}
+                        href={route_url}
                         target="_blank"
-                        className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                        className={`w-full mt-5 py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                       >
                         View Offer
                       </Link>
@@ -320,7 +325,7 @@ export default function DiningDetails({ block, page }) {
                 </div>
               </div>
             </div>
-          )} */}
+          )}
         </article>
       )}
     </>
