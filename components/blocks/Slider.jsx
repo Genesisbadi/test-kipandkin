@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
+import dynamic from "next/dynamic";
+
+const BookingForm = dynamic(() => import("../partials/forms/BookingForm"), {
+  loading: () => <p>Loading...</p>,
+});
 
 export default function Slider({ block, mediaHandler }) {
   const { slider_items } = block.main;
@@ -78,6 +83,7 @@ export default function Slider({ block, mediaHandler }) {
 
   return (
     <section className="slider relative">
+      <BookingForm />
       <Slick {...settings}>
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>
