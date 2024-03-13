@@ -72,6 +72,11 @@ export default function ContactForm({ form }) {
               {form?.attributes?.uses_captcha && (
                 <>
                   <RenderCaptcha setToken={setToken} />
+                  {errors?.captcha_token && (
+                    <div className="text-[12px] mt-[2px] text-red-600">
+                      {errors?.captcha_token}
+                    </div>
+                  )}
                 </>
               )}
               <div className="mt-[18px]">
