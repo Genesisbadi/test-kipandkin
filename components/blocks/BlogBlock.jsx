@@ -94,9 +94,7 @@ export default function BlogBlock({ block }) {
     };
 
     const getArticles = async (page) => {
-      // console.log("routerInitial", router.query.category);
       if (router?.query?.category && !selectedCategory) {
-        // console.log("routerLoaded", router.query.category);
         setSelectedCategory(router.query.category);
       }
 
