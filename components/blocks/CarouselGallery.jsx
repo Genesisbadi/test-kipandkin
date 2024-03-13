@@ -4,6 +4,8 @@ import "slick-carousel/slick/slick.css";
 import { useState } from "react";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 import Link from "next/link";
+import ModalImage1 from "@/components/partials/Modals/ModalImage1";
+import { Fragment } from "react";
 
 export default function CarouselGallery({ block }) {
   const { title, images, button_link, variation } = block.main;
@@ -142,23 +144,20 @@ export default function CarouselGallery({ block }) {
               }`}
             >
               {images.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex"
-                  onClick={() => handleOpenModal(index)}
-                >
-                  <Image
-                    alt={title}
-                    src={item}
-                    width={630}
-                    height={530}
+                <Fragment key={index}>
+                  <ModalImage1
+                    key={index}
                     className={`${
                       variation.length === 0
                         ? "h-[260px]"
                         : "h-[330px] lg:h-[530px]"
-                    } w-full object-cover`}
+                    } `}
+                    title={title}
+                    content={index}
+                    image={item}
+                    images={images || []}
                   />
-                </div>
+                </Fragment>
               ))}
             </Slick>
           </div>
