@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function HeroGridRepeater({ block, mediaHandler }) {
   const { items } = block.main;
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden mb-[5px]">
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
           <div
