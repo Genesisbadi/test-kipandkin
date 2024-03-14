@@ -49,7 +49,7 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
           })}
         </>
       )}
-      <Header meta={page?.metaData || {}} />
+      <Header page={page} meta={page?.metaData || {}} />
     </>
   );
 }

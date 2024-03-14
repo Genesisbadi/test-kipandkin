@@ -1,13 +1,16 @@
 import Head from "next/head";
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
-export default function Header({ meta }) {
+export default function Header({ meta, page }) {
   const { tenantDetails } = globalData;
   const defaultMeta = tenantDetails?.data?.meta_data;
   const findMeta = (type) => {
     switch (type) {
       case "title":
         return (
-          meta?.title || defaultMeta?.title || process.env.NEXT_PUBLIC_APP_NAME
+          meta?.title ||
+          page?.title ||
+          defaultMeta?.title ||
+          process.env.NEXT_PUBLIC_APP_NAME
         );
       case "description":
         return (
