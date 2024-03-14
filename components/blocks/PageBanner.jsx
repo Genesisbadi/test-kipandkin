@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Block({ page, block, mediaHandler }) {
   const { title } = block.main;
   return (
-    <div className="relative flex items-center justify-center w-full bg-[#f1f1f1]">
+    <div className="page-banner relative flex items-center justify-center w-full bg-[#f1f1f1]">
       <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
       <Image
         alt={title || "#"}
