@@ -3,10 +3,12 @@ import reviewsData from "../../lib/preBuildScripts/static/reviews.json";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Star from "../icons/Star";
+import Image from "next/image";
 
 export default function AdvocaciesReviews({ block }) {
   const reviewItems = reviewsData.reviewsData;
-  const { title, description, link } = block.main;
+  const { image_advocacy, image_reviews, title, description, link } =
+    block.main;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -73,7 +75,13 @@ export default function AdvocaciesReviews({ block }) {
     <section className="overflow-hidden">
       <div className="flex flex-wrap mx-[-5px]">
         <div className="px-[5px] w-full md:max-w-[50%]">
-          <div className="min-h-[350px] w-full bg-[#333]"></div>
+          <Image
+            src={`/images/image_makati-large.jpg`}
+            width={900}
+            height={500}
+            alt={title}
+            className="w-full h-[250px] md:h-[575px] object-cover"
+          />
           <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] bg-primary1 text-white">
             <h2 className="mb-[30px] text-[25px]">{title}</h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />
@@ -88,7 +96,13 @@ export default function AdvocaciesReviews({ block }) {
           </div>
         </div>
         <div className="px-[5px] flex flex-col w-full md:max-w-[50%]">
-          <div className="min-h-[350px] w-full bg-[#333]"></div>
+          <Image
+            src={`/images/image_makati-large.jpg`}
+            width={900}
+            height={500}
+            alt={title}
+            className="w-full h-[250px] md:h-[575px] object-cover"
+          />
           {reviewItems && reviewItems.length > 0 && (
             <div className="bg-primary1 px-[50px] lg:px-[60px] py-[30px] text-white grow">
               <h2 className="mb-[30px] text-[25px]">Reviews</h2>

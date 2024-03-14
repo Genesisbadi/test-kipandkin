@@ -45,18 +45,25 @@ export default function GridFloatBookDirect({ block }) {
                   key={index}
                 >
                   <h2 className="text-center text-primary text-[22px] mb-[15px]">
-                    {item.title}
+                    {item?.title}
                   </h2>
                   <div className="relative text-center text-white">
-                    <div className="flex flex-col bg-black/[0.6] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
+                    <Image
+                      src={`/images/image_makati-large.jpg`}
+                      width={900}
+                      height={500}
+                      alt={item.title}
+                      className="absolute top-0 w-full h-full object-cover"
+                    />
+                    <div className="flex flex-col relative bg-black/[0.6] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
                       <div
-                        className="grow"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
+                        className="grow relative"
+                        dangerouslySetInnerHTML={{ __html: item?.description }}
                       />
-                      <div className="text-center mt-[15px]">
+                      <div className="text-center mt-[15px] relative">
                         <Link
                           className="inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
-                          href={item.link}
+                          href={item?.link}
                         >
                           Discover More
                         </Link>
