@@ -92,21 +92,25 @@ export default function Slider({ block, mediaHandler }) {
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>
             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-
+            {console.log(mediaHandler)}
             {mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-              ?.conversions.desktop && (
-              <Image
-                className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
-                src={
-                  mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-                    ?.conversions.desktop
-                }
-                width={1920}
-                height={750}
-                alt={item.title}
-                loading="eager"
-              />
-            )}
+              ?.conversions.desktop ||
+              (mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
+                ?.original && (
+                <Image
+                  className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
+                  src={
+                    mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
+                      ?.conversions.desktop ||
+                    mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
+                      ?.original
+                  }
+                  width={1920}
+                  height={750}
+                  alt={item.title}
+                  loading="eager"
+                />
+              ))}
 
             <div className="py-[50px] min-h-[calc(100vh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
               <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>

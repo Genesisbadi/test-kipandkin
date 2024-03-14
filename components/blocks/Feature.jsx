@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Feature({ block }) {
@@ -17,6 +18,15 @@ export default function Feature({ block }) {
       <div className="w-full flex items-center justify-center md:max-w-[50%] bg-secondary1">
         {video_link || image ? (
           <>
+            {!video_link && image && (
+              <Image
+                src={image}
+                height={500}
+                width={900}
+                className="w-full"
+                alt={title}
+              />
+            )}
             {video_link && !image && (
               <div className="relative h-full w-full pb-[75%]">
                 <iframe
