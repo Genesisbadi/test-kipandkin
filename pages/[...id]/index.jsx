@@ -1,4 +1,5 @@
 import ParentBlock from "@/components/page/ParentBlock";
+import Header from "@/layout/partials/Header";
 import { paths, props } from "@/lib/props/page";
 import dynamic from "next/dynamic";
 export const getStaticPaths = paths;
@@ -35,12 +36,25 @@ const FaqsPage = dynamic(() =>
   import("../../components/page/FaqsPage").then((module) => module.default)
 );
 
+const RoomSuitePage = dynamic(() =>
+  import("../../components/page/RoomSuitePage").then((module) => module.default)
+);
+
 export default function DynamicPage({ page, blocks }) {
   const pageTitle = page.metaData.title || page.name;
   const titleElement = (
     <h1 hidden className="hidden opacity-0 invisible">
       {page.metaData.title || page.name}
     </h1>
+  );
+  const descriptionElement = (
+    <>
+      {page?.metaData?.description && (
+        <p hidden className="hidden opacity-0 invisible">
+          {page?.metaData?.description}
+        </p>
+      )}
+    </>
   );
 
   let ComponentToRender;
@@ -64,6 +78,9 @@ export default function DynamicPage({ page, blocks }) {
     case "offers":
       ComponentToRender = OfferDetails;
       break;
+    case "roomssuites":
+      ComponentToRender = RoomSuitePage;
+      break;
     case "frequently-asked-questions":
       ComponentToRender = FaqsPage;
       break;
@@ -73,6 +90,8 @@ export default function DynamicPage({ page, blocks }) {
   return (
     <>
       {titleElement}
+      {descriptionElement}
+      <Header page={page} metadata={page?.metaData} />
       <ComponentToRender page={page} blocks={blocks} />
     </>
   );

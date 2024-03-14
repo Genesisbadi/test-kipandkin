@@ -5,7 +5,6 @@ import DiningDetails from "../partials/ArticleCards/DiningDetails";
 export default function DestinationPage({ block, page }) {
   return (
     <>
-      <Header meta={page?.metaData || {}} />
       <DiningDetails block={page} page={page} />
     </>
   );

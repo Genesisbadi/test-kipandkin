@@ -138,33 +138,21 @@ export default function ModalImage1({ ...props }) {
               className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80"
               onClick={closedPopup}
             ></span>
-            {images && images.length > 1 ? (
-              <div className="w-full md:w-[730px] px-[15px] relative">
-                <Slick {...settings}>
-                  {images.map((image, index) => (
-                    <div key={index} className="w-full h-full">
-                      <Image
-                        alt={title || "#"}
-                        src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
-                        width={630}
-                        height={530}
-                        className="w-full h-full object-cover rounded-[3px]"
-                      />
-                    </div>
-                  ))}
-                </Slick>
-              </div>
-            ) : (
-              <div>
-                <Image
-                  alt={title || "#"}
-                  src={content || "/images/Banner-Safe-Space-Desktop.jpg"}
-                  width={1920}
-                  height={1080}
-                  className="w-full h-full object-cover rounded-[3px]"
-                />
-              </div>
-            )}
+            <div className="w-full md:max-w-[1200px] px-[15px] relative">
+              <Slick {...settings}>
+                {images.map((image, index) => (
+                  <div key={index} className="w-full h-full">
+                    <Image
+                      alt={title || "#"}
+                      src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
+                      width={630}
+                      height={530}
+                      className="w-full h-[300px] sm:h-[450px] md:h-[700px] object-contain bg-[#000] rounded-[3px]"
+                    />
+                  </div>
+                ))}
+              </Slick>
+            </div>
           </div>
         )}
       </>
@@ -178,6 +166,7 @@ export default function ModalImage1({ ...props }) {
     document.body.style.overflow = "unset";
   };
   useEffect(() => {
+    document.body.style.overflow = "unset";
     const modal = document.querySelector(".modal-root");
     if (modal) {
       modal.remove();
@@ -201,13 +190,16 @@ export default function ModalImage1({ ...props }) {
   return (
     <>
       <Image
-        className={`w-full h-full object-cover ${className} cursor-pointer`}
+        className={`${className} w-full object-cover cursor-pointer`}
         src={image}
         width={500}
         height={200}
         alt={title || ""}
         onClick={() => {
-          setIsOpen(true);
+          setIsOpen(false);
+          setTimeout(() => {
+            setIsOpen(true);
+          }, 150);
         }}
       />
     </>
