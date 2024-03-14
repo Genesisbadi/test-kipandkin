@@ -76,16 +76,18 @@ export default function DestinationDetails({ block, page }) {
                 value={getDefaultValue()}
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
-                options={destinations?.map((d, index) => {
+                options={destinations?.map((item, index) => {
                   return {
-                    label: d?.title,
-                    value: d?.route_url,
+                    label: item?.title,
+                    value: item?.route_url,
                   };
                 })}
               />
             </div>
             <div
-              dangerouslySetInnerHTML={{ __html: block.data.main.description }}
+              dangerouslySetInnerHTML={{
+                __html: block?.data?.main?.description,
+              }}
               className="text-[14px] leading-[25px] "
             />
           </div>
