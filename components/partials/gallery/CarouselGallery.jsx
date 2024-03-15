@@ -97,9 +97,12 @@ export default function CarouselGallery({ ...props }) {
       {images && images.length > 0 && (
         <div className="flex w-full bg-white pt-10">
           <div className="flex flex-col w-full">
-            <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-              {title || "Gallery"}
-            </span>
+            {title && (
+              <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+                {title || "Gallery"}
+              </span>
+            )}
+
             <Slick {...settings} className="carousel-gallery">
               {images?.map((item, index) => {
                 return (

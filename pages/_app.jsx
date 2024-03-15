@@ -14,7 +14,8 @@ const primary = Montserrat({
 });
 export default function App({ Component, pageProps }) {
   const showLazy = globalState((state) => state.showLazy);
-  const { page } = pageProps;
+  const { page, blocks } = pageProps;
+
   useEffect(() => {
     const locale = page?.locale;
     if (locale) persistentStore.setState({ locale });
@@ -58,7 +59,7 @@ export default function App({ Component, pageProps }) {
     <div
       className={`text-dim-black ${primary.className} text-[16px] flex flex-col min-h-[102vh]`}
     >
-      <DefaultLayout>
+      <DefaultLayout page={page} blocks={blocks}>
         <Component {...pageProps} />
       </DefaultLayout>
     </div>

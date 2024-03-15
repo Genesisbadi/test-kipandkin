@@ -12,6 +12,16 @@ body {
   line-height: 0;
 }
 
+.carousel-gallery .slick-slide {
+  margin-left: 15px;
+}
+
+.carousel-gallery .slick-list {
+  margin-left: -15px;
+}
+.carousel-gallery .slick-track {
+  display: flex;
+}
 @layer utilities {
   p {
     line-height: 27px;

@@ -9,16 +9,7 @@ import MainMenu from "./MainMenu";
 import { useState, useEffect } from "react";
 import MainMenuMobile from "./MainMenuMobile";
 
-import dynamic from "next/dynamic";
-
-const BookingForm = dynamic(
-  () => import("@/components/partials/forms/BookingForm"),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
-
-export default function Menu() {
+export default function Menu({ ...props }) {
   const ready = globalState((state) => state.ready);
   const { tenantDetails, menus, locales } = globalData;
   const [isMobile, setIsMobile] = useState();
@@ -69,7 +60,6 @@ export default function Menu() {
           )}
         </div>
       </header>
-      <BookingForm />
     </>
   );
 }

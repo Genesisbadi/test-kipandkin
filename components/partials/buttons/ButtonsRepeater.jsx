@@ -27,8 +27,8 @@ export default function ButtonsRepeater({ ...props }) {
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
                   : "border border-secondary text-secondary hover:bg-secondary hover:text-white"
               }`}
-              href={item.button_link || "#"}
-              target={item.button_link.includes("http") ? "_blank" : "_self"}
+              href={item?.button_link || "#"}
+              target={item?.button_link.includes("http") ? "_blank" : "_self"}
             >
               {item.button_label || "Discover More"}
             </Link>
