@@ -192,6 +192,9 @@ export default function DiningDetails({ block, page }) {
                 )}
               </div>
               <div className="flex flex-col w-full md:w-1/4">
+                <span className="pb-5 font-[700] text-[22px]">
+                  Operating Hours
+                </span>
                 <div className="pb-7">
                   {schedules.map((item, idx) => {
                     return (
