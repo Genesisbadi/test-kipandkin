@@ -87,7 +87,7 @@ export default function Slider({ block, mediaHandler }) {
   };
 
   return (
-    <section className="slider relative">
+    <section className="block-slider slider relative">
       <Slick {...settings}>
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>

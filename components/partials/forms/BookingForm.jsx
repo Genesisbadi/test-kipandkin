@@ -1,23 +1,35 @@
-import Calendar from "@/components/icons/Calendar";
-
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useEffect, useState } from "react";
 
 import { DateRange } from "react-date-range";
-
-import User from "@/components/icons/User";
-import ArrowDown from "@/components/icons/ArrowDown";
+import dynamic from "next/dynamic";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import config from "site.config";
 import Router from "next/router";
 
+const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"), {
+  loading: () => <p>Loading...</p>,
+});
+
+const User = dynamic(() => import("@/components/icons/User"), {
+  loading: () => <p>Loading...</p>,
+});
+const Calendar = dynamic(() => import("@/components/icons/Calendar"), {
+  loading: () => <p>Loading...</p>,
+});
+
 export default function BookingForm({ ...props }) {
+  const { page, blocks } = props;
+  const disabledTypes = ["offers"];
+  const disabledBlocks = ["Title"];
+
   const { booking_id } = globalData.tenantDetails.data.main;
+
   const { bookingUrl } = config;
 
-  const [hasPageBanner, setHasPageBanner] = useState(false);
+  const [isFloat, setIsFloat] = useState(true);
 
   const [showCalendar, setShowCalendar] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
@@ -121,30 +133,39 @@ export default function BookingForm({ ...props }) {
   };
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      setTimeout(() => {
-        const pageBannerElement = document.querySelector(".page-banner");
-        if (pageBannerElement) {
-          setHasPageBanner(true);
-        } else {
-          setHasPageBanner(false);
-        }
-      }, 150);
-    };
+    setIsFloat(true);
+    disabledBlocks.forEach((blockName) => {
+      const hasTitleBlock = blocks?.find((block) => block?.key === blockName);
+      const hasPageBannerBlock = blocks?.find(
+        (block) => block?.key === "PageBanner"
+      );
+      const hasSliderBlock = blocks?.find((block) => block?.key === "Slider");
 
-    Router.events.on("routeChangeComplete", () => {
-      handleRouteChange();
+      if (hasTitleBlock) {
+        setIsFloat(false);
+      }
+      if (
+        page?.type === "pages" &&
+        !hasTitleBlock &&
+        !hasPageBannerBlock &&
+        !hasSliderBlock
+      ) {
+        setIsFloat(false);
+      }
     });
-  }, [arrivalDisplayDate, departureDisplayDate]);
 
-  useEffect(() => {
-    const bookingForm = document.querySelector(".booking-form");
-    if (hasPageBanner) {
-      bookingForm.classList.add("mb-[-50px]");
-    } else {
-      bookingForm.classList.remove("mb-[-50px]");
+    if (disabledTypes.includes(page?.content?.id)) {
+      //
+      setIsFloat(false);
     }
-  }, [hasPageBanner]);
+  }, [
+    arrivalDisplayDate,
+    departureDisplayDate,
+    disabledBlocks,
+    disabledTypes,
+    blocks,
+    page,
+  ]);
 
   const today = new Date();
 
@@ -154,7 +175,11 @@ export default function BookingForm({ ...props }) {
   return (
     <>
       {booking_id && (
-        <div className="booking-form relative mb-[-50px] z-[22] backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-70 border-t-[1px] border-[#fff] select-none">
+        <div
+          className={`${
+            isFloat ? "mb-[-50px]" : ""
+          } booking-form relative z-[22] backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-70 border-t-[1px] border-[#fff] select-none`}
+        >
           <div className="flex justify-end text-[14px] h-full">
             <div className="text-primary py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase">
               Quick book

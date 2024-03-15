@@ -2,8 +2,23 @@ import Menu from "@/layout/partials/Menu";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
 import NextTopLoader from "nextjs-toploader";
+import Script from "next/script";
+
+const BookingForm = dynamic(
+  () => import("@/components/partials/forms/BookingForm"),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
+const BookingFormFake = dynamic(
+  () => import("@/components/partials/forms/BookingForm"),
+  {
+    loading: () => <p>Loading...</p>,
+  }
+);
 
 export default function DefaultLayout(props) {
+  const { page, blocks } = props;
   const showLazy = globalState((state) => state.showLazy);
   const Footer = () => {
     const Component = dynamic(() => import("@/layout/partials/Footer"));
@@ -11,11 +26,23 @@ export default function DefaultLayout(props) {
   };
   return (
     <>
-      <Menu />
+      <Menu page={page} blocks={blocks} />
+
+      {!showLazy && <BookingFormFake page={page} blocks={blocks} />}
+      {showLazy && <BookingForm page={page} blocks={blocks} />}
+
       <main id="main-content" className="main-content grow">
         {props.children}
       </main>
       {showLazy && <Footer />}
+      {showLazy && (
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="11ef2f16-cbf2-4af7-9417-ad646d52dcd6"
+          type="text/javascript"
+        />
+      )}
 
       {showLazy && (
         <NextTopLoader

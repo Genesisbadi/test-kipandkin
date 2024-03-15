@@ -44,7 +44,7 @@ export default function RoomSuitePage({ page }) {
     };
   };
   return (
-    <article>
+    <div>
       <section className="page-banner relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
@@ -64,11 +64,13 @@ export default function RoomSuitePage({ page }) {
 
       <article>
         <div className="container py-[50px]">
-          <div className="flex justify-center items-center pb-[40px]">
-            <span className="text-center px-[15px]">Check out other rooms</span>
+          <div className="flex flex-wrap px-[15px] justify-center items-center pb-[40px]">
+            <span className="text-center px-[15px] mb-[10px] xs:mb-0">
+              Check out other rooms
+            </span>
             <div className="px-[15px]">
               <CustomSelect
-                className="react-select min-w-[350px] cursor-pointer"
+                className="react-select w-full max-w-[350px] cursor-pointer"
                 id="roomsuites-select"
                 instanceId="roomsuites-select"
                 value={getDefaultValue()}
@@ -107,6 +109,6 @@ export default function RoomSuitePage({ page }) {
         </div>
         <CarouselGallery images={gallery} title={"Gallery"} alt_title={title} />
       </article>
-    </article>
+    </div>
   );
 }

@@ -40,6 +40,12 @@ const RoomSuitePage = dynamic(() =>
   import("../../components/page/RoomSuitePage").then((module) => module.default)
 );
 
+const ExperiencePage = dynamic(() =>
+  import("../../components/page/ExperiencePage").then(
+    (module) => module.default
+  )
+);
+
 export default function DynamicPage({ page, blocks }) {
   const pageTitle = page.metaData.title || page.name;
   const titleElement = (
@@ -83,6 +89,9 @@ export default function DynamicPage({ page, blocks }) {
       break;
     case "frequently-asked-questions":
       ComponentToRender = FaqsPage;
+      break;
+    case "experiences":
+      ComponentToRender = ExperiencePage;
       break;
     default:
       ComponentToRender = ParentBlock;
