@@ -92,7 +92,6 @@ export default function Slider({ block, mediaHandler }) {
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>
             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-            {console.log(mediaHandler)}
             {mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
               ?.conversions.desktop ||
               (mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
