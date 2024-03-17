@@ -1,8 +1,12 @@
 import Menu from "@/layout/partials/Menu";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
-import NextTopLoader from "nextjs-toploader";
+// import NextTopLoader from "nextjs-toploader";
 import Script from "next/script";
+
+const NextTopLoader = dynamic(() =>
+  import("nextjs-toploader").then((module) => module.default)
+);
 
 const BookingForm = dynamic(
   () => import("@/components/partials/forms/BookingForm"),
