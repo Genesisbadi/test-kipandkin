@@ -27,3 +27,41 @@
   background-color: transparent;
   color: var(--primary);
 }
+.description td {
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.description table td p {
+  font-size: 20px;
+}
+.descriptionExperience table td {
+  padding: 15px;
+}
+.descriptionExperience {
+  font-size: 14px;
+  padding: 30px 0;
+}
+.descriptionExperience p:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+.descriptionExperience table td p:not(:first-child) {
+  font-size: 22px;
+}
+
+.descriptionExperience table td:not(:last-child) {
+  border-right: 1px solid #dee2e6;
+}
+.descriptionExperience h1,
+.descriptionExperience h2,
+.descriptionExperience h3,
+.descriptionExperience h4,
+.descriptionExperience h5 {
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 22px;
+  line-height: 37px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
