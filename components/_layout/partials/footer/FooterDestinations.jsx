@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-export default function FooterDestinations({ destinations }) {
+import destinationsEntries from "@/lib/preBuildScripts/static/exciting-destinations.json";
+export default function FooterDestinations({}) {
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -89,28 +90,28 @@ export default function FooterDestinations({ destinations }) {
   };
   return (
     <>
-      {destinations?.destination_items && (
+      {destinationsEntries && (
         <section className="footer-strip text-white pt-[30px]">
           <h2 className="text-center text-primary text-[25px] mb-[30px]">
-            {destinations?.block_title || "Our Destinations"}
+            {"Exciting Destinations"}
           </h2>
           <Slick {...settings}>
-            {destinations?.destination_items?.map((item, index) => (
+            {destinationsEntries?.map((item, index) => (
               <div key={index}>
                 <Link
-                  href={item?.link || "#"}
+                  href={item?.data?.main?.link || "#"}
                   className="flex justify-center bg-[#333] items-center min-h-[250px] relative"
                   target="_blank"
                 >
                   <Image
-                    src={item?.image || `/static/destination1.jpg`}
+                    src={item?.data?.main?.image || `/static/destination1.jpg`}
                     width={350}
                     height={350}
-                    alt={item.title}
+                    alt={item?.title}
                     className="absolute top-0 left-0 w-full h-full object-cover"
                   />
                   <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
-                    {item.title}
+                    {item?.title}
                   </h3>
                 </Link>
               </div>
