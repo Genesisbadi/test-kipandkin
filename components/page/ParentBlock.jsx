@@ -9,6 +9,12 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
 
   const hasTitleBlock = blocks.find((object) => object.key === "Title");
 
+  const hasPromoBlock = blocks.find((object) => object.key === "PromoBlock");
+
+  if (hasPromoBlock) {
+    initialBlocks = 3;
+  }
+
   if (hasTitleBlock) {
     initialBlocks = 2;
   }
