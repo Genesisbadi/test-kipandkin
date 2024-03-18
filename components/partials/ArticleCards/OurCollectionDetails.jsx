@@ -28,6 +28,8 @@ export default function OurCollectionDetails({ block, page }) {
     link_file,
   } = page.data.main;
 
+  console.log("page.data.main", page.data.main);
+
   const { content_title, description, image } = page.data.contents;
   const router = useRouter();
 
@@ -210,6 +212,17 @@ export default function OurCollectionDetails({ block, page }) {
                   dangerouslySetInnerHTML={{ __html: description }}
                   className="text-[14px] leading-[25px]"
                 />
+                {image && image.length > 0 && (
+                  <div className="pt-5">
+                    <Image
+                      alt={"content image"}
+                      src={image}
+                      width={628}
+                      height={529}
+                      className="w-full h-[330px] lg:h-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
               {button_links && button_links.length > 0 && (
                 <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
@@ -217,7 +230,7 @@ export default function OurCollectionDetails({ block, page }) {
                     return (
                       <Link
                         key={idx}
-                        href="#"
+                        href={item.btn_link || []}
                         className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                           item.variant === "filled"
                             ? "text-white bg-primary"

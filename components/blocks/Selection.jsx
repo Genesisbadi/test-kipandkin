@@ -70,14 +70,14 @@ export default function Selection({ block }) {
               {buttons.map((item, index) => (
                 <Link
                   key={index}
-                  href={item?.button_link}
+                  href={item?.button_link || "#"}
                   className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
                     item.button_variant === "dark"
                       ? "text-white bg-primary"
                       : "border-secondary"
                   } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                 >
-                  {item?.button_label}
+                  {item?.button_label || "#"}
                 </Link>
               ))}
             </div>
