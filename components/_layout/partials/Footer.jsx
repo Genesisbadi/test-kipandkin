@@ -19,7 +19,7 @@ export default function Footer() {
       <FooterCallToActions />
       <FooterReviews />
       <FooterNewsletter />
-      <FooterDestinations destinations={destinations} />
+      <FooterDestinations />
       <div className="footer-content text-white bg-[#555555] py-[30px]">
         <div className="container">
           <FooterConnections connections={connections} />
