@@ -71,10 +71,10 @@ export default function MeetingsEventsSuitesPage({ page }) {
 
   var settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: imagesDisplay,
-    slidesToScroll: imagesDisplay,
+    slidesToScroll: 1,
     cssEase: "linear",
     arrows: imagesLength > 3,
     nextArrow: <NextArrow />,
@@ -84,7 +84,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
         breakpoint: 1024,
         settings: {
           slidesToShow: imagesDisplay,
-          slidesToScroll: imagesDisplay,
+          slidesToScroll: 1,
           infinite: true,
           arrows: imagesLength > 3,
         },
