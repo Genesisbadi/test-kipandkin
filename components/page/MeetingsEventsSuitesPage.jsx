@@ -136,7 +136,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
-              <div className="flex flex-wrap justify-center lg:justify-start pb-[30px] md:pb-[60px]">
+              <div className="flex flex-wrap justify-center pb-[30px] md:pb-[60px]">
                 {buttons.length > 0 && (
                   <>
                     {buttons?.map((item, index) => (
