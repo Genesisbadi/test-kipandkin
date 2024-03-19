@@ -21,7 +21,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -46,7 +46,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -166,7 +166,11 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   <h2 className="text-primary text-[25px] text-center tracking-[1px] mb-[20px]">
                     GALLERY
                   </h2>
-                  <div className="flex flex-col w-full slick-gallery">
+                  <div
+                    className={`${
+                      imagesLength > 2 ? "" : "container"
+                    } flex flex-col w-full slick-gallery`}
+                  >
                     <Slick {...settings} className="h-[330px] lg:h-[530px]">
                       {images.map((item, index) => (
                         <Fragment key={index}>
