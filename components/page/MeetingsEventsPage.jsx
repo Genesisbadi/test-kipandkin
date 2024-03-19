@@ -1,19 +1,16 @@
 import Image from "next/image";
-
-import meetingsEventsEntriesData from "@/lib/preBuildScripts/static/meetings-events-article.json";
 import Link from "next/link";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import CustomSelect from "@/components/forms/CustomSelect";
-import { useEffect, useState } from "react";
-import VenueDescription from "@/components/nodes/meetings-events/VenueDescription";
+import { useState } from "react";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
+import { Fragment } from "react";
 
 export default function MeetingsEvensDetails({ page }) {
   const showLazy = globalState((state) => state.showLazy);
-  const meetingsEvents = meetingsEventsEntriesData.meetingsEventsEntriesData;
   const { title } = page;
   const { description, venues } = page.data.main;
 
@@ -23,20 +20,6 @@ export default function MeetingsEvensDetails({ page }) {
   const getDefaultValue = () => {
     let defaultVenue = venues[0]?.title || "";
     return { label: defaultVenue, value: defaultVenue };
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const handleOpenModal = (imageIndex) => {
-    setSelectedImageIndex(imageIndex);
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = "";
   };
 
   const imagesLength = currentVenue?.images?.length ?? 0;
@@ -140,7 +123,7 @@ export default function MeetingsEvensDetails({ page }) {
   };
   return (
     <>
-      <article className="bg-[#f1f1f1]">
+      <article className="bg-[#f1f1f1] mt-[50px]">
         <div className="relative min-h-[100vh] text-white flex items-center justify-center">
           <Image
             alt={title}
@@ -196,17 +179,14 @@ export default function MeetingsEvensDetails({ page }) {
 
             {currentVenue && (
               <div className="container pb-[50px] mt-[30px]">
-                <div onClick={handleOpenModal}>
-                  {currentVenue.image && (
-                    <Image
-                      src={currentVenue.image}
-                      width={1200}
-                      height={500}
-                      alt={currentVenue.title}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
-                </div>
+                {currentVenue.image && (
+                  <ModalImage
+                    className="w-full h-full object-cover"
+                    title={currentVenue.title || "#"}
+                    content={currentVenue.image}
+                    image={currentVenue.image}
+                  />
+                )}
                 <div
                   className={`${styles.description} my-[30px]`}
                   dangerouslySetInnerHTML={{
@@ -239,36 +219,22 @@ export default function MeetingsEvensDetails({ page }) {
                 <div className="flex flex-col w-full slick-gallery">
                   <Slick {...settings} className="h-[330px] lg:h-[530px]">
                     {currentVenue?.images.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex"
-                        onClick={() => handleOpenModal(index)}
-                      >
-                        <Image
-                          alt={currentVenue.title}
-                          src={item}
-                          width={630}
-                          height={530}
+                      <Fragment key={index}>
+                        <ModalImage
+                          key={index}
                           className="w-full h-[330px] lg:h-[530px] object-cover"
+                          title={currentVenue.title || "#"}
+                          content={index}
+                          image={item}
+                          images={currentVenue?.images || []}
                         />
-                      </div>
+                      </Fragment>
                     ))}
                   </Slick>
                 </div>
               )}
             </div>
           </>
-        )}
-        {isModalOpen && (
-          <ModalImage
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-            title={currentVenue.title}
-            content={
-              currentVenue.image || currentVenue.images[selectedImageIndex]
-            }
-            images={currentVenue.images || []}
-          />
         )}
       </article>
     </>
