@@ -11,7 +11,7 @@ export default function CallToActions() {
           <div className="container">
             <h2 className="text-primary text-[22px] mb-[30px] mb-[15px]">
               {`${block_title} at ${globalData.tenantDetails.name}` ||
-                "Hello World"}
+                "Why Book Direct"}
             </h2>
             {items && (
               <div className="flex flex-wrap">
@@ -29,7 +29,14 @@ export default function CallToActions() {
                         className="!invert-[100%] !brightness-[100%] !contrast-[100%]"
                       />
                     </span>
-                    <h3>{item?.title}</h3>
+                    <div>
+                      <h3 className="font-medium">{item?.title}</h3>
+                      {item?.description && (
+                        <div className="text-[14px]">
+                          {item?.description}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
