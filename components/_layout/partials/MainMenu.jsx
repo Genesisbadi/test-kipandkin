@@ -74,11 +74,12 @@ export default function MainMenu({ parentNodes, ...props }) {
           >
             {item.label.toLowerCase() === "reservations" ? (
               <>
-                <div className="bg-primary text-white py-[20px] px-[30px]">
+              {/* process.env.NEXT_PUBLIC_TEMPLATE */}
+                <div className={`py-[20px] px-[30px] ${process.env.NEXT_PUBLIC_TEMPLATE == 1 ? 'text-white bg-primary' : ''}`}>
                   {item?.url?.includes("nolink") ? (
                     <>
                       <span className="uppercase flex items-center cursor-default">
-                        {item.label}{" "}
+                        {item.label}
                         <DropdownArrow
                           className="ml-[5px] top-[-2px] xxl:top-[-4px] border-white relative"
                           width={7}

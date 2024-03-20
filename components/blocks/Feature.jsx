@@ -23,7 +23,7 @@ export default function Feature({ block }) {
                 src={image}
                 height={500}
                 width={900}
-                className="w-full"
+                className="w-full h-full object-cover"
                 alt={title}
               />
             )}
