@@ -2,31 +2,15 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
+import { useState } from "react";
 
-const ModalImage = ({ isOpen, onClose, title, content, images }) => {
+import { ReactDOM } from "react-dom";
+import { createRoot } from "react-dom/client";
+export default function ModalImage({ ...props }) {
   const modalOverlayRef = useRef(null);
-
-  useEffect(() => {
-    const handleOverlayClick = (e) => {
-      if (
-        modalOverlayRef.current &&
-        modalOverlayRef.current.contains(e.target) &&
-        e.target.tagName !== "IMG" &&
-        e.target.dataset.tag !== "NextArrow" &&
-        e.target.dataset.tag !== "PrevArrow"
-      ) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleOverlayClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOverlayClick);
-    };
-  }, [onClose]);
-
-  const selectedImageIndex = images.findIndex((image) => image === content);
+  const { content, title, image, images, className } = props;
+  const selectedImageIndex = content;
+  const [isOpen, setIsOpen] = useState(false);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -55,6 +39,7 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
       </div>
     );
   };
+
   const PrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -123,50 +108,112 @@ const ModalImage = ({ isOpen, onClose, title, content, images }) => {
     ],
   };
 
+  const PopupSlider = () => {
+    return (
+      <>
+        {isOpen && (
+          <div
+            ref={modalOverlayRef}
+            className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-[100] transition-opacity duration-700 ease-in-out opacity-100"
+          >
+            <span
+              className="absolute z-[1] top-[20px] right-[20px] cursor-pointer text-[30px] font-semibold text-[#ccc] hover:text-white"
+              onClick={closedPopup}
+            >
+              <svg
+                className="w-[40px] h-[40px] fill-white"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Close</title>
+                <path
+                  fill="#fff"
+                  fillRule="evenodd"
+                  d="M10 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414L11.414 10l3.293 3.293a1 1 0 0 1-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L8.586 10 5.293 6.707a1 1 0 0 1 1.414-1.414L10 8.586z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </span>
+            <span
+              className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80"
+              onClick={closedPopup}
+            ></span>
+            {images && images.length > 1 ? (
+              <div className="w-full md:w-[730px] px-[15px] relative">
+                <Slick {...settings}>
+                  {images.map((image, index) => (
+                    <div key={index} className="w-full h-full">
+                      <Image
+                        alt={title || "#"}
+                        src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
+                        width={630}
+                        height={530}
+                        className="w-full h-full object-cover rounded-[3px]"
+                      />
+                    </div>
+                  ))}
+                </Slick>
+              </div>
+            ) : (
+              <div className="w-full md:max-w-[1200px] px-[15px] relative">
+                <Image
+                  alt={title || "#"}
+                  src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
+                  width={1920}
+                  height={1080}
+                  className="w-full h-full object-cover rounded-[3px]"
+                />
+              </div>
+            )}
+          </div>
+        )}
+      </>
+    );
+  };
+
+  const closedPopup = () => {
+    setIsOpen(false);
+    const popup = document.querySelector(".modal-root");
+    popup.remove();
+    document.body.style.overflow = "unset";
+  };
+  useEffect(() => {
+    document.body.style.overflow = "unset";
+    const modal = document.querySelector(".modal-root");
+    if (modal) {
+      modal.remove();
+    }
+    const modalAppend = document.createElement("div");
+    modalAppend.classList.add("modal-root");
+    const root = createRoot(modalAppend);
+
+    if (isOpen) {
+      document.body.appendChild(modalAppend);
+      document.body.style.overflow = "hidden";
+
+      root.render(
+        <React.StrictMode>
+          <PopupSlider />
+        </React.StrictMode>
+      );
+    }
+  }, [isOpen]);
+
   return (
     <>
-      {isOpen && (
-        <div
-          ref={modalOverlayRef}
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center z-[100] transition-opacity duration-700 ease-in-out opacity-100"
-        >
-          <span
-            className="absolute top-[20px] right-[20px] cursor-pointer text-[30px] font-semibold text-[#ccc] hover:text-white"
-            onClick={onClose}
-          >
-            X
-          </span>
-          {images && images.length > 1 ? (
-            <div className="w-full md:w-[730px] px-[15px]">
-              <Slick {...settings}>
-                {images.map((image, index) => (
-                  <div key={index} className="w-full h-full">
-                    <Image
-                      alt={title || "#"}
-                      src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
-                      width={630}
-                      height={530}
-                      className="w-full h-full object-cover rounded-[3px]"
-                    />
-                  </div>
-                ))}
-              </Slick>
-            </div>
-          ) : (
-            <div>
-              <Image
-                alt={title || "#"}
-                src={content || "/images/Banner-Safe-Space-Desktop.jpg"}
-                width={1920}
-                height={1080}
-                className="w-full h-full object-cover rounded-[3px]"
-              />
-            </div>
-          )}
-        </div>
-      )}
+      <Image
+        className={`${className} w-full object-cover cursor-pointer`}
+        src={image}
+        width={500}
+        height={200}
+        alt={title || ""}
+        onClick={() => {
+          setIsOpen(false);
+          setTimeout(() => {
+            setIsOpen(true);
+          }, 150);
+        }}
+      />
     </>
   );
-};
-
-export default ModalImage;
+}
