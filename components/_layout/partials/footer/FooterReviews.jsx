@@ -67,7 +67,6 @@ export default function FooterReviews() {
     prevArrow: <PrevArrow />,
   };
 
-  console.log(reviewsData)
   return (
     <>
       {router.asPath !== "/" && (

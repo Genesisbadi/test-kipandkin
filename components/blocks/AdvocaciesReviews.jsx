@@ -6,7 +6,6 @@ import Star from "../icons/Star";
 import Image from "next/image";
 
 export default function AdvocaciesReviews({ block }) {
-  const reviewItems = reviewsData.reviewsData;
   const { image_advocacy, image_reviews, title, description, link } =
     block.main;
 
