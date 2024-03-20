@@ -8,6 +8,7 @@ import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
+import CarouselGallery from "../partials/gallery/CarouselGallery";
 
 export default function MeetingsEvensDetails({ page }) {
   const showLazy = globalState((state) => state.showLazy);
@@ -22,105 +23,6 @@ export default function MeetingsEvensDetails({ page }) {
     return { label: defaultVenue, value: defaultVenue };
   };
 
-  const imagesLength = currentVenue?.images?.length ?? 0;
-
-  let imagesDisplay = imagesLength < 3 ? 2 : 3;
-
-  const NextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
-        onClick={onClick}
-      >
-        <div className="flex items-center h-full">
-          <svg
-            width={25}
-            height={54}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 27 44"
-          >
-            <path
-              d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"
-              fill="#fff"
-            />
-          </svg>
-        </div>
-      </div>
-    );
-  };
-  const PrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
-        onClick={onClick}
-      >
-        <div className="flex items-center h-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={25}
-            height={54}
-            viewBox="0 0 19.349 30"
-          >
-            <path
-              id="_002-right-arrow"
-              data-name="002-right-arrow"
-              d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
-              transform="translate(-86.981)"
-              fill="#fff"
-            />
-          </svg>
-        </div>
-      </div>
-    );
-  };
-
-  var settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: imagesDisplay,
-    slidesToScroll: imagesDisplay,
-    cssEase: "linear",
-    arrows: imagesLength > 3,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: imagesDisplay,
-          slidesToScroll: imagesDisplay,
-          infinite: true,
-          arrows: imagesLength > 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-          arrows: true,
-          arrows: imagesLength > 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-          arrows: imagesLength > 1,
-        },
-      },
-    ],
-  };
   return (
     <>
       <article className="bg-[#f1f1f1] mt-[50px]">
@@ -214,26 +116,12 @@ export default function MeetingsEvensDetails({ page }) {
                 )}
               </div>
             )}
-            <div className="flex w-full bg-[#f1f1f1] pt-[10px] pb-[30px]">
-              {imagesLength > 0 && (
-                <div className="flex flex-col w-full slick-gallery">
-                  <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                    {currentVenue?.images.map((item, index) => (
-                      <Fragment key={index}>
-                        <ModalImage
-                          key={index}
-                          className="w-full h-[330px] lg:h-[530px] object-cover"
-                          title={currentVenue.title || "#"}
-                          content={index}
-                          image={item}
-                          images={currentVenue?.images || []}
-                        />
-                      </Fragment>
-                    ))}
-                  </Slick>
-                </div>
-              )}
-            </div>
+            {currentVenue?.images && (
+              <CarouselGallery
+                alt_title={currentVenue.title}
+                images={currentVenue?.images}
+              />
+            )}
           </>
         )}
       </article>
