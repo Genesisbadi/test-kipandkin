@@ -9,6 +9,7 @@ import Link from "next/link";
 
 import globalState from "@/lib/store/globalState";
 import CarouselGallery from "../partials/gallery/CarouselGallery";
+import styles from "@/styles/description.module.css";
 export default function RoomSuitePage({ page }) {
   const { mediaHandler, title, route_url } = page;
   const { button_links, description, features, gallery, image } =
@@ -94,9 +95,8 @@ export default function RoomSuitePage({ page }) {
               className="text-[14px] leading-[25px] mb-[50px]"
             />
           )}
-
           {features && (
-            <div className="mb-[50px]">
+            <div className={`mb-[50px] ${styles.description}`}>
               <h2 className="text-[25px] uppercase text-center text-primary mb-[15px]">
                 Features
               </h2>

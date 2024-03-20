@@ -46,6 +46,9 @@ body {
   .connections .even img {
     max-width: 65px;
   }
+  ul, ol {
+    list-style-position: inside; 
+  }
   ul {
     list-style: disc;
   }

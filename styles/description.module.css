@@ -14,10 +14,10 @@
 .description strong {
   margin-bottom: 20px;
 }
-.description ol,
+/* .description ol,
 .description ul {
   padding-left: 40px;
-}
+} */
 .description li {
   font-size: 14px;
   line-height: 21px;

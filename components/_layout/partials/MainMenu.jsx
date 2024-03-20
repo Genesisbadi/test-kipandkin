@@ -34,7 +34,7 @@ export default function MainMenu({ parentNodes, ...props }) {
               ) : (
                 <>
                   <Link
-                    className="text-primary hover:text-[#fff] transition hover:bg-[#99656a] block py-[10px] px-[10px]"
+                    className="text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]"
                     href={item.url}
                     target={item.target}
                   >
