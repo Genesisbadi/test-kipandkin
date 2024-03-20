@@ -47,7 +47,7 @@ body {
     max-width: 65px;
   }
   ul, ol {
-    list-style-position: inside; 
+    list-style-position: inside !important; 
   }
   ul {
     list-style: disc;
