@@ -26,12 +26,12 @@ export default function CallToActions({ block }) {
                       width={35}
                       height={35}
                       alt={item?.title}
-                      className="w-[35px] h-[35px] object-contain transition group-hover:!brightness-[1000%] "
+                      className="w-[35px] h-[35px] object-contain transition group-hover:!invert-[100%] group-hover:!brightness-[100%] group-hover:!contrast-[100%]   "
                       style={{
                         filter:
                           "invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)",
                       }}
-                    /> 
+                    />
                   </span>
                   <h3>{item.title}</h3>
                 </Link>

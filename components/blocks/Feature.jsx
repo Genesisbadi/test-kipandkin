@@ -46,17 +46,17 @@ export default function Feature({ block }) {
         )}
       </div>
       <div className="bg-primary py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px]">
-        <h2 className="text-white text-[20px] tracking-[2px] mb-[10px] tracking-[2px]">
+        <h2 className="text-secondary1 text-[20px] tracking-[2px] mb-[10px] tracking-[2px]">
           {title}
         </h2>
-        <hr className="w-[80px] border border-white mb-[20px]" />
+        <hr className="w-[80px] border border-secondary1 mb-[20px]" />
         <div
-          className="text-white mb-[30px]"
+          className="text-secondary1 mb-[30px]"
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <div>
           <Link
-            className="inline-block text-center text-white min-w-[200px] border border-white py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+            className="inline-block text-center text-secondary1 min-w-[200px] border border-secondary1 py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
             href={link}
             target={link.includes("http") ? "_blank" : "_self"}
           >
