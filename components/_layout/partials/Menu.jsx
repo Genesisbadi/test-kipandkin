@@ -72,11 +72,12 @@ export default function Menu({ ...props }) {
         </div>
         <div className="flex items-center py-[10px] xl:py-0 justify-center xl:justify-end">
           <div className="xl:pl-[30px] z-[1] absolute top-0 left-0 h-full flex items-center">
-            <Link href="/">
+            <Link href="/" className="h-full">
               <Image
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
                 height={50}
+                className="h-full object-contain"
                 alt={tenantDetails.name || "Logo"}
               />
             </Link>
