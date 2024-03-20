@@ -69,13 +69,13 @@ export default function MainMenu({ parentNodes, ...props }) {
         >
           <div
             className={`${
-              item.label.toLowerCase() !== "reservations" ? "py-[20px]" : ""
+              item.label.toLowerCase() !== "reservations" && process.env.NEXT_PUBLIC_TEMPLATE != 2 ? "py-[20px]" : "py-[8px]"
             } relative xl:text-[12px] flex items-center xxl:text-[14px]`}
           >
             {item.label.toLowerCase() === "reservations" ? (
               <>
               {/* process.env.NEXT_PUBLIC_TEMPLATE */}
-                <div className={`py-[20px] px-[30px] ${process.env.NEXT_PUBLIC_TEMPLATE == 1 ? 'text-white bg-primary' : ''}`}>
+                <div className={`${process.env.NEXT_PUBLIC_TEMPLATE == 1 ? 'py-[20px] px-[30px] text-white bg-primary' : ''}`}>
                   {item?.url?.includes("nolink") ? (
                     <>
                       <span className="uppercase flex items-center cursor-default">
