@@ -22,6 +22,13 @@ const MeetingsEventsPage = dynamic(() =>
     (module) => module.default
   )
 );
+
+const MeetingsEventsSuitesPage = dynamic(() =>
+  import("../../components/page/MeetingsEventsSuitesPage").then(
+    (module) => module.default
+  )
+);
+
 const BlogPage = dynamic(() =>
   import("../../components/page/BlogPage").then((module) => module.default)
 );
@@ -74,6 +81,9 @@ export default function DynamicPage({ page, blocks }) {
       break;
     case "meetings-events-article":
       ComponentToRender = MeetingsEventsPage;
+      break;
+    case "meetings-events-suites":
+      ComponentToRender = MeetingsEventsSuitesPage;
       break;
     case "dining":
       ComponentToRender = DiningPage;
