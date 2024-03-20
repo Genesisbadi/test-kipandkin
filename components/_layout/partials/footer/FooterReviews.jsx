@@ -1,4 +1,4 @@
-import ReviewData from "../../../../lib/preBuildScripts/static/reviews.json";
+import reviewsData from "../../../../lib/preBuildScripts/static/reviews.json";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useRouter } from "next/router";
@@ -67,7 +67,7 @@ export default function FooterReviews() {
     prevArrow: <PrevArrow />,
   };
 
-  const { reviewsData } = ReviewData;
+  console.log(reviewsData)
   return (
     <>
       {router.asPath !== "/" && (
