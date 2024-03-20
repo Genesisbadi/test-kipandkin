@@ -15,6 +15,7 @@ module.exports = {
         secondary: "#86764e",
         secondary1: "#c5baa6",
         secondary2: "#d4bebe",
+        secondary3: "#99656a",
       },
       fontFamily: {},
     },
