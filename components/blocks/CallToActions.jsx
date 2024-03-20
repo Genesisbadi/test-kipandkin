@@ -26,7 +26,7 @@ export default function CallToActions({ block }) {
                       width={35}
                       height={35}
                       alt={item?.title}
-                      className="w-[35px] h-[35px] object-contain transition group-hover:!invert-[100%] group-hover:!brightness-[100%] group-hover:!contrast-[100%]   "
+                      className={`w-[35px] h-[35px] object-contain transition ${process.env.NEXT_PUBLIC_TEMPLATE == 1 ? 'group-hover:!invert-[100%] group-hover:!contrast-[100%] group-hover:!brightness-[100%]' : 'group-hover:!brightness-[1000%]'}`}
                       style={{
                         filter:
                           "invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)",
