@@ -1,15 +1,22 @@
 import FooterReviews from "@/layout/partials/footer/FooterReviews";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
+import diningEntriesData from "@/lib/preBuildScripts/static/dining.json";
+import CustomSelect from "../forms/CustomSelect";
+import NProgress from "nprogress";
+import { useRouter } from "next/router";
+
+import CarouselGallery from "../partials/gallery/CarouselGallery";
 
 export default function DiningPage({ page }) {
+
   const showLazy = globalState((state) => state.showLazy);
-  const { title } = page;
+  const { title } = page; 
   const {
     subtitle,
     description,
@@ -40,6 +47,7 @@ export default function DiningPage({ page }) {
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
+
     return (
       <div
         className={`${className} ${
@@ -127,6 +135,36 @@ export default function DiningPage({ page }) {
     ],
   };
 
+  const router = useRouter();
+
+  const [selectedValue, setSelectedValue] = useState(route_url);
+
+  const handleSelectChange = (option) => {
+    const selectedRoute = option?.value;
+
+    NProgress.start();
+
+    router
+      .push(selectedRoute)
+      .then(() => {
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
+  };
+
+  useEffect(() => {
+    setSelectedValue(route_url);
+  }, [route_url]);
+
+  const getDefaultValue = () => {
+    return {
+      label: title,
+      value: route_url,
+    };
+  }; 
+
   return (
     <>
       <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
@@ -150,13 +188,33 @@ export default function DiningPage({ page }) {
       {showLazy && (
         <article>
           <div className="container py-[50px]">
+            {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+              <div className="flex text-[14px] mb-[30px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
+                <div className="px-[15px]">
+                  <CustomSelect
+                    className="react-select w-full min-w-[400px] cursor-pointer"
+                    id="dining-select"
+                    instanceId="dining-select"
+                    value={getDefaultValue()}
+                    defaultValue={getDefaultValue()}
+                    onChange={handleSelectChange}
+                    options={diningEntriesData?.map((item, index) => {
+                      return {
+                        label: item?.title,
+                        value: item?.route_url,
+                      };
+                    })}
+                  />
+                </div>
+              </div>
+            )}
             <div className="flex flex-col md:flex-row w-full sm:gap-x-[70px] lg:gap-x-100">
               <div className="flex flex-col w-full md:w-3/4">
-                <div className="flex flex-col pb-[30px]">
+                <div className="flex flex-col pb-[20px]">
                   {subtitle && (
                     <div
                       dangerouslySetInnerHTML={{ __html: subtitle }}
-                      className="text-[22px] text-primary leading-[25px] pb-[20px]"
+                      className="text-[22px] text-primary leading-[25px]"
                     />
                   )}
                   {description && (
@@ -243,42 +301,13 @@ export default function DiningPage({ page }) {
             </div>
             <FooterReviews />
           </div>
+
           {gallery_images && gallery_images?.length > 0 && (
-            <div className="flex w-full bg-[#f1f1f1] pt-10 pb-[50px]">
-              <div className="flex flex-col w-full">
-                <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  Gallery
-                </span>
-                <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                  {gallery_images?.map((item, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        className="flex cursor-pointer"
-                        onClick={() => handleOpenModal(idx)}
-                      >
-                        <Image
-                          alt={"Carousel Gallery"}
-                          src={item}
-                          width={628}
-                          height={529}
-                          className="w-full h-[330px] lg:h-[529px] object-cover"
-                        />
-                      </div>
-                    );
-                  })}
-                </Slick>
-              </div>
-            </div>
-          )}
-          {/* MODAL HERE */}
-          {isModalOpen && (
-            <ModalImage
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              title={gallery_images.title}
-              content={gallery_images[selectedImageIndex]}
-              images={gallery_images || []}
+            <CarouselGallery
+              alt_title={page?.title}
+              images={gallery_images}
+              title="Gallery"
+              className="container"
             />
           )}
           {diningOfferTitle && (
@@ -290,13 +319,15 @@ export default function DiningPage({ page }) {
                   </span>
                   <div className="flex flex-col md:flex-row w-full bg-white">
                     <div className="w-full md:w-1/2">
+                    <Link href={route_url}>
                       <Image
-                        alt={"test"}
-                        src={data.main.featured_image}
+                        alt={diningOfferTitle}
+                        src={data?.main?.featured_image}
                         width={628}
                         height={280}
                         className="w-full h-[300px] object-cover"
                       />
+                    </Link>
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
                       <div className="flex flex-col">
@@ -308,7 +339,7 @@ export default function DiningPage({ page }) {
                         </div>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: data.main.description,
+                            __html: data?.main?.description,
                           }}
                           className="text-[14px] text-center leading-[25px] line-clamp-4 "
                         />
