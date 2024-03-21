@@ -23,12 +23,11 @@ export default function DiningPage({ page }) {
     button_links,
     schedules,
     gallery_images,
+    file_button,
   } = page.data.main;
 
   const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
   const { route_url, title: diningOfferTitle, data } = diningOffer;
-
-  const { file_label, file_link } = page.data.file_button;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -281,17 +280,20 @@ export default function DiningPage({ page }) {
                         </Link>
                       );
                     })}
-                    {file_label && (
+                    {file_button && file_button.length > 0 && (
                       <>
-                        {file_link && (
-                          <Link
-                            href={file_link}
-                            target="_blank"
-                            className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                          >
-                            {file_label}
-                          </Link>
-                        )}
+                        {file_button.map((item, idx) => {
+                          return (
+                            <Link
+                              key={idx}
+                              href={item.file}
+                              target="_blank"
+                              className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                            >
+                              {item.file_label}
+                            </Link>
+                          );
+                        })}
                       </>
                     )}
                   </div>
