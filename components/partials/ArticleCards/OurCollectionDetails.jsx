@@ -226,10 +226,10 @@ export default function OurCollectionDetails({ block, page }) {
               </div>
               {button_links && button_links.length > 0 && (
                 <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-                  {button_links.map((item, idx) => {
+                  {button_links.map((item, index) => {
                     return (
                       <Link
-                        key={idx}
+                        key={index}
                         href={item.btn_link || []}
                         className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                           item.variant === "filled"
@@ -261,12 +261,12 @@ export default function OurCollectionDetails({ block, page }) {
                   Gallery
                 </span>
                 <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                  {images?.map((item, idx) => {
+                  {images?.map((item, index) => {
                     return (
                       <div
-                        key={idx}
+                        key={index}
                         className="flex cursor-pointer"
-                        onClick={() => handleOpenModal(idx)}
+                        onClick={() => handleOpenModal(index)}
                       >
                         <Image
                           alt={images_title}
@@ -318,10 +318,10 @@ export default function OurCollectionDetails({ block, page }) {
                     Awards
                   </span>
                   <div className="flex flex-wrap  gap-x-5 items-center gap-y-5 justify-center">
-                    {award_images?.map((item, idx) => {
+                    {award_images?.map((item, index) => {
                       return (
                         <div
-                          key={idx}
+                          key={index}
                           className="flex w-full 2sm:w-auto justify-center"
                         >
                           <Image

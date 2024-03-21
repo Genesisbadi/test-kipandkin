@@ -196,9 +196,9 @@ export default function DiningDetails({ block, page }) {
                   Operating Hours
                 </span>
                 <div className="pb-7">
-                  {schedules.map((item, idx) => {
+                  {schedules.map((item, index) => {
                     return (
-                      <div key={idx}>
+                      <div key={index}>
                         <span className="flex pb-3">{item.title}</span>
                         <div
                           dangerouslySetInnerHTML={{
@@ -212,10 +212,10 @@ export default function DiningDetails({ block, page }) {
                 </div>
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
-                    {button_links.map((item, idx) => {
+                    {button_links.map((item, index) => {
                       return (
                         <Link
-                          key={idx}
+                          key={index}
                           href={item.button_url || "#"}
                           className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                             item.variant === "filled"
@@ -253,12 +253,12 @@ export default function DiningDetails({ block, page }) {
                   Gallery
                 </span>
                 <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                  {gallery_images?.map((item, idx) => {
+                  {gallery_images?.map((item, index) => {
                     return (
                       <div
-                        key={idx}
+                        key={index}
                         className="flex cursor-pointer"
-                        onClick={() => handleOpenModal(idx)}
+                        onClick={() => handleOpenModal(index)}
                       >
                         <Image
                           alt={"Carousel Gallery"}

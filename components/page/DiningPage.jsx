@@ -249,9 +249,9 @@ export default function DiningPage({ page }) {
               </div>
               <div className="flex flex-col w-full md:w-1/4">
                 <div className="pb-7">
-                  {schedules.map((item, idx) => {
+                  {schedules.map((item, index) => {
                     return (
-                      <div key={idx}>
+                      <div key={index}>
                         <span className="flex pb-3">{item.title}</span>
                         <div
                           dangerouslySetInnerHTML={{
@@ -265,10 +265,10 @@ export default function DiningPage({ page }) {
                 </div>
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
-                    {button_links.map((item, idx) => {
+                    {button_links.map((item, index) => {
                       return (
                         <Link
-                          key={idx}
+                          key={index}
                           href={item.button_url || "#"}
                           className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                             item.variant === "filled"
@@ -282,10 +282,10 @@ export default function DiningPage({ page }) {
                     })}
                     {file_button && file_button.length > 0 && (
                       <>
-                        {file_button.map((item, idx) => {
+                        {file_button.map((item, index) => {
                           return (
                             <Link
-                              key={idx}
+                              key={index}
                               href={item.file}
                               target="_blank"
                               className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
