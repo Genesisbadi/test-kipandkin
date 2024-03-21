@@ -93,9 +93,9 @@ export default function BlogPage({ page }) {
           <div className="px-[10px]">
             <Link
               className="text-primary hover:text-[#aaa] underline"
-              href={"/blogs"}
+              href={"/blog"}
             >
-              Back to Blogs
+              Back to Blog
             </Link>
           </div>
         </div>

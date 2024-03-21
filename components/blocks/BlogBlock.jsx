@@ -110,7 +110,7 @@ export default function BlogBlock({ block }) {
       try {
         const res = await axios.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/blog/entries?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${selectedCategory}`
+            `/api/contents/blog/entries?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${selectedCategory}&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
         );
         setArticles(res.data);
         setLoading(false);
