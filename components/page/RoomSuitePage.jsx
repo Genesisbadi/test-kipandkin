@@ -108,6 +108,25 @@ export default function RoomSuitePage({ page }) {
           )}
         </div>
         <CarouselGallery images={gallery} title={"Gallery"} alt_title={title} />
+        {button_links?.length > 0 && (
+          <div className="bg-[#f1f1f1] flex flex-col md:flex-row gap-x-3 w-full justify-center pb-10">
+            <div className="flex flex-wrap justify-center ">
+              {button_links?.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item?.button_link || "#"}
+                  className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                    item.variant === "filled"
+                      ? "text-white bg-primary"
+                      : "border-secondary"
+                  } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                >
+                  {item?.button_label || ""}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </article>
     </div>
   );
