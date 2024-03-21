@@ -2,14 +2,13 @@ import Image from "next/image";
 
 import ourCollectionEntriesData from "@/lib/preBuildScripts/static/our-collection.json";
 import Link from "next/link";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NProgress from "nprogress";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
+import CarouselGallery from "../partials/gallery/CarouselGallery";
 
 export default function OurCollectionPage({ page }) {
   const showLazy = globalState((state) => state.showLazy);
@@ -57,20 +56,6 @@ export default function OurCollectionPage({ page }) {
       label: page.title,
       value: page.route_url,
     };
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const handleOpenModal = (imageIndex) => {
-    setSelectedImageIndex(imageIndex);
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = "";
   };
 
   const NextArrow = (props) => {
@@ -241,45 +226,16 @@ export default function OurCollectionPage({ page }) {
               )}
             </div>
           </div>
-          {images && images?.length > 0 && (
-            <div className="flex w-full bg-white pt-10 pb-[50px]">
-              <div className="flex flex-col w-full">
-                <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
-                  Gallery
-                </span>
-                <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                  {images?.map((item, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        className="flex cursor-pointer"
-                        onClick={() => handleOpenModal(idx)}
-                      >
-                        <Image
-                          alt={images_title}
-                          src={item}
-                          width={628}
-                          height={529}
-                          className="w-full h-[330px] lg:h-[529px] object-cover"
-                        />
-                      </div>
-                    );
-                  })}
-                </Slick>
-              </div>
-            </div>
-          )}
 
-          {/* MODAL HERE */}
-          {isModalOpen && (
-            <ModalImage
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              title={images.title}
-              content={images[selectedImageIndex]}
-              images={images || []}
+          {images && images?.length > 0 && (
+            <CarouselGallery
+              alt_title={page?.title}
+              images={images}
+              title="Gallery"
+              className="bg-white"
             />
           )}
+
           <div className="container px-5 2xl:px-0">
             {virtual_url && virtual_url?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
@@ -316,7 +272,7 @@ export default function OurCollectionPage({ page }) {
                             src={item}
                             width={160}
                             height={194}
-                            className="2sm:w-full h-full 2sm:min-h-[100px] 2sm:max-h-[139px] object-cover"
+                            className="2sm:w-full h-full 2sm:min-h-[100px] 2sm:max-h-[139px] object-contain"
                           />
                         </div>
                       );

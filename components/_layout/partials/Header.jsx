@@ -1,8 +1,11 @@
 import Head from "next/head";
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
+
 export default function Header({ meta, page }) {
   const { tenantDetails } = globalData;
+
   const defaultMeta = tenantDetails?.data?.meta_data;
+  const defaultAuthor = "Halcyon Agile";
   const findMeta = (type) => {
     switch (type) {
       case "title":
@@ -12,6 +15,8 @@ export default function Header({ meta, page }) {
           defaultMeta?.title ||
           process.env.NEXT_PUBLIC_APP_NAME
         );
+      case "favicon":
+        return tenantDetails?.data?.main?.favicon || "/favicon.ico";
       case "description":
         return (
           meta?.description ||
@@ -21,11 +26,7 @@ export default function Header({ meta, page }) {
       case "image":
         return meta?.image || defaultMeta?.image;
       case "author":
-        return (
-          meta?.author ||
-          defaultMeta?.author ||
-          process.env.NEXT_PUBLIC_APP_NAME
-        );
+        return meta?.author || defaultAuthor;
       case "keywords":
         return (
           meta?.keywords ||
@@ -45,7 +46,7 @@ export default function Header({ meta, page }) {
 
   return (
     <Head>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={findMeta("favicon")} />
       <title>{findMeta("title")}</title>
       <meta name="description" content={findMeta("description")} />
       <meta name="author" content={findMeta("author")} />

@@ -14,9 +14,8 @@ import { useRouter } from "next/router";
 import CarouselGallery from "../partials/gallery/CarouselGallery";
 
 export default function DiningPage({ page }) {
-
   const showLazy = globalState((state) => state.showLazy);
-  const { title } = page; 
+  const { title } = page;
   const {
     subtitle,
     description,
@@ -163,7 +162,7 @@ export default function DiningPage({ page }) {
       label: title,
       value: route_url,
     };
-  }; 
+  };
 
   return (
     <>
@@ -307,7 +306,6 @@ export default function DiningPage({ page }) {
               alt_title={page?.title}
               images={gallery_images}
               title="Gallery"
-              className="container"
             />
           )}
           {diningOfferTitle && (
@@ -319,15 +317,15 @@ export default function DiningPage({ page }) {
                   </span>
                   <div className="flex flex-col md:flex-row w-full bg-white">
                     <div className="w-full md:w-1/2">
-                    <Link href={route_url}>
-                      <Image
-                        alt={diningOfferTitle}
-                        src={data?.main?.featured_image}
-                        width={628}
-                        height={280}
-                        className="w-full h-[300px] object-cover"
-                      />
-                    </Link>
+                      <Link href={route_url}>
+                        <Image
+                          alt={diningOfferTitle}
+                          src={data?.main?.featured_image}
+                          width={628}
+                          height={280}
+                          className="w-full h-[300px] object-cover"
+                        />
+                      </Link>
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
                       <div className="flex flex-col">

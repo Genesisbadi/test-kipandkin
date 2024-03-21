@@ -43,7 +43,7 @@ body {
   .connections .odd img {
     max-width: 100px;
   }
-  .connections .even img {
+  .connections .even img { 
     max-width: 65px;
   }
   ul, ol {
