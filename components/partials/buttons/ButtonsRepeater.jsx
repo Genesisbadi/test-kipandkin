@@ -16,7 +16,7 @@ export default function ButtonsRepeater({ ...props }) {
           {item.description && (
             <div
               className="text-center text-[14px]"
-              dangerouslySetInnerHTML={{ __html: item.description }}
+              dangerouslySetInnerHTML={{ __html: item?.description }}
             />
           )}
 
