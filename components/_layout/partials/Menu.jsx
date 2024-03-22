@@ -75,7 +75,11 @@ export default function Menu({ ...props }) {
         ) : (
           <></>
         )}
-        <div className="flex items-center py-[10px] xl:py-0 justify-center xl:justify-end">
+        <div
+          className={`flex items-center py-[10px] xl:py-0 justify-center xl:justify-end ${
+            process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "pr-[2px]" : ""
+          }`}
+        >
           <div className="xl:pl-[30px] z-[1] absolute top-0 left-0 h-full flex items-center">
             <Link href="/" className="h-full">
               <Image
