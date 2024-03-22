@@ -68,19 +68,34 @@ export default function MainMenu({ parentNodes, ...props }) {
           key={index}
         >
           <div
-            className={`${process.env.NEXT_PUBLIC_TEMPLATE == 2 ? 'py-[8px]' : ''} ${
-              item.label.toLowerCase() !== "reservations" && parseInt(process.env.NEXT_PUBLIC_TEMPLATE) !== 2 ? "py-[20px]" : ""
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "py-[8px]" : ""
+            } ${
+              item.label.toLowerCase() !== "reservations" &&
+              parseInt(process.env.NEXT_PUBLIC_TEMPLATE) !== 2
+                ? "py-[20px]"
+                : ""
             } relative xl:text-[12px] flex items-center xxl:text-[14px]`}
           >
             {item.label.toLowerCase() === "reservations" ? (
               <>
-                <div className={`${process.env.NEXT_PUBLIC_TEMPLATE == 1 ? 'py-[20px] px-[30px] text-white bg-primary' : ''}`}>
+                <div
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "py-[20px] px-[30px] text-white bg-primary"
+                      : ""
+                  }`}
+                >
                   {item?.url?.includes("nolink") ? (
                     <>
                       <span className="uppercase flex items-center cursor-default">
                         {item.label}
                         <DropdownArrow
-                          className="ml-[5px] top-[-2px] xxl:top-[-4px] border-white relative"
+                          className={`ml-[5px] top-[-2px] xxl:top-[-4px] ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "border-white"
+                              : "border-primary"
+                          } relative`}
                           width={7}
                           height={7}
                           item={item}
@@ -98,7 +113,11 @@ export default function MainMenu({ parentNodes, ...props }) {
                       >
                         {item.label}
                         <DropdownArrow
-                          className="ml-[5px] top-[-2px] xxl:top-[-4px] border-white relative"
+                          className={`ml-[5px] top-[-2px] xxl:top-[-4px] ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "border-white"
+                              : "border-primary"
+                          } relative`}
                           width={7}
                           height={7}
                           item={item}

@@ -15,7 +15,7 @@ export default function Footer() {
 
   return (
     <footer className="">
-      <FooterJuicer juicer_id={main.juicer_id} />
+      {main.juicer_id && <FooterJuicer juicer_id={main.juicer_id} />}
       <FooterCallToActions />
       <FooterReviews />
       <FooterNewsletter />
