@@ -162,10 +162,21 @@ export default function ModalImage1({ ...props }) {
   const closedPopup = () => {
     setIsOpen(false);
     const popup = document.querySelector(".modal-root");
-    popup.remove();
+    if (popup) {
+      popup.remove();
+    }
     document.body.style.overflow = "unset";
   };
+
+  const closeOnEsc = (event) => {
+    console.log("keyDowwwnnn");
+    if (event.key === "Escape" || event.keyCode === 27) {
+      closedPopup();
+    }
+  };
   useEffect(() => {
+    document.addEventListener("keydown", closeOnEsc);
+
     document.body.style.overflow = "unset";
     const modal = document.querySelector(".modal-root");
     if (modal) {
