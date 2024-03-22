@@ -5,14 +5,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import NProgress from "nprogress";
+
 export default function MainMenuMobile({ ...props }) {
   const router = useRouter();
-  const { parentNodes } = props;
+  const { parentNodes, nodes } = props;
   const [isMenuToggled, setIsMenuToggled] = useState(false);
   const [isBookToggled, setIsBookToggled] = useState(false);
   const [bookingLinks, setIsBookingLinks] = useState({});
+  const [children, setChildren] = useState([]);
+  const [currentItem, setCurrentItem] = useState([]);
+  const [topLevel, setTopLevel] = useState(true);
+
   const { tenantDetails } = globalData;
   const closeMenu = () => {
+    setChildren([]);
     document.querySelector("body").classList.remove("mobile-menu-opened");
     setTimeout(() => {
       document.querySelector("body").classList.add("mobile-menu-closed");
@@ -48,8 +55,85 @@ export default function MainMenuMobile({ ...props }) {
     // }, 300);
   };
 
-  const showChildren = () => {
-    // console.log("hello children");
+  const showChildren = (id) => {
+    const prev = document.querySelector(".current");
+    prev.classList.remove("current");
+    prev.classList.add("prev");
+    const current = document.createElement("div");
+    current.classList.add("current-class");
+    current.innerHTML = children.map((item, index) => {
+      <div>{item.label}</div>;
+    });
+
+    setTimeout(() => {}, 1000);
+  };
+
+  const hasChildrenNotInParent = nodes.filter((obj) => {
+    const idExistsInParent = parentNodes.some((parent) => parent.id === obj.id);
+
+    if (!idExistsInParent && obj.children.length > 0) {
+      return obj;
+    }
+  });
+
+  const DropdownMenu = ({ ...props }) => {
+    if (children && children.length > 0) {
+      setTimeout(() => {
+        const childs = document.querySelector(".children");
+        if (childs) {
+          childs.classList.remove("current");
+          childs.classList.add("animating");
+        }
+      }, 150);
+
+      setTimeout(() => {
+        const childs = document.querySelector(".children");
+        if (childs) {
+          childs.classList.add("current");
+          childs.classList.remove("animating");
+        }
+      }, 250);
+    } else {
+      console.log("no children");
+    }
+    return (
+      <>
+        <div className="children">
+          {children.map((item, index) => (
+            <div
+              className="flex"
+              key={index}
+              onClick={() => {
+                if (item?.children && item?.children.length > 0) {
+                  setCurrentItem(item);
+                  setChildren(item?.children);
+                } else {
+                  console.log("item.url", item.target);
+                  NProgress.start();
+                  router
+                    .push(item.url)
+                    .then(() => {
+                      NProgress.done();
+                    })
+                    .catch(() => {
+                      NProgress.done();
+                    });
+                  closeMenu();
+                }
+              }}
+            >
+              {item.label}
+              {item?.children && item?.children.length > 0 && (
+                <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
+                  <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
+                  <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </>
+    );
   };
 
   useEffect(() => {
@@ -87,7 +171,7 @@ export default function MainMenuMobile({ ...props }) {
               ></span>
               <div className="modal-content select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
                 <div className="sticky flex justify-between top-0 bg-white text-primary pt-[20px] pb-[15px] font-bold text-[20px]">
-                  <span>Choose a destination:</span>
+                  <span>Choose an option:</span>
 
                   <button
                     onClick={closeBooking}
@@ -100,9 +184,9 @@ export default function MainMenuMobile({ ...props }) {
                     >
                       <title>Close</title>
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M10 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414L11.414 10l3.293 3.293a1 1 0 0 1-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L8.586 10 5.293 6.707a1 1 0 0 1 1.414-1.414L10 8.586z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       ></path>
                     </svg>
                   </button>
@@ -145,9 +229,9 @@ export default function MainMenuMobile({ ...props }) {
           <>
             <div
               id="header-mobile"
-              className="fixed max-h-[100vh] overflow-y-auto transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0"
+              className="fixed max-h-[100vh] overflow-hidden transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0"
             >
-              <div className="sticky flex justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
+              <div className="sticky flex items-center justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
                 <Image
                   src={tenantDetails.data.main.tenant_logo}
                   width={200}
@@ -166,26 +250,52 @@ export default function MainMenuMobile({ ...props }) {
                   >
                     <title>Close</title>
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414L11.414 10l3.293 3.293a1 1 0 0 1-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L8.586 10 5.293 6.707a1 1 0 0 1 1.414-1.414L10 8.586z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                 </span>
               </div>
-              <div>
-                {parentNodes?.map((item, index) => {
-                  if (item.label.toLowerCase() !== "reservations") {
-                    return (
-                      <div
-                        key={index}
-                        onClick={item.children ? showChildren : closeMenu}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  }
-                })}
+              <div className="menu-links">
+                <div className="current top-level max-h-[calc(100vh-80px)] overflow-y-auto">
+                  {parentNodes?.map((item, index) => {
+                    if (item.label.toLowerCase() !== "reservations") {
+                      return (
+                        <div
+                          className="flex justify-between"
+                          key={index}
+                          onClick={() => {
+                            if (item?.children && item?.children.length > 0) {
+                              setChildren(item.children);
+                              setCurrentItem(item);
+                              const topLevel =
+                                document.querySelector(".top-level");
+                              topLevel.classList.remove("current");
+                              topLevel.classList.add("prev");
+                            } else {
+                              router.push(item.url);
+                              closeMenu();
+                            }
+                          }}
+                        >
+                          {item.label}
+                          {item?.children && item?.children.length > 0 && (
+                            <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
+                              <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
+                              <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+                {children && children.length > 0 && (
+                  <>
+                    <DropdownMenu childs={children} />
+                  </>
+                )}
               </div>
             </div>
 

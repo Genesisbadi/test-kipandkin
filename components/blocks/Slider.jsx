@@ -71,6 +71,7 @@ export default function Slider({ block, mediaHandler }) {
     infinite: false,
     fade: true,
     speed: 500,
+    adaptiveHeight: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
@@ -107,17 +108,17 @@ export default function Slider({ block, mediaHandler }) {
             />
 
             <div className="py-[50px] min-h-[calc(100vh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-                <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>
-                <div
-                  className="mb-[15px]"
-                  dangerouslySetInnerHTML={{ __html: item.description }}
-                />
-                <Link
-                  className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                  href={item.link}
-                >
-                  Discovery More
-                </Link>
+              <h2 className="text-[42px] mb-[40px] font-bold">{item.title}</h2>
+              <div
+                className="mb-[15px]"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              />
+              <Link
+                className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                href={item.link}
+              >
+                Discovery More
+              </Link>
             </div>
           </div>
         ))}

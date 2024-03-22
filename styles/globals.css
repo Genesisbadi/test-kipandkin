@@ -6,8 +6,8 @@
   --primary1: #85764d;
   --secondary: #86764e;
   --secondary1: #c5baa6;
-  --secondary2: "#d4bebe";
-  --secondary3: "#99656a";
+  --secondary2: #d4bebe;
+  --secondary3: #99656a;
   --dropdownBorder: #ebbbc9;
 }
 
@@ -26,6 +26,29 @@
   display: flex;
 }
 @layer utilities {
+  .block-slider .slick-dots {
+    position: absolute;
+    bottom: 0;
+    display: flex !important;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+  }
+  .block-slider .slick-dots li {
+    padding: 0 3px;
+  }
+  .block-slider .slick-dots .slick-active button {
+    transform: scale(1.1);
+    transition: all ease 0.3s;
+  }
+  .block-slider .slick-dots button {
+    width: 7px;
+    height: 7px;
+    text-indent: -9999px;
+    border-radius: 100%;
+    background-color: #ccc;
+    transition: all ease 0.3s;
+  }
   p {
     line-height: 27px;
   }
@@ -34,10 +57,10 @@
   }
   .react-select,
   .react-select * {
-    color: var(--tw-primary) !important;
+    color: var(--primary) !important;
   }
   .react-select > div {
-    border: 1px solid var(--tw-dropdownBorder) !important;
+    border: 1px solid var(--dropdownBorder) !important;
     outline: none;
   }
   .react-select > div > div:nth-child(2) > span {
@@ -135,6 +158,47 @@
   #header .dropdown-menu .dropdown-menu .caret {
     display: none;
   }
+}
+
+.prev {
+  transform: translateX(-200%);
+  transition: all ease 0.8s;
+  opacity: 0;
+  visibility: hidden;
+}
+.current {
+  transform: translateX(0);
+  transition: all ease 0.3s;
+}
+
+.next {
+  transform: translateX(100%);
+  transition: all ease 0.3s;
+}
+
+.children {
+  position: fixed;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  top: 80px;
+  transform: translateX(100%);
+  width: 100%;
+  z-index: 1;
+}
+.children.current {
+  right: 0;
+  transform: translateX(0);
+  transition: all ease 0.3s;
+  opacity: 1;
+  visibility: inherit;
+}
+.children.animating {
+  transform: translateX(-30%);
+  transition: all ease 0.3s;
+  /* opacity: 0; */
+  /* visibility: hidden; */
 }
 
 @keyframes modalIn {

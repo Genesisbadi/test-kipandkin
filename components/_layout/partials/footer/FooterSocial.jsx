@@ -21,9 +21,9 @@ export default function FooterSocial({ social_media }) {
     <>
       {social_media?.media_links && (
         <>
-          <div className="social-media mt-[15px] flex flex-wrap  items-center ">
+          <div className="social-media mt-[15px] flex flex-wrap items-center ">
             {social_media?.media_links?.map((item, index) => (
-              <div key={index} className="px-[10px]">
+              <div key={index} className="px-[10px] mb-[5px]">
                 <Link
                   href={item.link}
                   title={messages[item.platform] || "Follow Us"}
