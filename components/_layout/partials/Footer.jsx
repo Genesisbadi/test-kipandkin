@@ -1,14 +1,14 @@
 import Link from "next/link";
 import globalData from "../../../lib/preBuildScripts/static/globalData.json";
 import Image from "next/image";
-import FooterDestinations from "./footer/FooterDestinations";
-import FooterConnections from "./footer/FooterConnections";
-import FooterSocial from "./footer/FooterSocial";
-import FooterJuicer from "./footer/FooterJuicer";
-import FooterMenu from "./footer/FooterMenu";
-import FooterNewsletter from "./footer/FooterNewsletter";
-import FooterReviews from "./footer/FooterReviews";
-import FooterCallToActions from "./footer/FooterCallToActions";
+import FooterDestinations from "@/components/_layout/partials/footer/FooterDestinations";
+import FooterConnections from "@/components/_layout/partials/footer/FooterConnections";
+import FooterSocial from "@/components/_layout/partials/footer/FooterSocial";
+import FooterJuicer from "@/components/_layout/partials/footer/FooterJuicer";
+import FooterMenu from "@/components/_layout/partials/footer/FooterMenu";
+import FooterNewsletter from "@/components/_layout/partials/footer/FooterNewsletter";
+import FooterReviews from "@/components/_layout/partials/footer/FooterReviews";
+import FooterCallToActions from "@/components/_layout/partials/footer/FooterCallToActions";
 export default function Footer() {
   const { connections, destinations, main, social_media } =
     globalData.tenantDetails.data;
