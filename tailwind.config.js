@@ -10,12 +10,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#691a31",
-        primary1: "#85764D",
-        secondary: "#86764e",
-        secondary1: "#c5baa6",
-        secondary2: "#d4bebe",
-        secondary3: "#99656a",
+        primary: "var(--primary)",
+        primary1: "var(--primary1)",
+        secondary: "var(--secondary)",
+        secondary1: "var(--secondary1)",
+        secondary2: "var(--secondary2)",
+        secondary3: "var(--secondary3)",
+        dropdownBorder: "var(--dropdownBorder)",
       },
       fontFamily: {},
     },

@@ -1,11 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
+:root {
   --primary: #691a31;
-  --dropdownBorder: #ebbbc9;
+  --primary1: #85764d;
+  --secondary: #86764e;
+  --secondary1: #c5baa6;
   --secondary2: "#d4bebe";
+  --secondary3: "#99656a";
+  --dropdownBorder: #ebbbc9;
 }
 
 .carousel-gallery * {
@@ -31,10 +34,10 @@ body {
   }
   .react-select,
   .react-select * {
-    color: var(--primary) !important;
+    color: var(--tw-primary) !important;
   }
   .react-select > div {
-    border: 1px solid var(--dropdownBorder) !important;
+    border: 1px solid var(--tw-dropdownBorder) !important;
     outline: none;
   }
   .react-select > div > div:nth-child(2) > span {
@@ -43,11 +46,12 @@ body {
   .connections .odd img {
     max-width: 100px;
   }
-  .connections .even img { 
+  .connections .even img {
     max-width: 65px;
   }
-  ul, ol {
-    list-style-position: inside !important; 
+  ul,
+  ol {
+    list-style-position: inside !important;
   }
   ul {
     list-style: disc;
