@@ -162,7 +162,7 @@
 
 .prev {
   transform: translateX(-200%);
-  transition: all ease 0.8s;
+  transition: all ease 0.1s;
   opacity: 0;
   visibility: hidden;
 }
@@ -190,7 +190,7 @@
 .children.current {
   right: 0;
   transform: translateX(0);
-  transition: all ease 0.3s;
+  transition: all ease 0.4s;
   opacity: 1;
   visibility: inherit;
 }

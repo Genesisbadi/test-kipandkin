@@ -122,7 +122,7 @@ export default function AdvocaciesReviews({ block }) {
                       />
                     )}
 
-                    <div className="flex mt-[30px]">
+                    <div className="flex fpex-wrap mt-[30px]">
                       {item.data.main.name && (
                         <span>{item.data.main.name},</span>
                       )}

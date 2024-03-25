@@ -20,10 +20,10 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               width={500}
               height={500}
               alt={item.title}
-              className="w-full lg:h-[550px] object-cover"
+              className="w-full h-[300px] lg:h-[550px] object-cover"
             />
-            <div className="px-[60px] flex flex-col grow py-[30px] bg-primary1 text-white">
-              <h2 className="text-center mb-[30px] text-[25px]">
+            <div className="px-[20px] lg:px-[60px] flex flex-col grow py-[30px] bg-primary1 text-white">
+              <h2 className="text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]">
                 {item.title}
               </h2>
               {item.description && (

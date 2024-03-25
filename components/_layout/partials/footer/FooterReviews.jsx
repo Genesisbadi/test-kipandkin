@@ -65,6 +65,14 @@ export default function FooterReviews() {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          arrows: false,
+        },
+      },
+    ],
   };
 
   return (
@@ -77,7 +85,7 @@ export default function FooterReviews() {
             </h2>
             {reviewsData && (
               <>
-                <Slick className="px-[70px]" {...settings}>
+                <Slick className="lg:px-[70px]" {...settings}>
                   {reviewsData.map((item, index) => (
                     <div key={index}>
                       <h3 className="font-bold text-[14px] uppercase">
@@ -92,7 +100,7 @@ export default function FooterReviews() {
                         />
                       )}
 
-                      <div className="flex mt-[30px]">
+                      <div className="flex flex-wrap mt-[30px]">
                         {item.data.main.name && (
                           <span>{item.data.main.name},</span>
                         )}

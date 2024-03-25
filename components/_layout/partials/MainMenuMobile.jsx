@@ -89,7 +89,7 @@ export default function MainMenuMobile({ ...props }) {
     return (
       <div className="children px-[15px]" id={`child-${id}`}>
         <div
-          className="flex select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+          className="flex text-primary select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
           id={id}
           onClick={() => {
             const parentObjects = findParentAndSiblings(parentNodes, item.id);
