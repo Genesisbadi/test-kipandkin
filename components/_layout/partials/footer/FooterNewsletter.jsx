@@ -1,8 +1,38 @@
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import Link from "next/link";
+import FORMAPI from "@/lib/api/forms/request";
+
+import formStore from "@/lib/store/formStore";
 
 export default function FooterNewsletter() {
   const { tenantDetails } = globalData;
+  const payload = {};
+
+  const handleSubmit = async (e) => {
+    const email = document.querySelector(
+      "#newsletter-form input[type=email]"
+    ).value;
+
+    payload["main.email"] = email;
+
+    console.log(payload);
+
+    e.preventDefault();
+
+    await FORMAPI.submitForm("newsletter-form", payload)
+      .then(() => {
+        e.target.reset();
+        formStore.setState({
+          formSuccessInfo: true,
+          submitLoading: false,
+        });
+      })
+      .catch((err) => {
+        formStore.setState({
+          submitLoading: false,
+        });
+      });
+  };
 
   return (
     <section className="footer-newsletter py-[40px]">
@@ -15,7 +45,7 @@ export default function FooterNewsletter() {
           Enter your email address below to receive our newsletter
         </p>
 
-        <form>
+        <form id="newsletter-form" onClick={handleSubmit}>
           <div className="flex flex-wrap items-center mt-[30px]">
             <input
               type="email"

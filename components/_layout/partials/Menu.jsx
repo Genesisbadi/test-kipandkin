@@ -10,24 +10,14 @@ import { useState, useEffect } from "react";
 import MainMenuMobile from "./MainMenuMobile";
 import dynamic from "next/dynamic";
 
+import { useMobileDetector } from "@/lib/services/isMobileDetector";
+
 export default function Menu({ ...props }) {
   const ready = globalState((state) => state.ready);
   const { tenantDetails, menus, locales } = globalData;
-  const [isMobile, setIsMobile] = useState();
   const { parentNodes, nodes } = menus;
 
-  const getWindowWidth = () => {
-    if (window.innerWidth <= 1199) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  };
-  useEffect(() => {
-    window.removeEventListener("resize", getWindowWidth);
-    getWindowWidth();
-    window.addEventListener("resize", getWindowWidth);
-  }, []);
+  const isMobile = useMobileDetector();
 
   const Email = dynamic(() =>
     import("@/components/icons/Email").then((module) => module.default)
@@ -42,38 +32,42 @@ export default function Menu({ ...props }) {
         id="header"
         className="sticky top-0 z-[100] bg-white shadow-[0_2px_2px_-2px_rgba(0,0,0,.15)] min-h-[61px] flex flex-col justify-center items-end "
       >
-        {tenantDetails?.data?.main?.email ||
-        tenantDetails?.data?.main?.phone ? (
-          <div className="header-strip overflow-hidden py-[10px] text-[14px]">
-            <div className="flex justify-end">
-              {tenantDetails?.data?.main?.email && (
-                <span className="px-[5px]">
-                  <Link
-                    className="flex items-center hover:opacity-[.5]"
-                    href={`mailto:${tenantDetails?.data?.main?.email}`}
-                  >
-                    <Email className="mr-[5px]" />
+        {!isMobile && (
+          <>
+            {tenantDetails?.data?.main?.email ||
+            tenantDetails?.data?.main?.phone ? (
+              <div className="hidden xl:block header-strip overflow-hidden py-[10px] text-[14px]">
+                <div className="flex justify-end">
+                  {tenantDetails?.data?.main?.email && (
+                    <span className="px-[5px]">
+                      <Link
+                        className="flex items-center hover:opacity-[.5]"
+                        href={`mailto:${tenantDetails?.data?.main?.email}`}
+                      >
+                        <Email className="mr-[5px]" />
 
-                    {tenantDetails?.data?.main?.email}
-                  </Link>
-                </span>
-              )}
-              {tenantDetails?.data?.main?.phone && (
-                <span className="px-[5px]">
-                  <Link
-                    className="flex items-center hover:opacity-[.5]"
-                    href={`mailto:${tenantDetails?.data?.main?.phone}`}
-                  >
-                    <Phone className="mr-[5px]" />
+                        {tenantDetails?.data?.main?.email}
+                      </Link>
+                    </span>
+                  )}
+                  {tenantDetails?.data?.main?.phone && (
+                    <span className="px-[5px]">
+                      <Link
+                        className="flex items-center hover:opacity-[.5]"
+                        href={`mailto:${tenantDetails?.data?.main?.phone}`}
+                      >
+                        <Phone className="mr-[5px]" />
 
-                    {tenantDetails?.data?.main?.phone}
-                  </Link>
-                </span>
-              )}
-            </div>
-          </div>
-        ) : (
-          <></>
+                        {tenantDetails?.data?.main?.phone}
+                      </Link>
+                    </span>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
         )}
         <div
           className={`flex items-center py-[10px] xl:py-0 justify-center xl:justify-end ${

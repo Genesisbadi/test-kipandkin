@@ -7,7 +7,8 @@ import dynamic from "next/dynamic";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import config from "site.config";
-import Router from "next/router";
+
+import { useMobileDetector } from "@/lib/services/isMobileDetector";
 
 const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"), {
   loading: () => <p>Loading...</p>,
@@ -21,6 +22,8 @@ const Calendar = dynamic(() => import("@/components/icons/Calendar"), {
 });
 
 export default function BookingForm({ ...props }) {
+  const isMobile = useMobileDetector();
+
   const { page, blocks } = props;
   const disabledTypes = ["offers"];
   const disabledBlocks = ["Title"];
@@ -33,6 +36,7 @@ export default function BookingForm({ ...props }) {
 
   const [showCalendar, setShowCalendar] = useState(false);
   const [showGuests, setShowGuests] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [guestAdult, setGuestAdult] = useState({
     min: 1,
@@ -172,117 +176,249 @@ export default function BookingForm({ ...props }) {
   const maxDate = new Date();
   maxDate.setFullYear(today.getFullYear() + 5);
 
+  const showModalForm = () => {
+    setShowModal(true);
+  };
+
+  const closeModalForm = () => {
+    setTimeout(() => {
+      setShowModal(false);
+    }, 1000);
+  };
+
   return (
     <>
       {booking_id && (
-        <div
-          className={`${
-            isFloat ? "mb-[-50px]" : ""
-          } booking-form relative z-[22] backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-70 border-t-[1px] border-[#fff] select-none`}
-        >
-          <div className="flex justify-end text-[14px] h-full">
-            <div className="text-primary py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase">
-              Quick book
-            </div>
-            <span className="relative">
-              {showCalendar && (
-                <DateRange
-                  className="absolute top-[100%] left-0"
-                  ranges={[selectionRange]}
-                  onChange={calendarSelector}
-                  minDate={today}
-                  maxDate={maxDate}
-                />
-              )}
-            </span>
-            <div
-              className="form-item min-w-[160px] relative flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
-              onClick={toggleCalendar}
-            >
-              <Calendar className="mr-[10px]" />
-              {!arrivalDisplayDate ? "Arrival" : arrivalDisplayDate}
-            </div>
+        <>
+          <div
+            className={`${
+              isFloat ? "mb-[-50px]" : ""
+            } booking-form relative z-[22] backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-50 xl:bg-opacity-70 border-t-[1px] border-[#fff] select-none`}
+          >
+            {!isMobile ? (
+              <div className="flex justify-end text-[14px] h-full">
+                <div className="text-primary py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase">
+                  Quick book
+                </div>
+                <span className="relative">
+                  {showCalendar && (
+                    <DateRange
+                      className="absolute top-[100%] left-0"
+                      ranges={[selectionRange]}
+                      onChange={calendarSelector}
+                      minDate={today}
+                      maxDate={maxDate}
+                    />
+                  )}
+                </span>
+                <div
+                  className="form-item min-w-[160px] relative flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
+                  onClick={toggleCalendar}
+                >
+                  <Calendar className="mr-[10px]" />
+                  {!arrivalDisplayDate ? "Arrival" : arrivalDisplayDate}
+                </div>
 
-            <div
-              className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
-              onClick={toggleCalendar}
-            >
-              <Calendar className="mr-[10px]" />
-              {!departureDisplayDate ? "Departure" : departureDisplayDate}
-            </div>
-            <span className="relative">
-              {showGuests && (
-                <div className="absolute min-w-[250px] top-[100%] left-0 bg-white shadow-md">
-                  <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
-                    <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
-                      Adult{guestAdult.value > 1 ? "s" : ""}:
-                    </span>
+                <div
+                  className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
+                  onClick={toggleCalendar}
+                >
+                  <Calendar className="mr-[10px]" />
+                  {!departureDisplayDate ? "Departure" : departureDisplayDate}
+                </div>
+                <span className="relative">
+                  {showGuests && (
+                    <div className="absolute min-w-[250px] top-[100%] left-0 bg-white shadow-md">
+                      <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
+                        <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
+                          Adult{guestAdult.value > 1 ? "s" : ""}:
+                        </span>
 
-                    <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
-                      {guestAdult.value}
-                      <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
-                        <button
-                          className="mb-[10px]"
-                          onClick={() => updateGuest("adult", "increment")}
-                        >
-                          <ArrowDown className="rotate-180" width={10} />
-                        </button>
-                        {guestAdult.value > 1 && (
-                          <button
-                            onClick={() => updateGuest("adult", "decrement")}
-                          >
-                            <ArrowDown width={10} />
-                          </button>
-                        )}
+                        <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
+                          {guestAdult.value}
+                          <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
+                            <button
+                              className="mb-[10px]"
+                              onClick={() => updateGuest("adult", "increment")}
+                            >
+                              <ArrowDown className="rotate-180" width={10} />
+                            </button>
+                            {guestAdult.value > 1 && (
+                              <button
+                                onClick={() =>
+                                  updateGuest("adult", "decrement")
+                                }
+                              >
+                                <ArrowDown width={10} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
+                        <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
+                          Children:
+                        </span>
+
+                        <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
+                          {guestChildren.value}
+                          <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
+                            <button
+                              className="mb-[10px]"
+                              onClick={() =>
+                                updateGuest("children", "increment")
+                              }
+                            >
+                              <ArrowDown className="rotate-180" width={10} />
+                            </button>
+
+                            {guestChildren.value !== 0 && (
+                              <button
+                                onClick={() =>
+                                  updateGuest("children", "decrement")
+                                }
+                              >
+                                <ArrowDown width={10} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  )}
+                </span>
+                <div
+                  className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
+                  onClick={toggleGuest}
+                >
+                  <User className="mr-[10px]" />
+                  {guestAdult.value} Adults, {guestChildren.value} Children{" "}
+                  <ArrowDown className="ml-[5px]" width={10} />
+                </div>
+
+                <div
+                  className="bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555]"
+                  onClick={submitBooking}
+                >
+                  Check Availability
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-end py-[5px] uppercase text-primary">
+                <span className="flex  gap-x-[15px]" onClick={showModalForm}>
+                  Book Now <Calendar className="mr-[10px] fill-primary" />
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* SHOW MODAL */}
+          {showModal && isMobile && (
+            <>
+              <div className="fixed top-0 z-[200] left-0 w-full h-full py-[50px] flex items-center justify-center">
+                <span className="bg-gray-900 backdrop-blur w-full h-full absolute top-0 left-0 bg-opacity-[.3]"></span>
+                <div className="modal-content flex flex-col space-y-[15px] select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
+                  <div className="text-primary py-[10px] text-[16px] uppercase">
+                    Quick book
+                  </div>
+                  <span className="relative">
+                    {showCalendar && (
+                      <DateRange
+                        className="absolute top-[100%] left-0"
+                        ranges={[selectionRange]}
+                        onChange={calendarSelector}
+                        minDate={today}
+                        maxDate={maxDate}
+                      />
+                    )}
+                  </span>
+                  <div
+                    className="form-item min-w-[160px] relative flex items-center px-[20px] cursor-pointer"
+                    onClick={toggleCalendar}
+                  >
+                    <Calendar className="mr-[10px]" />
+                    Arrival: {arrivalDisplayDate}
                   </div>
 
-                  <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
-                    <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
-                      Children:
-                    </span>
+                  <div
+                    className="form-item min-w-[160px] flex items-center px-[20px] cursor-pointer"
+                    onClick={toggleCalendar}
+                  >
+                    <Calendar className="mr-[10px]" />
+                    Departure: {departureDisplayDate}
+                  </div>
+                  <span className="relative">
+                    <div className="min-w-[250px] top-[100%] left-0 bg-white">
+                      <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
+                        <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
+                          Adult{guestAdult.value > 1 ? "s" : ""}:
+                        </span>
 
-                    <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
-                      {guestChildren.value}
-                      <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
-                        <button
-                          className="mb-[10px]"
-                          onClick={() => updateGuest("children", "increment")}
-                        >
-                          <ArrowDown className="rotate-180" width={10} />
-                        </button>
+                        <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
+                          {guestAdult.value}
+                          <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
+                            <button
+                              className="mb-[10px]"
+                              onClick={() => updateGuest("adult", "increment")}
+                            >
+                              <ArrowDown className="rotate-180" width={10} />
+                            </button>
+                            {guestAdult.value > 1 && (
+                              <button
+                                onClick={() =>
+                                  updateGuest("adult", "decrement")
+                                }
+                              >
+                                <ArrowDown width={10} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
 
-                        {guestChildren.value !== 0 && (
-                          <button
-                            onClick={() => updateGuest("children", "decrement")}
-                          >
-                            <ArrowDown width={10} />
-                          </button>
-                        )}
+                      <div className="flex justify-between border-b-[1px] border-b-[#ccc] px-[10px]">
+                        <span className="border-r-[1px] border-[#ccc] py-[10px] pr-[10px] w-full max-w-[75%]">
+                          Children:
+                        </span>
+
+                        <div className="flex items-center w-full max-w-[25%] px-[20px] py-[10px] relative">
+                          {guestChildren.value}
+                          <div className="flex flex-col items-center justify-center w-full max-w-[15%] pl-[15px] absolute right-[10px] top-[50%] translate-y-[-50%] h-full w-full">
+                            <button
+                              className="mb-[10px]"
+                              onClick={() =>
+                                updateGuest("children", "increment")
+                              }
+                            >
+                              <ArrowDown className="rotate-180" width={10} />
+                            </button>
+
+                            {guestChildren.value !== 0 && (
+                              <button
+                                onClick={() =>
+                                  updateGuest("children", "decrement")
+                                }
+                              >
+                                <ArrowDown width={10} />
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  </span>
+                  <div
+                    className="bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555]"
+                    onClick={submitBooking}
+                  >
+                    Check Availability
                   </div>
                 </div>
-              )}
-            </span>
-            <div
-              className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
-              onClick={toggleGuest}
-            >
-              <User className="mr-[10px]" />
-              {guestAdult.value} Adults, {guestChildren.value} Children{" "}
-              <ArrowDown className="ml-[5px]" width={10} />
-            </div>
-
-            <div
-              className="bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555]"
-              onClick={submitBooking}
-            >
-              Check Availability
-            </div>
-          </div>
-        </div>
+              </div>
+            </>
+          )}
+        </>
       )}
     </>
   );

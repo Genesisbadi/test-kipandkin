@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import NProgress from "nprogress";
+import Email from "@/components/icons/Email";
+import Phone from "@/components/icons/Phone";
 
 export default function MainMenuMobile({ ...props }) {
   const { parentNodes, nodes } = props;
@@ -174,8 +176,30 @@ export default function MainMenuMobile({ ...props }) {
             ></span>
           ))}
         </span>
-        <span className="cursor-pointer" onClick={bookingOpen}>
-          <Booking className="select-none cursor-pointer" />
+        <span className="flex items-center">
+          {tenantDetails?.data?.main?.email && (
+            <span className="px-[5px]">
+              <Link
+                className="flex items-center hover:opacity-[.5]"
+                href={`mailto:${tenantDetails?.data?.main?.email}`}
+              >
+                <Email className="mr-[5px] !fill-primary" />
+              </Link>
+            </span>
+          )}
+          {tenantDetails?.data?.main?.phone && (
+            <span className="px-[5px]">
+              <Link
+                className="flex items-center hover:opacity-[.5]"
+                href={`mailto:${tenantDetails?.data?.main?.phone}`}
+              >
+                <Phone className="mr-[5px] !fill-primary" />
+              </Link>
+            </span>
+          )}
+          <span className="cursor-pointer" onClick={bookingOpen}>
+            <Booking className="select-none cursor-pointer" />
+          </span>
         </span>
       </div>
 

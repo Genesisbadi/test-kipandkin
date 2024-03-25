@@ -1,6 +1,9 @@
 import dynamic from "next/dynamic";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
+
+import { useMobileDetector } from "@/lib/services/isMobileDetect.js";
+
 import { useEffect } from "react";
 const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"), {
   loading: () => <p>Loading...</p>,
@@ -14,6 +17,9 @@ const Calendar = dynamic(() => import("@/components/icons/Calendar"), {
 });
 
 export default function BookingFormFake({ ...props }) {
+  const isMobile = useMobileDetector();
+
+  console.log(isMobile);
   const { page, blocks } = props;
   const disabledTypes = ["offers"];
   const disabledBlocks = ["Title"];
