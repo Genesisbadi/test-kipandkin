@@ -139,6 +139,7 @@ export default function MainMenuMobile({ ...props }) {
                   .catch(() => {
                     NProgress.done();
                   });
+                closeMenu();
               }
             }}
           >
@@ -297,8 +298,15 @@ export default function MainMenuMobile({ ...props }) {
 
                               child.classList.add("current");
                             } else {
-                              router.push(item.url);
-                              closeMenu();
+                              NProgress.start();
+                              router
+                                .push(`${item.url}`)
+                                .then(() => {
+                                  NProgress.done();
+                                })
+                                .catch(() => {
+                                  NProgress.done();
+                                });
                             }
                           }}
                         >
