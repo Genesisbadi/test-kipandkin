@@ -7,11 +7,17 @@ import { useRouter } from "next/router";
 import NProgress from "nprogress";
 import blogCategoryTaxonomies from "@/lib/preBuildScripts/static/blog-categories.json";
 
+import Jsona from "jsona";
+import CONTENTAPI from "@/lib/api/content/request";
+
 export default function BlogBlock({ block }) {
   const blogCategories = blogCategoryTaxonomies.blogCategoryTaxonomies;
-  const [selectedCategory, setSelectedCategory] = useState("");
   const router = useRouter();
-  const [articles, setArticles] = useState([]);
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    router.query.category || ""
+  );
+  const [articles, setArticles] = useState([{}]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -56,14 +62,20 @@ export default function BlogBlock({ block }) {
   }, []);
 
   const filterByCategory = (e) => {
-    if (e?.target?.getAttribute("id")) {
-      setSelectedCategory(e.target.getAttribute("id"));
-      setCurrentPage(1);
-      window.history.pushState(
-        {},
-        "",
-        `?category=${e.target.getAttribute("id")}`
-      );
+    if (!selectedCategory) {
+      if (e?.target?.getAttribute("id")) {
+        NProgress.start();
+        router
+          .push(`/blog?category=${e.target.getAttribute("id")}`)
+          .then(() => {
+            setSelectedCategory(e.target.getAttribute("id"));
+            setCurrentPage(1);
+            NProgress.done();
+          })
+          .catch(() => {
+            NProgress.done();
+          });
+      }
     }
   };
 
@@ -94,10 +106,6 @@ export default function BlogBlock({ block }) {
     };
 
     const getArticles = async (page) => {
-      if (router?.query?.category && !selectedCategory) {
-        setSelectedCategory(router.query.category);
-      }
-
       setLoading(true);
       setHasPrevPage(false);
       setHasNextPage(false);
@@ -108,20 +116,28 @@ export default function BlogBlock({ block }) {
       });
 
       try {
-        const res = await axios.get(
-          process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/blog/entries?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${selectedCategory}&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
-        );
+        let res;
+        if (router.query.category) {
+          res = await CONTENTAPI.getContents(
+            "blog",
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}`
+          );
+        } else {
+          res = await CONTENTAPI.getContents(
+            "blog",
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler`
+          );
+        }
         setArticles(res.data);
         setLoading(false);
 
-        if (res.data.links.prev) {
+        if (res?.data?.links?.prev) {
           setHasPrevPage(true);
         } else {
           setHasPrevPage(false);
         }
 
-        if (res.data.links.next) {
+        if (res?.data?.links?.next) {
           setHasNextPage(true);
         } else {
           setHasNextPage(false);
@@ -131,6 +147,7 @@ export default function BlogBlock({ block }) {
           readMore();
           filterByCategory();
         }
+
         // window.history.pushState({}, "", `?pager=${page}`);
       } catch (error) {
         console.error("Error fetching articles:", error);
@@ -140,7 +157,6 @@ export default function BlogBlock({ block }) {
 
     getArticles(currentPage);
     truncateHTML();
-    filterByCategory();
   }, [currentPage, router, selectedCategory]);
 
   return (
@@ -165,9 +181,9 @@ export default function BlogBlock({ block }) {
               </>
             ) : (
               <div>
-                {articles && articles.data.length > 0 ? (
+                {articles && articles.length > 0 ? (
                   <>
-                    {articles.data.map((item, index) => {
+                    {articles.map((item, index) => {
                       const date = new Date(item?.attributes?.published_at);
                       const options = {
                         year: "numeric",

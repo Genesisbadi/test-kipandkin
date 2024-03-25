@@ -8,18 +8,14 @@ import { useRouter } from "next/router";
 import NProgress from "nprogress";
 
 export default function MainMenuMobile({ ...props }) {
-  const router = useRouter();
   const { parentNodes, nodes } = props;
+  const router = useRouter();
   const [isMenuToggled, setIsMenuToggled] = useState(false);
   const [isBookToggled, setIsBookToggled] = useState(false);
   const [bookingLinks, setIsBookingLinks] = useState({});
-  const [children, setChildren] = useState([]);
-  const [currentItem, setCurrentItem] = useState([]);
-  const [topLevel, setTopLevel] = useState(true);
 
   const { tenantDetails } = globalData;
   const closeMenu = () => {
-    setChildren([]);
     document.querySelector("body").classList.remove("mobile-menu-opened");
     setTimeout(() => {
       document.querySelector("body").classList.add("mobile-menu-closed");
@@ -55,84 +51,107 @@ export default function MainMenuMobile({ ...props }) {
     // }, 300);
   };
 
-  const showChildren = (id) => {
-    const prev = document.querySelector(".current");
-    prev.classList.remove("current");
-    prev.classList.add("prev");
-    const current = document.createElement("div");
-    current.classList.add("current-class");
-    current.innerHTML = children.map((item, index) => {
-      <div>{item.label}</div>;
-    });
+  // const hasChildrenNotInParent = nodes.filter((obj) => {
+  //   const idExistsInParent = parentNodes.some((parent) => parent.id === obj.id);
 
-    setTimeout(() => {}, 1000);
-  };
+  //   if (!idExistsInParent && obj.children.length > 0) {
+  //     return obj;
+  //   }
+  // });
 
-  const hasChildrenNotInParent = nodes.filter((obj) => {
-    const idExistsInParent = parentNodes.some((parent) => parent.id === obj.id);
-
-    if (!idExistsInParent && obj.children.length > 0) {
+  const parents = nodes.filter((obj) => {
+    if (obj.children.length > 0) {
       return obj;
     }
   });
 
-  const DropdownMenu = ({ ...props }) => {
-    if (children && children.length > 0) {
-      setTimeout(() => {
-        const childs = document.querySelector(".children");
-        if (childs) {
-          childs.classList.remove("current");
-          childs.classList.add("animating");
+  function findParentAndSiblings(objects, childId, parent = null) {
+    for (const obj of objects) {
+      if (obj.id === childId) {
+        const siblings = parent
+          ? parent.children.filter((sibling) => sibling.id !== childId)
+          : [];
+        const parentId = parent ? parent.id : null;
+        return { parentId, parent, siblings };
+      }
+      if (obj.children) {
+        const result = findParentAndSiblings(obj.children, childId, obj);
+        if (result.parent !== null) {
+          return result;
         }
-      }, 150);
-
-      setTimeout(() => {
-        const childs = document.querySelector(".children");
-        if (childs) {
-          childs.classList.add("current");
-          childs.classList.remove("animating");
-        }
-      }, 250);
-    } else {
-      console.log("no children");
+      }
     }
+    return { parentId: null, parent: null, siblings: [] };
+  }
+
+  const CurrentMenu = ({ ...props }) => {
+    const { item, id } = props;
     return (
-      <>
-        <div className="children">
-          {children.map((item, index) => (
-            <div
-              className="flex"
-              key={index}
-              onClick={() => {
-                if (item?.children && item?.children.length > 0) {
-                  setCurrentItem(item);
-                  setChildren(item?.children);
-                } else {
-                  console.log("item.url", item.target);
-                  NProgress.start();
-                  router
-                    .push(item.url)
-                    .then(() => {
-                      NProgress.done();
-                    })
-                    .catch(() => {
-                      NProgress.done();
-                    });
-                  closeMenu();
-                }
-              }}
-            >
-              {item.label}
-              {item?.children && item?.children.length > 0 && (
-                <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
-                  <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
-                  <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
-                </div>
-              )}
-            </div>
-          ))}
+      <div className="children px-[15px]" id={`child-${id}`}>
+        <div
+          className="flex select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+          id={id}
+          onClick={() => {
+            const parentObjects = findParentAndSiblings(parentNodes, item.id);
+
+            const current = document.querySelector(".current");
+            current.classList.add("prev");
+            setTimeout(() => {
+              current.classList.remove("prev");
+            }, 200);
+            current.classList.remove("current");
+            const newCurrent = document.querySelector(
+              `#child-${parentObjects.parentId}`
+            );
+
+            if (newCurrent) {
+              newCurrent.classList.add("current");
+            } else {
+              const topLevel = document.querySelector(".top-level");
+              topLevel.classList.remove("prev");
+              topLevel.classList.add("current");
+            }
+          }}
+        >
+          Back
         </div>
-      </>
+        {item?.children.map((item, index) => (
+          <div
+            className="flex justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+            key={index}
+            id={item?.id}
+            parent={"parent-nodes"}
+            onClick={() => {
+              const parentObjects = findParentAndSiblings(parentNodes, item.id);
+              console.log(parentObjects);
+              if (item?.children.length > 0) {
+                const current = document.querySelector(".current");
+                current.classList.remove("current");
+                const newCurrent = document.querySelector(`#child-${item.id}`);
+                newCurrent.classList.add("current");
+              } else {
+                NProgress.start();
+                router
+                  .push(`${item.url}`)
+                  .then(() => {
+                    NProgress.done();
+                  })
+                  .catch(() => {
+                    NProgress.done();
+                  });
+              }
+            }}
+          >
+            {item.label}
+            {item?.children && item?.children.length > 0 && (
+              <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
+                <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
+                <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     );
   };
 
@@ -240,7 +259,7 @@ export default function MainMenuMobile({ ...props }) {
                   className="w-auto h-auto"
                 />
                 <span
-                  className="cursor-pointer relative top-[5px]"
+                  className="cursor-pointer relative top-[0]"
                   onClick={closeMenu}
                 >
                   <svg
@@ -257,22 +276,26 @@ export default function MainMenuMobile({ ...props }) {
                   </svg>
                 </span>
               </div>
-              <div className="menu-links">
+              <div className="menu-links relative">
                 <div className="current top-level max-h-[calc(100vh-80px)] overflow-y-auto">
                   {parentNodes?.map((item, index) => {
                     if (item.label.toLowerCase() !== "reservations") {
                       return (
                         <div
-                          className="flex justify-between"
+                          className="select-none flex justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
                           key={index}
+                          id={item?.id}
                           onClick={() => {
                             if (item?.children && item?.children.length > 0) {
-                              setChildren(item.children);
-                              setCurrentItem(item);
                               const topLevel =
-                                document.querySelector(".top-level");
+                                document.querySelector(".current");
                               topLevel.classList.remove("current");
                               topLevel.classList.add("prev");
+                              const child = document.querySelector(
+                                `#child-${item.id}`
+                              );
+
+                              child.classList.add("current");
                             } else {
                               router.push(item.url);
                               closeMenu();
@@ -291,11 +314,10 @@ export default function MainMenuMobile({ ...props }) {
                     }
                   })}
                 </div>
-                {children && children.length > 0 && (
-                  <>
-                    <DropdownMenu childs={children} />
-                  </>
-                )}
+
+                {parents.map((item, index) => (
+                  <CurrentMenu key={index} id={item?.id} item={item} />
+                ))}
               </div>
             </div>
 
