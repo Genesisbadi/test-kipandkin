@@ -28,8 +28,6 @@ export default function OurCollectionDetails({ block, page }) {
     link_file,
   } = page.data.main;
 
-  console.log("page.data.main", page.data.main);
-
   const { content_title, description, image } = page.data.contents;
   const router = useRouter();
 

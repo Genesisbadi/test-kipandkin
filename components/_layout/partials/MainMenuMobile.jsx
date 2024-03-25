@@ -123,7 +123,6 @@ export default function MainMenuMobile({ ...props }) {
             parent={"parent-nodes"}
             onClick={() => {
               const parentObjects = findParentAndSiblings(parentNodes, item.id);
-              console.log(parentObjects);
               if (item?.children.length > 0) {
                 const current = document.querySelector(".current");
                 current.classList.remove("current");

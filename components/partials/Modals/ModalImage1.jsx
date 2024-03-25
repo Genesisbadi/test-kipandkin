@@ -169,7 +169,6 @@ export default function ModalImage1({ ...props }) {
   };
 
   const closeOnEsc = (event) => {
-    console.log("keyDowwwnnn");
     if (event.key === "Escape" || event.keyCode === 27) {
       closedPopup();
     }
