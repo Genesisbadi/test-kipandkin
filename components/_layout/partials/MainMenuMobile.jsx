@@ -201,7 +201,7 @@ export default function MainMenuMobile({ ...props }) {
             </span>
           )}
           <span className="cursor-pointer" onClick={bookingOpen}>
-            <Booking className="select-none cursor-pointer" />
+            <Booking className="select-none cursor-pointer !fill-primary" />
           </span>
         </span>
       </div>
