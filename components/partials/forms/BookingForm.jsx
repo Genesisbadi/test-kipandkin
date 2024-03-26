@@ -190,12 +190,6 @@ export default function BookingForm({ ...props }) {
     document.querySelector("body").style.overflow = "hidden";
   };
 
-  const closeModalForm = () => {
-    setTimeout(() => {
-      setShowModal(false);
-    }, 1000);
-  };
-
   return (
     <>
       {booking_id && (
@@ -335,8 +329,30 @@ export default function BookingForm({ ...props }) {
                   }}
                 ></span>
                 <div className="modal-content flex flex-col justify-start align-start space-y-[15px] select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
-                  <div className="text-primary py-[10px] text-[16px] uppercase sticky top-0 bg-white z-[11]">
-                    Quick book
+                  <div className="flex w-full justify-between items-center sticky top-0 bg-white z-[11]">
+                    <div className="text-primary py-[10px] text-[16px] uppercase">
+                      Quick book
+                    </div>
+                    <span
+                      className=""
+                      onClick={() => {
+                        setShowModal(false);
+                        document.querySelector("body").style.overflow = "auto";
+                      }}
+                    >
+                      <svg
+                        className="w-[30px] h-[30px] fill-primary"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Close</title>
+                        <path
+                          fillRule="evenodd"
+                          d="M10 8.586l3.293-3.293a1 1 0 1 1 1.414 1.414L11.414 10l3.293 3.293a1 1 0 0 1-1.414 1.414L10 11.414l-3.293 3.293a1 1 0 1 1-1.414-1.414L8.586 10 5.293 6.707a1 1 0 0 1 1.414-1.414L10 8.586z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    </span>
                   </div>
                   <div
                     className="form-item min-w-[160px] relative flex items-center cursor-pointer"
@@ -445,6 +461,11 @@ export default function BookingForm({ ...props }) {
                           start: false,
                           end: false,
                         }));
+                        setScheduleDateMobile((prevState) => ({
+                          ...prevState,
+                          start: "",
+                          end: "",
+                        }));
                         setGuestChildren({ min: 0, value: 0 });
                         setGuestAdult({ min: 1, value: 1 });
                         window.open(
@@ -471,7 +492,7 @@ export default function BookingForm({ ...props }) {
                     }}
                   ></span>
 
-                  <div className="h-[90vh] flex flex-col overflow-y-auto shadow-md bg-white relative z-[200]">
+                  <div className="max-h-[90vh] flex flex-col overflow-y-auto shadow-md bg-white relative z-[200]">
                     {mobileShowCalendar.start && (
                       <>
                         <span className="px-[15px] py-[10px] bg-white block top-0 sticky z-[10]">

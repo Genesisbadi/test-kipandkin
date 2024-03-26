@@ -26,7 +26,7 @@ export default function MeetingsEvensDetails({ page }) {
   return (
     <>
       <article className="bg-[#f1f1f1] mt-[50px]">
-        <div className="relative min-h-[100vh] text-white flex items-center justify-center">
+        <div className="relative min-h-[calc(100vh-61px)] text-white flex items-center justify-center">
           <Image
             alt={title}
             src={

@@ -12,7 +12,7 @@ export default function CollectionBanner({ ...props }) {
     <div
       className={`${
         className ? "" : ""
-      } relative min-h-[calc(100vh-55px)] text-white flex items-center justify-center`}
+      } relative min-h-[calc(100vh-61px)] text-white flex items-center justify-center`}
     >
       <Image
         alt={title}

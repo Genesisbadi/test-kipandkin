@@ -163,7 +163,7 @@ export default function OurCollectionDetails({ block, page }) {
   };
   return (
     <>
-      <section className="page-banner relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center min-h-[calc(100vh-61px)] h-[calc(100vh-61px)] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}

@@ -46,7 +46,7 @@ export default function RoomSuitePage({ page }) {
   };
   return (
     <div>
-      <section className="page-banner relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center min-h-[calc(100vh-61px)] h-[calc(100vh-61px)] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}
@@ -59,7 +59,9 @@ export default function RoomSuitePage({ page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[42px] text-white relative z-[3]">{title}</h2>
+          <h2 className="text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]">
+            {title}
+          </h2>
         )}
       </section>
 
