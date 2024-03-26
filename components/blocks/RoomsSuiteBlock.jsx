@@ -11,7 +11,10 @@ export default function RoomsSuiteBlock({ block }) {
               className="w-full md:max-w-[50%] min-h-[400px] relative text-white flex items-center justify-center"
             >
               <Image
-                src={item?.mediaHandler["main.image"][0]?.conversions?.laptop}
+                src={
+                  item?.mediaHandler["main.image"][0]?.conversions?.laptop ||
+                  item?.mediaHandler["main.image"][0]?.original
+                }
                 width={500}
                 height={400}
                 alt={item?.title}
