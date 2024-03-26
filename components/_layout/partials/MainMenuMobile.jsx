@@ -89,7 +89,10 @@ export default function MainMenuMobile({ ...props }) {
   const CurrentMenu = ({ ...props }) => {
     const { item, id } = props;
     return (
-      <div className="children px-[15px]" id={`child-${id}`}>
+      <div
+        className="children px-[15px] max-h-[calc(100dvh-80px)] landscape:max-h-[calc(100dvh-92px)]"
+        id={`child-${id}`}
+      >
         <div
           className="flex text-primary select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
           id={id}
@@ -176,7 +179,7 @@ export default function MainMenuMobile({ ...props }) {
             ></span>
           ))}
         </span>
-        <span className="flex items-center">
+        <span className="flex items-center relative z-[10]">
           {tenantDetails?.data?.main?.email && (
             <span className="px-[5px]">
               <Link
@@ -191,7 +194,7 @@ export default function MainMenuMobile({ ...props }) {
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
-                href={`mailto:${tenantDetails?.data?.main?.phone}`}
+                href={`tel:${tenantDetails?.data?.main?.phone}`}
               >
                 <Phone className="mr-[5px] !fill-primary" />
               </Link>
@@ -301,7 +304,7 @@ export default function MainMenuMobile({ ...props }) {
                 </span>
               </div>
               <div className="menu-links relative">
-                <div className="current top-level max-h-[calc(100vh-80px)] overflow-y-auto">
+                <div className="current top-level max-h-[calc(100dvh-80px)] landscape:max-h-[calc(100dvh-92px)] overflow-y-auto">
                   {parentNodes?.map((item, index) => {
                     if (item.label.toLowerCase() !== "reservations") {
                       return (
@@ -358,7 +361,6 @@ export default function MainMenuMobile({ ...props }) {
             ></span>
           </>
         )}
-
         {/* END MOBILE MENU */}
       </>
     </>

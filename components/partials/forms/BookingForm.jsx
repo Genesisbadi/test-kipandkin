@@ -2,7 +2,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useEffect, useState } from "react";
 
-import { DateRange } from "react-date-range";
+import { DateRange, Calendar } from "react-date-range";
 import dynamic from "next/dynamic";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
@@ -17,7 +17,7 @@ const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"), {
 const User = dynamic(() => import("@/components/icons/User"), {
   loading: () => <p>Loading...</p>,
 });
-const Calendar = dynamic(() => import("@/components/icons/Calendar"), {
+const CalendarIcon = dynamic(() => import("@/components/icons/Calendar"), {
   loading: () => <p>Loading...</p>,
 });
 
@@ -25,7 +25,7 @@ export default function BookingForm({ ...props }) {
   const isMobile = useMobileDetector();
 
   const { page, blocks } = props;
-  const disabledTypes = ["offers"];
+  const disabledTypes = ["offers", "blog"];
   const disabledBlocks = ["Title"];
 
   const { booking_id } = globalData.tenantDetails.data.main;
@@ -35,8 +35,17 @@ export default function BookingForm({ ...props }) {
   const [isFloat, setIsFloat] = useState(true);
 
   const [showCalendar, setShowCalendar] = useState(false);
+  const [mobileShowCalendar, setMobileShowCalendar] = useState({
+    start: false,
+    end: false,
+  });
+
   const [showGuests, setShowGuests] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [scheduleDateMobile, setScheduleDateMobile] = useState({
+    start: "",
+    end: "",
+  });
 
   const [guestAdult, setGuestAdult] = useState({
     min: 1,
@@ -178,6 +187,7 @@ export default function BookingForm({ ...props }) {
 
   const showModalForm = () => {
     setShowModal(true);
+    document.querySelector("body").style.overflow = "hidden";
   };
 
   const closeModalForm = () => {
@@ -215,7 +225,7 @@ export default function BookingForm({ ...props }) {
                   className="form-item min-w-[160px] relative flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
                   onClick={toggleCalendar}
                 >
-                  <Calendar className="mr-[10px]" />
+                  <CalendarIcon className="mr-[10px]" />
                   {!arrivalDisplayDate ? "Arrival" : arrivalDisplayDate}
                 </div>
 
@@ -223,7 +233,7 @@ export default function BookingForm({ ...props }) {
                   className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
                   onClick={toggleCalendar}
                 >
-                  <Calendar className="mr-[10px]" />
+                  <CalendarIcon className="mr-[10px]" />
                   {!departureDisplayDate ? "Departure" : departureDisplayDate}
                 </div>
                 <span className="relative">
@@ -307,7 +317,7 @@ export default function BookingForm({ ...props }) {
             ) : (
               <div className="flex justify-end py-[5px] uppercase text-primary">
                 <span className="flex  gap-x-[15px]" onClick={showModalForm}>
-                  Book Now <Calendar className="mr-[10px] fill-primary" />
+                  Book Now <CalendarIcon className="mr-[10px] fill-primary" />
                 </span>
               </div>
             )}
@@ -316,37 +326,55 @@ export default function BookingForm({ ...props }) {
           {/* SHOW MODAL */}
           {showModal && isMobile && (
             <>
-              <div className="fixed top-0 z-[200] left-0 w-full h-full py-[50px] flex items-center justify-center">
-                <span className="bg-gray-900 backdrop-blur w-full h-full absolute top-0 left-0 bg-opacity-[.3]"></span>
-                <div className="modal-content flex flex-col space-y-[15px] select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
-                  <div className="text-primary py-[10px] text-[16px] uppercase">
+              <div className="fixed p-[15px] top-0 z-[200] left-0 w-full h-full py-[50px] flex items-center justify-center">
+                <span
+                  className="bg-gray-900 backdrop-blur w-full h-full absolute top-0 left-0 bg-opacity-[.3]"
+                  onClick={() => {
+                    setShowModal(false);
+                    document.querySelector("body").style.overflow = "auto";
+                  }}
+                ></span>
+                <div className="modal-content flex flex-col justify-start align-start space-y-[15px] select-none bg-white max-w-[480px] overflow-y-auto max-h-[90vh] mx-auto px-8 pb-8 w-full rounded-lg shadow-md transform transition-all scale-100 opacity-100">
+                  <div className="text-primary py-[10px] text-[16px] uppercase sticky top-0 bg-white z-[11]">
                     Quick book
                   </div>
-                  <span className="relative">
-                    {showCalendar && (
-                      <DateRange
-                        className="absolute top-[100%] left-0"
-                        ranges={[selectionRange]}
-                        onChange={calendarSelector}
-                        minDate={today}
-                        maxDate={maxDate}
-                      />
-                    )}
-                  </span>
                   <div
-                    className="form-item min-w-[160px] relative flex items-center px-[20px] cursor-pointer"
-                    onClick={toggleCalendar}
+                    className="form-item min-w-[160px] relative flex items-center cursor-pointer"
+                    onClick={() => {
+                      setMobileShowCalendar((prevState) => ({
+                        ...prevState,
+                        start: true,
+                        end: false,
+                      }));
+                    }}
+                    id="arrival-toggle"
                   >
-                    <Calendar className="mr-[10px]" />
-                    Arrival: {arrivalDisplayDate}
+                    <CalendarIcon className="mr-[10px]" />
+
+                    {!scheduleDateMobile?.start
+                      ? "Select Arrival Date"
+                      : `Arrival: ${scheduleDateMobile?.start}`}
                   </div>
 
                   <div
-                    className="form-item min-w-[160px] flex items-center px-[20px] cursor-pointer"
-                    onClick={toggleCalendar}
+                    className="form-item min-w-[160px] flex items-center cursor-pointer"
+                    id="departure-toggle"
+                    onClick={() => {
+                      if (scheduleDateMobile.start === "") {
+                        alert("Please select arrival date first.");
+                      } else {
+                        setMobileShowCalendar((prevState) => ({
+                          ...prevState,
+                          start: false,
+                          end: true,
+                        }));
+                      }
+                    }}
                   >
-                    <Calendar className="mr-[10px]" />
-                    Departure: {departureDisplayDate}
+                    <CalendarIcon className="mr-[10px]" />
+                    {!scheduleDateMobile?.end
+                      ? "Select Departure Date"
+                      : `Departure: ${scheduleDateMobile?.end}`}
                   </div>
                   <span className="relative">
                     <div className="min-w-[250px] top-[100%] left-0 bg-white">
@@ -408,14 +436,123 @@ export default function BookingForm({ ...props }) {
                       </div>
                     </div>
                   </span>
-                  <div
-                    className="bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555]"
-                    onClick={submitBooking}
-                  >
-                    Check Availability
+                  <div className="">
+                    <div
+                      className="mt-[30px] bg-primary text-white items-center py-[10px] px-[20px] uppercase cursor-pointer hover:bg-[#555] w-auto inline-block"
+                      onClick={() => {
+                        setMobileShowCalendar((prevState) => ({
+                          ...prevState,
+                          start: false,
+                          end: false,
+                        }));
+                        setGuestChildren({ min: 0, value: 0 });
+                        setGuestAdult({ min: 1, value: 1 });
+                        window.open(
+                          bookingUrl +
+                            `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${scheduleDateMobile?.end}&arrive=${scheduleDateMobile?.start}`
+                        );
+                      }}
+                    >
+                      Check Availability
+                    </div>
                   </div>
                 </div>
               </div>
+              {mobileShowCalendar.start || mobileShowCalendar.end ? (
+                <div className="fixed p-[15px] top-0 left-0 w-full h-full flex items-center justify-center z-[999]">
+                  <span
+                    className="absolute top-0 left-0 w-full h-full bg-[#333] bg-opacity-50 backdrop-blur-sm"
+                    onClick={() => {
+                      setMobileShowCalendar((prevState) => ({
+                        ...prevState,
+                        start: false,
+                        end: false,
+                      }));
+                    }}
+                  ></span>
+
+                  <div className="h-[90vh] flex flex-col overflow-y-auto shadow-md bg-white relative z-[200]">
+                    {mobileShowCalendar.start && (
+                      <>
+                        <span className="px-[15px] py-[10px] bg-white block top-0 sticky z-[10]">
+                          Choose an Arrival Date
+                        </span>
+                        <Calendar
+                          className=""
+                          minDate={today}
+                          maxDate={maxDate}
+                          onChange={(e) => {
+                            const startDate = e
+                              .toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                              })
+                              .replace(/\//g, "-");
+
+                            if (startDate > scheduleDateMobile.end) {
+                              setScheduleDateMobile((prevState) => ({
+                                ...prevState,
+                                end: "",
+                              }));
+                            }
+                            setScheduleDateMobile((prevState) => ({
+                              ...prevState,
+                              start: startDate,
+                            }));
+
+                            setMobileShowCalendar((prevState) => ({
+                              ...prevState,
+                              start: false,
+                              end: false,
+                            }));
+                          }}
+                        />
+                      </>
+                    )}
+
+                    {mobileShowCalendar.end && (
+                      <>
+                        <span className="px-[15px] py-[10px] bg-white block top-0 sticky z-[10]">
+                          Choose a Departure Date
+                        </span>
+                        <Calendar
+                          className=""
+                          minDate={today}
+                          maxDate={maxDate}
+                          onChange={(e) => {
+                            const endDate = e
+                              .toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                              })
+                              .replace(/\//g, "-");
+
+                            if (endDate < scheduleDateMobile.start) {
+                              alert(
+                                "Departure date cannot be before arrival date."
+                              );
+                            } else {
+                              setScheduleDateMobile((prevState) => ({
+                                ...prevState,
+                                end: endDate,
+                              }));
+                              setMobileShowCalendar((prevState) => ({
+                                ...prevState,
+                                start: false,
+                                end: false,
+                              }));
+                            }
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
             </>
           )}
         </>

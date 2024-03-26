@@ -3,35 +3,58 @@ import Link from "next/link";
 import FORMAPI from "@/lib/api/forms/request";
 
 import formStore from "@/lib/store/formStore";
+import { useState } from "react";
 
 export default function FooterNewsletter() {
   const { tenantDetails } = globalData;
-  const payload = {};
+  const [errors, setErrors] = useState({});
+  const [isSending, setIsSending] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const payload = {
+    main: {},
+  };
 
   const handleSubmit = async (e) => {
-    const email = document.querySelector(
-      "#newsletter-form input[type=email]"
-    ).value;
-
-    payload["main.email"] = email;
-
-    console.log(payload);
-
     e.preventDefault();
 
-    await FORMAPI.submitForm("newsletter-form", payload)
-      .then(() => {
-        e.target.reset();
-        formStore.setState({
-          formSuccessInfo: true,
-          submitLoading: false,
+    setErrors({});
+
+    const agree = document.querySelector("#newsletter-form #agree").checked;
+
+    const email = document.querySelector("#newsletter-form #email").value;
+
+    payload["main"]["email"] = email;
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Please enter a valid email",
+      }));
+    }
+
+    if (!agree) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        agree: "Please agree to the terms and conditions",
+      }));
+    }
+
+    if (agree && !errors.email) {
+      console.log("isSending!");
+      setIsSending(true);
+      await FORMAPI.submitForm("newsletter-form", payload)
+        .then((res) => {
+          e.target.reset();
+          console.log(res);
+          if (res.status === 200 || res.status === 201) {
+            setShowSuccessModal(true);
+            setIsSending(false);
+          }
+        })
+        .catch((err) => {
+          setIsSending(false);
         });
-      })
-      .catch((err) => {
-        formStore.setState({
-          submitLoading: false,
-        });
-      });
+    }
   };
 
   return (
@@ -45,23 +68,57 @@ export default function FooterNewsletter() {
           Enter your email address below to receive our newsletter
         </p>
 
-        <form id="newsletter-form" onClick={handleSubmit}>
+        <form id="newsletter-form" onSubmit={handleSubmit}>
           <div className="flex flex-wrap items-center mt-[30px]">
             <input
-              type="email"
+              id="email"
+              type="text"
               placeholder="Email Address"
-              className="w-full sm:w-[calc(100%-150px)] text-primary border-[1px] border-[#ced4da] px-[15px] py-[10px] mb-[15px] sm:mb-0 h-[60px]"
+              className={`w-full sm:w-[calc(100%-150px)] text-primary border-[1px]  px-[15px] py-[10px] mb-[15px] sm:mb-0 h-[60px] ${
+                errors.email ? "border-[#FF4C60]" : "border-[#ced4da]"
+              } `}
             />
             <button
               type="submit"
-              className="w-full text-uppercase sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out"
+              className={`w-full group flex justify-center text-uppercase sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out ${
+                isSending ? "cursor-not-allowed opacity-[.5]" : "cursor-pointer"
+              }`}
+              disabled={isSending}
             >
-              Submit
+              {isSending && (
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-primary group-hover:text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              )}
+              {isSending ? "Sending..." : "Submit"}
             </button>
+
+            {errors.email && (
+              <span className="text-red-500 text-[12px] mt-[15px] block">
+                {errors.email}
+              </span>
+            )}
           </div>
           <div className="text-[#555] text-[12px] mt-[15px] relative">
             <input
-              className="absolute inline-block top-[8px] left-0 overflow-hidden"
+              className={`absolute top-[8px] left-0 overflow-hidden cursor-pointer`}
               type="checkbox"
               name="agree"
               id="agree"
@@ -83,9 +140,32 @@ export default function FooterNewsletter() {
                 </Link>
               </span>
             </label>
+            {errors.agree && (
+              <span className="text-red-500 text-[12px] mt-[5px] inline-block">
+                {errors.agree}
+              </span>
+            )}
           </div>
         </form>
       </div>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
+            <h2 className="text-2xl font-bold mb-4">Success!</h2>
+            <p>You have been subscribed successfully.</p>
+            <button
+              onClick={() => {
+                setShowSuccessModal(false);
+              }}
+              className="min-w-[150px] mt-[30px] inline-block py-[8px] px-[20px] bg-primary text-[#fff] rounded-[30px] text-[14px] font-bold"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

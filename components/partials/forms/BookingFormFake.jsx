@@ -21,7 +21,7 @@ export default function BookingFormFake({ ...props }) {
 
   console.log(isMobile);
   const { page, blocks } = props;
-  const disabledTypes = ["offers"];
+  const disabledTypes = ["offers", "blog"];
   const disabledBlocks = ["Title"];
   useEffect(() => {
     setIsFloat(true);
