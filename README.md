@@ -15,3 +15,4 @@
 10. If it's not working, check if the site has neccesary contents to make the site work. Check the prebuildUtilities file if it's configured properly. like globals, menu.
 11. If you want to customize the colors based on the current theme, you can modify it in globals.css in line 5.
 12. Once it's working, push your updates to your repo. And create a remote by executing "git remote add core https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/src/master/" so that you can pull the updates from centralized repo.
+13. You can pull updates from the core/centralized repo by executing "git pull core master"
