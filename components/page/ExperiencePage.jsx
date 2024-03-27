@@ -1,13 +1,23 @@
-import CollectionBanner from "../partials/banner/CollectionBanner";
-import CustomSelect from "../forms/CustomSelect";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import selectEntries from "@/lib/preBuildScripts/static/experiences.json";
 import styles from "@/styles/description.module.css";
-import CarouselGallery from "../partials/gallery/CarouselGallery";
-
+import dynamic from "next/dynamic";
 export default function ExperiencePage({ page }) {
+  const CustomSelect = dynamic(() =>
+    import("../forms/CustomSelect").then((module) => module.default)
+  );
+  const CollectionBanner = dynamic(() =>
+    import("../partials/banner/CollectionBanner").then(
+      (module) => module.default
+    )
+  );
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
   const { route_url, title } = page;
   const { button_items, description, gallery } = page?.data?.main;
   const router = useRouter();

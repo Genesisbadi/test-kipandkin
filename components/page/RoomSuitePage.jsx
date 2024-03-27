@@ -1,6 +1,5 @@
 import Image from "next/image";
 import roomsSuitesEntriesData from "@/lib/preBuildScripts/static/rooms-suites.json";
-import CustomSelect from "@/components/forms/CustomSelect";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -8,9 +7,18 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import globalState from "@/lib/store/globalState";
-import CarouselGallery from "../partials/gallery/CarouselGallery";
 import styles from "@/styles/description.module.css";
+import dynamic from "next/dynamic";
 export default function RoomSuitePage({ page }) {
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
   const { mediaHandler, title, route_url } = page;
   const { button_links, description, features, gallery, image } =
     page.data.main;

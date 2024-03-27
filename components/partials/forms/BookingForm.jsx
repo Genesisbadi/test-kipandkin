@@ -10,18 +10,19 @@ import config from "site.config";
 
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 
-const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"), {
-  loading: () => <p>Loading...</p>,
-});
-
-const User = dynamic(() => import("@/components/icons/User"), {
-  loading: () => <p>Loading...</p>,
-});
-const CalendarIcon = dynamic(() => import("@/components/icons/Calendar"), {
-  loading: () => <p>Loading...</p>,
-});
-
 export default function BookingForm({ ...props }) {
+  const ArrowDown = dynamic(() =>
+    import("@/components/icons/ArrowDown").then((module) => module.default)
+  );
+
+  const User = dynamic(() =>
+    import("@/components/icons/User").then((module) => module.default)
+  );
+
+  const CalendarIcon = dynamic(() =>
+    import("@/components/icons/Calendar").then((module) => module.default)
+  );
+
   const isMobile = useMobileDetector();
 
   const { page, blocks } = props;

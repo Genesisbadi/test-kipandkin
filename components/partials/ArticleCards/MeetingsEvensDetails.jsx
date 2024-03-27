@@ -1,17 +1,26 @@
 import Image from "next/image";
-
 import meetingsEventsEntriesData from "@/lib/preBuildScripts/static/meetings-events-article.json";
 import Link from "next/link";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useEffect, useState } from "react";
-import VenueDescription from "@/components/nodes/meetings-events/VenueDescription";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
-
+import dynamic from "next/dynamic";
 export default function MeetingsEvensDetails({ block, page }) {
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
+  const ModalImage = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage").then(
+      (module) => module.default
+    )
+  );
+
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const meetingsEvents = meetingsEventsEntriesData.meetingsEventsEntriesData;
   const { title } = block;

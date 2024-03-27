@@ -2,8 +2,12 @@ import CustomSelect from "../forms/CustomSelect";
 import { useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/description.module.css";
-
+import dynamic from "next/dynamic";
 export default function Selection({ block }) {
+  const CustomSelect = dynamic(() =>
+    import("../forms/CustomSelect").then((module) => module.default)
+  );
+
   const { title, description, selection_label, selections, buttons } =
     block.main;
 

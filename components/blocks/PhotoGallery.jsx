@@ -1,7 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
-import ModalImage1 from "@/components/partials/Modals/ModalImage1";
+import dynamic from "next/dynamic";
 export default function PhotoGallery({ block }) {
+  const ModalImage1 = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage1").then(
+      (module) => module.default
+    )
+  );
   const { photos } = block.main;
   const [visiblePhotos, setVisiblePhotos] = useState(6);
   const loadMore = () => {

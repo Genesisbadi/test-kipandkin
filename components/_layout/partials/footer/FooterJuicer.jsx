@@ -1,7 +1,9 @@
 import Script from "next/script";
 import { useRouter } from "next/router";
-export default function FooterJuicer({ ...props }) {
-  const { juicer_id } = props;
+
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
+export default function FooterJuicer() {
+  const { juicer_id } = tenantDetailsMain;
   const router = useRouter();
   return (
     <>

@@ -3,14 +3,22 @@ import Image from "next/image";
 import ourCollectionEntriesData from "@/lib/preBuildScripts/static/our-collection.json";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import globalState from "@/lib/store/globalState";
-import CarouselGallery from "../partials/gallery/CarouselGallery";
-
+import dynamic from "next/dynamic";
 export default function OurCollectionPage({ page }) {
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
   const { title } = page;

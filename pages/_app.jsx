@@ -17,11 +17,6 @@ export default function App({ Component, pageProps }) {
   const { page, blocks } = pageProps;
 
   useEffect(() => {
-    const locale = page?.locale;
-    if (locale) persistentStore.setState({ locale });
-  }, [page]);
-
-  useEffect(() => {
     globalState.setState({ ready: true });
 
     const handleInteraction = () => {

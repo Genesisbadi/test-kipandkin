@@ -1,11 +1,9 @@
 import Head from "next/head";
-import globalData from "@/lib/preBuildScripts/static/globalData.json";
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function Header({ meta, page }) {
-  const { tenantDetails } = globalData;
-
-  const defaultMeta = tenantDetails?.data?.meta_data;
-  const defaultAuthor = "Halcyon Agile";
+  const defaultMeta = "Discover the best of the Philippines.";
+  const defaultAuthor = "Discovery Hospitality Corporation";
   const findMeta = (type) => {
     switch (type) {
       case "title":
@@ -16,22 +14,16 @@ export default function Header({ meta, page }) {
           process.env.NEXT_PUBLIC_APP_NAME
         );
       case "favicon":
-        return tenantDetails?.data?.main?.favicon || "/favicon.ico";
+        return tenantDetailsMain?.favicon || "/favicon.ico";
       case "description":
-        return (
-          meta?.description ||
-          defaultMeta?.description ||
-          process.env.NEXT_PUBLIC_APP_NAME
-        );
+        return meta?.description || defaultMeta;
       case "image":
-        return meta?.image || defaultMeta?.image;
+        return meta?.image;
       case "author":
         return meta?.author || defaultAuthor;
       case "keywords":
         return (
-          meta?.keywords ||
-          defaultMeta?.keywords ||
-          process.env.NEXT_PUBLIC_APP_NAME
+          meta?.keywords || "" + "discover, philippines, hotel, resort, travel"
         );
       case "url":
         return process.env.NEXT_PUBLIC_SITE_URL;

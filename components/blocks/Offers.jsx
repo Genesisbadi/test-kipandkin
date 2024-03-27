@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 import offersCategoryTaxonomies from "@/lib/preBuildScripts/static/offers-category.json";
-
+import dynamic from "next/dynamic";
 export default function Block({ block }) {
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
   const { title, description } = block.main;
   const offersCategories = offersCategoryTaxonomies.offersCategoryTaxonomies;
 

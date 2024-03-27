@@ -1,13 +1,24 @@
-import FooterReviews from "@/layout/partials/footer/FooterReviews";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
-
+import dynamic from "next/dynamic";
 export default function DiningDetails({ block, page }) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+  const FooterReviews = dynamic(() =>
+    import("@/layout/partials/footer/FooterReviews").then(
+      (module) => module.default
+    )
+  );
+  const ModalImage = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage").then(
+      (module) => module.default
+    )
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title } = block;
   const {

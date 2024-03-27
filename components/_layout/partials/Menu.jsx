@@ -5,14 +5,19 @@ import persistentStore from "@/lib/store/persistentStore";
 import Link from "next/link";
 import globalState from "@/lib/store/globalState";
 import Image from "next/image";
-import MainMenu from "./MainMenu";
 import { useState, useEffect } from "react";
-import MainMenuMobile from "./MainMenuMobile";
 import dynamic from "next/dynamic";
 
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 
 export default function Menu({ ...props }) {
+  const MainMenu = dynamic(() =>
+    import("./MainMenu").then((module) => module.default)
+  );
+  const MainMenuMobile = dynamic(() =>
+    import("./MainMenuMobile").then((module) => module.default)
+  );
+
   const ready = globalState((state) => state.ready);
   const { tenantDetails, menus, locales } = globalData;
   const { parentNodes, nodes } = menus;

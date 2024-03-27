@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useRouter } from "next/router";
 
 import destinationEntriesData from "@/lib/preBuildScripts/static/destinations.json";
@@ -8,8 +7,12 @@ import Link from "next/link";
 
 import NProgress from "nprogress";
 import globalState from "@/lib/store/globalState";
+import dynamic from "next/dynamic";
 
 export default function DestinationDetails({ block, page }) {
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
   const showLazy = globalState((state) => state.showLazy);
   const destinations = destinationEntriesData.destinationEntriesData;
   const [destination, setDestination] = useState();

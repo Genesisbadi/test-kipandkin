@@ -1,19 +1,28 @@
-import FooterReviews from "@/layout/partials/footer/FooterReviews";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import diningEntriesData from "@/lib/preBuildScripts/static/dining.json";
-import CustomSelect from "../forms/CustomSelect";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 
-import CarouselGallery from "../partials/gallery/CarouselGallery";
-
+import dynamic from "next/dynamic";
 export default function DiningPage({ page }) {
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+  const FooterReviews = dynamic(() =>
+    import("@/layout/partials/footer/FooterReviews").then(
+      (module) => module.default
+    )
+  );
+  const CustomSelect = dynamic(() =>
+    import("../forms/CustomSelect").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title } = page;
   const {

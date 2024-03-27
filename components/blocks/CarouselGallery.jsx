@@ -1,13 +1,26 @@
 import Image from "next/image";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useState } from "react";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import Link from "next/link";
-import ModalImage1 from "@/components/partials/Modals/ModalImage1";
 import { Fragment } from "react";
+import dynamic from "next/dynamic";
 
 export default function CarouselGallery({ block }) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
+  const ModalImage = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage").then(
+      (module) => module.default
+    )
+  );
+  const ModalImage1 = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage1").then(
+      (module) => module.default
+    )
+  );
+
   const { title, images, button_link, variation } = block.main;
 
   const [isModalOpen, setIsModalOpen] = useState(false);

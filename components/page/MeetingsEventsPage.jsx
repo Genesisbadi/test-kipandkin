@@ -1,16 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useState } from "react";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
-import CarouselGallery from "../partials/gallery/CarouselGallery";
-
+import dynamic from "next/dynamic";
 export default function MeetingsEvensDetails({ page }) {
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+  const ModalImage = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage").then(
+      (module) => module.default
+    )
+  );
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title } = page;
   const { description, venues } = page.data.main;

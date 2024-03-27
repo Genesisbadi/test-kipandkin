@@ -1,12 +1,30 @@
 import Link from "next/link";
-import Facebook from "@/components/icons/Facebook";
-import Instagram from "@/components/icons/Instagram";
-import Youtube from "@/components/icons/Youtube";
-import TripAdvisor from "@/components/icons/TripAdvisor";
-import LinkedIn from "@/components/icons/LinkedIn";
-import Tiktok from "@/components/icons/Tiktok";
-import Twitter from "@/components/icons/Twitter";
-export default function FooterSocial({ social_media }) {
+import tenantDetailsSocialMedia from "@/lib/preBuildScripts/static/tenantDetailsSocialMedia.json";
+import dynamic from "next/dynamic";
+
+export default function FooterSocial() {
+  const Facebook = dynamic(() =>
+    import("@/components/icons/Facebook").then((module) => module.default)
+  );
+  const Instagram = dynamic(() =>
+    import("@/components/icons/Instagram").then((module) => module.default)
+  );
+  const Youtube = dynamic(() =>
+    import("@/components/icons/Youtube").then((module) => module.default)
+  );
+  const TripAdvisor = dynamic(() =>
+    import("@/components/icons/TripAdvisor").then((module) => module.default)
+  );
+  const LinkedIn = dynamic(() =>
+    import("@/components/icons/LinkedIn").then((module) => module.default)
+  );
+  const Tiktok = dynamic(() =>
+    import("@/components/icons/Tiktok").then((module) => module.default)
+  );
+  const Twitter = dynamic(() =>
+    import("@/components/icons/Twitter").then((module) => module.default)
+  );
+  const social_media = tenantDetailsSocialMedia;
   const messages = [];
 
   messages["tiktok"] = "Follow Us on Tiktok.";

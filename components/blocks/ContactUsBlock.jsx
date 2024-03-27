@@ -1,6 +1,11 @@
 import Link from "next/link";
-import ContactForm from "@/components/partials/forms/ContactForm";
+import dynamic from "next/dynamic";
 export default function ContactUsBlock({ block }) {
+  const ContactForm = dynamic(() =>
+    import("@/components/partials/forms/ContactForm").then(
+      (module) => module.default
+    )
+  );
   const { description, offices, form } = block.main;
   return (
     <section className="bg-[#F1F1F1] py-[10px]">

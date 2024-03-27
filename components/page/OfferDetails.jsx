@@ -1,10 +1,24 @@
 import Image from "next/image";
-import CustomSelect from "@/components/forms/CustomSelect";
 import { useState } from "react";
-import VenueDescription from "../nodes/meetings-events/VenueDescription";
-import ButtonsRepeater from "../partials/buttons/ButtonsRepeater";
 import globalState from "@/lib/store/globalState";
+import dynamic from "next/dynamic";
 export default function OfferDetails({ page }) {
+  const VenueDescription = dynamic(() =>
+    import("../nodes/meetings-events/VenueDescription").then(
+      (module) => module.default
+    )
+  );
+
+  const ButtonsRepeater = dynamic(() =>
+    import("../partials/buttons/ButtonsRepeater").then(
+      (module) => module.default
+    )
+  );
+
+  const CustomSelect = dynamic(() =>
+    import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
   const { description, image, venues } = data.main;

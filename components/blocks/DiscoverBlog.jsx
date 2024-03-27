@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 // import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discoverBlog.json";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-
+import dynamic from "next/dynamic";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
 export default function DiscoverBlog({ block }) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
   const { title, description, link } = block.main;
   const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
 

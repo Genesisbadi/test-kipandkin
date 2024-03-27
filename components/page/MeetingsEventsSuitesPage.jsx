@@ -1,12 +1,20 @@
 import Link from "next/link";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import ModalImage from "@/components/partials/Modals/ModalImage";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
-
+import dynamic from "next/dynamic";
 export default function MeetingsEventsSuitesPage({ page }) {
+  const ModalImage = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage").then(
+      (module) => module.default
+    )
+  );
+
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title, data } = page;
   const { image, description, buttons, images } = data.main;

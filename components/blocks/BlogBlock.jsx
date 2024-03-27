@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import NProgress from "nprogress";
 import blogCategoryTaxonomies from "@/lib/preBuildScripts/static/blog-categories.json";
 
-import Jsona from "jsona";
 import CONTENTAPI from "@/lib/api/content/request";
 
 export default function BlogBlock({ block }) {

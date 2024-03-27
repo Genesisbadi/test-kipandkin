@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
 import { Fragment } from "react";
+import dynamic from "next/dynamic";
 
 export default function Slider({ block, mediaHandler }) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
   let { slider_items } = block.main;
   const showLazy = globalState((state) => state.showLazy);
 

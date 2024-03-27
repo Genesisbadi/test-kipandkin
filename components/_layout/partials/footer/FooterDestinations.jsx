@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import Slick from "react-slick";
+import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import destinationsEntries from "@/lib/preBuildScripts/static/exciting-destinations.json";
 export default function FooterDestinations({}) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (

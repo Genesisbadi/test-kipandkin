@@ -2,7 +2,6 @@ import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import Link from "next/link";
 import FORMAPI from "@/lib/api/forms/request";
 
-import formStore from "@/lib/store/formStore";
 import { useState } from "react";
 
 export default function FooterNewsletter() {

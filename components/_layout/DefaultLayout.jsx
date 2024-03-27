@@ -1,29 +1,33 @@
-import Menu from "@/layout/partials/Menu";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
-// import NextTopLoader from "nextjs-toploader";
 import Script from "next/script";
 
 const NextTopLoader = dynamic(() =>
   import("nextjs-toploader").then((module) => module.default)
 );
 
-const BookingForm = dynamic(
-  () => import("@/components/partials/forms/BookingForm"),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
-const BookingFormFake = dynamic(
-  () => import("@/components/partials/forms/BookingForm"),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
-
 export default function DefaultLayout(props) {
   const { page, blocks } = props;
   const showLazy = globalState((state) => state.showLazy);
+  const Menu = () => {
+    const Component = dynamic(() => import("@/layout/partials/Menu"));
+    return <Component />;
+  };
+
+  const BookingForm = () => {
+    const Component = dynamic(() =>
+      import("@/components/partials/forms/BookingForm")
+    );
+    return <Component />;
+  };
+
+  const BookingFormFake = () => {
+    const Component = dynamic(() =>
+      import("@/components/partials/forms/BookingForm")
+    );
+    return <Component />;
+  };
+
   const Footer = () => {
     const Component = dynamic(() => import("@/layout/partials/Footer"));
     return <Component />;

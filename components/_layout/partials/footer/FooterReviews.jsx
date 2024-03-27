@@ -1,10 +1,16 @@
 import reviewsData from "../../../../lib/preBuildScripts/static/reviews.json";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
 import { useRouter } from "next/router";
-import Star from "@/components/icons/Star";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 export default function FooterReviews() {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+  const Star = dynamic(() =>
+    import("@/components/icons/Star").then((module) => module.default)
+  );
+
   const router = useRouter();
   const NextArrow = (props) => {
     const { className, style, onClick } = props;

@@ -1,11 +1,17 @@
 import Link from "next/link";
 import reviewsData from "../../lib/preBuildScripts/static/reviews.json";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
-import Star from "../icons/Star";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 export default function AdvocaciesReviews({ block }) {
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+  const Star = dynamic(() =>
+    import("../icons/Star").then((module) => module.default)
+  );
+
   const { image_advocacy, image_reviews, title, description, link } =
     block.main;
 

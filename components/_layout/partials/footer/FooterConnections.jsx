@@ -2,11 +2,14 @@ import Image from "next/image";
 import { Tenor_Sans } from "next/font/google";
 import Link from "next/link";
 
+import tenantDetailsConnections from "@/lib/preBuildScripts/static/tenantDetailsConnections.json";
+
 // const primary = Tenor_Sans({
 //   weight: ["400"],
 //   subsets: ["latin"],
 // });
-export default function footerConnections({ connections }) {
+export default function footerConnections() {
+  const connections = tenantDetailsConnections;
   const checkOddEven = (number) => {
     if (number % 2 !== 0) {
       return "odd";

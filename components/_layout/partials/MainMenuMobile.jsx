@@ -1,15 +1,24 @@
-import Booking from "@/components/icons/Booking";
 import { useEffect, useState } from "react";
 import globalData from "../../../lib/preBuildScripts/static/globalData.json";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
 import NProgress from "nprogress";
-import Email from "@/components/icons/Email";
-import Phone from "@/components/icons/Phone";
 
 export default function MainMenuMobile({ ...props }) {
+  const Booking = dynamic(() =>
+    import("@/components/icons/Booking").then((module) => module.default)
+  );
+
+  const Email = dynamic(() =>
+    import("@/components/icons/Email").then((module) => module.default)
+  );
+  const Phone = dynamic(() =>
+    import("@/components/icons/Phone").then((module) => module.default)
+  );
+
   const { parentNodes, nodes } = props;
   const router = useRouter();
   const [isMenuToggled, setIsMenuToggled] = useState(false);
