@@ -27,8 +27,7 @@ export default function OfferDetails({ page }) {
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
   const getDefaultValue = () => {
-    let defaultVenue = venues[0]?.title || "";
-    return { label: defaultVenue, value: defaultVenue };
+    return { label: currentVenue.title, value: currentVenue.value };
   };
   return (
     <article className="bg-[#F1F1F1]">
@@ -61,18 +60,18 @@ export default function OfferDetails({ page }) {
                   Select Venue:
                 </div>
                 <CustomSelect
-                  // value={selectedValue}
+                  // value={currentVenue}
                   className="react-select"
                   defaultValue={getDefaultValue()}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setSelectedValue(() => {
                       Number(e.value);
                       const curVenue = venues.find(
                         (obj) => obj.title === e.value
                       );
                       setCurrentVenue(curVenue);
-                    })
-                  }
+                    });
+                  }}
                   options={venues?.map((item, index) => {
                     return {
                       label: item?.title,

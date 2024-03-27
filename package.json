@@ -8,7 +8,7 @@
     "prebuild": "node lib/preBuildScripts/preBuildDev.js",
     "build": "next build",
     "export": "next export",
-    "start": "NEXT_SHARP_PATH=\"static\" next start",
+    "start": "next start",
     "lint": "next lint",
     "release": "release-it",
     "prepare": "husky",
