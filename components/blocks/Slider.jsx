@@ -104,6 +104,7 @@ export default function Slider({ block, mediaHandler }) {
                 width={1920}
                 height={750}
                 className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
+                loading="eager"
               />
             </picture>
 
