@@ -286,7 +286,7 @@ export default function MainMenuMobile({ ...props }) {
               id="header-mobile"
               className="fixed max-h-[100vh] overflow-hidden transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0"
             >
-              <div className="sticky flex items-center justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
+              <div className="sticky flex mb-[30px] items-center justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
                 <Image
                   src={tenantDetails.data.main.tenant_logo}
                   width={200}

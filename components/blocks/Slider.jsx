@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
-import { Fragment } from "react";
 import dynamic from "next/dynamic";
 
 export default function Slider({ block, mediaHandler }) {
@@ -96,31 +95,29 @@ export default function Slider({ block, mediaHandler }) {
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>
             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-            <Image
-              className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
-              src={
-                mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-                  ?.conversions.desktop ||
-                mediaHandler?.[`main.slider_items.${index}.image`]?.[0]
-                  ?.original
-              }
-              width={1920}
-              height={750}
-              alt={item.title}
-              loading="eager"
-            />
+            <picture>
+              <source media="(max-width: 414px)" srcSet={item?.image_mobile} />
+              <source media="(min-width: 415px)" srcSet={item?.image_desktop} />
+              <Image
+                src={item?.image_mobile}
+                alt={item.title}
+                width={1920}
+                height={750}
+                className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
+              />
+            </picture>
 
-            <div className="py-[80px] lg:py-[50px] min-h-[calc(100vh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-              <h2 className="text-[35px] md:text-[42px] mb-[40px] font-bold">
+            <div className="py-[80px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[calc(100dvh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+              <h2 className="text-[35px] text-center md:text-[42px] mb-[40px] font-bold">
                 {item.title}
               </h2>
               <div
-                className="mb-[15px]"
+                className="mb-[15px] text-center"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
               <Link
                 className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                href={item.link}
+                href={item?.url}
               >
                 Discovery More
               </Link>

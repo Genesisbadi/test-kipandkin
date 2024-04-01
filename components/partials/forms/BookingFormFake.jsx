@@ -16,7 +16,6 @@ export default function BookingFormFake({ ...props }) {
     import("@/components/icons/ArrowDown").then((module) => module.default)
   );
 
-  console.log(isMobile);
   const { page, blocks } = props;
   const disabledTypes = ["offers", "blog"];
   const disabledBlocks = ["Title"];

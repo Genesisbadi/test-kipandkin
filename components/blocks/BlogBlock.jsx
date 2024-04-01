@@ -79,7 +79,6 @@ export default function BlogBlock({ block }) {
   };
 
   useEffect(() => {
-    console.log("articles:", articles.length);
     if (articles.length > 0) {
       setTimeout(() => {
         const readMoreButtons = document.querySelectorAll(".read-more");

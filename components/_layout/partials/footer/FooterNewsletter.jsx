@@ -46,7 +46,6 @@ export default function FooterNewsletter() {
       await FORMAPI.submitForm("newsletter-form", payload)
         .then((res) => {
           e.target.reset();
-          console.log(res);
           if (res.status === 200 || res.status === 201) {
             setShowSuccessModal(true);
             setIsSending(false);
