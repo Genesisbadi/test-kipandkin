@@ -100,7 +100,7 @@ export default function Slider({ block, mediaHandler }) {
               <source media="(min-width: 415px)" srcSet={item?.image_desktop} />
               <Image
                 src={item?.image_mobile}
-                alt={item?.title}
+                alt={item?.title || "Slider Image"}
                 width={1920}
                 height={750}
                 className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
