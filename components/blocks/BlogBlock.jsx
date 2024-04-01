@@ -61,25 +61,26 @@ export default function BlogBlock({ block }) {
   }, []);
 
   const filterByCategory = (e) => {
-    if (!selectedCategory) {
-      if (e?.target?.getAttribute("id")) {
-        NProgress.start();
-        router
-          .push(`/blog?category=${e.target.getAttribute("id")}`)
-          .then(() => {
-            setSelectedCategory(e.target.getAttribute("id"));
-            setCurrentPage(1);
-            NProgress.done();
-          })
-          .catch(() => {
-            NProgress.done();
-          });
-      }
+    // if (!selectedCategory) {
+    if (e?.target?.getAttribute("id")) {
+      NProgress.start();
+      router
+        .push(`/blog?category=${e.target.getAttribute("id")}`)
+        .then(() => {
+          setSelectedCategory(e.target.getAttribute("id"));
+          setCurrentPage(1);
+          NProgress.done();
+        })
+        .catch(() => {
+          NProgress.done();
+        });
     }
+    // }
   };
 
   useEffect(() => {
-    const readMore = () => {
+    console.log("articles:", articles.length);
+    if (articles.length > 0) {
       setTimeout(() => {
         const readMoreButtons = document.querySelectorAll(".read-more");
 
@@ -101,9 +102,8 @@ export default function BlogBlock({ block }) {
             });
           });
         }
-      }, 300);
-    };
-
+      }, 1000);
+    }
     const getArticles = async (page) => {
       setLoading(true);
       setHasPrevPage(false);
