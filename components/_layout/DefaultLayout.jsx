@@ -14,24 +14,15 @@ export default function DefaultLayout(props) {
     return <Component />;
   };
 
-  const BookingForm = () => {
-    const Component = dynamic(() =>
-      import("@/components/partials/forms/BookingForm")
-    );
-    return <Component />;
-  };
+  const BookingForm = dynamic(() =>
+    import("@/components/partials/forms/BookingForm")
+  );
 
-  const BookingFormFake = () => {
-    const Component = dynamic(() =>
-      import("@/components/partials/forms/BookingForm")
-    );
-    return <Component />;
-  };
+  const BookingFormFake = dynamic(() =>
+    import("@/components/partials/forms/BookingForm")
+  );
 
-  const Footer = () => {
-    const Component = dynamic(() => import("@/layout/partials/Footer"));
-    return <Component />;
-  };
+  const Footer = dynamic(() => import("@/layout/partials/Footer"));
   return (
     <>
       <Menu page={page} blocks={blocks} />

@@ -3,51 +3,35 @@ import dynamic from "next/dynamic";
 
 export default function Footer() {
   const FooterDestinations = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterDestinations").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterDestinations")
   );
 
   const FooterConnections = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterConnections").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterConnections")
   );
 
   const FooterSocial = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterSocial").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterSocial")
   );
 
   const FooterJuicer = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterJuicer").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterJuicer")
   );
 
   const FooterMenu = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterMenu").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterMenu")
   );
 
   const FooterNewsletter = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterNewsletter").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterNewsletter")
   );
 
   const FooterReviews = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterReviews").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterReviews")
   );
 
   const FooterCallToActions = dynamic(() =>
-    import("@/components/_layout/partials/footer/FooterCallToActions").then(
-      (module) => module.default
-    )
+    import("@/components/_layout/partials/footer/FooterCallToActions")
   );
   return (
     <footer className="footer">

@@ -35,11 +35,13 @@ export default function OfferDetails({ page }) {
         <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
           {title}
         </h2>
-
-        {image && (
+        {mediaHandler["main.image"]?.[0] && (
           <Image
             className="mb-[30px]"
-            src={mediaHandler["main.image"]?.[0].conversions.desktop}
+            src={
+              mediaHandler["main.image"]?.[0].conversions.desktop ||
+              mediaHandler["main.image"]?.[0].original
+            }
             width={1200}
             height={450}
             alt={title}

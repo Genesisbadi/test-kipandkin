@@ -11,7 +11,7 @@ export default function SectionAccordion({ children, ...props }) {
 
   return (
     <div className={`accordion w-full ${className ? className : ""}`}>
-      <div className="w-full h-[1px] md:hidden bg-[#ccc] w-[calc(100%-30px)] mx-auto"></div>
+      <div className="h-[1px] md:hidden bg-[#ccc] w-[calc(100%-30px)] mx-auto"></div>
       {title && (
         <div
           className="text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]"

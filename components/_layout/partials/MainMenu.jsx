@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 
 export default function MainMenu({ parentNodes, ...props }) {
   const DropdownArrow = dynamic(() =>
-    import("@/components/icons/DropdownArrow").then((module) => module.default)
+    import("@/components/icons/DropdownArrow")
   );
+
   const router = useRouter();
   const { tenantDetails } = props;
   const { phone, email } = tenantDetails.data.main;

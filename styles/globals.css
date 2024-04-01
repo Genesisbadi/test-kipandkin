@@ -111,7 +111,7 @@
   }
   @media (max-width: 1199px) {
     .mobile-menu-opened {
-      overflow: hidden;
+      overflow: hidden !important;
     }
   }
 

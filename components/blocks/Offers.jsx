@@ -37,7 +37,7 @@ export default function Block({ block }) {
       try {
         const response = await axios.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${selectedCategory.value}`
+            `/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${selectedCategory.value}&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
         );
         setOffers(response.data);
         if (response.status === 200) {
@@ -155,7 +155,10 @@ export default function Block({ block }) {
                               className="text-white text-[14px] line-clamp-3"
                               dangerouslySetInnerHTML={{
                                 __html:
-                                  item?.attributes?.data?.main?.description,
+                                  item?.attributes?.data?.main?.description.replace(
+                                    /(<([^>]+)>)/gi,
+                                    ""
+                                  ),
                               }}
                             />
                           )}

@@ -26,6 +26,7 @@ export default function BookingForm({ ...props }) {
   const isMobile = useMobileDetector();
 
   const { page, blocks } = props;
+
   const disabledTypes = ["offers", "blog"];
   const disabledBlocks = ["Title"];
 

@@ -105,6 +105,7 @@ export default function Slider({ block, mediaHandler }) {
                 height={750}
                 className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
                 loading="eager"
+                priority={index === 0 ? true : false}
               />
             </picture>
 
