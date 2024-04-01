@@ -90,7 +90,7 @@ export default function Slider({ block, mediaHandler }) {
   };
 
   return (
-    <section className="block-slider slider relative">
+    <div className="block-slider slider relative">
       <Slick {...settings}>
         {slider_items.map((item, index) => (
           <div className="w-full relative" key={index}>
@@ -100,7 +100,7 @@ export default function Slider({ block, mediaHandler }) {
               <source media="(min-width: 415px)" srcSet={item?.image_desktop} />
               <Image
                 src={item?.image_mobile}
-                alt={item.title}
+                alt={item?.title}
                 width={1920}
                 height={750}
                 className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
@@ -109,23 +109,30 @@ export default function Slider({ block, mediaHandler }) {
             </picture>
 
             <div className="py-[80px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[calc(100dvh-67px)] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-              <h2 className="text-[35px] text-center md:text-[42px] mb-[40px] font-bold">
-                {item.title}
-              </h2>
-              <div
-                className="mb-[15px] text-center"
-                dangerouslySetInnerHTML={{ __html: item.description }}
-              />
-              <Link
-                className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                href={item?.url}
-              >
-                Discovery More
-              </Link>
+              {item?.title && (
+                <div className="text-[35px] text-center md:text-[42px] mb-[40px] font-bold">
+                  {item?.title}
+                </div>
+              )}
+              {item?.description && (
+                <div
+                  className="mb-[15px] text-center"
+                  dangerouslySetInnerHTML={{ __html: item?.description }}
+                />
+              )}
+
+              {item?.url && (
+                <Link
+                  className="border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                  href={item?.url}
+                >
+                  Discovery More
+                </Link>
+              )}
             </div>
           </div>
         ))}
       </Slick>
-    </section>
+    </div>
   );
 }
