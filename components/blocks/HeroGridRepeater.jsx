@@ -1,15 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 export default function HeroGridRepeater({ block, mediaHandler }) {
   const { items } = block.main;
+  const SectionAccordion = dynamic(() =>
+    import("@/components/partials/collapsibles/SectionAccordion")
+  );
   return (
-    <section className="overflow-hidden mb-[5px]">
+    <section className="overflow-hidden md:mb-[5px]">
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
-          <div
-            className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
+          <SectionAccordion
+            childrenClassname="pb-0 h-full bg-primary1"
             key={index}
+            title={item.title}
+            className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
           >
             <Image
               src={
@@ -42,7 +48,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                 </Link>
               </div>
             </div>
-          </div>
+          </SectionAccordion>
         ))}
       </div>
     </section>

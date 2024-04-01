@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 export default function ExperienceSelections({ block }) {
-  console.log(block);
   return (
     <section className="bg-[#F1F1F1]">
       <div className="container">

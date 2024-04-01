@@ -34,7 +34,6 @@ export default function FooterSocial() {
   messages["youtube"] = "Subscribe to our youtube channel.";
   messages["tripadvisor"] = "See our Trip Advisor reviews.";
   messages["linkedin"] = "Follow Us on LinkedIn.";
-
   return (
     <>
       {social_media?.media_links && (

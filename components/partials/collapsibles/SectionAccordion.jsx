@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 export default function SectionAccordion({ children, ...props }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const { title, className } = props;
+  const { title, className, childrenClassname } = props;
   const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"));
 
   const handleCollapse = () => {
@@ -10,7 +10,7 @@ export default function SectionAccordion({ children, ...props }) {
   };
 
   return (
-    <div className="accordion">
+    <div className={`accordion w-full ${className ? className : ""}`}>
       <div className="w-full h-[1px] md:hidden bg-[#ccc] w-[calc(100%-30px)] mx-auto"></div>
       {title && (
         <div
@@ -24,7 +24,9 @@ export default function SectionAccordion({ children, ...props }) {
         </div>
       )}
       <div
-        className={`pb-[30px] md:pb-0 ${isCollapsed ? "hidden md:block" : ""}`}
+        className={`${
+          childrenClassname ? childrenClassname : "pb-[30px] md:pb-0"
+        } ${isCollapsed ? "hidden md:block" : ""}`}
       >
         {children}
       </div>

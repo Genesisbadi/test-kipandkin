@@ -7,6 +7,9 @@ export default function FooterDestinations({}) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
   );
+  const SectionAccordion = dynamic(() =>
+    import("@/components/partials/collapsibles/SectionAccordion")
+  );
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -95,33 +98,40 @@ export default function FooterDestinations({}) {
   return (
     <>
       {destinationsEntries && (
-        <section className="footer-strip text-white pt-[30px]">
-          <h2 className="text-center text-primary text-[25px] mb-[30px]">
-            {"Exciting Destinations"}
-          </h2>
-          <Slick {...settings}>
-            {destinationsEntries?.map((item, index) => (
-              <div key={index}>
-                <Link
-                  href={item?.data?.main?.link || "#"}
-                  className="flex justify-center bg-[#333] items-center min-h-[250px] relative"
-                  target="_blank"
-                >
-                  <Image
-                    src={item?.data?.main?.image || `/static/destination1.jpg`}
-                    width={350}
-                    height={350}
-                    alt={item?.title}
-                    className="absolute top-0 left-0 w-full h-full object-cover"
-                  />
-                  <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
-                    {item?.title}
-                  </h3>
-                </Link>
-              </div>
-            ))}
-          </Slick>
-        </section>
+        <SectionAccordion
+          title="Exciting Destinations"
+          childrenClassname="pb-0"
+        >
+          <section className="footer-strip text-white md:pt-[30px]">
+            <h2 className="text-center hidden md:block text-primary text-[25px] mb-[30px]">
+              {"Exciting Destinations"}
+            </h2>
+            <Slick {...settings}>
+              {destinationsEntries?.map((item, index) => (
+                <div key={index}>
+                  <Link
+                    href={item?.data?.main?.link || "#"}
+                    className="flex justify-center bg-[#333] items-center min-h-[250px] relative"
+                    target="_blank"
+                  >
+                    <Image
+                      src={
+                        item?.data?.main?.image || `/static/destination1.jpg`
+                      }
+                      width={350}
+                      height={350}
+                      alt={item?.title}
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                    />
+                    <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
+                      {item?.title}
+                    </h3>
+                  </Link>
+                </div>
+              ))}
+            </Slick>
+          </section>
+        </SectionAccordion>
       )}
     </>
   );

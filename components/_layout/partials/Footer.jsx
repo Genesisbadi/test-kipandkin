@@ -50,7 +50,7 @@ export default function Footer() {
     )
   );
   return (
-    <footer className="">
+    <footer className="footer">
       <FooterJuicer />
       <FooterCallToActions />
       <FooterReviews />
