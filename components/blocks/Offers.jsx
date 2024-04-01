@@ -11,30 +11,38 @@ export default function Block({ block }) {
   );
 
   const { title, description } = block.main;
-  const offersCategories = offersCategoryTaxonomies.offersCategoryTaxonomies;
+  const offersCategories = offersCategoryTaxonomies;
 
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState({
+    label: "All",
+    value: "",
+  });
   const router = useRouter();
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption.value);
+    setSelectedCategory({
+      label: selectedOption.label,
+      value: selectedOption.value,
+    });
 
-    router.push(`/offers?category=${selectedOption.value}`);
+    router.push(`/${router?.query?.id}?category=${selectedOption.value}`);
   };
 
   useEffect(() => {
-    // Fetch offers
     const getOffers = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${selectedCategory}`
+            `/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${selectedCategory.value}`
         );
         setOffers(response.data);
-        setLoading(false);
+        if (response.status === 200) {
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching articles:", error);
         setLoading(false);
@@ -45,8 +53,7 @@ export default function Block({ block }) {
   }, [selectedCategory, currentPage]);
 
   const getDefaultValue = () => {
-    let defaultVenue = "All";
-    return { label: defaultVenue, value: defaultVenue };
+    return { label: selectedCategory.label, value: selectedCategory.value };
   };
 
   return (
@@ -78,9 +85,12 @@ export default function Block({ block }) {
 
         <div className="offers">
           {loading ? (
-            <>
-              {Array.from({ length: 2 }, (_, index) => (
-                <div key={index} className="mb-[60px]">
+            <div className="flex flex-wrap">
+              {Array.from({ length: 3 }, (_, index) => (
+                <div
+                  key={index}
+                  className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
+                >
                   <div className="h-6 max-w-[50%] bg-gray-300 animate-pulse mb-[15px]"></div>
                   <div className="min-h-[300px] bg-gray-300 animate-pulse mb-[30px]"></div>
 
@@ -91,7 +101,7 @@ export default function Block({ block }) {
                   <div className="h-[15px] bg-gray-300 animate-pulse max-w-[250px]"></div>
                 </div>
               ))}
-            </>
+            </div>
           ) : (
             <div>
               {offers && offers.data.length > 0 ? (
