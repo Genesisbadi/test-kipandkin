@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import globalData from "../../../lib/preBuildScripts/static/globalData.json";
+// import globalData from "../../../lib/preBuildScripts/static/globalData.json";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
 import NProgress from "nprogress";
+import tenantInformation from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function MainMenuMobile({ ...props }) {
   const Booking = dynamic(() =>
@@ -25,7 +26,6 @@ export default function MainMenuMobile({ ...props }) {
   const [isBookToggled, setIsBookToggled] = useState(false);
   const [bookingLinks, setIsBookingLinks] = useState({});
 
-  const { tenantDetails } = globalData;
   const closeMenu = () => {
     document.querySelector("body").classList.remove("mobile-menu-opened");
     setTimeout(() => {
@@ -189,21 +189,21 @@ export default function MainMenuMobile({ ...props }) {
           ))}
         </span>
         <span className="flex items-center relative z-[10]">
-          {tenantDetails?.data?.main?.email && (
+          {tenantInformation?.email && (
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
-                href={`mailto:${tenantDetails?.data?.main?.email}`}
+                href={`mailto:${tenantInformation?.email}`}
               >
                 <Email className="mr-[5px] !fill-primary" />
               </Link>
             </span>
           )}
-          {tenantDetails?.data?.main?.phone && (
+          {tenantInformation?.phone && (
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
-                href={`tel:${tenantDetails?.data?.main?.phone}`}
+                href={`tel:${tenantInformation?.phone}`}
               >
                 <Phone className="mr-[5px] !fill-primary" />
               </Link>
@@ -288,7 +288,7 @@ export default function MainMenuMobile({ ...props }) {
             >
               <div className="sticky flex mb-[30px] items-center justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
                 <Image
-                  src={tenantDetails.data.main.tenant_logo}
+                  src={tenantInformation?.tenant_logo}
                   width={200}
                   height={54}
                   alt="Site Logo"

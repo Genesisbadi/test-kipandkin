@@ -3,8 +3,12 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
-
+import { useEffect, useRef } from "react";
+import { useMobileDetector } from "@/lib/services/isMobileDetector";
 export default function Slider({ block, mediaHandler }) {
+  const isMobile = useMobileDetector();
+  const linkElementRef = useRef(null);
+
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
   );
@@ -17,6 +21,19 @@ export default function Slider({ block, mediaHandler }) {
   } else {
     slider_items = slider_items.slice(0, initialSlides);
   }
+
+  useEffect(() => {
+    if (slider_items.length > 0 && !linkElementRef.current) {
+      const linkElement = document.createElement("link");
+      linkElement.rel = "preload";
+      linkElement.href = isMobile
+        ? slider_items[0]?.image_mobile
+        : slider_items[0]?.image_desktop;
+      linkElement.as = "image";
+      document.head.appendChild(linkElement);
+      linkElementRef.current = linkElement;
+    }
+  }, [slider_items]);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -96,8 +113,8 @@ export default function Slider({ block, mediaHandler }) {
           <div className="w-full relative" key={index}>
             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
             <picture>
-              <source media="(max-width: 414px)" srcSet={item?.image_mobile} />
               <source media="(min-width: 415px)" srcSet={item?.image_desktop} />
+              <source media="(max-width: 414px)" srcSet={item?.image_mobile} />
               <Image
                 src={item?.image_mobile}
                 alt={item?.title || "Slider Image"}
@@ -105,7 +122,6 @@ export default function Slider({ block, mediaHandler }) {
                 height={750}
                 className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
                 loading="eager"
-                priority={index === 0 ? true : false}
               />
             </picture>
 

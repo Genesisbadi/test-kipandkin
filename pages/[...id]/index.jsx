@@ -110,7 +110,7 @@ export default function DynamicPage({ page, blocks }) {
     <>
       {titleElement}
       {descriptionElement}
-      <Header page={page} metadata={page?.metaData} />
+      <Header page={page} meta={page?.metaData} />
       <ComponentToRender page={page} blocks={blocks} />
     </>
   );

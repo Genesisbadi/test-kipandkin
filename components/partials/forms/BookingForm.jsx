@@ -1,16 +1,34 @@
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 import { useEffect, useState } from "react";
 
-import { DateRange, Calendar } from "react-date-range";
 import dynamic from "next/dynamic";
 
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import config from "site.config";
 
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
+import globalState from "@/lib/store/globalState";
 
 export default function BookingForm({ ...props }) {
+  const showLazy = globalState((state) => state.showLazy);
+  const DateRange = dynamic(() =>
+    showLazy
+      ? Promise.all([
+          import("react-date-range/dist/styles.css"),
+          import("react-date-range"),
+          import("react-date-range/dist/theme/default.css"),
+        ]).then(([styles, module]) => module.DateRange)
+      : () => null
+  );
+
+  const Calendar = dynamic(() =>
+    showLazy
+      ? Promise.all([
+          import("react-date-range/dist/styles.css"),
+          import("react-date-range"),
+          import("react-date-range/dist/theme/default.css"),
+        ]).then(([styles, module]) => module.Calendar)
+      : () => null
+  );
   const ArrowDown = dynamic(() =>
     import("@/components/icons/ArrowDown").then((module) => module.default)
   );

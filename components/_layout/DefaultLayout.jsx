@@ -23,6 +23,7 @@ export default function DefaultLayout(props) {
   );
 
   const Footer = dynamic(() => import("@/layout/partials/Footer"));
+
   return (
     <>
       <Menu page={page} blocks={blocks} />

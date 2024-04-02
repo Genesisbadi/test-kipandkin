@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Custom404() {
   return (
-    <div className="bg-gray-100 flex flex-col items-center justify-center h-screen">
+    <div className="bg-gray-100 flex py-[50px] flex-col items-center justify-center min-h-screen">
       <div className="text-center">
         <h1 className="text-[140px] mb-[15px] font-bold text-primary">404</h1>
         <p className="text-2xl font-semibold text-gray-600 mb-4">

@@ -26,12 +26,12 @@ export default function NotFound() {
 
         <div className="w-full">
           <div className="pt-8 md:pt-12 lg:pt-16 m-auto">
-            <div className="bg-[#C3C3C3] h-[1px] w-[350px] 2sm:w-[500px] md:w-[800px] lg:w-[900px] xl:w-[1130px] m-auto"></div>
+            <div className="bg-[#C3C3C3] w-full h-[1px] max-w-[350px] 2sm:max-w-[500px] md:max-w-[800px] lg:max-w-[900px] xl:max-w-[1130px] m-auto"></div>
           </div>
         </div>
 
         <div
-          className="border m-auto w-[102px] h-[31px] mt-[20px] bg-[#034F8B] text-white text-center rounded-md text-[12px] rounded-lg cursor-pointer"
+          className="border m-auto w-full max-w-[102px] h-[31px] mt-[20px] bg-[#034F8B] text-white text-center rounded-md text-[12px] rounded-lg cursor-pointer"
           onClick={() => {
             router.replace("/");
           }}

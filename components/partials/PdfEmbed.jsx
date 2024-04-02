@@ -11,7 +11,7 @@ export default function PdfEmbed({ file, width, className }) {
     setPageNumber(pageNumber + number);
   };
   return (
-    <div className="w-[700px] text-center">
+    <div className="w-full max-w-[700px] text-center">
       <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
         <Page
           className={`${className}`}

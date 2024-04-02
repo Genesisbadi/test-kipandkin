@@ -1,18 +1,20 @@
-import "tw-elements/dist/css/tw-elements.min.css";
 import "@/styles/globals.css";
 import "@/styles/customs.css";
 import DefaultLayout from "@/components/_layout/DefaultLayout";
 import globalState from "@/lib/store/globalState";
-import persistentStore from "@/lib/store/persistentStore";
 import { useEffect } from "react";
 
 import { Montserrat } from "next/font/google";
+import dynamic from "next/dynamic";
 
 const primary = Montserrat({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
 export default function App({ Component, pageProps }) {
+  const TenantScripts = dynamic(() =>
+    import("@/layout/partials/TenantScripts")
+  );
   const showLazy = globalState((state) => state.showLazy);
   const { page, blocks } = pageProps;
 
@@ -51,12 +53,16 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <div
-      className={`text-dim-black ${primary.className} text-[16px] flex flex-col min-h-[102vh]`}
-    >
-      <DefaultLayout page={page} blocks={blocks}>
-        <Component {...pageProps} />
-      </DefaultLayout>
-    </div>
+    <>
+      <div
+        className={`text-dim-black ${primary.className} text-[16px] flex flex-col min-h-[102vh]`}
+      >
+        <DefaultLayout page={page} blocks={blocks}>
+          <Component {...pageProps} />
+        </DefaultLayout>
+      </div>
+
+      {showLazy && <TenantScripts />}
+    </>
   );
 }
