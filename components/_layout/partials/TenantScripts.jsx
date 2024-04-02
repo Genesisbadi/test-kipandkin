@@ -9,7 +9,7 @@ export default function TenantScripts() {
               <div
                 key={index}
                 id={`tenantScript-${index + 1}`}
-                dangerouslySetInnerHTML={{ __html: item.code }}
+                dangerouslySetInnerHTML={{ __html: item?.code }}
               />
             );
           })}
