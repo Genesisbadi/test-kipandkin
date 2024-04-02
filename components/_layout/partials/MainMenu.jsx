@@ -3,14 +3,14 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
+import tenantInformation from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
+
 export default function MainMenu({ parentNodes, ...props }) {
   const DropdownArrow = dynamic(() =>
     import("@/components/icons/DropdownArrow")
   );
 
   const router = useRouter();
-  const { tenantDetails } = props;
-  const { phone, email } = tenantDetails.data.main;
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
     return (
