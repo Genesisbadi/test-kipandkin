@@ -3,10 +3,10 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 export default function Slider({ block, mediaHandler }) {
-  const isMobile = useMobileDetector();
+  const [isMobile, setIsMobile] = useState(useMobileDetector());
   const linkElementRef = useRef(null);
 
   const Slick = dynamic(() =>
@@ -21,17 +21,29 @@ export default function Slider({ block, mediaHandler }) {
   } else {
     slider_items = slider_items.slice(0, initialSlides);
   }
-
   useEffect(() => {
-    if (slider_items.length > 0 && !linkElementRef.current) {
+    const handleResize = () => {
+      console.log(window.innerWidth);
       const linkElement = document.createElement("link");
       linkElement.rel = "preload";
-      linkElement.href = isMobile
-        ? slider_items[0]?.image_mobile
-        : slider_items[0]?.image_desktop;
+      let preloadImg;
+
       linkElement.as = "image";
       document.head.appendChild(linkElement);
       linkElementRef.current = linkElement;
+      if (window.innerWidth <= 414) {
+        preloadImg = slider_items[0]?.image_mobile;
+      } else {
+        preloadImg = slider_items[0]?.image_desktop;
+      }
+
+      linkElement.href = preloadImg;
+    };
+    if (slider_items.length > 0 && !linkElementRef.current) {
+      window.addEventListener("orientationchange", handleResize);
+      window.addEventListener("load", handleResize);
+
+      handleResize();
     }
   }, [slider_items]);
 
