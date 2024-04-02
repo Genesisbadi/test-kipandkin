@@ -23,8 +23,8 @@ export default function Header({ meta, page }) {
 
   const imageType = () => {
     const image = meta?.image || tenantMetatags?.image;
-    const arr = image.split(".");
-    return arr[arr.length - 1];
+    const arr = image?.split(".");
+    return arr[arr.length - 1] || "webp";
   };
 
   return (
