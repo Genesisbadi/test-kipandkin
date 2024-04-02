@@ -31,6 +31,10 @@ export default function Menu({ ...props }) {
     import("@/components/icons/Phone").then((module) => module.default)
   );
 
+  const Menu = dynamic(() =>
+    isMobile ? import("./MainMenuMobile") : import("./MainMenu")
+  );
+
   return (
     <>
       <header
@@ -90,7 +94,7 @@ export default function Menu({ ...props }) {
               />
             </Link>
           </div>
-          {!isMobile ? (
+          {/* {!isMobile ? (
             <MainMenu
               className="hidden xl:flex"
               tenantDetails={tenantDetails}
@@ -103,7 +107,12 @@ export default function Menu({ ...props }) {
               nodes={nodes}
               tenantDetails={tenantDetails}
             />
-          )}
+          )} */}
+          <Menu
+            className={isMobile ? "block xl:hidden" : "hidden xl:flex"}
+            parentNodes={parentNodes}
+            nodes={nodes}
+          />
         </div>
       </header>
     </>
