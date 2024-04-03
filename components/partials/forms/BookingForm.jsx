@@ -45,7 +45,7 @@ export default function BookingForm({ ...props }) {
 
   const { page, blocks } = props;
 
-  const disabledTypes = ["offers", "blog"];
+  const disabledTypes = ["offers", "blog", "meetings-events-suites"];
   const disabledBlocks = ["Title"];
 
   const { booking_id } = globalData.tenantDetails.data.main;

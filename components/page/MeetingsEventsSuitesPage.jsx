@@ -125,13 +125,13 @@ export default function MeetingsEventsSuitesPage({ page }) {
         <div className="container overflow-hidden">
           {title && (
             <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
-              {title || ""}
+              {title}
             </h2>
           )}
           {image && (
             <ModalImage
               className="w-full h-full object-cover mb-[20px]"
-              title={title || "#"}
+              title={title}
               content={image}
               image={image}
             />
@@ -150,14 +150,14 @@ export default function MeetingsEventsSuitesPage({ page }) {
                     {buttons?.map((item, index) => (
                       <Link
                         key={index}
-                        href={item?.button_link || "#"}
+                        href={item?.button_link}
                         className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[10px] ${
                           item.button_variant === "dark"
                             ? "text-white bg-primary"
                             : "border-secondary"
                         } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                       >
-                        {item?.button_label || ""}
+                        {item?.button_label}
                       </Link>
                     ))}
                   </>

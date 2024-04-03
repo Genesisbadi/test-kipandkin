@@ -8,12 +8,12 @@ export default function ButtonsRepeater({ ...props }) {
         className || ""
       } flex flex-wrap justify-center`}
     >
-      {buttons.map((item, index) => (
+      {buttons?.map((item, index) => (
         <div
           key={index}
           className="item w-full flex flex-col justify-center px-[40px] md:max-w-[33.33%]"
         >
-          {item.description && (
+          {item?.description && (
             <div
               className="text-center text-[14px]"
               dangerouslySetInnerHTML={{ __html: item?.description }}
@@ -27,7 +27,7 @@ export default function ButtonsRepeater({ ...props }) {
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
                   : "border border-secondary text-secondary hover:bg-secondary hover:text-white"
               }`}
-              href={item?.button_link || "#"}
+              href={item?.button_link}
               target={item?.button_link.includes("http") ? "_blank" : "_self"}
             >
               {item.button_label || "Discover More"}

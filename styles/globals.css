@@ -200,6 +200,31 @@
   /* visibility: hidden; */
 }
 
+.footer-reviews .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  padding: 15px 0;
+  list-style-type: none;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.footer-reviews .slick-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: all ease 0.3s;
+  text-indent: -9999px;
+  transition: all ease 0.3s;
+}
+.footer-reviews .slick-dots li {
+  padding: 0 5px;
+}
+.footer-reviews .slick-active button {
+  transform: scale(1.2);
+  transition: all ease 0.3s;
+}
+
 @keyframes modalIn {
   0% {
     transform: scale(0);

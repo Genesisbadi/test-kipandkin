@@ -19,7 +19,7 @@ export default function PhotoGallery({ block }) {
           <div className="flex flex-wrap mx-[-15px]">
             {photos.slice(0, visiblePhotos).map((item, index) => (
               <div
-                className="w-full max-w-[33.33%] px-[15px] mb-[30px]"
+                className="w-full max-w-[50%] sm:max-w-[33.33%] px-[15px] mb-[30px]"
                 key={index}
               >
                 <ModalImage1
@@ -27,7 +27,7 @@ export default function PhotoGallery({ block }) {
                   images={photos}
                   title="Photo"
                   image={item}
-                  className="w-full h-[360px] object-cover bg-[#ddd]"
+                  className="w-full h-[150px] sm:h-[360px] object-cover bg-[#ddd]"
                 />
               </div>
             ))}

@@ -76,6 +76,7 @@ export default function FooterReviews() {
         breakpoint: 1024,
         settings: {
           arrows: false,
+          dots: true,
         },
       },
     ],
@@ -84,7 +85,7 @@ export default function FooterReviews() {
   return (
     <>
       {router.asPath !== "/" && (
-        <section className="py-[40px]">
+        <section className="py-[40px] footer-reviews">
           <div className="container">
             <h2 className="text-center text-primary text-[25px] mb-[30px]">
               Reviews

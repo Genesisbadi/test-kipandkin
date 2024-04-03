@@ -118,7 +118,7 @@ export default function MeetingsEvensDetails({ page }) {
                               : "border-secondary"
                           } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                         >
-                          {item?.button_label || ""}
+                          {item?.button_label}
                         </Link>
                       ))}
                     </div>
