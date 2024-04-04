@@ -80,7 +80,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
     slidesToShow: images.length < 3 ? 2 : 3,
     slidesToScroll: 1,
     cssEase: "linear",
-    arrows: imagesLength > 3,
+    arrows: images.length > 3,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
