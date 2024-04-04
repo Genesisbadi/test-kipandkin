@@ -16,7 +16,7 @@ export default function MeetingsEvents({ block }) {
       try {
         const response = await axios.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/meetings-events-suites/entries?&page[size]=${displayCount}&includes=blueprintData,mediaHandler&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
+            `/api/contents/meetings-events-suites/entries?&page[size]=${displayCount}&includes=blueprintData,mediaHandler`
         );
         setEvents(response.data);
         setLoading(false);
@@ -68,7 +68,7 @@ export default function MeetingsEvents({ block }) {
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
                       >
                         <div className="w-full bg-white p-[20px] z-10">
-                          <h3 className="text-primary text-[20px] truncate">
+                          <h3 className="text-primary text-[20px]">
                             {item?.attributes?.title
                               ?.split(" ")
                               .map(
@@ -79,12 +79,12 @@ export default function MeetingsEvents({ block }) {
                               .join(" ")}
                           </h3>
                         </div>
-                        <div className="relative flex flex-col items-center justify-end mb-[30px]">
+                        <div className="relative flex min-h-[250px] sm:min-h-[300px] flex-col items-center justify-end mb-[30px]">
                           <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
                           {item?.attributes?.data?.main?.image && (
                             <Image
                               src={item.attributes.data.main.image}
-                              className="w-full min-h-[300px] object-cover"
+                              className="w-full absolute top-0 left-0 h-full object-cover"
                               width={500}
                               height={200}
                               alt={item?.attributes?.title}
@@ -93,7 +93,7 @@ export default function MeetingsEvents({ block }) {
                           {item?.attributes?.route_url && (
                             <Link
                               href={item.attributes.route_url}
-                              className="absolute bottom-[28px] bg-primary border-[1px] border-primary text-white hover:bg-secondary hover:border-secondary transition uppercase px-[30px] py-[20px] z-20"
+                              className="relative bottom-[28px] bg-primary border-[1px] border-primary text-white hover:bg-secondary hover:border-secondary transition uppercase px-[30px] py-[20px] z-20"
                             >
                               Read More
                             </Link>
