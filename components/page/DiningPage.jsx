@@ -278,7 +278,7 @@ export default function DiningPage({ page }) {
                       return (
                         <Link
                           key={index}
-                          href={item.button_url || "#"}
+                          href={item?.button_url}
                           className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                             item.variant === "filled"
                               ? "bg-primary text-white"

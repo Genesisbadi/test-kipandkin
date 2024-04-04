@@ -16,7 +16,7 @@ export default function ButtonsBlock({ block }) {
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
                   : "border border-secondary text-secondary hover:bg-secondary hover:text-white"
               }`}
-              href={item?.button_link}
+              href={item?.button_link || item?.button_link}
               target={item?.button_link.includes("http") ? "_blank" : "_self"}
             >
               {item.button_label || "Discover More"}

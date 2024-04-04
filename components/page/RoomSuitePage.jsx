@@ -124,9 +124,9 @@ export default function RoomSuitePage({ page }) {
               {button_links?.map((item, index) => (
                 <Link
                   key={index}
-                  href={item?.button_link || "#"}
+                  href={item?.button_link}
                   className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                    item.variant === "filled"
+                    item?.variant === "filled"
                       ? "text-white bg-primary"
                       : "border-secondary"
                   } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
