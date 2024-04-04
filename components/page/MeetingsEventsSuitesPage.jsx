@@ -5,8 +5,8 @@ import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
 export default function MeetingsEventsSuitesPage({ page }) {
-  const ModalImage = dynamic(() =>
-    import("@/components/partials/Modals/ModalImage").then(
+  const ModalImage1 = dynamic(() =>
+    import("@/components/partials/Modals/ModalImage1").then(
       (module) => module.default
     )
   );
@@ -18,10 +18,6 @@ export default function MeetingsEventsSuitesPage({ page }) {
   const showLazy = globalState((state) => state.showLazy);
   const { title, data } = page;
   const { image, description, buttons, images } = data.main;
-
-  const imagesLength = images?.length ?? 0;
-
-  let imagesDisplay = imagesLength < 3 ? 2 : 3;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -81,7 +77,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: imagesDisplay,
+    slidesToShow: images.length < 3 ? 2 : 3,
     slidesToScroll: 1,
     cssEase: "linear",
     arrows: imagesLength > 3,
@@ -91,10 +87,10 @@ export default function MeetingsEventsSuitesPage({ page }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: imagesDisplay,
+          slidesToShow: images.length < 3 ? 2 : 3,
           slidesToScroll: 1,
           infinite: true,
-          arrows: imagesLength > 3,
+          arrows: images.length > 3,
         },
       },
       {
@@ -104,7 +100,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
           slidesToScroll: 2,
           initialSlide: 2,
           arrows: true,
-          arrows: imagesLength > 2,
+          arrows: images.length > 2,
         },
       },
       {
@@ -113,7 +109,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: true,
-          arrows: imagesLength > 1,
+          arrows: images.length > 1,
         },
       },
     ],
@@ -169,27 +165,27 @@ export default function MeetingsEventsSuitesPage({ page }) {
         <div className="w-full bg-[#f1f1f1] pt-[10px] pb-[30px]">
           {showLazy && (
             <>
-              {imagesLength > 0 && (
+              {images.length > 0 && (
                 <>
                   <h2 className="text-primary text-[25px] text-center tracking-[1px] mb-[20px]">
                     GALLERY
                   </h2>
                   <div
                     className={`${
-                      imagesLength > 2 ? "" : "container"
+                      images.length > 2 ? "" : "container"
                     } flex flex-col w-full slick-gallery`}
                   >
                     <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                      {images.map((item, index) => (
+                      {images?.map((item, index) => (
                         <Fragment key={index}>
                           <div className="flex">
-                            <ModalImage
+                            <ModalImage1
                               key={index}
                               className="w-full h-[330px] lg:h-[530px] object-cover"
                               title={title || "#"}
                               content={index}
                               image={item || ""}
-                              images={images || []}
+                              images={images}
                             />
                           </div>
                         </Fragment>

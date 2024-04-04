@@ -63,7 +63,7 @@ export default function DefaultLayout(props) {
           easing="ease"
           speed={100}
           shadow="0 0 10px #691A31,0 0 5px #691A31"
-          template='<div class="bar" role="bar"><div class="peg"></div></div>'
+          template='<div class="bar bg-primary" role="bar"><div class="peg"></div></div>'
           zIndex={1600}
           showAtBottom={false}
         />
