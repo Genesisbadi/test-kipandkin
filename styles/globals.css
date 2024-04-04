@@ -261,3 +261,14 @@
 .animate-wobble {
   animation: wobble 1s;
 }
+
+#CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-change {
+  background-color: var(--primary) !important;
+}
+
+#CookiebotWidget {
+  z-index: 10 !important;
+}
+#CookiebotWidgetUnderlay {
+  z-index: 9 !important;
+}

@@ -292,7 +292,7 @@ export default function MainMenuMobile({ ...props }) {
                   width={200}
                   height={54}
                   alt="Site Logo"
-                  className="w-auto h-auto"
+                  className="w-auto h-auto max-w-[90px]"
                 />
                 <span
                   className="cursor-pointer relative top-[0]"
