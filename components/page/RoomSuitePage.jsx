@@ -124,7 +124,7 @@ export default function RoomSuitePage({ page }) {
               {button_links?.map((item, index) => (
                 <Link
                   key={index}
-                  href={item?.button_link}
+                  href={item?.button_link || item?.file || "#"}
                   className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
                     item?.variant === "filled"
                       ? "text-white bg-primary"
