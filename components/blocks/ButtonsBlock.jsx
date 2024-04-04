@@ -18,7 +18,10 @@ export default function ButtonsBlock({ block }) {
               }`}
               href={item?.button_link || item?.file || "#"}
               target={
-                item?.button_link?.includes("http") ? "_blank" : "_self" || ""
+                item?.button_link?.includes("http") ||
+                item?.file?.includes("http")
+                  ? "_blank"
+                  : "_self" || ""
               }
             >
               {item.button_label || "Discover More"}
