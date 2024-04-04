@@ -125,7 +125,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
             </h2>
           )}
           {image && (
-            <ModalImage
+            <ModalImage1
               className="w-full h-full object-cover mb-[20px]"
               title={title}
               content={image}
