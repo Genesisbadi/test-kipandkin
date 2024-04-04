@@ -16,7 +16,7 @@ export default function MeetingsEvents({ block }) {
       try {
         const response = await axios.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/meetings-events-suites/entries?&page[size]=${displayCount}&includes=blueprintData,mediaHandler`
+            `/api/contents/meetings-events-suites/entries?&page[size]=${displayCount}&includes=blueprintData,mediaHandler&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
         );
         setEvents(response.data);
         setLoading(false);
