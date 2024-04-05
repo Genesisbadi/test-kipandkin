@@ -11,6 +11,23 @@
   --dropdownBorder: #ebbbc9;
 }
 
+@font-face {
+  font-family: "Domine";
+  font-weight: 400;
+  src: url("/fonts/Domine-Regular.woff");
+}
+@font-face {
+  font-family: "Tenor";
+  font-weight: 400;
+  src: url("/fonts/TenorSans-Regular.woff");
+}
+
+.font-domine {
+  font-family: "Domine", sans-serif;
+}
+.font-tenor {
+  font-family: "Tenor", sans-serif;
+}
 .carousel-gallery * {
   line-height: 0;
 }

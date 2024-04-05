@@ -2,7 +2,7 @@ import Header from "@/components/_layout/partials/Header";
 import globalState from "@/lib/store/globalState";
 import { components } from "@/lib/services/componentService";
 import { useEffect } from "react";
-export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
+export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
   const showLazy = globalState((state) => state.showLazy);
   const activeBlocks = blocks.slice(0, initialBlocks);
   const lazyBlocks = blocks.slice(initialBlocks);
@@ -12,11 +12,11 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 1 }) {
   const hasPromoBlock = blocks.find((object) => object.key === "PromoBlock");
 
   if (hasPromoBlock) {
-    initialBlocks = 3;
+    initialBlocks = 4;
   }
 
   if (hasTitleBlock) {
-    initialBlocks = 2;
+    initialBlocks = 3;
   }
 
   useEffect(() => {

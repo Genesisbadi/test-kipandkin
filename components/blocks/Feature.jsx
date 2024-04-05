@@ -50,7 +50,7 @@ export default function Feature({ block }) {
             </div>
           )}
         </div>
-        <div className="bg-primary py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px]">
+        <div className="bg-primary  py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px] lg:min-h-[800px]">
           <h2 className="text-secondary1 text-[20px] tracking-[2px] mb-[10px] tracking-[2px]">
             {title}
           </h2>

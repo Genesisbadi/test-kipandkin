@@ -7,12 +7,17 @@ export default function CallToActions({ block }) {
   );
   const { block_title, items } = block.main;
   return (
-    <SectionAccordion title={block_title} childrenClassname="pb-0">
+    <SectionAccordion
+      title={block_title || "What to find out"}
+      childrenClassname="pb-0"
+    >
       <section className="bg-[#F1F1F1] overflow-hidden py-[30px]">
         <div className="container">
-          <h2 className="text-center text-primary hidden md:block text-[25px] mb-[30px]">
-            {block_title}
-          </h2>
+          {block_title && (
+            <h2 className="text-center text-primary hidden md:block text-[25px] mb-[30px]">
+              {block_title}
+            </h2>
+          )}
           {items?.length > 0 && (
             <div className="flex flex-wrap mx-[-15px]">
               {items?.map((item, index) => (

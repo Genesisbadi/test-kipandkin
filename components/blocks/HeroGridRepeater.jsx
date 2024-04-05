@@ -28,8 +28,14 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               alt={item.title}
               className="w-full h-[300px] lg:h-[550px] object-cover"
             />
-            <div className="px-[20px] lg:px-[60px] flex flex-col grow py-[30px] bg-primary1 text-white">
-              <h2 className="text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]">
+            <div className="px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
+              <h2
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                } text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
+              >
                 {item.title}
               </h2>
               {item.description && (
