@@ -47,7 +47,14 @@ export default function CallToActions({ block }) {
                         }}
                       />
                     </span>
-                    <h3>{item.title}</h3>
+                    <div className="flex flex-col">
+                      <h3>{item.title}</h3>
+                      {item?.description && (
+                        <p className="text-[14px] text-[#555] group-hover:text-primary">
+                          {item?.description}
+                        </p>
+                      )}
+                    </div>
                   </Link>
                 </div>
               ))}
