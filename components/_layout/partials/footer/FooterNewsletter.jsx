@@ -68,7 +68,7 @@ export default function FooterNewsletter() {
           Stay Updated
         </h2>
 
-        <div className="container md:!max-w-[550px]">
+        <div className="max-w-[980px] mx-auto md:!max-w-[550px]">
           <p className="text-[#555] md:text-center">
             Enter your email address below to receive our newsletter
           </p>

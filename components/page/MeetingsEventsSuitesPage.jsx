@@ -118,7 +118,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
   return (
     <>
       <article className="bg-[#f1f1f1]">
-        <div className="container overflow-hidden">
+        <div className="max-w-[980px] mx-auto overflow-hidden">
           {title && (
             <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
               {title}

@@ -14,7 +14,7 @@ export default function PhotoGallery({ block }) {
   };
   return (
     <div className="photos bg-[#F1F1F1] py-[30px]">
-      <div className="container overflow-hidden">
+      <div className="max-w-[980px] mx-auto overflow-hidden">
         {photos && photos.length > 0 && (
           <div className="flex flex-wrap mx-[-15px]">
             {photos.slice(0, visiblePhotos).map((item, index) => (

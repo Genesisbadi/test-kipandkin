@@ -39,7 +39,13 @@ export default function Dining({ block, page }) {
       <section className="bg-[#F1F1F1] pb-[30px]">
         <div className="max-w-[980px] mx-auto overflow-hidden">
           {title && (
-            <h2 className="text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc]">
+            <h2
+              className={`text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
               {title}
             </h2>
           )}

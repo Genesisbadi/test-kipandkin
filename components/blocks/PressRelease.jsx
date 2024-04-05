@@ -4,7 +4,7 @@ export default function PressRelease({ block }) {
   const { releases } = block.main;
   return (
     <section className="bg-[#f1f1f1] sm:pb-[30px]">
-      <div className="container py-5 md:py-0">
+      <div className="max-w-[980px] mx-auto py-5 md:py-0">
         <div className="flex flex-col w-full bg-white p-[30px] rounded-md shadow-md">
           {releases.map((item, index) => {
             return (

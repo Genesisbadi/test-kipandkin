@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function DiningBlock({ block }) {
   return (
     <section className="bg-[#F1F1F1]">
-      <div className="container">
+      <div className="max-w-[980px] mx-auto">
         <div className="flex flex-wrap justify-center mx-[-15px] py-[30px]">
           {block?.main?.collection?.contents?.map((item, index) => (
             <div

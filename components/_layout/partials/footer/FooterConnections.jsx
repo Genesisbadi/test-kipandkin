@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Tenor_Sans } from "next/font/google";
 import Link from "next/link";
 
 import tenantDetailsConnections from "@/lib/preBuildScripts/static/tenantDetailsConnections.json";
@@ -31,7 +30,11 @@ export default function footerConnections() {
                 >
                   {item?.title && (
                     <h2
-                      className={`uppercase text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : "font-domine"
+                      } uppercase text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
                     >
                       {item?.title}
                     </h2>
@@ -74,7 +77,11 @@ export default function footerConnections() {
                 >
                   {item?.title && (
                     <h2
-                      className={`uppercase text-center text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : "font-domine"
+                      } uppercase text-center text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
                     >
                       {item?.title}
                     </h2>

@@ -8,7 +8,7 @@ export default function GridFloatBookDirect({ block }) {
     <section className="py-[58px] overflow-hidden">
       <div className="max-w-[980px] mx-auto">
         <div className="flex flex-wrap mx-[-15px]">
-          <div className="w-full px-[15px] mb-[15px] lg:mb-0 lg:max-w-[30%]">
+          <div className="w-full px-[15px] mb-[15px] lg:mb-0 lg:max-w-[33.33%]">
             <h2 className="text-primary text-[22px] mb-[20px] font-tenor">
               Why Book Direct?
             </h2>
@@ -37,7 +37,7 @@ export default function GridFloatBookDirect({ block }) {
               </div>
             </div>
           </div>
-          <div className="w-full px-[15px] lg:max-w-[70%]">
+          <div className="w-full px-[15px] lg:max-w-[66.66%]">
             <div className="flex flex-wrap mx-[-15px]">
               {gridItems?.map((item, index) => (
                 <div

@@ -86,7 +86,7 @@ export default function FooterReviews() {
     <>
       {router.asPath !== "/" && (
         <section className="py-[40px] footer-reviews">
-          <div className="container">
+          <div className="max-w-[980px] mx-auto">
             <h2
               className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1

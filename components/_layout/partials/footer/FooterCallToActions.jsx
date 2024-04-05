@@ -8,10 +8,16 @@ export default function CallToActions() {
     <>
       {router.asPath !== "/" && (
         <section className="text-primary py-[30px] border-y-[3px] border-primary">
-          <div className="container">
-            <h2 className="text-primary text-[22px] mb-[30px] mb-[15px]">
-              {`${block_title} at ${globalData.tenantDetails.name}` ||
-                "Why Book Direct"}
+          <div className="max-w-[980px] mx-auto">
+            <h2
+              className={`tracking-[1px] text-primary text-[22px] mb-[30px] mb-[15px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
+              {`${block_title} at ${globalData.tenantDetails.name}?` ||
+                "Why Book Direct?"}
             </h2>
             {items && (
               <div className="flex flex-wrap">
@@ -30,11 +36,17 @@ export default function CallToActions() {
                       />
                     </span>
                     <div>
-                      <h3 className="font-medium">{item?.title}</h3>
+                      <h3
+                        className={`font-medium ${
+                          process.env.NEXT_PUBLIC_TEMPLATE == 1
+                            ? "font-tenor"
+                            : "font-domine"
+                        }`}
+                      >
+                        {item?.title}
+                      </h3>
                       {item?.description && (
-                        <div className="text-[14px]">
-                          {item?.description}
-                        </div>
+                        <div className="text-[14px]">{item?.description}</div>
                       )}
                     </div>
                   </div>

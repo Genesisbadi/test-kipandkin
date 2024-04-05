@@ -28,7 +28,7 @@ export default function PromosBlock({ block }) {
   }, [category.id]);
   return (
     <section className="bg-[#F1F1F1] py-[20px]">
-      <div className="container">
+      <div className="max-w-[980px] mx-auto">
         <h2 className="text-center uppercase text-[25px] text-primary mb-[20px]">
           {title}
         </h2>

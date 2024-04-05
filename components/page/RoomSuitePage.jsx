@@ -74,7 +74,7 @@ export default function RoomSuitePage({ page }) {
       </section>
 
       <article>
-        <div className="container py-[50px]">
+        <div className="max-w-[980px] mx-auto py-[50px]">
           <div className="flex flex-wrap px-[15px] justify-center items-center pb-[40px]">
             <span className="text-center px-[15px] mb-[10px] xs:mb-0">
               Check out other rooms

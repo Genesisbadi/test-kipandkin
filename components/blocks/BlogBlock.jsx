@@ -159,7 +159,7 @@ export default function BlogBlock({ block }) {
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
-      <div className="container">
+      <div className="max-w-[980px] mx-auto">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="lg:max-w-[70%] w-full px-[15px]">
             {loading ? (
@@ -195,7 +195,13 @@ export default function BlogBlock({ block }) {
 
                       return (
                         <div className="mb-[60px]" key={index}>
-                          <h2 className="text-primary text-[25px] mb-[30px]">
+                          <h2
+                            className={`text-primary text-[25px] mb-[30px] ${
+                              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                                ? "font-tenor"
+                                : "font-domine"
+                            }`}
+                          >
                             <Link
                               href={item.attributes.route_url}
                               className="hover:underline"
@@ -219,7 +225,7 @@ export default function BlogBlock({ block }) {
                           {item?.attributes?.data?.main?.description && (
                             <>
                               <div>
-                                <span className="text-[15px] mt-[15px]]">
+                                <span className="text-[14px] mt-[15px]]">
                                   <div
                                     dangerouslySetInnerHTML={{
                                       __html: truncateHTML(
