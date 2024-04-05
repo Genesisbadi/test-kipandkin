@@ -23,7 +23,6 @@ export default function Slider({ block, mediaHandler }) {
   }
   useEffect(() => {
     const handleResize = () => {
-      console.log(window.innerWidth);
       const linkElement = document.createElement("link");
       linkElement.rel = "preload";
       let preloadImg;

@@ -3,6 +3,7 @@ import "@/styles/customs.css";
 import DefaultLayout from "@/components/_layout/DefaultLayout";
 import globalState from "@/lib/store/globalState";
 import { useEffect } from "react";
+import { useShowLazyCookie } from "@/lib/services/showLazyCookie";
 
 import { Montserrat } from "next/font/google";
 import dynamic from "next/dynamic";
@@ -12,6 +13,7 @@ const primary = Montserrat({
   subsets: ["latin"],
 });
 export default function App({ Component, pageProps }) {
+  const test = useShowLazyCookie();
   const TenantScripts = dynamic(() =>
     import("@/layout/partials/TenantScripts")
   );

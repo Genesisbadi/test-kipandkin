@@ -93,7 +93,15 @@ export default function DiscoverBlog({ block }) {
               />
             </div>
             <div className="relative md:absolute w-full top-0 right-0 max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
-              <h2 className="text-primary text-[25px]">{title}</h2>
+              <h2
+                className={`text-primary text-[25px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                }`}
+              >
+                {title}
+              </h2>
               {description && (
                 <div
                   className="py-[30px] text-[14px]"

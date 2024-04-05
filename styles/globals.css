@@ -285,6 +285,10 @@
 .animate-wobble {
   animation: wobble 1s;
 }
+#CookiebotWidget .CookiebotWidget-consent-details button,
+#CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-withdraw {
+  color: var(--primary) !important;
+}
 
 #CookiebotWidget #CookiebotWidget-buttons #CookiebotWidget-btn-change {
   background-color: var(--primary) !important;
@@ -300,6 +304,7 @@
 #CookiebotWidget-btn-change {
   border-color: var(--primary) !important;
 }
-#CookiebotWidget-widgetContent path {
+#CookiebotWidget-widgetContent path,
+#CookiebotWidget .CookiebotWidget-logo svg circle {
   fill: var(--primary) !important;
 }
