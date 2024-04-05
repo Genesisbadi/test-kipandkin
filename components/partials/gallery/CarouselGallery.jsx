@@ -10,7 +10,7 @@ export default function CarouselGallery({ ...props }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -35,7 +35,7 @@ export default function CarouselGallery({ ...props }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -98,7 +98,13 @@ export default function CarouselGallery({ ...props }) {
         <div className={`${className || "bg-[#f1f1f1]"} flex w-full py-10`}>
           <div className="flex flex-col w-full">
             {title && (
-              <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+              <span
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                } tracking-[1px] text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[30px]`}
+              >
                 {title || "Gallery"}
               </span>
             )}
@@ -112,7 +118,7 @@ export default function CarouselGallery({ ...props }) {
                       images={images}
                       title={alt_title}
                       image={item}
-                      className="w-full h-[250px] sm:h-[300px] lg:h-[529px] object-cover"
+                      className="w-full h-[250px] sm:h-[300px] lg:h-[420px] object-cover"
                     />
                   </div>
                 );

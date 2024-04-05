@@ -58,9 +58,15 @@ export default function Block({ block }) {
 
   return (
     <section className="bg-[#F1F1F1] pb-[30px]">
-      <div className="container">
+      <div className="max-w-[980px] mx-auto">
         <div className="pb-[20px] md:pb-[40px]">
-          <h2 className="text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]">
+          <h2
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "font-tenor"
+                : "font-domine"
+            } text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]`}
+          >
             {title}
           </h2>
           <div className="text-[#555] text-[14px] text-center leading-[21px] tracking-[1px] pb-[10px] mb-[10px]">
@@ -79,7 +85,7 @@ export default function Block({ block }) {
         </div>
         <hr className="border-t border-0 border-[#ccc] my-[20px]" />
         <div
-          className="text-center pb-[10px] mb-[20px]"
+          className="text-center pb-[10px] mb-[20px] text-[14px]"
           dangerouslySetInnerHTML={{ __html: description }}
         ></div>
 

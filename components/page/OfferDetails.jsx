@@ -31,8 +31,12 @@ export default function OfferDetails({ page }) {
   };
   return (
     <article className="bg-[#F1F1F1]">
-      <div className="container">
-        <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
+      <div className="max-w-[980px] mx-auto">
+        <h2
+          className={`${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+          } text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]`}
+        >
           {title}
         </h2>
         {mediaHandler["main.image"]?.[0] && (
@@ -58,7 +62,13 @@ export default function OfferDetails({ page }) {
           <>
             {venues.length > 0 && (
               <>
-                <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
+                <div
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "font-tenor"
+                      : "font-domine"
+                  } text-primary text-[20px] tracking-[1px] mb-[10px]`}
+                >
                   Select Venue:
                 </div>
                 <CustomSelect
@@ -91,7 +101,7 @@ export default function OfferDetails({ page }) {
         <>
           {currentVenue && (
             <>
-              <div className="container mt-[30px] pb-[50px]">
+              <div className="max-w-[980px] mx-auto mt-[30px] pb-[50px]">
                 {currentVenue.description && (
                   <VenueDescription
                     className="bg-white shadow-md px-[40px] py-[30px] mb-[50px]"

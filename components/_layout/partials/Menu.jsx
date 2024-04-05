@@ -83,13 +83,13 @@ export default function Menu({ ...props }) {
             process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "pr-[2px]" : ""
           }`}
         >
-          <div className="xl:pl-[30px] z-[1] max-w-[150px] mx-auto xl:max-w-[100%] absolute top-0 left-0 right-0 xl:right-auto h-full flex items-center">
-            <Link href="/" className="h-full">
+          <div className="xl:pl-[30px] z-[1] max-w-[154px] mx-auto xl:max-w-[100%] absolute top-0 left-0 right-0 xl:right-auto h-full flex items-center">
+            <Link href="/" className="h-full block">
               <Image
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
                 height={50}
-                className="h-full object-contain"
+                className="h-full object-contain max-w-[154px] w-full"
                 alt={tenantDetails.name || "Logo"}
               />
             </Link>

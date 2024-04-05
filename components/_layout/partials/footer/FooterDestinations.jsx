@@ -62,21 +62,24 @@ export default function FooterDestinations({}) {
   };
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1199,
+        arrows: true,
         settings: {
           slidesToShow: 4,
         },
       },
       {
         breakpoint: 991,
+        arrows: true,
         settings: {
           slidesToShow: 3,
         },
@@ -103,7 +106,13 @@ export default function FooterDestinations({}) {
           childrenClassname="pb-0"
         >
           <section className="footer-strip text-white md:pt-[30px]">
-            <h2 className="text-center hidden md:block text-primary text-[25px] mb-[30px]">
+            <h2
+              className={`text-center hidden md:block text-primary text-[25px] mb-[30px] tracking-[1px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
               {"Exciting Destinations"}
             </h2>
             <Slick {...settings}>
@@ -111,7 +120,7 @@ export default function FooterDestinations({}) {
                 <div key={index}>
                   <Link
                     href={item?.data?.main?.link || "#"}
-                    className="flex justify-center bg-[#333] items-center min-h-[250px] relative"
+                    className="flex justify-center bg-[#333] items-center min-h-[208px] relative"
                     target="_blank"
                   >
                     <Image

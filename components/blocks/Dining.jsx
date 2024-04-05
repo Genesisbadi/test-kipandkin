@@ -37,7 +37,7 @@ export default function Dining({ block, page }) {
   return (
     <>
       <section className="bg-[#F1F1F1] pb-[30px]">
-        <div className="container overflow-hidden">
+        <div className="max-w-[980px] mx-auto overflow-hidden">
           {title && (
             <h2 className="text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc]">
               {title}

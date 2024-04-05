@@ -11,7 +11,7 @@ export default function CallToActions({ block }) {
       title={block_title || "What to find out"}
       childrenClassname="pb-0"
     >
-      <section className="bg-[#F1F1F1] overflow-hidden py-[30px]">
+      <section className="bg-[#F1F1F1] overflow-hidden py-[30px] lg:py-[40px]">
         <div className="container">
           {block_title && (
             <h2 className="font-tenor text-center text-primary hidden md:block text-[25px] mb-[30px]">

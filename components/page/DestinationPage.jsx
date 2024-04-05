@@ -76,7 +76,7 @@ export default function DestinationDetails({ page }) {
       </section>
 
       {showLazy && (
-        <article>
+        <article className="bg-[#f1f1f1]">
           <div className="max-w-[980px] mx-auto py-[50px]">
             <div className="flex flex-col pb-[40px]">
               <span className="text-center pb-3 text-[14px]">
@@ -152,7 +152,7 @@ export default function DestinationDetails({ page }) {
           </div>
           {links && links.length > 0 && (
             <div
-              className={`flex flex-col sm:flex-row w-full gap-y-3 sm:gap-y-0 justify-center px-5 2xl:px-0 gap-x-3 bg-white`}
+              className={`flex flex-col sm:flex-row w-full gap-y-3 sm:gap-y-0 justify-center px-5 2xl:px-0 gap-x-3`}
             >
               {links.map((item, index) => {
                 return (

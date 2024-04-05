@@ -20,7 +20,7 @@ export default function OurCollection({ block, mediaHandler }) {
                 height={1000}
                 width={1000}
                 quality={100}
-                className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
+                className="w-full h-[400px] object-cover"
               />
               <div className="flex flex-col absolute w-full h-full items-center justify-center z-[2]">
                 <span className="text-white font-[700] text-[20px] pb-[20px]">
@@ -30,14 +30,14 @@ export default function OurCollection({ block, mediaHandler }) {
                   {item?.data.main.book_now_button_link && (
                     <Link
                       href={item?.data.main.book_now_button_link}
-                      className={`w-full 2sm:w-auto text-center text-white text-sm bg-primary hover:bg-secondary py-5 px-8 sm:px-3 xl:px-8 uppercase`}
+                      className={`w-full h-full 2sm:w-auto text-center text-white text-sm border-[1px] border-primary bg-primary hover:bg-secondary hover:border-secondary py-[20px] px-[30px] uppercase`}
                     >
                       Book Now
                     </Link>
                   )}
                   <Link
                     href={item?.route_url || []}
-                    className={`w-full 2sm:w-auto text-center text-sm text-white border border-white py-5 px-8 sm:px-3 xl:px-8 hover:bg-white hover:text-secondary uppercase`}
+                    className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] text-white border border-white py-[20px] px-[30px] hover:bg-white hover:text-secondary uppercase`}
                   >
                     More Details
                   </Link>

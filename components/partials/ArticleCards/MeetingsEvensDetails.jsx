@@ -167,7 +167,7 @@ export default function MeetingsEvensDetails({ block, page }) {
 
         {showLazy && (
           <>
-            <div className="container pt-[20px] sm:pt-[30px]">
+            <div className="max-w-[980px] mx-auto pt-[20px] sm:pt-[30px]">
               {description && (
                 <div
                   className={`${styles.description} my-[30px]`}

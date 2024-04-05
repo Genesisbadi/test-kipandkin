@@ -36,7 +36,7 @@ export default function MeetingsEvensDetails({ page }) {
   return (
     <>
       <article className="bg-[#f1f1f1]">
-        <div className="relative min-h-[calc(100vh-61px)] text-white flex items-center justify-center">
+        <div className="relative min-h-[560px] text-white flex items-center justify-center">
           <Image
             alt={title}
             src={
@@ -51,46 +51,52 @@ export default function MeetingsEvensDetails({ page }) {
           {title && <div className="relative text-[42px]">{title}</div>}
         </div>
 
+        <div className="max-w-[980px] mx-auto pt-[20px] sm:pt-[30px]">
+          {description && (
+            <div
+              className={`${styles.description} my-[30px]`}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
+          )}
+          {venues.length > 0 && (
+            <>
+              <div
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                } text-primary text-[20px] tracking-[1px] mb-[10px]`}
+              >
+                Select Venue:
+              </div>
+              <CustomSelect
+                // value={selectedValue}
+                className="react-select"
+                defaultValue={getDefaultValue()}
+                onChange={(e) =>
+                  setSelectedValue(() => {
+                    Number(e.value);
+                    const curVenue = venues.find(
+                      (obj) => obj.title === e.value
+                    );
+                    setCurrentVenue(curVenue);
+                  })
+                }
+                options={venues?.map((item, index) => {
+                  return {
+                    label: item?.title,
+                    value: item?.title,
+                  };
+                })}
+              />
+            </>
+          )}
+        </div>
+
         {showLazy && (
           <>
-            <div className="container pt-[20px] sm:pt-[30px]">
-              {description && (
-                <div
-                  className={`${styles.description} my-[30px]`}
-                  dangerouslySetInnerHTML={{ __html: description }}
-                ></div>
-              )}
-              {venues.length > 0 && (
-                <>
-                  <div className="text-primary text-[20px] tracking-[1px] mb-[10px]">
-                    Select Venue:
-                  </div>
-                  <CustomSelect
-                    // value={selectedValue}
-                    className="react-select"
-                    defaultValue={getDefaultValue()}
-                    onChange={(e) =>
-                      setSelectedValue(() => {
-                        Number(e.value);
-                        const curVenue = venues.find(
-                          (obj) => obj.title === e.value
-                        );
-                        setCurrentVenue(curVenue);
-                      })
-                    }
-                    options={venues?.map((item, index) => {
-                      return {
-                        label: item?.title,
-                        value: item?.title,
-                      };
-                    })}
-                  />
-                </>
-              )}
-            </div>
-
             {currentVenue && (
-              <div className="container pb-[50px] mt-[30px]">
+              <div className="max-w-[980px] mx-auto pb-[50px] mt-[30px]">
                 {currentVenue.image && (
                   <ModalImage
                     className="w-full h-full object-cover"

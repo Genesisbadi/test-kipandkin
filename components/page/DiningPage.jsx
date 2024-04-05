@@ -194,7 +194,7 @@ export default function DiningPage({ page }) {
       </section>
       {showLazy && (
         <article>
-          <div className="container py-[50px]">
+          <div className="max-w-[980px] mx-auto py-[50px]">
             {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
               <div className="flex text-[14px] mb-[30px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
                 <div className="px-[15px]">
@@ -266,7 +266,11 @@ export default function DiningPage({ page }) {
                           dangerouslySetInnerHTML={{
                             __html: item.time,
                           }}
-                          className="text-[18px] font-[700] leading-[25px] pb-3"
+                          className={`text-[18px] font-[700] leading-[25px] pb-3 ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "font-tenor"
+                              : "font-domine"
+                          }`}
                         />
                       </div>
                     );
@@ -278,8 +282,8 @@ export default function DiningPage({ page }) {
                       return (
                         <Link
                           key={index}
-                          href={item?.button_url}
-                          className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                          href={item?.button_url || "#"}
+                          className={`px-[30px] py-[15px] text-center tracking-[1px] text-[14px] ${
                             item.variant === "filled"
                               ? "bg-primary text-white"
                               : "border border-secondary text-secondary"
@@ -295,9 +299,9 @@ export default function DiningPage({ page }) {
                           return (
                             <Link
                               key={index}
-                              href={item.file}
+                              href={item?.file || "#"}
                               target="_blank"
-                              className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                              className={`w-full px-[30px] py-[15px] 2sm:w-auto text-center tracking-[1px] text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                             >
                               {item.file_label}
                             </Link>
@@ -321,14 +325,14 @@ export default function DiningPage({ page }) {
           )}
           {diningOfferTitle && (
             <div className="w-full bg-[#f1f1f1]">
-              <div className="container py-[50px]">
+              <div className="max-w-[980px] mx-auto py-[50px]">
                 <div className="flex flex-col w-full">
                   <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
                     Dining Offer
                   </span>
                   <div className="flex flex-col md:flex-row w-full bg-white">
                     <div className="w-full md:w-1/2">
-                      <Link href={route_url}>
+                      <Link href={route_url || "#"}>
                         <Image
                           alt={diningOfferTitle}
                           src={data?.main?.featured_image}
@@ -354,9 +358,9 @@ export default function DiningPage({ page }) {
                         />
                       </div>
                       <Link
-                        href={route_url}
+                        href={route_url || "#"}
                         target="_blank"
-                        className={`w-full mt-5 py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                        className={`w-full mt-5 py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                       >
                         View Offer
                       </Link>

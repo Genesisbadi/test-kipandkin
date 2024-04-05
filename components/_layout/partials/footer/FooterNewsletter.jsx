@@ -60,7 +60,11 @@ export default function FooterNewsletter() {
   return (
     <SectionAccordion title="Stay Updated">
       <section className="footer-newsletter md:py-[40px]">
-        <h2 className="hidden md:block text-center text-primary text-[25px] mb-[30px] mb-[15px]">
+        <h2
+          className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] mb-[15px] ${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+          }`}
+        >
           Stay Updated
         </h2>
 
@@ -136,13 +140,21 @@ export default function FooterNewsletter() {
               >
                 I Agree to the {tenantDetails.name}{" "}
                 <span>
-                  <Link className="text-primary" href="/terms-condition">
+                  <Link
+                    className="text-primary"
+                    href="/terms-condition"
+                    target="_blank"
+                  >
                     Terms and Conditions
                   </Link>
                 </span>{" "}
                 and have read the{" "}
                 <span>
-                  <Link className="text-primary" href="/privacy-policy">
+                  <Link
+                    className="text-primary"
+                    href="/privacy-policy"
+                    target="_blank"
+                  >
                     Privacy Policy
                   </Link>
                 </span>

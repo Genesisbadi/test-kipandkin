@@ -4,6 +4,7 @@
   color: var(--primary);
   margin-bottom: 20px;
   letter-spacing: 1px;
+  font-family: "Tenor", sans-serif;
 }
 .description p {
   line-height: 21px;

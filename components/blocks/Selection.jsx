@@ -21,10 +21,16 @@ export default function Selection({ block }) {
 
   return (
     <section className="bg-[#f1f1f1] pt-[20px] sm:py-[30px]">
-      <div className="container pb-[30px]">
+      <div className="max-w-[980px] mx-auto pb-[30px]">
         <div className="my-[15px]">
           {title && (
-            <h2 className="text-primary text-[18px] font-bold tracking-[1px] mb-[20px]">
+            <h2
+              className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
               {title}
             </h2>
           )}
@@ -37,7 +43,13 @@ export default function Selection({ block }) {
         </div>
         {selections.length > 0 && (
           <>
-            <div className="text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]">
+            <div
+              className={`text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px] tracking-[1px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
               {selection_label}:
             </div>
             <CustomSelect

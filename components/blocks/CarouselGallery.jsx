@@ -51,13 +51,16 @@ export default function CarouselGallery({ block }) {
       >
         <div className="flex items-center h-full">
           <svg
-            width={25}
-            height={54}
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 27 44"
+            width="35"
+            height="55"
+            viewBox="0 0 19.349 30"
           >
             <path
-              d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"
+              id="_002-right-arrow"
+              data-name="002-right-arrow"
+              d="M87.566,30,106.33,15,87.566,0l-.585.732L104.829,15,86.981,29.268Z"
+              transform="translate(-86.981)"
               fill="#fff"
             />
           </svg>
@@ -77,8 +80,8 @@ export default function CarouselGallery({ block }) {
         <div className="flex items-center h-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={25}
-            height={54}
+            width="35"
+            height="55"
             viewBox="0 0 19.349 30"
           >
             <path
@@ -139,7 +142,11 @@ export default function CarouselGallery({ block }) {
   return (
     <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
       {title && (
-        <h2 className="text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] md:mb-[30px]">
+        <h2
+          className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] md:mb-[30px] ${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+          }`}
+        >
           {title}
         </h2>
       )}
@@ -150,12 +157,7 @@ export default function CarouselGallery({ block }) {
       >
         {imagesLength > 0 && (
           <div className="flex flex-col w-full slick-gallery">
-            <Slick
-              {...settings}
-              className={`${
-                variation.length === 0 ? "h-[260px]" : "h-[330px] lg:h-[530px]"
-              }`}
-            >
+            <Slick className="carousel-gallery" {...settings}>
               {images.map((item, index) => (
                 <Fragment key={index}>
                   <ModalImage1
@@ -163,7 +165,7 @@ export default function CarouselGallery({ block }) {
                     className={`${
                       variation.length === 0
                         ? "h-[260px]"
-                        : "h-[330px] lg:h-[530px]"
+                        : "h-[330px] lg:h-[420px]"
                     } `}
                     title={title}
                     content={index}
