@@ -1,11 +1,27 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
-import globalState from "@/lib/store/globalState";
-
 export default function Document() {
   return (
     <Html lang="en">
-      <Head></Head>
+      <Head>
+        {process.env.NEXT_PUBLIC_TEMPLATE === "1" ? (
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/TenorSans-Regular.woff"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+        ) : (
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/Domine-Regular.woff"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+        )}
+      </Head>
       <body className="text-[#555555]">
         <Main />
         <NextScript />

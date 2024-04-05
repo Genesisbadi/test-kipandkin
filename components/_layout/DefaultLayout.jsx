@@ -28,8 +28,10 @@ export default function DefaultLayout(props) {
     <>
       <Menu page={page} blocks={blocks} />
 
-      {!showLazy && <BookingFormFake page={page} blocks={blocks} />}
-      {showLazy && <BookingForm page={page} blocks={blocks} />}
+      {/* {!showLazy && <BookingFormFake page={page} blocks={blocks} />} */}
+      {/* {showLazy && <BookingForm page={page} blocks={blocks} />} */}
+
+      <BookingForm page={page} blocks={blocks} />
 
       <main id="main-content" className="main-content grow">
         {props.children}

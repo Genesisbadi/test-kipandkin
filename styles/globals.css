@@ -15,11 +15,13 @@
   font-family: "Domine";
   font-weight: 400;
   src: url("/fonts/Domine-Regular.woff");
+  font-display: swap;
 }
 @font-face {
   font-family: "Tenor";
   font-weight: 400;
   src: url("/fonts/TenorSans-Regular.woff");
+  font-display: swap;
 }
 
 .font-domine {
