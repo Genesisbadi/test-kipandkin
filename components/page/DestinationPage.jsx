@@ -50,7 +50,7 @@ export default function DestinationDetails({ page }) {
 
   return (
     <>
-      <section className="page-banner relative flex items-center justify-center min-h-[100vh] h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center h-[560px] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}
@@ -63,7 +63,13 @@ export default function DestinationDetails({ page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]">
+          <h2
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "font-tenor"
+                : "font-domine"
+            } text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]`}
+          >
             {title}
           </h2>
         )}
@@ -71,9 +77,11 @@ export default function DestinationDetails({ page }) {
 
       {showLazy && (
         <article>
-          <div className="container py-[50px]">
+          <div className="max-w-[980px] mx-auto py-[50px]">
             <div className="flex flex-col pb-[40px]">
-              <span className="text-center pb-3">Other Destination</span>
+              <span className="text-center pb-3 text-[14px]">
+                Other Destinations
+              </span>
               <CustomSelect
                 className="react-select"
                 id="destinationSelect"
@@ -127,13 +135,13 @@ export default function DestinationDetails({ page }) {
                       <span className="text-secondary1 text-[20px] tracking-[2px]">
                         {item?.title}
                       </span>
-                      <hr className="w-[80px] border border-secondary1" />
+                      <span className="w-[75px] h-[2px] mt-[5px] bg-secondary1 block" />
                       {item?.description && (
                         <div
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}
-                          className="text-secondary1 pt-5"
+                          className="text-[#d4bebe] text-[14px] leading-[27px] pt-5"
                         />
                       )}
                     </div>

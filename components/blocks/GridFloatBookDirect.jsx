@@ -5,14 +5,14 @@ export default function GridFloatBookDirect({ block }) {
   const { block_title, items } = globalData.tenantDetails.data.call_to_actions;
   const gridItems = block.main.items;
   return (
-    <section className="py-[30px] overflow-hidden">
-      <div className="container">
+    <section className="py-[58px] overflow-hidden">
+      <div className="max-w-[980px] mx-auto">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full px-[15px] mb-[15px] lg:mb-0 lg:max-w-[30%]">
-            <h2 className="text-primary text-[22px] mb-[15px]">
+            <h2 className="text-primary text-[22px] mb-[20px] font-tenor">
               Why Book Direct?
             </h2>
-            <div className="pl-[20px]">
+            <div className="pl-[40px]">
               <div className="flex flex-wrap mx-[-15px] lg:flex-col">
                 {items?.map((item, index) => (
                   <div
@@ -44,7 +44,13 @@ export default function GridFloatBookDirect({ block }) {
                   className="px-[15px] w-full md:max-w-[50%] mb-[15px] md:mb-0"
                   key={index}
                 >
-                  <h2 className="text-center text-primary text-[22px] mb-[15px]">
+                  <h2
+                    className={`text-center text-primary text-[22px] mb-[20px] ${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "font-tenor"
+                        : "font-domine"
+                    }`}
+                  >
                     {item?.title}
                   </h2>
                   <div className="relative text-center text-white">
@@ -55,9 +61,9 @@ export default function GridFloatBookDirect({ block }) {
                       alt={item.title}
                       className="absolute top-0 w-full h-full object-cover"
                     />
-                    <div className="flex flex-col relative bg-black/[0.6] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
+                    <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
                       <div
-                        className="grow relative"
+                        className="grow relative text-[14px]"
                         dangerouslySetInnerHTML={{ __html: item?.description }}
                       />
                       <div className="text-center mt-[15px] relative">

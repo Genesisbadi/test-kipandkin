@@ -40,7 +40,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               </h2>
               {item.description && (
                 <div
-                  className="text-[14px] mb-[30px] grow"
+                  className="text-[14px] mb-[30px] grow line-clamp-3 leading-[21px]"
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               )}

@@ -221,7 +221,13 @@ export default function BookingForm({ ...props }) {
           >
             {!isMobile ? (
               <div className="flex justify-end text-[14px] h-full">
-                <div className="text-primary py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase">
+                <div
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "font-tenor"
+                      : "font-domine"
+                  } py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
+                >
                   Quick book
                 </div>
                 <span className="relative">

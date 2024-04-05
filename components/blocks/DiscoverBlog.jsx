@@ -18,17 +18,22 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%)] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
-          className="!fill-white"
-          width={25}
-          height={54}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 27 44"
+          width="25"
+          height="54"
+          viewBox="0 0 19.349 30"
         >
-          <path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" />
+          <path
+            id="_002-right-arrow"
+            data-name="002-right-arrow"
+            d="M87.566,30,106.33,15,87.566,0l-.585.732L104.829,15,86.981,29.268Z"
+            transform="translate(-86.981)"
+            fill="#fff"
+          />
         </svg>
       </div>
     );
@@ -39,7 +44,7 @@ export default function DiscoverBlog({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] md:top-[calc(50%-20px)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
+        } absolute top-[50%] md:top-[calc(50%)] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <svg
@@ -128,7 +133,7 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="px-[50px] text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative flex justify-center items-center text-white">
+                        <div className="max-w-[440px] mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative flex justify-center items-center text-white">
                           <h3>{item.title}</h3>
                         </div>
                       </Link>
@@ -139,7 +144,7 @@ export default function DiscoverBlog({ block }) {
             </>
           )}
           <div className="flex justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
+            <span className="w-full font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
               Discovery Blog
             </span>
             <Link

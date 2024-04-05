@@ -68,7 +68,10 @@ export default function footerConnections() {
           ) : (
             <div>
               {connections?.connection_items?.map((item, index) => (
-                <div key={index} className="[&:not(:last-of-type)]:mb-[15px]">
+                <div
+                  key={index}
+                  className="border-b border-b-[1px] pb-[15px] border-[#666] [&:not(:last-of-type)]:mb-[15px]"
+                >
                   {item?.title && (
                     <h2
                       className={`uppercase text-center text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
@@ -86,6 +89,7 @@ export default function footerConnections() {
                               src={item?.image}
                               width={250}
                               height={150}
+                              className="max-w-[200px]"
                               alt={item?.title || "Connection"}
                             />
                           </Link>

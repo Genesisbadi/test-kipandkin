@@ -127,7 +127,7 @@ export default function DestinationDetails({ block, page }) {
                       <span className="text-secondary1 text-[20px] tracking-[2px]">
                         {item?.title}
                       </span>
-                      <hr className="w-[80px] border border-secondary1" />
+                      <div className="w-[75px] mt-[5px] h-[2px] bg-secondary1 mb-[20px]" />
                       {item?.description && (
                         <div
                           dangerouslySetInnerHTML={{

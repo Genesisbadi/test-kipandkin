@@ -66,9 +66,7 @@
     background-color: #ccc;
     transition: all ease 0.3s;
   }
-  p {
-    line-height: 27px;
-  }
+
   .react-select {
     text-transform: uppercase;
   }

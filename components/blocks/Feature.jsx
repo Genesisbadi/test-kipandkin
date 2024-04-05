@@ -51,17 +51,32 @@ export default function Feature({ block }) {
           )}
         </div>
         <div className="bg-primary  py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px] lg:min-h-[800px]">
-          <h2 className="text-secondary1 text-[20px] tracking-[2px] mb-[10px] tracking-[2px]">
+          <h2
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "text-[#c5baa6]"
+                : "text-white"
+            } text-[20px] mb-[10px] tracking-[2px]`}
+          >
             {title}
           </h2>
-          <hr className="w-[80px] border border-secondary1 mb-[20px]" />
+
+          <div className="w-[75px] mt-[5px] h-[2px] bg-secondary1 mb-[20px]" />
           <div
-            className="text-secondary1 mb-[30px]"
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "text-[#d4bebe]"
+                : "text-white"
+            } mb-[30px] leading-[21px]`}
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <div>
             <Link
-              className="inline-block text-center text-secondary1 min-w-[200px] border border-secondary1 py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+              className={`inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "hover:bg-[#d4bebe] text-[#d4bebe] border-[#d4bebe]"
+                  : "hover:bg-white text-white border-white"
+              }`}
               href={link}
               target={link.includes("http") ? "_blank" : "_self"}
             >
