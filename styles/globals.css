@@ -11,19 +11,6 @@
   --dropdownBorder: #ebbbc9;
 }
 
-@font-face {
-  font-family: "Domine";
-  font-weight: 400;
-  src: url("/fonts/Domine-Regular.woff");
-  font-display: swap;
-}
-@font-face {
-  font-family: "Tenor";
-  font-weight: 400;
-  src: url("/fonts/TenorSans-Regular.woff");
-  font-display: swap;
-}
-
 .font-domine {
   font-family: "Domine", sans-serif;
 }
@@ -144,6 +131,9 @@
   @media (min-width: 1200px) {
     .st-1 .container {
       max-width: 980px;
+    }
+    .st-2 .container {
+      max-width: 1140px;
     }
   }
 }

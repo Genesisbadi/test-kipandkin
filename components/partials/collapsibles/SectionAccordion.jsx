@@ -14,7 +14,9 @@ export default function SectionAccordion({ children, ...props }) {
       <div className="h-[1px] md:hidden bg-[#ccc] w-[calc(100%-30px)] mx-auto"></div>
       {title && (
         <div
-          className="text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]"
+          className={`${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+          } text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]`}
           onClick={handleCollapse}
         >
           {title}

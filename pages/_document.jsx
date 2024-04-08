@@ -21,6 +21,22 @@ export default function Document() {
             crossOrigin="anonymous"
           />
         )}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `@font-face {
+            font-family: "Domine";
+            font-weight: 400;
+            src: url("/fonts/Domine-Regular.woff");
+            font-display: swap;
+          }
+          @font-face {
+            font-family: "Tenor";
+            font-weight: 400;
+            src: url("/fonts/TenorSans-Regular.woff");
+            font-display: swap;
+          }`,
+          }}
+        />
       </Head>
       <body className={`text-[#555555] st-${process.env.NEXT_PUBLIC_TEMPLATE}`}>
         <Main />

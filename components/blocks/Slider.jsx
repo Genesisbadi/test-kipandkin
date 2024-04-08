@@ -27,16 +27,20 @@ export default function Slider({ block, mediaHandler }) {
       linkElement.rel = "preload";
       let preloadImg;
 
-      linkElement.as = "image";
-      document.head.appendChild(linkElement);
-      linkElementRef.current = linkElement;
-      if (window.innerWidth <= 414) {
-        preloadImg = slider_items[0]?.image_mobile;
-      } else {
-        preloadImg = slider_items[0]?.image_desktop;
-      }
+      if (linkElement) {
+        linkElement.as = "image";
+        document.head.appendChild(linkElement);
+        linkElementRef.current = linkElement;
+        if (window.innerWidth <= 414) {
+          preloadImg = slider_items[0]?.image_mobile;
+        } else {
+          preloadImg = slider_items[0]?.image_desktop;
+        }
 
-      linkElement.href = preloadImg;
+        if (preloadImg) {
+          linkElement.href = preloadImg;
+        }
+      }
     };
     if (slider_items.length > 0 && !linkElementRef.current) {
       window.addEventListener("orientationchange", handleResize);
