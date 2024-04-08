@@ -21,7 +21,7 @@ export default function Selection({ block }) {
 
   return (
     <section className="bg-[#f1f1f1] pt-[20px] sm:py-[30px]">
-      <div className="max-w-[980px] mx-auto pb-[30px]">
+      <div className="container pb-[30px]">
         <div className="my-[15px]">
           {title && (
             <h2

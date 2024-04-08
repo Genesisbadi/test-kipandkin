@@ -190,7 +190,7 @@ export default function OurCollectionDetails({ block, page }) {
       {showLazy && (
         <article>
           <div className="w-full bg-[#f1f1f1]">
-            <div className="max-w-[980px] mx-auto px-5 2xl:px-0 py-[50px] ">
+            <div className="container px-5 2xl:px-0 py-[50px] ">
               <div className="flex flex-col pb-[40px]">
                 <span className="text-center text-sm pb-3">
                   More from our collection
@@ -300,7 +300,7 @@ export default function OurCollectionDetails({ block, page }) {
               images={images || []}
             />
           )}
-          <div className="max-w-[980px] mx-auto px-5 2xl:px-0">
+          <div className="container px-5 2xl:px-0">
             {virtual_url && virtual_url?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col w-full">

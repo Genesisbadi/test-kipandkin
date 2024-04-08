@@ -2,7 +2,7 @@ export default function Title({ block }) {
   const { remove_underline, title } = block.main;
   return (
     <section className="bg-[#f1f1f1] pt-[10px] sm:py-[30px]">
-      <div className="max-w-[980px] mx-auto">
+      <div className="container">
         <h3
           className={`${
             !remove_underline ? "border-b border-[#ccc] pb-[30px]" : ""

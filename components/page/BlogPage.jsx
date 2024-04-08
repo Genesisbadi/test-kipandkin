@@ -35,7 +35,7 @@ export default function BlogPage({ page }) {
 
   return (
     <article className="bg-[#F1F1F1]">
-      <div className="max-w-[980px] mx-auto overflow-hidden">
+      <div className="container overflow-hidden">
         <h2
           className={`text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"

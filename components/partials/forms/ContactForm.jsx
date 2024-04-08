@@ -1,10 +1,12 @@
 import FormField from "@/components/forms/FormField";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react"; // Added useEffect
 import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
 export default function ContactForm({ form }) {
   const formData = formStore((state) => state);
+  const [formSuccessInfo, setFormSuccessInfo] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const captcha = globalState((state) => state.captcha);
   const sections = form?.fields?.blueprint?.schema?.sections || [];
   const [errors, setErrors] = useState([]);
@@ -16,9 +18,11 @@ export default function ContactForm({ form }) {
         return "";
     }
   };
+
   const findWrapperClass = (field) => {
     switch (field) {
       case "message":
+        return "col-span-2"; // Uncommented this line
       // case "name":
       //   return "col-span-2";
       // case "radio_list":
@@ -28,6 +32,15 @@ export default function ContactForm({ form }) {
     }
   };
   const [token, setToken] = useState();
+
+  useEffect(() => {
+    if (formData?.formSuccessInfo) {
+      setFormSuccessInfo(true);
+    }
+  }, [formData?.formSuccessInfo]);
+
+  console.log("formSuccessInfo", formSuccessInfo);
+
   return (
     <>
       {sections.map((section) => {
@@ -35,7 +48,7 @@ export default function ContactForm({ form }) {
         return (
           <Fragment key={section?.state_name}>
             <form
-              onSubmit={(e) =>
+              onSubmit={(e) => {
                 formSubmit({
                   e,
                   formId: form.id,
@@ -45,8 +58,8 @@ export default function ContactForm({ form }) {
                   sections,
                   setErrors,
                   formData,
-                })
-              }
+                });
+              }}
             >
               <div className="flex flex-col">
                 {fields.map((field) => (
@@ -121,6 +134,22 @@ export default function ContactForm({ form }) {
           </Fragment>
         );
       })}
+      {formSuccessInfo && (
+        <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
+            <h2 className="text-2xl font-bold mb-4">Success!</h2>
+            <p>{`Your inquiry has been received. We'll get back to you shortly.`}</p>
+            <button
+              onClick={(e) => {
+                setFormSuccessInfo(false);
+              }}
+              className="min-w-[150px] mt-[30px] inline-block py-[8px] px-[20px] bg-primary text-[#fff] rounded-[30px] text-[14px] font-bold"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

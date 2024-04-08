@@ -5,7 +5,7 @@ export default function Description({ block }) {
   return (
     <section className="bg-[#f1f1f1] pt-[10px] sm:pt-[30px] pb-[50px]">
       <div
-        className={`${styles.description} max-w-[980px] mx-auto mb-[30px]`}
+        className={`${styles.description} container mb-[30px]`}
         dangerouslySetInnerHTML={{ __html: description }}
       ></div>
     </section>

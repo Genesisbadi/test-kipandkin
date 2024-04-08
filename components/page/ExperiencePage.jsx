@@ -100,7 +100,7 @@ export default function ExperiencePage({ page }) {
           alt_title={page?.title}
           images={gallery}
           title="Gallery"
-          className="max-w-[980px] mx-auto"
+          className="container"
         />
       )}
     </>

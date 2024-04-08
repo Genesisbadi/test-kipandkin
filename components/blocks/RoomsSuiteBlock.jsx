@@ -36,7 +36,7 @@ export default function RoomsSuiteBlock({ block }) {
           ))}
         </div>
       ) : (
-        <div className="max-w-[980px] mx-auto">No data found</div>
+        <div className="container">No data found</div>
       )}
     </section>
   );

@@ -77,7 +77,7 @@ export default function DestinationDetails({ page }) {
 
       {showLazy && (
         <article className="bg-[#f1f1f1]">
-          <div className="max-w-[980px] mx-auto py-[50px]">
+          <div className="container py-[50px]">
             <div className="flex flex-col pb-[40px]">
               <span className="text-center pb-3 text-[14px]">
                 Other Destinations

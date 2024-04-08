@@ -8,7 +8,7 @@ export default function CallToActions() {
     <>
       {router.asPath !== "/" && (
         <section className="text-primary py-[30px] border-y-[3px] border-primary">
-          <div className="max-w-[980px] mx-auto">
+          <div className="container">
             <h2
               className={`tracking-[1px] text-primary text-[22px] mb-[30px] mb-[15px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1

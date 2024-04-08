@@ -41,7 +41,7 @@ export default function Footer() {
       <FooterNewsletter />
       <FooterDestinations />
       <div className="footer-content text-white bg-[#555555] py-[30px]">
-        <div className="max-w-[980px] mx-auto">
+        <div className="container">
           <FooterConnections />
           <FooterMenu />
           <div className="footer-bottom flex flex-wrap justify-between items-center mt-[60px]">

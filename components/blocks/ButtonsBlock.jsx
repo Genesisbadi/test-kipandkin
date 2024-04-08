@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function ButtonsBlock({ block }) {
   return (
-    <div className="max-w-[980px] mx-auto">
+    <div className="container">
       <div
         className={`flex flex-wrap justify-center pt-[30px] pb-[15px] mx-[-5px]`}
       >

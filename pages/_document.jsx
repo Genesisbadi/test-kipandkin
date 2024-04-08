@@ -22,7 +22,7 @@ export default function Document() {
           />
         )}
       </Head>
-      <body className="text-[#555555]">
+      <body className={`text-[#555555] st-${process.env.NEXT_PUBLIC_TEMPLATE}`}>
         <Main />
         <NextScript />
       </body>

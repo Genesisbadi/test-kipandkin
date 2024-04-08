@@ -142,8 +142,8 @@
   }
 
   @media (min-width: 1200px) {
-    .container {
-      max-width: 1140px;
+    .st-1 .container {
+      max-width: 980px;
     }
   }
 }

@@ -4,7 +4,7 @@ export default function OffersSelections({ block }) {
   console.log(block?.main?.collection);
   return (
     <div className="bg-[#F1F1F1]">
-      <div className="max-w-[980px] mx-auto">
+      <div className="container">
         {block?.main?.collection && block?.main?.collection.length > 0 ? (
           <div className="flex flex-wrap mx-[-15px] py-[30px]">
             {block?.main?.collection.map((item, index) => {

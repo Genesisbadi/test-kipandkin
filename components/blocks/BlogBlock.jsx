@@ -159,7 +159,7 @@ export default function BlogBlock({ block }) {
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
-      <div className="max-w-[980px] mx-auto">
+      <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="lg:max-w-[70%] w-full px-[15px]">
             {loading ? (

@@ -1,41 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import globalData from "@/lib/preBuildScripts/static/globalData.json";
+import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 export default function GridFloatBookDirect({ block }) {
   const { block_title, items } = globalData.tenantDetails.data.call_to_actions;
   const gridItems = block.main.items;
   return (
-    <section className="py-[58px] overflow-hidden">
-      <div className="max-w-[980px] mx-auto">
+    <section className="md:py-[58px] overflow-hidden">
+      <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full px-[15px] mb-[15px] lg:mb-0 lg:max-w-[33.33%]">
-            <h2 className="text-primary text-[22px] mb-[20px] font-tenor">
-              Why Book Direct?
-            </h2>
-            <div className="pl-[40px]">
-              <div className="flex flex-wrap mx-[-15px] lg:flex-col">
-                {items?.map((item, index) => (
-                  <div
-                    className="w-full sm:max-w-[50%] px-[-15px] lg:max-w-full flex flex-wrap items-center mb-[20px] text-[12px]"
-                    key={index}
-                  >
-                    <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-primary ">
-                      <Image
-                        src={item.icon}
-                        width={30}
-                        height={30}
-                        className="!invert-[100%] !brightness-[100%] !contrast-[100%]"
-                        alt={item.title || "Hello World"}
-                      />
-                    </span>
+            <SectionAccordion title="Why Book Direct?">
+              <h2 className="hidden md:block text-primary text-[22px] mb-[20px] font-tenor">
+                Why Book Direct?
+              </h2>
+              <div className="pl-[15px] lg:pl-[40px]">
+                <div className="flex flex-wrap mx-[-15px] lg:flex-col">
+                  {items?.map((item, index) => (
+                    <div
+                      className="w-full sm:max-w-[50%] px-[-15px] lg:max-w-full flex flex-wrap items-center mb-[20px] text-[12px]"
+                      key={index}
+                    >
+                      <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-primary ">
+                        <Image
+                          src={item.icon}
+                          width={30}
+                          height={30}
+                          className="!invert-[100%] !brightness-[100%] !contrast-[100%]"
+                          alt={item.title || "Hello World"}
+                        />
+                      </span>
 
-                    <h3 className="text-primary w-full max-w-[calc(100%-95px)]">
-                      {item.title}
-                    </h3>
-                  </div>
-                ))}
+                      <h3 className="text-primary w-full max-w-[calc(100%-95px)]">
+                        {item.title}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </SectionAccordion>
           </div>
           <div className="w-full px-[15px] lg:max-w-[66.66%]">
             <div className="flex flex-wrap mx-[-15px]">

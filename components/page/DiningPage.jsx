@@ -194,7 +194,7 @@ export default function DiningPage({ page }) {
       </section>
       {showLazy && (
         <article>
-          <div className="max-w-[980px] mx-auto py-[50px]">
+          <div className="container py-[50px]">
             {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
               <div className="flex text-[14px] mb-[30px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
                 <div className="px-[15px]">
@@ -325,7 +325,7 @@ export default function DiningPage({ page }) {
           )}
           {diningOfferTitle && (
             <div className="w-full bg-[#f1f1f1]">
-              <div className="max-w-[980px] mx-auto py-[50px]">
+              <div className="container py-[50px]">
                 <div className="flex flex-col w-full">
                   <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
                     Dining Offer

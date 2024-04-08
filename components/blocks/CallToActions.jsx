@@ -12,7 +12,7 @@ export default function CallToActions({ block }) {
       childrenClassname="pb-0"
     >
       <section className="bg-[#F1F1F1] overflow-hidden py-[30px] lg:py-[40px]">
-        <div className="max-w-[980px] mx-auto">
+        <div className="container">
           {block_title && (
             <h2 className="font-tenor text-center text-primary hidden md:block text-[25px] mb-[30px]">
               {block_title}
@@ -35,7 +35,7 @@ export default function CallToActions({ block }) {
                         src={item.icon}
                         width={35}
                         height={35}
-                        alt={item?.title}
+                        alt="What Guests Love?"
                         className={`w-[35px] h-[35px] object-contain transition ${
                           process.env.NEXT_PUBLIC_TEMPLATE == 1
                             ? "group-hover:!invert-[100%] group-hover:!contrast-[100%] group-hover:!brightness-[100%]"

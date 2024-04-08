@@ -71,7 +71,7 @@ export default function DestinationDetails({ block, page }) {
 
       {showLazy && (
         <article>
-          <div className="max-w-[980px] mx-auto py-[50px]">
+          <div className="container py-[50px]">
             <div className="flex flex-col pb-[40px]">
               <span className="text-center pb-3">Other Destination</span>
               <CustomSelect

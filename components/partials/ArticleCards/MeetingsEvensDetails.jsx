@@ -167,7 +167,7 @@ export default function MeetingsEvensDetails({ block, page }) {
 
         {showLazy && (
           <>
-            <div className="max-w-[980px] mx-auto pt-[20px] sm:pt-[30px]">
+            <div className="container pt-[20px] sm:pt-[30px]">
               {description && (
                 <div
                   className={`${styles.description} my-[30px]`}
@@ -204,7 +204,7 @@ export default function MeetingsEvensDetails({ block, page }) {
             </div>
 
             {currentVenue && (
-              <div className="max-w-[980px] mx-auto pb-[50px] mt-[30px]">
+              <div className="container pb-[50px] mt-[30px]">
                 <div onClick={handleOpenModal}>
                   {currentVenue.image && (
                     <Image

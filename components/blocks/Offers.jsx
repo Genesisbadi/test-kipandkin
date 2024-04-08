@@ -58,7 +58,7 @@ export default function Block({ block }) {
 
   return (
     <section className="bg-[#F1F1F1] pb-[30px]">
-      <div className="max-w-[980px] mx-auto">
+      <div className="container">
         <div className="pb-[20px] md:pb-[40px]">
           <h2
             className={`${

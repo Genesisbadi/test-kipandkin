@@ -20,7 +20,7 @@ export default function FooterJuicer() {
               type="text/css"
             />
             <Script src="https://assets.juicer.io/embed.js" />
-            <div className="max-w-[980px] mx-auto">
+            <div className="container">
               <h2 className="text-center hidden md:block text-primary text-[25px] mb-[30px]">
                 We’re Social
               </h2>
