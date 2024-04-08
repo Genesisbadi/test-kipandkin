@@ -24,7 +24,7 @@ export default function CallToActions() {
                 {items?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex mb-[30px] md:max-w-[50%] lg:max-w-[33.33%] w-full items-center"
+                    className="flex mb-[15px] md:max-w-[50%] lg:max-w-[33.33%] w-full items-center"
                   >
                     <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-primary ">
                       <Image

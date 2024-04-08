@@ -6,6 +6,11 @@
   letter-spacing: 1px;
   font-family: "Tenor", sans-serif;
 }
+.description ul,
+.description ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
 .description p {
   line-height: 21px;
   font-size: 14px;

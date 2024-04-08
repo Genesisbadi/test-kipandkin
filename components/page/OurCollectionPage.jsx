@@ -200,10 +200,19 @@ export default function OurCollectionPage({ page }) {
             />
           </div>
           <div className="flex flex-col py-5">
-            <div
-              dangerouslySetInnerHTML={{ __html: subtitle }}
-              className="text-primary text-[22px] leading-[25px] text-center pb-[30px]"
-            />
+            {page?.data.contents?.content_title && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: page?.data.contents?.content_title,
+                }}
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
+              />
+            )}
+
             <div
               dangerouslySetInnerHTML={{ __html: description }}
               className="text-[14px] mb-[40px] leading-[25px]"
@@ -277,7 +286,13 @@ export default function OurCollectionPage({ page }) {
             {award_images && award_images?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col">
-                  <span className="text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]">
+                  <span
+                    className={`${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "font-tenor"
+                        : "font-domine"
+                    } text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]`}
+                  >
                     Awards
                   </span>
                   <div className="flex flex-wrap  gap-x-5 items-center gap-y-5 justify-center">

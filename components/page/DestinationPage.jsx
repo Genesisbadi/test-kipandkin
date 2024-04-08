@@ -122,7 +122,7 @@ export default function DestinationDetails({ page }) {
                         page.mediaHandler[`main.items.${index}.image`][0]
                           .original
                       }
-                      alt={item.title}
+                      alt={item?.title}
                       height={1000}
                       width={1000}
                       quality={100}
@@ -132,9 +132,11 @@ export default function DestinationDetails({ page }) {
 
                   <div className="flex w-full md:w-1/2 bg-primary items-center">
                     <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-0">
-                      <span className="text-secondary1 text-[20px] tracking-[2px]">
-                        {item?.title}
-                      </span>
+                      {item?.title && (
+                        <span className="text-secondary1 text-[20px] tracking-[2px]">
+                          {item?.title}
+                        </span>
+                      )}
                       <span className="w-[75px] h-[2px] mt-[5px] bg-secondary1 block" />
                       {item?.description && (
                         <div
@@ -158,14 +160,17 @@ export default function DestinationDetails({ page }) {
                 return (
                   <Link
                     key={index}
-                    href={item.button_url || "#"}
+                    href={item?.button_url || "#"}
+                    target={
+                      item?.button_url.includes("http") ? "_blank" : "_self"
+                    }
                     className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                       !item.button_label || !links
                         ? "border-none"
                         : "border border-secondary my-[50px]"
                     } text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
                   >
-                    {item.button_label}
+                    {item?.button_label}
                   </Link>
                 );
               })}

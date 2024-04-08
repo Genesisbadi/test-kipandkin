@@ -31,11 +31,11 @@ export default function OfferDetails({ page }) {
   };
   return (
     <article className="bg-[#F1F1F1]">
-      <div className="max-w-[980px] mx-auto">
+      <div className="max-w-[950px] mx-auto">
         <h2
           className={`${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
-          } text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]`}
+          } text-primary text-[25px] tracking-[1px] text-center pt-[35px] pb-[25px] border-b-[1px] border-[#ccc] mb-[20px]`}
         >
           {title}
         </h2>
@@ -101,7 +101,7 @@ export default function OfferDetails({ page }) {
         <>
           {currentVenue && (
             <>
-              <div className="max-w-[980px] mx-auto mt-[30px] pb-[50px]">
+              <div className="max-w-[950px] mx-auto mt-[30px] pb-[50px]">
                 {currentVenue.description && (
                   <VenueDescription
                     className="bg-white shadow-md px-[40px] py-[30px] mb-[50px]"

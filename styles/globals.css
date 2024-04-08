@@ -96,9 +96,11 @@
   .connections .even img {
     max-width: 65px;
   }
+
   ul,
   ol {
     list-style-position: inside !important;
+    padding-left: 15px;
   }
   ul {
     list-style: disc;

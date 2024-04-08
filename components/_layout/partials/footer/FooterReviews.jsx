@@ -18,17 +18,16 @@ export default function FooterReviews() {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
+        } hover:opacity-[.5] absolute top-[50%] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
-        <svg
-          className="!fill-primary"
-          width={25}
-          height={54}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 27 44"
-        >
-          <path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" />
+        <svg width="40" height="40" x="0" y="0" viewBox="0 0 490 490">
+          <g>
+            <path
+              d="m96.536 490 306.483-245.004L96.536 0l-9.555 11.962 291.515 233.034L86.981 478.038z"
+              fill="#333"
+            ></path>
+          </g>
         </svg>
       </div>
     );
@@ -39,22 +38,17 @@ export default function FooterReviews() {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
+        } hover:opacity-[.5] absolute top-[50%] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
-        <svg
-          className="!fill-primary"
-          xmlns="http://www.w3.org/2000/svg"
-          width={25}
-          height={54}
-          viewBox="0 0 19.349 30"
-        >
-          <path
-            id="_002-right-arrow"
-            data-name="002-right-arrow"
-            d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
-            transform="translate(-86.981)"
-          />
+        <svg version="1.1" width="40" height="40" viewBox="0 0 490 490">
+          <g>
+            <path
+              d="M401.166 478.097 113.178 245.004 401.166 11.903 391.536 0 88.834 245.004 391.536 490z"
+              fill="#333"
+              opacity="1"
+            ></path>
+          </g>
         </svg>
       </div>
     );
@@ -85,7 +79,7 @@ export default function FooterReviews() {
   return (
     <>
       {router.asPath !== "/" && (
-        <section className="py-[40px] footer-reviews">
+        <section className="pt-[40px] footer-reviews">
           <div className="max-w-[980px] mx-auto">
             <h2
               className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
@@ -98,7 +92,7 @@ export default function FooterReviews() {
             </h2>
             {reviewsData && (
               <>
-                <Slick className="lg:px-[70px]" {...settings}>
+                <Slick className="lg:px-[70px] text-[14px]" {...settings}>
                   {reviewsData.map((item, index) => (
                     <div key={index}>
                       <h3 className="font-bold text-[14px] uppercase">

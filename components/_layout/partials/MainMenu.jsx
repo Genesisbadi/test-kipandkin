@@ -95,7 +95,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       <span className="uppercase flex items-center cursor-default">
                         {item.label}
                         <DropdownArrow
-                          className={`ml-[5px] top-[-2px] xxl:top-[-4px] ${
+                          className={`ml-[5px] top-[-2px] ${
                             process.env.NEXT_PUBLIC_TEMPLATE == 1
                               ? "border-white"
                               : "border-primary"
@@ -117,7 +117,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       >
                         {item.label}
                         <DropdownArrow
-                          className={`ml-[5px] top-[-2px] xxl:top-[-4px] ${
+                          className={`ml-[5px] top-[-2px] ${
                             process.env.NEXT_PUBLIC_TEMPLATE == 1
                               ? "border-white"
                               : "border-primary"
@@ -138,7 +138,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <span className="flex items-center uppercase text-primary cursor-default">
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-2px] xxl:top-[-4px] border-primary relative"
+                        className="ml-[5px] top-[-2px] border-primary relative"
                         width={7}
                         height={7}
                         item={item}
@@ -156,7 +156,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                     >
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-2px] xxl:top-[-4px] border-primary relative"
+                        className="ml-[5px] top-[-2px] border-primary relative"
                         width={7}
                         height={7}
                         item={item}
