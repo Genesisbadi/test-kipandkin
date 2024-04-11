@@ -50,7 +50,13 @@ export default function Feature({ block }) {
             </div>
           )}
         </div>
-        <div className="bg-primary  py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px] lg:min-h-[800px]">
+        <div
+          className={`${
+            process.env.NEXT_PUBLIC_TEMPLATE == 2 && video_link && !image
+              ? "bg-[#85764D]"
+              : "bg-primary"
+          } py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%] md:min-h-[400px] lg:min-h-[800px]`}
+        >
           <h2
             className={`${
               process.env.NEXT_PUBLIC_TEMPLATE == 1

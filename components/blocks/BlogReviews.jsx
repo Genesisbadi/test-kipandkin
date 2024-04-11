@@ -108,7 +108,7 @@ export default function BlogReviews({ block }) {
         title="Discovery Blog"
         childrenClassname="h-full"
       >
-        <div className="bg-primary h-full">
+        <div className="bg-primary1 h-full">
           {blogEntries && blogEntries.length > 0 && (
             <>
               <Slider
@@ -181,7 +181,7 @@ export default function BlogReviews({ block }) {
         </div>
       </SectionAccordion>
       <SectionAccordion className="lg:max-w-[50%] w-full" title="Reviews">
-        <div className="bg-primary">
+        <div className="bg-primary1">
           <Image
             src={block?.main?.reviews_image}
             width={900}
