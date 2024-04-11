@@ -29,128 +29,124 @@ export default function MeetingsEvensDetails({ page }) {
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
   const getDefaultValue = () => {
-    let defaultVenue = venues[0]?.title || "";
+    let defaultVenue = currentVenue.title;
     return { label: defaultVenue, value: defaultVenue };
   };
 
   return (
-    <>
-      <article className="bg-[#f1f1f1]">
-        <div className="relative min-h-[560px] text-white flex items-center justify-center">
-          <Image
-            alt={title}
-            src={
-              page.mediaHandler["main.image"]?.[0].conversions.desktop ||
-              page.mediaHandler["main.image"]?.[0].original ||
-              "../images/image_makati-large.jpg"
-            }
-            width={1920}
-            height={1080}
-            className="w-full h-full  object-cover absolute top-0 left-0"
-          />
-          {title && (
+    <article className="bg-[#f1f1f1]">
+      <div className="relative min-h-[560px] text-white flex items-center justify-center">
+        <Image
+          alt={title}
+          src={
+            page.mediaHandler["main.image"]?.[0].conversions.desktop ||
+            page.mediaHandler["main.image"]?.[0].original ||
+            "../images/image_makati-large.jpg"
+          }
+          width={1920}
+          height={1080}
+          className="w-full h-full  object-cover absolute top-0 left-0"
+        />
+        {title && (
+          <div
+            className={`relative text-[42px] ${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "font-tenor"
+                : "font-domine"
+            }`}
+          >
+            {title}
+          </div>
+        )}
+      </div>
+
+      <div className="container pt-[20px] sm:pt-[30px]">
+        {description && (
+          <div
+            className={`${styles.description} my-[30px]`}
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></div>
+        )}
+        {venues.length > 0 && (
+          <>
             <div
-              className={`relative text-[42px] ${
+              className={`${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
                   : "font-domine"
-              }`}
+              } text-primary text-[20px] tracking-[1px] mb-[10px]`}
             >
-              {title}
+              Select Venue:
             </div>
-          )}
-        </div>
-
-        <div className="container pt-[20px] sm:pt-[30px]">
-          {description && (
-            <div
-              className={`${styles.description} my-[30px]`}
-              dangerouslySetInnerHTML={{ __html: description }}
-            ></div>
-          )}
-          {venues.length > 0 && (
-            <>
-              <div
-                className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : "font-domine"
-                } text-primary text-[20px] tracking-[1px] mb-[10px]`}
-              >
-                Select Venue:
-              </div>
-              <CustomSelect
-                // value={selectedValue}
-                className="react-select"
-                defaultValue={getDefaultValue()}
-                onChange={(e) =>
-                  setSelectedValue(() => {
-                    Number(e.value);
-                    const curVenue = venues.find(
-                      (obj) => obj.title === e.value
-                    );
-                    setCurrentVenue(curVenue);
-                  })
-                }
-                options={venues?.map((item, index) => {
-                  return {
-                    label: item?.title,
-                    value: item?.title,
-                  };
-                })}
-              />
-            </>
-          )}
-        </div>
-
-        {showLazy && (
-          <>
-            {currentVenue && (
-              <div className="container pb-[50px] mt-[30px]">
-                {currentVenue.image && (
-                  <ModalImage
-                    className="w-full h-full object-cover"
-                    title={currentVenue.title || "#"}
-                    content={currentVenue.image}
-                    image={currentVenue.image}
-                  />
-                )}
-                <div
-                  className={`${styles.description} my-[30px]`}
-                  dangerouslySetInnerHTML={{
-                    __html: currentVenue.description,
-                  }}
-                />
-                {currentVenue?.buttons?.length > 0 && (
-                  <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
-                    <div className="flex flex-wrap justify-center ">
-                      {currentVenue?.buttons?.map((item, index) => (
-                        <Link
-                          key={index}
-                          href={item?.button_link}
-                          className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                            item.button_variant === "dark"
-                              ? "text-white bg-primary"
-                              : "border-secondary"
-                          } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                        >
-                          {item?.button_label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-            {currentVenue?.images && (
-              <CarouselGallery
-                alt_title={currentVenue.title}
-                images={currentVenue?.images}
-              />
-            )}
+            <CustomSelect
+              // value={selectedValue}
+              className="react-select"
+              defaultValue={getDefaultValue()}
+              onChange={(e) =>
+                setSelectedValue(() => {
+                  Number(e.value);
+                  const curVenue = venues.find((obj) => obj.title === e.value);
+                  setCurrentVenue(curVenue);
+                })
+              }
+              options={venues?.map((item, index) => {
+                return {
+                  label: item?.title,
+                  value: item?.title,
+                };
+              })}
+            />
           </>
         )}
-      </article>
-    </>
+      </div>
+
+      {showLazy && (
+        <>
+          {currentVenue && (
+            <div className="container pb-[50px] mt-[30px]">
+              {currentVenue.image && (
+                <ModalImage
+                  className="w-full h-full object-cover"
+                  title={currentVenue.title || "#"}
+                  content={currentVenue.image}
+                  image={currentVenue.image}
+                />
+              )}
+              <div
+                className={`${styles.description} my-[30px]`}
+                dangerouslySetInnerHTML={{
+                  __html: currentVenue.description,
+                }}
+              />
+              {currentVenue?.buttons?.length > 0 && (
+                <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
+                  <div className="flex flex-wrap justify-center ">
+                    {currentVenue?.buttons?.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={item?.button_link}
+                        className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                          item.button_variant === "dark"
+                            ? "text-white bg-primary"
+                            : "border-secondary"
+                        } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                      >
+                        {item?.button_label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {currentVenue?.images && (
+            <CarouselGallery
+              alt_title={currentVenue.title}
+              images={currentVenue?.images}
+            />
+          )}
+        </>
+      )}
+    </article>
   );
 }

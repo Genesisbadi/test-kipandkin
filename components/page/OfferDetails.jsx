@@ -75,15 +75,15 @@ export default function OfferDetails({ page }) {
                   // value={currentVenue}
                   className="react-select"
                   defaultValue={getDefaultValue()}
-                  onChange={(e) => {
+                  onChange={(e) =>
                     setSelectedValue(() => {
                       Number(e.value);
                       const curVenue = venues.find(
                         (obj) => obj.title === e.value
                       );
                       setCurrentVenue(curVenue);
-                    });
-                  }}
+                    })
+                  }
                   options={venues?.map((item, index) => {
                     return {
                       label: item?.title,

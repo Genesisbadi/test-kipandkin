@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 export default function OffersSelections({ block }) {
-  console.log(block?.main?.collection);
   return (
     <div className="bg-[#F1F1F1]">
       <div className="container">

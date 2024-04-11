@@ -39,8 +39,6 @@ export default function ContactForm({ form }) {
     }
   }, [formData?.formSuccessInfo]);
 
-  console.log("formSuccessInfo", formSuccessInfo);
-
   return (
     <>
       {sections.map((section) => {
