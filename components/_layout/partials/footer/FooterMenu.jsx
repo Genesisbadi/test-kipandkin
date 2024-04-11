@@ -10,7 +10,7 @@ export default function FooterMenu() {
           <div className="flex flex-wrap mx-[-15px]">
             {nodes.map((item, index) => (
               <div
-                className="w-full text-uppercase px-[15px] sm:max-w-[33.33%] lg:max-w-[25%] mb-[10px]"
+                className="w-full uppercase px-[15px] sm:max-w-[33.33%] lg:max-w-[25%] mb-[10px]"
                 key={index}
               >
                 <Link
