@@ -46,7 +46,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               )}
               <div className="text-center">
                 <Link
-                  className="inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                  className="uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >

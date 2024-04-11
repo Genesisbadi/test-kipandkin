@@ -78,7 +78,7 @@ export default function Feature({ block }) {
           />
           <div>
             <Link
-              className={`inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
+              className={`uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "hover:bg-[#d4bebe] text-[#d4bebe] border-[#d4bebe]"
                   : "hover:bg-white text-white border-white"
