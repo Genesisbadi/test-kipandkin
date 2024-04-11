@@ -1,5 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import styles from "@/styles/address.module.css";
 export default function ContactUsBlock({ block }) {
   const ContactForm = dynamic(() =>
     import("@/components/partials/forms/ContactForm").then(
@@ -36,15 +37,15 @@ export default function ContactUsBlock({ block }) {
                         height={200}
                       />
                     )}
-                    <div className="bg-white text-[14px] shadow-md p-[20px]">
+                    <div className="bg-white text-[14px] shadow-md py-[15px] px-[30px]">
                       <h2 className="text-primary text-[18px] mb-[15px]">
                         {item?.title}
                       </h2>
-                      {item?.description && (
+                      {item?.body && (
                         <div
-                          className="office-body"
+                          className={`${styles.body}`}
                           dangerouslySetInnerHTML={{
-                            __html: item?.description,
+                            __html: item?.body,
                           }}
                         />
                       )}
