@@ -48,13 +48,13 @@ export default function footerConnections() {
                           key={index}
                         >
                           <Link
-                            href={item.link}
+                            href={item?.link}
                             target={
-                              item.link.includes("http") ? "_blank" : "_self"
+                              item?.link?.includes("http") ? "_blank" : "_self"
                             }
                           >
                             <Image
-                              src={item.image}
+                              src={item?.image}
                               width={322}
                               height={160}
                               alt="Logo"
@@ -88,7 +88,7 @@ export default function footerConnections() {
                   )}
 
                   {item?.images && (
-                    <div className="mt-[15px] flex flex-wrap justify-center items-center">
+                    <div className="mt-[15px] flex gap-x-[15px] flex-wrap justify-center items-center">
                       {item.images.map((item, index) => (
                         <div key={index}>
                           <Link href={item?.link || "#"} target="_blank">

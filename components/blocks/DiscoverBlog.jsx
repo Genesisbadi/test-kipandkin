@@ -113,7 +113,7 @@ export default function DiscoverBlog({ block }) {
                   <Link
                     href={link}
                     target={
-                      link ? (link.includes("http") ? "_blank" : "_self") : ""
+                      link ? (link?.includes("http") ? "_blank" : "_self") : ""
                     }
                     className="inline-block text-center text-[14px] md:text-[16px] text-primary md:min-w-[200px] border border-primary py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-primary"
                   >

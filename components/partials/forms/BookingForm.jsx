@@ -187,7 +187,7 @@ export default function BookingForm({ ...props }) {
       }
     });
 
-    if (disabledTypes.includes(page?.content?.id)) {
+    if (disabledTypes?.includes(page?.content?.id)) {
       //
       setIsFloat(false);
     }
@@ -226,7 +226,7 @@ export default function BookingForm({ ...props }) {
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                       ? "font-tenor"
                       : "font-domine"
-                  } py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
+                  } tracking-[3px] py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
                 >
                   Quick book
                 </div>
@@ -319,11 +319,13 @@ export default function BookingForm({ ...props }) {
                   )}
                 </span>
                 <div
-                  className="form-item min-w-[160px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
+                  className="form-item flex justify-between min-w-[240px] flex items-center border-r-[1px] border-[#a7a7a7] px-[20px] cursor-pointer"
                   onClick={toggleGuest}
                 >
-                  <User className="mr-[10px]" />
-                  {guestAdult.value} Adults, {guestChildren.value} Children{" "}
+                  <span className="flex items-center">
+                    <User className="mr-[10px]" />
+                    {guestAdult.value} Adults, {guestChildren.value} Children{" "}
+                  </span>
                   <ArrowDown className="ml-[5px]" width={10} />
                 </div>
 

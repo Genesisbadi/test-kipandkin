@@ -250,8 +250,10 @@ export default function MainMenuMobile({ ...props }) {
                   {bookingLinks.map((item, index) => (
                     <div key={index}>
                       <Link
-                        href={item.url}
-                        target={item.url.includes("http") ? "_blank" : "_self"}
+                        href={item?.url}
+                        target={
+                          item?.url?.includes("http") ? "_blank" : "_self"
+                        }
                         onClick={closeBooking}
                         className="inline-flex items-center gap-x-[5px] py-2 text-gray-800 transition hover:font-bold hover:text-primary"
                       >

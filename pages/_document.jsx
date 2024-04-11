@@ -11,6 +11,10 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
+        <link
+          rel="preconnect"
+          href="https://haspcms-discovery-suites.s3.ap-southeast-1.amazonaws.com"
+        />
 
         {process.env.NEXT_PUBLIC_TEMPLATE === "2" && (
           <link

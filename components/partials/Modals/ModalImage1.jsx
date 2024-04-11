@@ -139,7 +139,10 @@ export default function ModalImage1({ ...props }) {
               onClick={closedPopup}
             ></span>
             <div className="w-full md:max-w-[1200px] px-[15px] relative">
-              <Slick {...settings}>
+              <Slick
+                {...settings}
+                className="bg-[length:50px_50px] bg-[url('/images/preloader.gif')] bg-no-repeat bg-center"
+              >
                 {images.map((image, index) => (
                   <div key={index} className="w-full h-full">
                     <Image

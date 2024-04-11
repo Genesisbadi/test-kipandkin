@@ -61,7 +61,13 @@ export default function Feature({ block }) {
             {title}
           </h2>
 
-          <div className="w-[75px] mt-[5px] h-[2px] bg-secondary1 mb-[20px]" />
+          <div
+            className={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "bg-secondary1"
+                : "bg-white"
+            } w-[75px] mt-[5px] h-[2px]  mb-[20px]`}
+          />
           <div
             className={`${
               process.env.NEXT_PUBLIC_TEMPLATE == 1

@@ -9,8 +9,11 @@ export default function GridFloatBookDirect({ block }) {
     <section className="md:py-[58px] overflow-hidden">
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
-          <div className="w-full px-[15px] mb-[15px] lg:mb-0 lg:max-w-[33.33%]">
-            <SectionAccordion title="Why Book Direct?">
+          <div className="w-full px-[15px] lg:mb-0 lg:max-w-[33.33%]">
+            <SectionAccordion
+              title="Why Book Direct?"
+              childrenClassname="pb-[15px] md:pb-0"
+            >
               <h2 className="hidden md:block text-primary text-[22px] mb-[20px] font-tenor">
                 Why Book Direct?
               </h2>
@@ -18,7 +21,7 @@ export default function GridFloatBookDirect({ block }) {
                 <div className="flex flex-wrap mx-[-15px] lg:flex-col">
                   {items?.map((item, index) => (
                     <div
-                      className="w-full sm:max-w-[50%] px-[-15px] lg:max-w-full flex flex-wrap items-center mb-[20px] text-[12px]"
+                      className="w-full sm:max-w-[50%] px-[-15px] lg:max-w-full flex flex-wrap items-center [&:not(:last-of-type)]:mb-[20px]  text-[12px]"
                       key={index}
                     >
                       <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-primary ">
@@ -40,45 +43,52 @@ export default function GridFloatBookDirect({ block }) {
               </div>
             </SectionAccordion>
           </div>
-          <div className="w-full px-[15px] lg:max-w-[66.66%]">
+          <div className="w-full md:px-[15px] lg:max-w-[66.66%]">
             <div className="flex flex-wrap mx-[-15px]">
               {gridItems?.map((item, index) => (
                 <div
                   className="px-[15px] w-full md:max-w-[50%] mb-[15px] md:mb-0"
                   key={index}
                 >
-                  <h2
-                    className={`text-center text-primary text-[22px] mb-[20px] ${
-                      process.env.NEXT_PUBLIC_TEMPLATE == 1
-                        ? "font-tenor"
-                        : "font-domine"
-                    }`}
+                  <SectionAccordion
+                    title={item?.title}
+                    childrenClassname="px-[15px] md:px-0 pb-[15px] md:pb-0"
                   >
-                    {item?.title}
-                  </h2>
-                  <div className="relative text-center text-white">
-                    <Image
-                      src={`/images/image_makati-large.jpg`}
-                      width={900}
-                      height={500}
-                      alt={item.title}
-                      className="absolute top-0 w-full h-full object-cover"
-                    />
-                    <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
-                      <div
-                        className="grow relative text-[14px]"
-                        dangerouslySetInnerHTML={{ __html: item?.description }}
+                    <h2
+                      className={`hidden md:block text-center text-primary text-[22px] mb-[20px] ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : "font-domine"
+                      }`}
+                    >
+                      {item?.title}
+                    </h2>
+                    <div className="relative text-center text-white">
+                      <Image
+                        src={`/images/image_makati-large.jpg`}
+                        width={900}
+                        height={500}
+                        alt={item.title}
+                        className="absolute top-0 w-full h-full object-cover"
                       />
-                      <div className="text-center mt-[15px] relative">
-                        <Link
-                          className="inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
-                          href={item?.link}
-                        >
-                          Discover More
-                        </Link>
+                      <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
+                        <div
+                          className="grow relative text-[14px]"
+                          dangerouslySetInnerHTML={{
+                            __html: item?.description,
+                          }}
+                        />
+                        <div className="text-center mt-[15px] relative">
+                          <Link
+                            className="inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                            href={item?.link}
+                          >
+                            Discover More
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </SectionAccordion>
                 </div>
               ))}
             </div>

@@ -16,7 +16,7 @@ export default function FooterDestinations({}) {
     return (
       <div
         className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+          className?.includes("slick-disabled") ? "opacity-[.5]" : ""
         } absolute top-[50%] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >
@@ -39,7 +39,7 @@ export default function FooterDestinations({}) {
     return (
       <div
         className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
+          className?.includes("slick-disabled") ? "opacity-[.5]" : ""
         } absolute top-[50%] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
         onClick={onClick}
       >

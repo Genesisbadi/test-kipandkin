@@ -156,13 +156,13 @@ export default function DestinationDetails({ page }) {
             <div
               className={`flex flex-col sm:flex-row w-full gap-y-3 sm:gap-y-0 justify-center px-5 2xl:px-0 gap-x-3`}
             >
-              {links.map((item, index) => {
+              {links?.map((item, index) => {
                 return (
                   <Link
                     key={index}
                     href={item?.button_url || "#"}
                     target={
-                      item?.button_url.includes("http") ? "_blank" : "_self"
+                      item?.button_url?.includes("http") ? "_blank" : "_self"
                     }
                     className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                       !item.button_label || !links

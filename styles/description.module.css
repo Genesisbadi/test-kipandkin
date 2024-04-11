@@ -1,3 +1,7 @@
+.description iframe {
+  min-height: 400px;
+  width: 100%;
+}
 .description h2,
 .description h3 {
   font-size: 20px;

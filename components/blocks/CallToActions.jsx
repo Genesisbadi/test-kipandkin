@@ -27,7 +27,7 @@ export default function CallToActions({ block }) {
                 >
                   <Link
                     href={item?.link}
-                    target={item?.link.includes("http") ? "_blank" : "_self"}
+                    target={item?.link?.includes("http") ? "_blank" : "_self"}
                     className="flex items-center group hover:text-primary text-[#999] text-[18px]"
                   >
                     <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-[#ddd7cc] group-hover:bg-primary ">

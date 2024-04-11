@@ -3,14 +3,13 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
-import tenantInformation from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
-
 export default function MainMenu({ parentNodes, ...props }) {
+  const router = useRouter();
+
   const DropdownArrow = dynamic(() =>
     import("@/components/icons/DropdownArrow")
   );
 
-  const router = useRouter();
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
     return (
@@ -38,11 +37,15 @@ export default function MainMenu({ parentNodes, ...props }) {
               ) : (
                 <>
                   <Link
-                    className="text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]"
-                    href={item.url}
-                    target={item.target}
+                    className={`${
+                      item?.url?.includes(router.query["id"])
+                        ? "!bg-secondary3 !text-[#fff]"
+                        : ""
+                    } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
+                    href={item?.url}
+                    target={item?.target}
                   >
-                    {item.label}
+                    {item?.label}
                   </Link>
                   {item?.children && item?.children?.length > 0 && (
                     <>
@@ -92,7 +95,13 @@ export default function MainMenu({ parentNodes, ...props }) {
                 >
                   {item?.url?.includes("nolink") ? (
                     <>
-                      <span className="uppercase flex items-center cursor-default">
+                      <span
+                        className={`uppercase flex items-center cursor-default ${
+                          process.env.NEXT_PUBLIC_TEMPLATE == 1
+                            ? "text-white"
+                            : "text-primary"
+                        }`}
+                      >
                         {item.label}
                         <DropdownArrow
                           className={`ml-[5px] top-[-2px] ${
@@ -110,7 +119,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <>
                       <Link
                         className={`text-primary flex items-center uppercase ${
-                          item?.url?.includes(router.asPath) ? "active" : ""
+                          item?.url?.includes(router.query["id"])
+                            ? "active"
+                            : ""
                         }`}
                         href={item?.url}
                         target={item.target}
@@ -148,8 +159,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
-                      className={`text-primary flex items-center uppercase hover:text-[#000] ${
-                        item?.url?.includes(router.asPath) ? "active" : ""
+                      className={`text-primary relative flex flex-wrap items-center uppercase hover:text-[#000] ${
+                        item?.url?.includes(router.query["id"]) ? "active" : ""
                       }`}
                       href={item?.url || "#"}
                       target={item.target}

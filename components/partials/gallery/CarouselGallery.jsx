@@ -10,7 +10,7 @@ export default function CarouselGallery({ ...props }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] right-0 px-[10px] md:px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -35,7 +35,7 @@ export default function CarouselGallery({ ...props }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] left-0 px-[10px] md:px-5 z-[20] cursor-pointer bg-black/30 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -109,7 +109,7 @@ export default function CarouselGallery({ ...props }) {
               </span>
             )}
 
-            <Slick {...settings} className="carousel-gallery">
+            <Slick {...settings} className="carousel-gallery ">
               {images?.map((item, index) => {
                 return (
                   <div key={index} className="flex cursor-pointer">

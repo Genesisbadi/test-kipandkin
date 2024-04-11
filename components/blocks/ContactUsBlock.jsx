@@ -64,15 +64,17 @@ export default function ContactUsBlock({ block }) {
                         <div className="mb-[16px]">
                           <Link
                             className="text-primary hover:underline"
-                            href={item.website}
+                            href={item?.website}
                             target={
-                              item.website.includes("http") ? "_blank" : "_self"
+                              item?.website?.includes("http")
+                                ? "_blank"
+                                : "_self"
                             }
                           >
                             <span className="float-left mr-[5px]">
                               Website:
                             </span>
-                            <span>{item.website}</span>
+                            <span>{item?.website}</span>
                           </Link>
                         </div>
                       )}
