@@ -14,7 +14,7 @@ export default function CallToActions({ block }) {
       <section className="bg-[#F1F1F1] overflow-hidden py-[30px] lg:py-[40px]">
         <div className="container">
           {block_title && (
-            <h2 className="font-tenor text-center text-primary hidden md:block text-[25px] mb-[30px]">
+            <h2 className="font-tenor text-center text-primary hidden md:block text-[22px] mb-[30px]">
               {block_title}
             </h2>
           )}

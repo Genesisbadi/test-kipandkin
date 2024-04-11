@@ -40,43 +40,13 @@ export default function ContactUsBlock({ block }) {
                       <h2 className="text-primary text-[18px] mb-[15px]">
                         {item?.title}
                       </h2>
-                      {item?.address && (
-                        <div className="mb-[16px]">
-                          <span className="float-left mr-[5px]">Address:</span>
-                          <span
-                            dangerouslySetInnerHTML={{ __html: item?.address }}
-                          />
-                        </div>
-                      )}
-
-                      {item?.email && (
-                        <div className="mb-[16px]">
-                          <Link
-                            className="text-primary hover:underline"
-                            href={`mailto: ${item.email}`}
-                          >
-                            <span className="float-left mr-[5px]">Email:</span>
-                            <span>{item.email}</span>
-                          </Link>
-                        </div>
-                      )}
-                      {item?.website && (
-                        <div className="mb-[16px]">
-                          <Link
-                            className="text-primary hover:underline"
-                            href={item?.website}
-                            target={
-                              item?.website?.includes("http")
-                                ? "_blank"
-                                : "_self"
-                            }
-                          >
-                            <span className="float-left mr-[5px]">
-                              Website:
-                            </span>
-                            <span>{item?.website}</span>
-                          </Link>
-                        </div>
+                      {item?.description && (
+                        <div
+                          className="office-body"
+                          dangerouslySetInnerHTML={{
+                            __html: item?.description,
+                          }}
+                        />
                       )}
                     </div>
                   </div>
