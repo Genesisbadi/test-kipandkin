@@ -1,7 +1,9 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 export default function SectionAccordion({ children, ...props }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(
+    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? false : true
+  );
   const { title, className, childrenClassname } = props;
   const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"));
 
