@@ -102,10 +102,11 @@ export default function BlogReviews({ block }) {
     arrows: false,
   };
   return (
-    <section className="flex flex-wrap">
+    <section className="flex flex-wrap mb-[5px]">
       <SectionAccordion
-        className="lg:max-w-[50%] w-full pr-[5px]"
+        className="flex flex-col lg:max-w-[50%] w-full pr-[5px]"
         title="Discovery Blog"
+        childrenClassname="h-full"
       >
         <div className="bg-primary h-full">
           {blogEntries && blogEntries.length > 0 && (
