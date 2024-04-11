@@ -47,7 +47,7 @@ export default function Menu({ ...props }) {
           <>
             {tenantDetails?.data?.main?.email ||
             tenantDetails?.data?.main?.phone ? (
-              <div className="hidden xl:block header-strip overflow-hidden py-[10px] text-[14px]">
+              <div className="hidden xl:block header-strip overflow-hidden pt-[10px] text-[14px]">
                 <div className="flex justify-end">
                   {tenantDetails?.data?.main?.email && (
                     <span className="px-[5px]">
@@ -91,7 +91,11 @@ export default function Menu({ ...props }) {
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
                 height={50}
-                className="h-full object-contain max-w-[154px] w-full"
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "h-full object-contain max-w-[154px] w-full"
+                    : ""
+                }`}
                 alt={tenantDetails.name || "Logo"}
               />
             </Link>

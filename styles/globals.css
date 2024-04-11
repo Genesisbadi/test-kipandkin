@@ -11,7 +11,7 @@
   --dropdownBorder: #ebbbc9;
 }
 
-#header .active::after {
+.st-1 #header .active::after {
   content: "";
   width: 100%;
   height: 3px;

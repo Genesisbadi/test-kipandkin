@@ -42,8 +42,11 @@ export default function CallToActions({ block }) {
                             : "group-hover:!brightness-[1000%]"
                         }`}
                         style={{
-                          filter:
-                            "invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)",
+                          filter: `${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)"
+                              : "brightness(0) invert(1)"
+                          }`,
                         }}
                       />
                     </span>
