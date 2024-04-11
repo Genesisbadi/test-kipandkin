@@ -38,6 +38,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                 <>
                   <Link
                     className={`${
+                      item?.url == router.asPath ||
                       item?.url?.includes(router.query["id"])
                         ? "!bg-secondary3 !text-[#fff]"
                         : ""

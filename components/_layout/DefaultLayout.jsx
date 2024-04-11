@@ -22,6 +22,8 @@ export default function DefaultLayout(props) {
     import("@/components/partials/forms/BookingForm")
   );
 
+  const BackTop = dynamic(() => import("@/components/partials/BackTop"));
+
   const Footer = dynamic(() => import("@/layout/partials/Footer"));
 
   return (
@@ -70,6 +72,8 @@ export default function DefaultLayout(props) {
           showAtBottom={false}
         />
       )}
+
+      {showLazy && <BackTop />}
     </>
   );
 }

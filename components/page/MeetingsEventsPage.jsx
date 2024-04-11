@@ -48,7 +48,17 @@ export default function MeetingsEvensDetails({ page }) {
             height={1080}
             className="w-full h-full  object-cover absolute top-0 left-0"
           />
-          {title && <div className="relative text-[42px]">{title}</div>}
+          {title && (
+            <div
+              className={`relative text-[42px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
+              {title}
+            </div>
+          )}
         </div>
 
         <div className="container pt-[20px] sm:pt-[30px]">

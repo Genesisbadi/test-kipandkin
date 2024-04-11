@@ -187,7 +187,13 @@ export default function DiningPage({ page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[35px] md:text-[42px] text-white relative z-[3]">
+          <h2
+            className={`text-[35px] md:text-[42px] text-white relative z-[3] ${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "font-tenor"
+                : "font-domine"
+            }`}
+          >
             {title}
           </h2>
         )}
@@ -221,7 +227,11 @@ export default function DiningPage({ page }) {
                   {subtitle && (
                     <div
                       dangerouslySetInnerHTML={{ __html: subtitle }}
-                      className="text-[22px] text-primary leading-[25px]"
+                      className={`text-[22px] text-primary leading-[25px] mb-[15px] ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : "font-domine"
+                      }`}
                     />
                   )}
                   {description && (
