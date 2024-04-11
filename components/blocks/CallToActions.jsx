@@ -42,19 +42,15 @@ export default function CallToActions({ block }) {
                             : "group-hover:!brightness-[1000%]"
                         }`}
                         style={{
-                          filter: `${
-                            process.env.NEXT_PUBLIC_TEMPLATE == 1
-                              ? "invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)"
-                              : "brightness(0) invert(1)"
-                          }`,
+                          filter: `invert(55%) sepia(11%) saturate(819%) hue-rotate(4deg) brightness(97%) contrast(92%)`,
                         }}
                       />
                     </span>
                     <div className="flex flex-col">
                       <h3>{item.title}</h3>
-                      {item?.description && (
+                      {item?.short_text && (
                         <p className="text-[14px] text-[#555] group-hover:text-primary">
-                          {item?.description}
+                          {item?.short_text}
                         </p>
                       )}
                     </div>
