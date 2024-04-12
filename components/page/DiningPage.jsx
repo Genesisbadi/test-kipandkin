@@ -38,20 +38,6 @@ export default function DiningPage({ page }) {
   const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
   const { route_url, title: diningOfferTitle, data } = diningOffer;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
-  const handleOpenModal = (imageIndex) => {
-    setSelectedImageIndex(imageIndex);
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = "";
-  };
-
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
 

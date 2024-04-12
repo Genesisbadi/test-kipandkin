@@ -224,7 +224,8 @@ export default function OurCollectionPage({ page }) {
                 return (
                   <Link
                     key={index}
-                    href="#"
+                    href={item.btn_link || item.btn_file || "#"}
+                    target={item.btn_link.includes("http") ? "_blank" : "_self"}
                     className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                       item.variant === "filled"
                         ? "text-white bg-primary"
@@ -235,15 +236,6 @@ export default function OurCollectionPage({ page }) {
                   </Link>
                 );
               })}
-              {button_file_label && link_file && (
-                <Link
-                  href={link_file || "#"}
-                  target="_blank"
-                  className={`w-full py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-sm border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                >
-                  {button_file_label}
-                </Link>
-              )}
             </div>
           )}
         </div>
