@@ -224,10 +224,10 @@ export default function OurCollectionPage({ page }) {
                 return (
                   <Link
                     key={index}
-                    href={item.btn_link || item.btn_file || "#"}
+                    href={item.btn_link || item?.file || "#"}
                     target={
                       item?.btn_link?.includes("http") ||
-                      item?.btn_file?.includes("http")
+                      item?.file?.includes("http")
                         ? "_blank"
                         : "_self"
                     }

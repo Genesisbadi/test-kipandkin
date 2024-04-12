@@ -89,7 +89,7 @@ export default function DiscoverBlog({ block }) {
                 src={`/static/ph_map.png`}
                 width={300}
                 height={300}
-                alt="Hello World"
+                alt="Discover"
               />
             </div>
             <div className="relative md:absolute w-full top-0 right-0 max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">

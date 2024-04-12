@@ -30,7 +30,7 @@ export default function GridFloatBookDirect({ block }) {
                           width={30}
                           height={30}
                           className="!invert-[100%] !brightness-[100%] !contrast-[100%]"
-                          alt={item.title || "Hello World"}
+                          alt={item.title || "Discover"}
                         />
                       </span>
 

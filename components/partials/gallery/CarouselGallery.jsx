@@ -4,8 +4,6 @@ import ModalImage1 from "../Modals/ModalImage1";
 export default function CarouselGallery({ ...props }) {
   const { images, alt_title, title, className } = props;
 
-  console.log("hello");
-
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
