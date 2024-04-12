@@ -15,6 +15,12 @@ export default function OfferDetails({ page }) {
     )
   );
 
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
@@ -101,18 +107,32 @@ export default function OfferDetails({ page }) {
         <>
           {currentVenue && (
             <>
-              <div className="max-w-[950px] mx-auto mt-[30px] pb-[50px]">
-                {currentVenue.description && (
-                  <VenueDescription
-                    className="bg-white shadow-md px-[40px] py-[30px] mb-[50px]"
-                    description={currentVenue.description}
-                  />
-                )}
-
-                {currentVenue.buttons.length > 0 && (
-                  <ButtonsRepeater buttons={currentVenue.buttons} />
+              <div className="max-w-[950px] mx-auto mt-[30px]">
+                {currentVenue && (
+                  <>
+                    {currentVenue?.description && (
+                      <VenueDescription
+                        className={`bg-white shadow-md px-[40px] py-[30px] mb-[50px] `}
+                        description={currentVenue.description}
+                      />
+                    )}
+                    {currentVenue?.buttons &&
+                      currentVenue?.buttons?.length > 0 && (
+                        <ButtonsRepeater
+                          className="pb-[50px]"
+                          buttons={currentVenue.buttons}
+                        />
+                      )}
+                  </>
                 )}
               </div>
+
+              {currentVenue?.gallery && (
+                <CarouselGallery
+                  className="py-0"
+                  images={currentVenue.gallery}
+                />
+              )}
             </>
           )}
         </>
