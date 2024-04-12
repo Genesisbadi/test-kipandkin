@@ -225,7 +225,12 @@ export default function OurCollectionPage({ page }) {
                   <Link
                     key={index}
                     href={item.btn_link || item.btn_file || "#"}
-                    target={item.btn_link.includes("http") ? "_blank" : "_self"}
+                    target={
+                      item?.btn_link?.includes("http") ||
+                      item?.btn_file?.includes("http")
+                        ? "_blank"
+                        : "_self"
+                    }
                     className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                       item.variant === "filled"
                         ? "text-white bg-primary"
