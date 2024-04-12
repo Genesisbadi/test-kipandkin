@@ -30,9 +30,15 @@ export default function Menu({ ...props }) {
   const Phone = dynamic(() =>
     import("@/components/icons/Phone").then((module) => module.default)
   );
+  const LangEn = dynamic(() =>
+    import("@/components/icons/LangEn").then((module) => module.default)
+  );
 
   const Menu = dynamic(() =>
     isMobile ? import("./MainMenuMobile") : import("./MainMenu")
+  );
+  const DropdownArrow = dynamic(() =>
+    import("@/components/icons/DropdownArrow")
   );
 
   return (
@@ -73,6 +79,23 @@ export default function Menu({ ...props }) {
                       </Link>
                     </span>
                   )}
+                  {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+                    <div className="px-5 flex items-center">
+                      <LangEn />{" "}
+                      <span>
+                        EN
+                        <DropdownArrow
+                          className={`ml-[5px] top-[-2px] ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "border-white"
+                              : "border-primary"
+                          } relative`}
+                          width={7}
+                          height={7}
+                        />
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (
@@ -91,29 +114,11 @@ export default function Menu({ ...props }) {
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
                 height={50}
-                className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "h-full object-contain max-w-[154px] w-full"
-                    : ""
-                }`}
+                className={`h-full object-contain max-w-[154px] w-full`}
                 alt={tenantDetails.name || "Logo"}
               />
             </Link>
           </div>
-          {/* {!isMobile ? (
-            <MainMenu
-              className="hidden xl:flex"
-              tenantDetails={tenantDetails}
-              parentNodes={parentNodes}
-            />
-          ) : (
-            <MainMenuMobile
-              className="block xl:hidden"
-              parentNodes={parentNodes}
-              nodes={nodes}
-              tenantDetails={tenantDetails}
-            />
-          )} */}
           <Menu
             className={isMobile ? "block xl:hidden" : "hidden xl:flex"}
             parentNodes={parentNodes}

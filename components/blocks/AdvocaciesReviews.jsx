@@ -1,5 +1,5 @@
 import Link from "next/link";
-import reviewsData from "../../lib/preBuildScripts/static/reviews.json";
+import reviewItems from "../../lib/preBuildScripts/static/reviews.json";
 import "slick-carousel/slick/slick.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -80,23 +80,36 @@ export default function AdvocaciesReviews({ block }) {
     <section className="overflow-hidden">
       <div className="flex flex-wrap mx-[-5px]">
         <div className="px-[5px] w-full md:max-w-[50%]">
-          <Image
-            src={`/images/image_makati-large.jpg`}
-            width={900}
-            height={500}
-            alt={title}
-            className="w-full h-[250px] md:h-[575px] object-cover"
-          />
-          <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] bg-primary1 text-white">
-            <h2 className="mb-[30px] text-[25px]">{title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-            <div className="mt-[30px]">
-              <Link
-                className="inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
-                href={link}
+          <div className="bg-primary1 h-full">
+            <Image
+              src={`/images/image_makati-large.jpg`}
+              width={900}
+              height={500}
+              alt={title}
+              className="w-full h-[250px] md:h-[575px] object-cover"
+            />
+            <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
+              <h2
+                className={`mb-[30px] text-[25px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                }`}
               >
-                Learn More
-              </Link>
+                {title}
+              </h2>
+              <div
+                className="grow"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+              <div className="mt-[30px]">
+                <Link
+                  className="inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+                  href={link}
+                >
+                  Learn More
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -110,7 +123,15 @@ export default function AdvocaciesReviews({ block }) {
           />
           {reviewItems && reviewItems.length > 0 && (
             <div className="bg-primary1 px-[50px] lg:px-[60px] py-[30px] text-white grow">
-              <h2 className="mb-[30px] text-[25px]">Reviews</h2>
+              <h2
+                className={`mb-[30px] text-[25px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                }`}
+              >
+                Reviews
+              </h2>
 
               <Slick className="" {...settings}>
                 {reviewItems.map((item, index) => (
