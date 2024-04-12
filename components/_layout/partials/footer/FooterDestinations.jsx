@@ -68,7 +68,7 @@ export default function FooterDestinations({}) {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    arrows: false,
+    arrows: destinationsEntries.length > 6 ? true : false,
     responsive: [
       {
         breakpoint: 1199,

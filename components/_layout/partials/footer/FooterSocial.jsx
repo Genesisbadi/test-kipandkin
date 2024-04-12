@@ -38,69 +38,72 @@ export default function FooterSocial() {
     <>
       {social_media?.media_links && (
         <>
-          <div className="social-media mt-[15px] flex flex-wrap items-center ">
+          <div className="social-media mt-[15px] mx-[-5px] md:mx-[-10px] md:mt-0 flex flex-wrap items-center ">
             {social_media?.media_links?.map((item, index) => (
-              <div key={index} className="px-[10px] mb-[5px]">
+              <div
+                key={index}
+                className="px-[5px] md:px-[10px] mb-[20px] md:mb-0"
+              >
                 <Link
                   href={item.link}
                   title={messages[item.platform] || "Follow Us"}
                   target="_blank"
-                  className="hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#fff] rounded-full min-w-[40px] min-h-[40px] w-[40px] h-[40px] p-[5px]"
+                  className="hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[50px] min-h-[50px] w-[50px] h-[50px] p-[5px]"
                 >
                   {item.platform === "facebook" && (
                     <Facebook
-                      width={10}
+                      width={24}
                       title="Like us on Facebook."
-                      height={18}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "instagram" && (
                     <Instagram
-                      width={25}
+                      width={24}
                       title="Follow Us on Instagram."
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "youtube" && (
                     <Youtube
-                      width={25}
+                      width={24}
                       title="Subscribe to our youtube channel."
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "tripadvisor" && (
                     <TripAdvisor
-                      width={25}
+                      width={24}
                       title="See our Trip Advisor reviews"
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "linkedin" && (
                     <LinkedIn
-                      width={25}
+                      width={24}
                       title="Follow Us on LinkedIn."
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "tiktok" && (
                     <Tiktok
-                      width={25}
+                      width={24}
                       title="Follow Us on Tiktok."
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                   {item.platform === "twitter" && (
                     <Twitter
-                      width={25}
+                      width={24}
                       title="Follow Us on Twitter."
-                      height={25}
-                      color="#fff"
+                      height={24}
+                      color="#cfcfcf"
                     />
                   )}
                 </Link>

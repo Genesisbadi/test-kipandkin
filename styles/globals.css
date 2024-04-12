@@ -88,9 +88,7 @@
   .react-select > div > div:nth-child(2) > span {
     display: none;
   }
-  .connections .odd img {
-    max-width: 100px;
-  }
+
   .connections .even img {
     max-width: 65px;
   }
@@ -138,7 +136,6 @@
       overflow: hidden !important;
     }
   }
-
   @media (min-width: 1200px) {
     .st-1 .container {
       max-width: 980px;

@@ -20,13 +20,13 @@ export default function footerConnections() {
       {connections.connection_items && (
         <>
           {process.env.NEXT_PUBLIC_TEMPLATE == 1 ? (
-            <div className="connections">
+            <div className="connections order-1 md:order-[-2]">
               {connections?.connection_items?.map((item, index) => (
                 <div
                   key={index}
                   className={`${
                     checkOddEven(index + 1) ? "odd" : "even"
-                  } border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[30px] mb-[15px] `}
+                  } border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[20px] mb-[30px] `}
                 >
                   {item?.title && (
                     <h2
@@ -44,7 +44,7 @@ export default function footerConnections() {
                     <div className="flex flex-wrap w-full lg:max-w-[calc(100%-180px)] items-center mx-[-15px]">
                       {item.images.map((item, index) => (
                         <span
-                          className="inline-block mb-[15px] lg:mb-0 px-[15px]"
+                          className="inline-block mb-[15px] max-w-[33.33%] md:max-w-[auto] lg:mb-0 px-[15px] md:grow-0"
                           key={index}
                         >
                           <Link
@@ -58,7 +58,7 @@ export default function footerConnections() {
                               width={322}
                               height={160}
                               alt="Logo"
-                              className="w-auto max-w-[100px]"
+                              className="w-auto md:max-w-[100px]"
                             />
                           </Link>
                         </span>
