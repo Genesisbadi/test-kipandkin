@@ -27,6 +27,8 @@ export default function DiningPage({ page }) {
   const { title } = page;
   const {
     subtitle,
+    banner_desktop,
+    banner_mobile,
     description,
     award_images,
     button_links,
@@ -162,16 +164,20 @@ export default function DiningPage({ page }) {
     <>
       <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-        <Image
-          alt={"Banner"}
-          src={
-            page.mediaHandler?.[`main.image`]?.[0]?.conversions.desktop ||
-            page.mediaHandler?.[`main.image`]?.[0]?.original
-          }
-          width={1920}
-          height={1080}
-          className="w-full h-full  object-cover absolute top-0 left-0"
-        />
+        <picture>
+          <source media="(min-width:415px)" srcset={banner_desktop} />
+          <source
+            media="(max-width:414px)"
+            srcset={banner_mobile || banner_desktop}
+          />
+          <Image
+            src={banner_desktop}
+            width={1920}
+            height={1080}
+            className="w-full h-full  object-cover absolute top-0 left-0"
+            alt="Page Banner"
+          />
+        </picture>
         {title && (
           <h2
             className={`text-[35px] md:text-[42px] text-white relative z-[3] ${
@@ -275,36 +281,28 @@ export default function DiningPage({ page }) {
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
                     {button_links.map((item, index) => {
-                      return (
-                        <Link
-                          key={index}
-                          href={item?.button_url || "#"}
-                          className={`px-[30px] py-[15px] text-center tracking-[1px] text-[14px] ${
-                            item.variant === "filled"
-                              ? "bg-primary text-white"
-                              : "border border-secondary text-secondary"
-                          } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
-                        >
-                          {item.button_label}
-                        </Link>
-                      );
+                      if (item?.button_url || item?.file) {
+                        return (
+                          <Link
+                            key={index}
+                            href={item?.button_url || item?.file || "#"}
+                            target={
+                              item?.button_url.includes("http") ||
+                              item?.file.includes("http")
+                                ? "_blank"
+                                : "_self"
+                            }
+                            className={`px-[30px] py-[15px] text-center tracking-[1px] text-[14px] ${
+                              item.variant === "filled"
+                                ? "bg-primary text-white"
+                                : "border border-secondary text-secondary"
+                            } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                          >
+                            {item.button_label}
+                          </Link>
+                        );
+                      }
                     })}
-                    {file_button && file_button.length > 0 && (
-                      <>
-                        {file_button.map((item, index) => {
-                          return (
-                            <Link
-                              key={index}
-                              href={item?.file || "#"}
-                              target="_blank"
-                              className={`w-full px-[30px] py-[15px] 2sm:w-auto text-center tracking-[1px] text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                            >
-                              {item.file_label}
-                            </Link>
-                          );
-                        })}
-                      </>
-                    )}
                   </div>
                 )}
               </div>
