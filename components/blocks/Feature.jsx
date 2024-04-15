@@ -19,7 +19,7 @@ export default function Feature({ block }) {
   }
   return (
     <SectionAccordion title={title} childrenClassname="pb-0">
-      <section className="flex flex-wrap md:mb-[10px]">
+      <section className="flex flex-wrap md:mb-[5px]">
         <div className="w-full flex items-center justify-center md:max-w-[50%] bg-secondary1">
           {video_link || image ? (
             <>

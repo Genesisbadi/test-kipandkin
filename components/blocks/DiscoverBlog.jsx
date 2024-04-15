@@ -81,8 +81,8 @@ export default function DiscoverBlog({ block }) {
 
   return (
     <section className="overflow-hidden py-[5px]">
-      <div className="flex flex-wrap mx-[-5px] relative">
-        <div className="px-[5px] w-full md:max-w-[50%]">
+      <div className="flex flex-wrap mx-[-3px] relative">
+        <div className="px-[3px] w-full md:max-w-[50%]">
           <div className="flex justify-between items-start md:items-end h-full relative bg-[#f1f1f1] min-h-[350px] p-[15px]">
             <div className="absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] md:opacity-[.3] xl:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
               <Image
@@ -124,7 +124,7 @@ export default function DiscoverBlog({ block }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex relative flex-col px-[5px] md:max-w-[50%]">
+        <div className="w-full flex relative flex-col px-[3px] md:max-w-[50%]">
           {blogEntries && blogEntries.length > 0 && (
             <>
               <Slick className="grow slide-fill" {...settings}>

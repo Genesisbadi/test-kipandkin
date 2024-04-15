@@ -26,7 +26,7 @@ const BackTop = () => {
   };
 
   return (
-    <div className={`${styles.backTop}`}>
+    <div className={`${styles.backTop} hover:opacity-[.6]`}>
       <button
         className={`transition ${isVisible ? "visible" : "invisible"}`}
         onClick={scrollToTop}

@@ -78,8 +78,8 @@ export default function AdvocaciesReviews({ block }) {
   };
   return (
     <section className="overflow-hidden">
-      <div className="flex flex-wrap mx-[-5px]">
-        <div className="px-[5px] w-full md:max-w-[50%]">
+      <div className="flex flex-wrap mx-[-3px]">
+        <div className="px-[3px] w-full md:max-w-[50%]">
           <div className="bg-primary1 h-full">
             <Image
               src={`/images/image_makati-large.jpg`}
@@ -113,7 +113,7 @@ export default function AdvocaciesReviews({ block }) {
             </div>
           </div>
         </div>
-        <div className="px-[5px] flex flex-col w-full md:max-w-[50%]">
+        <div className="px-[3px] flex flex-col w-full md:max-w-[50%]">
           <Image
             src={`/images/image_makati-large.jpg`}
             width={900}
