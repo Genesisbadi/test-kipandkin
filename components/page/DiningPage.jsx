@@ -287,8 +287,8 @@ export default function DiningPage({ page }) {
                             key={index}
                             href={item?.button_url || item?.file || "#"}
                             target={
-                              item?.button_url.includes("http") ||
-                              item?.file.includes("http")
+                              item?.button_url?.includes("http") ||
+                              item?.file?.includes("http")
                                 ? "_blank"
                                 : "_self"
                             }
