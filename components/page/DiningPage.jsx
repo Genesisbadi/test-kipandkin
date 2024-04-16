@@ -160,17 +160,17 @@ export default function DiningPage({ page }) {
     };
   };
 
-  console.log(button_links && button_links.length > 0,'button_links')
+  console.log(button_links && button_links.length > 0, "button_links");
 
   return (
     <>
-      <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center h-[560px] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <picture>
-          <source media="(min-width:415px)" srcset={banner_desktop} />
+          <source media="(min-width:415px)" srcSet={banner_desktop} />
           <source
             media="(max-width:414px)"
-            srcset={banner_mobile || banner_desktop}
+            srcSet={banner_mobile || banner_desktop}
           />
           <Image
             src={banner_desktop}
@@ -283,7 +283,7 @@ export default function DiningPage({ page }) {
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
                     {button_links.map((item, index) => {
-                      if (item?.button_link || item?.file) {                  
+                      if (item?.button_link || item?.file) {
                         return (
                           <Link
                             key={index}

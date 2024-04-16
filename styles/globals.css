@@ -67,9 +67,9 @@
     transition: all ease 0.3s;
   }
 
-  .react-select {
+  /* .react-select {
     text-transform: uppercase;
-  }
+  } */
   .react-select,
   .react-select * {
     color: var(--primary) !important;
