@@ -160,6 +160,8 @@ export default function DiningPage({ page }) {
     };
   };
 
+  console.log(button_links && button_links.length > 0,'button_links')
+
   return (
     <>
       <section className="relative flex items-center justify-center h-[100vh] w-full bg-[#f1f1f1]">
@@ -281,24 +283,24 @@ export default function DiningPage({ page }) {
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
                     {button_links.map((item, index) => {
-                      if (item?.button_url || item?.file) {
+                      if (item?.button_link || item?.file) {                  
                         return (
                           <Link
                             key={index}
-                            href={item?.button_url || item?.file || "#"}
+                            href={item?.button_link || item?.file || "#"}
                             target={
-                              item?.button_url?.includes("http") ||
-                              item?.file?.includes("http")
+                              item?.button_link?.includes("https") ||
+                              item?.file?.includes("https")
                                 ? "_blank"
                                 : "_self"
                             }
                             className={`px-[30px] py-[15px] text-center tracking-[1px] text-[14px] ${
-                              item.variant === "filled"
+                              item?.variant === "filled"
                                 ? "bg-primary text-white"
                                 : "border border-secondary text-secondary"
                             } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
                           >
-                            {item.button_label}
+                            {item?.button_label}
                           </Link>
                         );
                       }
