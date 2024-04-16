@@ -1,12 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css";
-import { useState } from "react";
+import { use, useState } from "react";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 export default function MeetingsEvensDetails({ page }) {
+  const router = useRouter();
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
       (module) => module.default
@@ -27,6 +30,21 @@ export default function MeetingsEvensDetails({ page }) {
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
+
+  useEffect(() => {
+    // Reset state when the route changes
+    const handleRouteChange = () => {
+      setSelectedValue(0);
+      setCurrentVenue(venues[0]);
+      console.log("Route changed!");
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router, venues]);
 
   const getDefaultValue = () => {
     let defaultVenue = currentVenue.title;
@@ -82,13 +100,11 @@ export default function MeetingsEvensDetails({ page }) {
               // value={selectedValue}
               className="react-select"
               defaultValue={getDefaultValue()}
-              onChange={(e) =>
-                setSelectedValue(() => {
-                  Number(e.value);
-                  const curVenue = venues.find((obj) => obj.title === e.value);
-                  setCurrentVenue(curVenue);
-                })
-              }
+              onChange={(e) => {
+                const curVenue = venues.find((obj) => obj.title === e.value);
+                setSelectedValue(e.value);
+                setCurrentVenue(curVenue);
+              }}
               options={venues?.map((item, index) => {
                 return {
                   label: item?.title,
