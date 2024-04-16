@@ -29,8 +29,8 @@ export default function ButtonsRepeater({ ...props }) {
               }`}
               href={item?.button_link || item?.file}
               target={
-                item?.button_link.includes("http") ||
-                item?.file.includes("http")
+                item?.button_link?.includes("http") ||
+                item?.file?.includes("http")
                   ? "_blank"
                   : "_self"
               }
