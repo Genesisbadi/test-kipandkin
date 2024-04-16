@@ -65,10 +65,10 @@ export default function GridFloatBookDirect({ block }) {
                     </h2>
                     <div className="relative text-center text-white">
                       <Image
-                        src={`/images/image_makati-large.jpg`}
+                        src={item?.image  || `/images/image_makati-large.jpg`}
                         width={900}
                         height={500}
-                        alt={item.title}
+                        alt={item.title || "Thumbnail"}
                         className="absolute top-0 w-full h-full object-cover"
                       />
                       <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">

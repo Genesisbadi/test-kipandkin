@@ -15,6 +15,8 @@ export default function AdvocaciesReviews({ block }) {
   const { image_advocacy, image_reviews, title, description, link } =
     block.main;
 
+    console.log(block.main,' block')
+
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -82,10 +84,10 @@ export default function AdvocaciesReviews({ block }) {
         <div className="px-[3px] w-full md:max-w-[50%]">
           <div className="bg-primary1 h-full">
             <Image
-              src={`/images/image_makati-large.jpg`}
+              src={image_advocacy ||`/images/image_makati-large.jpg`}
               width={900}
               height={500}
-              alt={title}
+              alt={title || "Thumbnail"}
               className="w-full h-[250px] md:h-[575px] object-cover"
             />
             <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
@@ -115,10 +117,10 @@ export default function AdvocaciesReviews({ block }) {
         </div>
         <div className="px-[3px] flex flex-col w-full md:max-w-[50%]">
           <Image
-            src={`/images/image_makati-large.jpg`}
+            src={image_reviews || `/images/image_makati-large.jpg`}
             width={900}
             height={500}
-            alt={title}
+            alt={title || "Thumbnail"}
             className="w-full h-[250px] md:h-[575px] object-cover"
           />
           {reviewItems && reviewItems.length > 0 && (
