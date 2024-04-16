@@ -67,7 +67,7 @@ export default function MeetingsEvensDetails({ page }) {
         )}
       </div>
 
-      <div className="container pt-[20px] sm:pt-[30px]">
+      <div className="container py-[20px] sm:py-[30px]">
         {description && (
           <div
             className={`${styles.description} my-[30px]`}
