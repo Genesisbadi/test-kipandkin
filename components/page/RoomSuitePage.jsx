@@ -117,7 +117,7 @@ export default function RoomSuitePage({ page }) {
             </div>
           )}
         </div>
-        <CarouselGallery images={gallery} title={"Gallery"} alt_title={title} />
+        <CarouselGallery images={gallery} title={"Gallery"} alt_title={title || "Thumbnail"} />
         {button_links?.length > 0 && (
           <div className="bg-[#f1f1f1] flex flex-col md:flex-row gap-x-3 w-full justify-center pb-10">
             <div className="flex flex-wrap justify-center ">

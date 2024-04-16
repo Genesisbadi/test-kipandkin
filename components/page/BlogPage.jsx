@@ -47,7 +47,7 @@ export default function BlogPage({ page }) {
           <Image
             className="mb-[30px]"
             src={mediaHandler["main.image"]?.[0]?.conversions?.blog_show}
-            alt={title}
+            alt={title || "Thumbnail"}
             width={1200}
             height={400}
           />

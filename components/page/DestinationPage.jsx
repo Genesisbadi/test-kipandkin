@@ -122,7 +122,7 @@ export default function DestinationDetails({ page }) {
                         page.mediaHandler[`main.items.${index}.image`][0]
                           .original
                       }
-                      alt={item?.title}
+                      alt={item?.title || "Thubmanil"}
                       height={1000}
                       width={1000}
                       quality={100}

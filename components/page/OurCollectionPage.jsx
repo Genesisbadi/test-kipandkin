@@ -249,7 +249,7 @@ export default function OurCollectionPage({ page }) {
         <article>
           {images && images?.length > 0 && (
             <CarouselGallery
-              alt_title={page?.title}
+              alt_title={page?.title || "Thumbnail"}
               images={images}
               title="Gallery"
               className="bg-white"

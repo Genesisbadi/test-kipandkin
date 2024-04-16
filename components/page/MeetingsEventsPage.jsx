@@ -44,7 +44,7 @@ export default function MeetingsEvensDetails({ page }) {
     <article className="bg-[#f1f1f1]">
       <div className="relative min-h-[560px] text-white flex text-center items-center justify-center">
         <Image
-          alt={title}
+          alt={title || "Banner"}
           src={
             page.mediaHandler["main.image"]?.[0].conversions.desktop ||
             page.mediaHandler["main.image"]?.[0].original ||
@@ -146,7 +146,7 @@ export default function MeetingsEvensDetails({ page }) {
           )}
           {currentVenue?.images && (
             <CarouselGallery
-              alt_title={currentVenue.title}
+              alt_title={currentVenue.title || "Thumbnail"}
               images={currentVenue?.images}
             />
           )}
