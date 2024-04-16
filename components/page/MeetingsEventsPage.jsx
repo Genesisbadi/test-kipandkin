@@ -32,19 +32,8 @@ export default function MeetingsEvensDetails({ page }) {
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
   useEffect(() => {
-    // Reset state when the route changes
-    const handleRouteChange = () => {
-      setSelectedValue(0);
-      setCurrentVenue(venues[0]);
-      console.log("Route changed!");
-    };
-
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router, venues]);
+    setCurrentVenue(venues[0]);
+  }, [venues]);
 
   const getDefaultValue = () => {
     let defaultVenue = currentVenue.title;
@@ -53,7 +42,7 @@ export default function MeetingsEvensDetails({ page }) {
 
   return (
     <article className="bg-[#f1f1f1]">
-      <div className="relative min-h-[560px] text-white flex items-center justify-center">
+      <div className="relative min-h-[560px] text-white flex text-center items-center justify-center">
         <Image
           alt={title}
           src={
@@ -67,7 +56,7 @@ export default function MeetingsEvensDetails({ page }) {
         />
         {title && (
           <div
-            className={`relative text-[42px] ${
+            className={`relative text-[42px] px-[15px] ${
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "font-tenor"
                 : "font-domine"
