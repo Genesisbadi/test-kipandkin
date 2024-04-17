@@ -123,52 +123,62 @@ export default function Slider({ block, mediaHandler }) {
 
   return (
     <div className="block-slider slider relative">
-      <Slick {...settings}>
-        {slider_items.map((item, index) => (
-          <div className="w-full relative" key={index}>
-            <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-            <picture>
-              <source media="(min-width: 415px)" srcSet={item?.image_desktop} />
-              <source media="(max-width: 414px)" srcSet={item?.image_mobile} />
-              <Image
-                src={item?.image_mobile}
-                alt={item?.title || "Slider Image"}
-                width={1920}
-                height={750}
-                className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
-                loading="eager"
-              />
-            </picture>
+      {slider_items &&
+        slider_items.length >
+          0(
+            <Slick {...settings}>
+              {slider_items?.map((item, index) => (
+                <div className="w-full relative" key={index}>
+                  <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+                  <picture>
+                    <source
+                      media="(min-width: 415px)"
+                      srcSet={item?.image_desktop}
+                    />
+                    <source
+                      media="(max-width: 414px)"
+                      srcSet={item?.image_mobile}
+                    />
+                    <Image
+                      src={item?.image_mobile}
+                      alt={item?.title || "Slider Image"}
+                      width={1920}
+                      height={750}
+                      className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
+                      loading="eager"
+                    />
+                  </picture>
 
-            <div className="py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-              {item?.title && (
-                <div
-                  className={`text-[35px] text-center md:text-[42px] mb-[15px] font-tenor`}
-                >
-                  {item?.title}
+                  <div className="py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+                    {item?.title && (
+                      <div
+                        className={`text-[35px] text-center md:text-[42px] mb-[15px] font-tenor`}
+                      >
+                        {item?.title}
+                      </div>
+                    )}
+                    {item?.description && (
+                      <div
+                        className="mb-[15px] text-center"
+                        dangerouslySetInnerHTML={{ __html: item?.description }}
+                      />
+                    )}
+
+                    {item?.url && (
+                      <Link
+                        className="uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                        href={item?.url}
+                      >
+                        {process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "Discover More"
+                          : "Learn More"}
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              )}
-              {item?.description && (
-                <div
-                  className="mb-[15px] text-center"
-                  dangerouslySetInnerHTML={{ __html: item?.description }}
-                />
-              )}
-
-              {item?.url && (
-                <Link
-                  className="uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                  href={item?.url}
-                >
-                  {process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "Discover More"
-                    : "Learn More"}
-                </Link>
-              )}
-            </div>
-          </div>
-        ))}
-      </Slick>
+              ))}
+            </Slick>
+          )}
     </div>
   );
 }
