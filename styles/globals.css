@@ -308,3 +308,7 @@
 #CookiebotWidget .CookiebotWidget-logo svg circle {
   fill: var(--primary) !important;
 }
+
+#nprogress .bar {
+  background: var(--primary) !important;
+}
