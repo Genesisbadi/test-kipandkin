@@ -32,6 +32,10 @@ export default function OfferDetails({ page }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
 
+  useEffect(() => {
+    setCurrentVenue(venues[0]);
+  }, [venues]);
+
   const getDefaultValue = () => {
     return { label: currentVenue.title, value: currentVenue.value };
   };
