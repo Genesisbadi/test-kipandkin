@@ -15,8 +15,6 @@ export default function AdvocaciesReviews({ block }) {
   const { image_advocacy, image_reviews, title, description, link } =
     block.main;
 
-    console.log(block.main,' block')
-
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -84,7 +82,7 @@ export default function AdvocaciesReviews({ block }) {
         <div className="px-[3px] w-full md:max-w-[50%]">
           <div className="bg-primary1 h-full">
             <Image
-              src={image_advocacy ||`/images/image_makati-large.jpg`}
+              src={image_advocacy || `/images/image_makati-large.jpg`}
               width={900}
               height={500}
               alt={title || "Thumbnail"}

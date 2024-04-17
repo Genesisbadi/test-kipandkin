@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 export default function OfferDetails({ page }) {
   const VenueDescription = dynamic(() =>
     import("../nodes/meetings-events/VenueDescription").then(

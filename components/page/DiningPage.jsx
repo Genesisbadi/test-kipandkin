@@ -160,8 +160,6 @@ export default function DiningPage({ page }) {
     };
   };
 
-  console.log(button_links && button_links.length > 0, "button_links");
-
   return (
     <>
       <section className="page-banner relative flex items-center justify-center h-[560px] w-full bg-[#f1f1f1]">

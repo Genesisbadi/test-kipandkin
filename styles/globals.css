@@ -312,3 +312,8 @@
 #nprogress .bar {
   background: var(--primary) !important;
 }
+
+table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
