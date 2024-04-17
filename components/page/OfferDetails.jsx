@@ -54,7 +54,7 @@ export default function OfferDetails({ page }) {
             }
             width={1200}
             height={450}
-            alt={title}
+            alt={title || "Thumbnail"}
           />
         )}
         {description && (

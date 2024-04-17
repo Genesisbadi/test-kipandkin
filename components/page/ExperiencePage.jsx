@@ -98,7 +98,7 @@ export default function ExperiencePage({ page }) {
 
       {gallery && (
         <CarouselGallery
-          alt_title={page?.title}
+          alt_title={page?.title || "Thumbnail"}
           images={gallery}
           title="Gallery"
           className="container"

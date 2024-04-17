@@ -315,7 +315,7 @@ export default function DiningPage({ page }) {
 
           {gallery_images && gallery_images?.length > 0 && (
             <CarouselGallery
-              alt_title={page?.title}
+              alt_title={page?.title || "Thumbnail"}
               images={gallery_images}
               title="Gallery"
             />
@@ -331,7 +331,7 @@ export default function DiningPage({ page }) {
                     <div className="w-full md:w-1/2">
                       <Link href={route_url || "#"}>
                         <Image
-                          alt={diningOfferTitle}
+                          alt={diningOfferTitle || "Thumbnail"}
                           src={data?.main?.featured_image}
                           width={628}
                           height={280}
