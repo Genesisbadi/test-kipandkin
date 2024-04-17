@@ -317,3 +317,7 @@ table td {
   border: 1px solid #ccc;
   padding: 5px;
 }
+
+p:not(:last-of-type) {
+  margin-bottom: 15px;
+}
