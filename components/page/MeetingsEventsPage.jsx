@@ -36,7 +36,7 @@ export default function MeetingsEvensDetails({ page }) {
   }, [venues]);
 
   const getDefaultValue = () => {
-    let defaultVenue = currentVenue.title;
+    let defaultVenue = currentVenue?.title || title;
     return { label: defaultVenue, value: defaultVenue };
   };
 
@@ -72,7 +72,7 @@ export default function MeetingsEvensDetails({ page }) {
           <div
             className={`${styles.description} py-[30px]`}
             dangerouslySetInnerHTML={{ __html: description }}
-          ></div>
+          />
         )}
         {venues.length > 0 && (
           <>
