@@ -318,6 +318,6 @@ table td {
   padding: 5px;
 }
 
-p:not(:last-of-type) {
+p {
   margin-bottom: 15px;
 }
