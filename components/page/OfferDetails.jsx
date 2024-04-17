@@ -79,6 +79,7 @@ export default function OfferDetails({ page }) {
                 </div>
                 <CustomSelect
                   // value={currentVenue}
+                  isSearchable={false}
                   className="react-select"
                   defaultValue={getDefaultValue()}
                   onChange={(e) =>

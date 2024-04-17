@@ -74,6 +74,7 @@ export default function Block({ block }) {
           </div>
           <CustomSelect
             // value={selectedCategory}
+            isSearchable={false}
             className="react-select z-30"
             defaultValue={getDefaultValue()}
             onChange={handleCategoryChange}

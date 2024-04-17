@@ -81,6 +81,7 @@ export default function DestinationDetails({ block, page }) {
                 value={getDefaultValue()}
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
+                isSearchable={false}
                 options={destinations?.map((item, index) => {
                   return {
                     label: item?.title,

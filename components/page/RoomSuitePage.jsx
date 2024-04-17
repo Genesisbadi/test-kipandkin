@@ -87,6 +87,7 @@ export default function RoomSuitePage({ page }) {
                 value={getDefaultValue()}
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
+                isSearchable={false}
                 options={roomsSuitesEntriesData?.map((item, index) => {
                   return {
                     label: item?.title,

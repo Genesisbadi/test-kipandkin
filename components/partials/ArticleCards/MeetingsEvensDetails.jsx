@@ -181,6 +181,7 @@ export default function MeetingsEvensDetails({ block, page }) {
                   </div>
                   <CustomSelect
                     // value={selectedValue}
+                    isSearchable={false}
                     className="react-select"
                     defaultValue={getDefaultValue()}
                     onChange={(e) =>

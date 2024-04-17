@@ -70,7 +70,7 @@ export default function MeetingsEvensDetails({ page }) {
       <div className="container pt-[20px] sm:pt-[30px]">
         {description && (
           <div
-            className={`${styles.description} my-[30px]`}
+            className={`${styles.description} py-[30px]`}
             dangerouslySetInnerHTML={{ __html: description }}
           ></div>
         )}
@@ -87,6 +87,7 @@ export default function MeetingsEvensDetails({ page }) {
             </div>
             <CustomSelect
               // value={selectedValue}
+              isSearchable={false}
               className="react-select"
               defaultValue={getDefaultValue()}
               onChange={(e) => {
@@ -112,15 +113,15 @@ export default function MeetingsEvensDetails({ page }) {
               {currentVenue.image && (
                 <ModalImage
                   className="w-full h-full object-cover"
-                  title={currentVenue.title || "#"}
-                  content={currentVenue.image}
-                  image={currentVenue.image}
+                  title={currentVenue?.title || "#"}
+                  content={currentVenue?.image}
+                  image={currentVenue?.image}
                 />
               )}
               <div
                 className={`${styles.description} my-[30px]`}
                 dangerouslySetInnerHTML={{
-                  __html: currentVenue.description,
+                  __html: currentVenue?.description,
                 }}
               />
               {currentVenue?.buttons?.length > 0 && (
@@ -146,7 +147,7 @@ export default function MeetingsEvensDetails({ page }) {
           )}
           {currentVenue?.images && (
             <CarouselGallery
-              alt_title={currentVenue.title}
+              alt_title={currentVenue?.title}
               images={currentVenue?.images}
             />
           )}

@@ -75,6 +75,7 @@ export default function ExperiencePage({ page }) {
           <CustomSelect
             className="react-select w-full max-w-[350px] cursor-pointer"
             id="experiences-select"
+            isSearchable={false}
             instanceId="experiences-select"
             value={getDefaultValue()}
             defaultValue={getDefaultValue()}

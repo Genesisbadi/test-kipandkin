@@ -199,6 +199,7 @@ export default function OurCollectionDetails({ block, page }) {
                   className="react-select"
                   id="ourCollectionSelect"
                   instanceId="ourCollectionSelect"
+                  isSearchable={false}
                   // value={getDefaultValue()}
                   defaultValue={getDefaultValue()}
                   onChange={handleSelectChange}

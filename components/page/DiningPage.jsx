@@ -202,6 +202,7 @@ export default function DiningPage({ page }) {
                     className="react-select w-full min-w-[400px] cursor-pointer"
                     id="dining-select"
                     instanceId="dining-select"
+                    isSearchable={false}
                     value={getDefaultValue()}
                     defaultValue={getDefaultValue()}
                     onChange={handleSelectChange}
