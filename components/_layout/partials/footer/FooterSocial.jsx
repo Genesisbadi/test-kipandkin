@@ -48,7 +48,7 @@ export default function FooterSocial() {
                   href={item.link}
                   title={messages[item.platform] || "Follow Us"}
                   target="_blank"
-                  className="hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[50px] min-h-[50px] w-[50px] h-[50px] p-[5px]"
+                  className="hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[46px] min-h-[46px] w-[46px] h-[46px] p-[5px]"
                 >
                   {item.platform === "facebook" && (
                     <Facebook
