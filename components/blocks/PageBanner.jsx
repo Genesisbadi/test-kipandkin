@@ -13,7 +13,7 @@ export default function Block({ page, block, mediaHandler }) {
         height={1080}
         className="w-full object-cover absolute top-0 left-0 h-full"
       />
-      <div className="w-full flex relative items-center justify-center h-[560px]">
+      <div className="w-full flex relative items-center justify-center h-[560px] 3xl:h-[812px]">
         <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span>
         <div
           className={`text-[42px] text-white relative z-[20] tracking-[1px] ${

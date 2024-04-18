@@ -156,7 +156,7 @@ export default function OurCollectionPage({ page }) {
   };
   return (
     <>
-      <section className="page-banner relative flex items-center justify-center h-[560px] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center h-[560px] 3xl:h-[812px] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
           alt={"Banner"}

@@ -42,7 +42,7 @@ export default function MeetingsEvensDetails({ page }) {
 
   return (
     <article className="bg-[#f1f1f1]">
-      <div className="relative min-h-[560px] text-white flex text-center items-center justify-center">
+      <div className="relative min-h-[560px] 3xl:h-[812px] text-white flex text-center items-center justify-center">
         <Image
           alt={title || "Banner"}
           src={
