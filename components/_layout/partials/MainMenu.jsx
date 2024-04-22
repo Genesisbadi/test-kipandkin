@@ -30,36 +30,52 @@ export default function MainMenu({ parentNodes, ...props }) {
                   : "right-[10px]"
               }`}
           ></span>
-          {itemChildren?.map((item, index) => (
-            <div className={`${item.children ? "dropdown" : ""}`} key={index}>
-              {item?.url?.includes("nolink") ? (
-                <>{item.label}</>
-              ) : (
-                <>
-                  <Link
-                    className={`${
-                      item?.url == router.asPath ||
-                      item?.url?.includes(router.query["id"])
-                        ? "!bg-secondary3 !text-[#fff]"
-                        : ""
-                    } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
-                    href={item?.url}
-                    target={item?.target}
-                  >
-                    {item?.label}
-                  </Link>
-                  {item?.children && item?.children?.length > 0 && (
-                    <>
-                      <DropdownMenu
-                        parent={item}
-                        itemChildren={item.children}
-                      />
-                    </>
-                  )}
-                </>
-              )}
-            </div>
-          ))}
+          {itemChildren?.map((item, index) => {
+            if (
+              item?.url == router.asPath ||
+              item?.url?.includes(router.query["id"])
+            ) {
+              setTimeout(() => {
+                const parentElem = document.getElementById(
+                  `nav-link-${parent?.id}`
+                );
+
+                if (parentElem) {
+                  parentElem.classList.add("active");
+                }
+              }, 500);
+            }
+            return (
+              <div className={`${item.children ? "dropdown" : ""}`} key={index}>
+                {item?.url?.includes("nolink") ? (
+                  <>{item.label}</>
+                ) : (
+                  <>
+                    <Link
+                      className={`${
+                        item?.url == router.asPath ||
+                        item?.url?.includes(router.query["id"])
+                          ? "!bg-secondary3 !text-[#fff]"
+                          : ""
+                      } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
+                      href={item?.url}
+                      target={item?.target}
+                    >
+                      {item?.label}
+                    </Link>
+                    {item?.children && item?.children?.length > 0 && (
+                      <>
+                        <DropdownMenu
+                          parent={item}
+                          itemChildren={item.children}
+                        />
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     );
@@ -68,6 +84,7 @@ export default function MainMenu({ parentNodes, ...props }) {
     <div className={`${props.className}`}>
       {parentNodes?.map((item, index) => (
         <div
+          id={`menu-item-${item?.id}`}
           className={`item relative text-[14px] ${
             item.label.toLowerCase() !== "reservations"
               ? "px-[10px] xxl:px-[10px]"
@@ -97,7 +114,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                   {item?.url?.includes("nolink") ? (
                     <>
                       <span
-                        className={`uppercase flex items-center cursor-default ${
+                        id={`nav-link-${item?.id}`}
+                        className={`relative nav-link uppercase flex items-center cursor-default ${
                           process.env.NEXT_PUBLIC_TEMPLATE == 1
                             ? "text-white"
                             : "text-primary"
@@ -119,7 +137,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                   ) : (
                     <>
                       <Link
-                        className={`text-primary flex items-center uppercase ${
+                        id={`nav-link-${item?.id}`}
+                        className={`relative nav-link text-primary flex items-center uppercase ${
                           item?.url?.includes(router.query["id"])
                             ? "active"
                             : ""
@@ -147,7 +166,10 @@ export default function MainMenu({ parentNodes, ...props }) {
               <>
                 {item?.url?.includes("nolink") ? (
                   <>
-                    <span className="flex items-center uppercase text-primary cursor-default">
+                    <span
+                      id={`nav-link-${item?.id}`}
+                      className="nav-link relative flex items-center uppercase text-primary cursor-default"
+                    >
                       {item.label}
                       <DropdownArrow
                         className="ml-[5px] top-[-2px] border-primary relative"
@@ -160,7 +182,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
-                      className={`text-primary relative flex flex-wrap items-center uppercase hover:text-[#000] ${
+                      id={`nav-link-${item?.id}`}
+                      className={`nav-link text-primary relative flex flex-wrap items-center uppercase hover:text-[#000] ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
                       }`}
                       href={item?.url || "#"}

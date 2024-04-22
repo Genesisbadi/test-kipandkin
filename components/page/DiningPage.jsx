@@ -331,8 +331,8 @@ export default function DiningPage({ page }) {
                   >
                     Dining Offer
                   </h2>
-                  <div className="flex flex-col md:flex-row w-full bg-white">
-                    <div className="w-full md:w-1/2">
+                  <div className="flex flex-col md:flex-row w-full bg-white shadow-md">
+                    <div className="w-full md:max-w-[500px]">
                       <Link href={route_url || "#"}>
                         <Image
                           alt={diningOfferTitle || "Thumbnail"}
@@ -354,8 +354,8 @@ export default function DiningPage({ page }) {
                         >
                           {diningOfferTitle}
                         </h3>
-                        <div className="w-full flex justify-center py-5">
-                          <hr className="border- border-primary w-[30px]" />
+                        <div className="w-full flex justify-center pt-[15px] pb-[10px]">
+                          <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
                         </div>
                         <div
                           dangerouslySetInnerHTML={{
@@ -366,8 +366,7 @@ export default function DiningPage({ page }) {
                       </div>
                       <Link
                         href={route_url || "#"}
-                        target="_blank"
-                        className={`w-full mt-5 py-5 px-8 sm:px-3 xl:px-8 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                        className={`w-full mt-5 py-[15px] px-[30px] 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                       >
                         View Offer
                       </Link>

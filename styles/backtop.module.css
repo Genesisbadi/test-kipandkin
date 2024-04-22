@@ -1,12 +1,15 @@
 .backTop button {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
   padding: 15px 20px;
   border-radius: 5px;
   color: #fff;
   background-color: #b88e21;
-  z-index: 100;
   font-weight: 700;
   text-decoration: none;
+}
+
+.backTop {
+  z-index: 1000;
+  bottom: 10px;
+  right: 10px;
+  position: fixed;
 }
