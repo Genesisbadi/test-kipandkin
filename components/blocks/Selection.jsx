@@ -1,5 +1,5 @@
 import CustomSelect from "../forms/CustomSelect";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "@/styles/description.module.css";
 import dynamic from "next/dynamic";
@@ -14,8 +14,12 @@ export default function Selection({ block }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentSelection, setCurrentSelection] = useState(selections[0]);
 
+  useEffect(() => {
+    setCurrentSelection(selections[0]);
+  }, [selections]);
+
   const getDefaultValue = () => {
-    let defaultSelection = selections[0]?.title || "";
+    let defaultSelection = currentSelection?.title;
     return { label: defaultSelection, value: defaultSelection };
   };
 

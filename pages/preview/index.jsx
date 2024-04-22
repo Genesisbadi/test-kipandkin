@@ -26,7 +26,6 @@ export default function DynamicPage() {
     signature = null,
     contents = null,
   } = params;
-
   PAGEAPI.getFindPagesSwr(
     slug,
     `?include=blockContents.block,metaData&expires=${expires}&signature=${signature}`,

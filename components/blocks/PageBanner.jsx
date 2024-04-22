@@ -2,12 +2,11 @@ import Image from "next/image";
 
 export default function Block({ page, block, mediaHandler }) {
   const { title, banner } = block.main;
-  console.log(block);
   return (
     <div className="page-banner relative flex items-center justify-center w-full bg-[#f1f1f1]">
       <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
       <Image
-        alt={title || "#"}
+        alt={title || "Discover"}
         src={banner || mediaHandler["main.image"]?.[0].original}
         width={1920}
         height={1080}

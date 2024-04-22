@@ -38,7 +38,7 @@ export default function OfferDetails({ page }) {
   }, [venues]);
 
   const getDefaultValue = () => {
-    return { label: currentVenue.title, value: currentVenue.value };
+    return { label: currentVenue.title, value: currentVenue.title };
   };
   return (
     <article className="bg-[#F1F1F1]">
@@ -83,7 +83,7 @@ export default function OfferDetails({ page }) {
                   Select Venue:
                 </div>
                 <CustomSelect
-                  // value={currentVenue}
+                  value={getDefaultValue()}
                   isSearchable={false}
                   className="react-select"
                   defaultValue={getDefaultValue()}

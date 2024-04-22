@@ -322,9 +322,15 @@ export default function DiningPage({ page }) {
             <div className="w-full bg-[#f1f1f1]">
               <div className="container py-[50px]">
                 <div className="flex flex-col w-full">
-                  <span className="text-primary text-[25px] uppercase text-center pb-[30px]">
+                  <h2
+                    className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "font-tenor"
+                        : "font-domine"
+                    }`}
+                  >
                     Dining Offer
-                  </span>
+                  </h2>
                   <div className="flex flex-col md:flex-row w-full bg-white">
                     <div className="w-full md:w-1/2">
                       <Link href={route_url || "#"}>
@@ -339,9 +345,15 @@ export default function DiningPage({ page }) {
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
                       <div className="flex flex-col">
-                        <span className="text-primary text-[20px] text-center ">
+                        <h3
+                          className={`text-primary text-[20px] text-center ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "font-tenor"
+                              : "font-domine"
+                          }`}
+                        >
                           {diningOfferTitle}
-                        </span>
+                        </h3>
                         <div className="w-full flex justify-center py-5">
                           <hr className="border- border-primary w-[30px]" />
                         </div>
