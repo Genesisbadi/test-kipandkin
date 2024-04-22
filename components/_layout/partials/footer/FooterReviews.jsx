@@ -78,72 +78,76 @@ export default function FooterReviews() {
 
   return (
     <>
-      {router.asPath !== "/" && (
-        <section className="pt-[40px] footer-reviews">
-          <div className="container">
-            <h2
-              className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor"
-                  : "font-domine"
-              }`}
-            >
-              Reviews
-            </h2>
-            {reviewsData && (
-              <>
-                <Slick className="lg:px-[70px] text-[14px]" {...settings}>
-                  {reviewsData.map((item, index) => (
-                    <div key={index}>
-                      <h3 className="font-bold text-[14px] uppercase">
-                        {item.title}
-                      </h3>
+      {reviewsData && reviewsData.length > 0 && (
+        <>
+          {router.asPath !== "/" && (
+            <section className="pt-[40px] footer-reviews">
+              <div className="container">
+                <h2
+                  className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "font-tenor"
+                      : "font-domine"
+                  }`}
+                >
+                  Reviews
+                </h2>
+                {reviewsData && (
+                  <>
+                    <Slick className="lg:px-[70px] text-[14px]" {...settings}>
+                      {reviewsData.map((item, index) => (
+                        <div key={index}>
+                          <h3 className="font-bold text-[14px] uppercase">
+                            {item.title}
+                          </h3>
 
-                      {item.data.main.description && (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: item.data.main.description,
-                          }}
-                        />
-                      )}
+                          {item.data.main.description && (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item.data.main.description,
+                              }}
+                            />
+                          )}
 
-                      <div className="flex flex-wrap mt-[30px]">
-                        {item.data.main.name && (
-                          <span>{item.data.main.name},</span>
-                        )}
-                        {item.data.main.link && (
-                          <span>
-                            <Link
-                              className="text-primary ml-[5px]"
-                              href={item.data.main.link}
-                            >
-                              {item.data.main.link_label || "View Review"}
-                            </Link>
-                          </span>
-                        )}
-                      </div>
-                      {item.data.main.stars && (
-                        <div className="flex mt-[30px]">
-                          {Array.from(
-                            { length: parseInt(item.data.main.stars) },
-                            (_, index) => (
-                              <Star
-                                width={20}
-                                height={20}
-                                key={index}
-                                color="#e6b886"
-                              />
-                            )
+                          <div className="flex flex-wrap mt-[30px]">
+                            {item.data.main.name && (
+                              <span>{item.data.main.name},</span>
+                            )}
+                            {item.data.main.link && (
+                              <span>
+                                <Link
+                                  className="text-primary ml-[5px]"
+                                  href={item.data.main.link}
+                                >
+                                  {item.data.main.link_label || "View Review"}
+                                </Link>
+                              </span>
+                            )}
+                          </div>
+                          {item.data.main.stars && (
+                            <div className="flex mt-[30px]">
+                              {Array.from(
+                                { length: parseInt(item.data.main.stars) },
+                                (_, index) => (
+                                  <Star
+                                    width={20}
+                                    height={20}
+                                    key={index}
+                                    color="#e6b886"
+                                  />
+                                )
+                              )}
+                            </div>
                           )}
                         </div>
-                      )}
-                    </div>
-                  ))}
-                </Slick>
-              </>
-            )}
-          </div>
-        </section>
+                      ))}
+                    </Slick>
+                  </>
+                )}
+              </div>
+            </section>
+          )}
+        </>
       )}
     </>
   );

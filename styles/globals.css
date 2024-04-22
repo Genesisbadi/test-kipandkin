@@ -321,3 +321,8 @@ table td {
 p {
   margin-bottom: 15px;
 }
+
+.st-2 .react-select > div {
+  min-height: 50px;
+  background: #e6efee;
+}
