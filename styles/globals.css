@@ -28,10 +28,10 @@
 .font-tenor {
   font-family: "Tenor", sans-serif;
 }
-.carousel-gallery * {
+.carousel-gallery *,
+.block-slider .slick-slider {
   line-height: 0;
 }
-
 .carousel-gallery .slick-slide {
   margin-left: 10px;
 }

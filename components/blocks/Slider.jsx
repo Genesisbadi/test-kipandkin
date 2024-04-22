@@ -105,7 +105,7 @@ export default function Slider({ block, mediaHandler }) {
     infinite: false,
     fade: true,
     speed: 500,
-    adaptiveHeight: true,
+
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
@@ -116,6 +116,7 @@ export default function Slider({ block, mediaHandler }) {
         settings: {
           arrows: false,
           dots: true,
+          adaptiveHeight: true,
         },
       },
     ],
