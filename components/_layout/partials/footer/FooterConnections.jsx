@@ -73,7 +73,7 @@ export default function footerConnections() {
               {connections?.connection_items?.map((item, index) => (
                 <div
                   key={index}
-                  className="border-b border-b-[1px] pb-[15px] border-[#666] [&:not(:last-of-type)]:mb-[15px]"
+                  className="border-b border-b-[1px] pb-[30px] border-[#666] mb-[30px]"
                 >
                   {item?.title && (
                     <h2

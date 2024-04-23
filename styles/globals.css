@@ -326,3 +326,7 @@ p {
   min-height: 50px;
   background: #e6efee;
 }
+
+.juicer-feed h1.referral {
+  display: none !important;
+}
