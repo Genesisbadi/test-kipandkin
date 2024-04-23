@@ -2,7 +2,7 @@ import Link from "next/link";
 import menuData from "../../../../lib/preBuildScripts/static/footerMenu.json";
 
 export default function FooterMenu() {
-  const { nodes } = menuData.footerMenuData;
+  const nodes = menuData.footerMenuData;
   return (
     <div className="footer-menu pb-[65px]">
       {nodes && (
@@ -12,9 +12,9 @@ export default function FooterMenu() {
               <div className="w-full uppercase mb-[20px]" key={index}>
                 <Link
                   className="text-[#cfcfcf] text-[14px] inline-block hover:opacity-[.6]"
-                  href={item.url}
+                  href={item?.attributes?.url}
                 >
-                  {item.label}
+                  {item?.attributes?.label}
                 </Link>
               </div>
             ))}
