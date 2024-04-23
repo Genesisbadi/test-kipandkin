@@ -91,7 +91,11 @@ export default function footerConnections() {
                     <div className="mt-[15px] flex gap-x-[15px] flex-wrap justify-center items-center">
                       {item.images.map((item, index) => (
                         <div key={index}>
-                          <Link href={item?.link || "#"} target="_blank">
+                          <Link
+                            href={item?.link || "#"}
+                            target="_blank"
+                            className={!item?.link ? "pointer-events-none" : ""}
+                          >
                             <Image
                               src={item?.image}
                               width={250}

@@ -7,7 +7,7 @@ export default function FooterMenu() {
     <div className="footer-menu pb-[65px]">
       {nodes && (
         <>
-          <div className="grid md:grid-cols-2 xl:grid-cols-4">
+          <div className="block columns-1 md:columns-2 xl:columns-4">
             {nodes.map((item, index) => (
               <div className="w-full uppercase mb-[20px]" key={index}>
                 <Link

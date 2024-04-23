@@ -31,6 +31,7 @@
 .description li {
   font-size: 14px;
   line-height: 21px;
+  margin-bottom: 15px;
 }
 .description a {
   text-decoration: none;
