@@ -62,8 +62,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                         item?.url == router.asPath ||
                         (item?.url?.includes(router.query["id"]) &&
                           process.env.NEXT_PUBLIC_TEMPLATE == 1)
-                          ? "!bg-secondary3 !text-[#fff] hover:!bg-[#ddd7cc] hover:!text-primary"
-                          : ""
+                          ? "!bg-secondary3 !text-[#fff]"
+                          : "hover:!bg-[#ddd7cc] hover:!text-primary"
                       } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
                       href={item?.url}
                       target={item?.target}
