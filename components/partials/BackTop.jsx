@@ -6,29 +6,35 @@ const BackTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    return () => {
+      setTimeout(() => {
+        window.removeEventListener("scroll", toggleVisibility);
+      }, 100);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      console.log("scrolled top");
+    }, 200);
   };
 
   return (
-    <div className={`${styles.backTop} hover:opacity-[.6]`}>
+    <div className={styles.backTop}>
       <button
-        className={`transition ${isVisible ? "visible" : "invisible"}`}
+        className={`hover:opacity-[.9] ${styles.backTopButton} ${
+          isVisible ? styles.visible : styles.invisible
+        }`}
         onClick={scrollToTop}
       >
         ^

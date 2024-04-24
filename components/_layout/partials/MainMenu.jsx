@@ -20,7 +20,13 @@ export default function MainMenu({ parentNodes, ...props }) {
             : "left-[0]"
         } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%-20px)] transition opacity-[0] invisible`}
       >
-        <div className="w-full bg-secondary2 transition translate-y-[10px] relative">
+        <div
+          className={`w-full  transition translate-y-[10px] relative ${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1
+              ? "bg-secondary2"
+              : "bg-[#c5baa6]"
+          }`}
+        >
           <span
             className={`caret absolute top-[-10px]  z-[20] w-[0] h-[0] border-r-[10px] border-b-[10px] 
               border-l-[10px] border-solid border-r-transparent
@@ -43,7 +49,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                 if (parentElem) {
                   parentElem.classList.add("active");
                 }
-              }, 500);
+              }, 100);
             }
             return (
               <div className={`${item.children ? "dropdown" : ""}`} key={index}>
@@ -54,7 +60,8 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <Link
                       className={`${
                         item?.url == router.asPath ||
-                        item?.url?.includes(router.query["id"])
+                        (item?.url?.includes(router.query["id"]) &&
+                          process.env.NEXT_PUBLIC_TEMPLATE == 1)
                           ? "!bg-secondary3 !text-[#fff]"
                           : ""
                       } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
