@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function ButtonsBlock({ block }) {
   return (
-    <section className={`${!block?.main.bg_white ? "#75D3CF" : ""}`}>
+    <section className={`${!block?.main.bg_white == 1 ? "#75D3CF" : ""}`}>
       <div className="container">
         <div
           className={`flex flex-wrap justify-center pt-[30px] pb-[15px] mx-[-5px]`}
