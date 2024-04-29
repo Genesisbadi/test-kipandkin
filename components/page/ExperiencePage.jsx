@@ -101,7 +101,7 @@ export default function ExperiencePage({ page }) {
           alt_title={page?.title || "Thumbnail"}
           images={gallery}
           title="Gallery"
-          className="container"
+          className=""
         />
       )}
     </>

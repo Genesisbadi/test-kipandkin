@@ -178,7 +178,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   </h2>
                   <div
                     className={`${
-                      images.length > 2 ? "" : ""
+                      images.length > 2 ? "" : "container"
                     } flex flex-col w-full slick-gallery`}
                   >
                     <Slick {...settings} className="h-[330px] lg:h-[530px]">
