@@ -30,11 +30,15 @@ export default function MainMenu({ parentNodes, ...props }) {
           <span
             className={`caret absolute top-[-10px]  z-[20] w-[0] h-[0] border-r-[10px] border-b-[10px] 
               border-l-[10px] border-solid border-r-transparent
-              border-l-transparent border-b-secondary2  ${
-                parent.label.toLowerCase() !== "reservations"
-                  ? "left-[10px]"
-                  : "right-[10px]"
-              }`}
+              border-l-transparent ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "border-b-primary"
+                  : "border-b-[#c5baa6]"
+              }  ${
+              parent.label.toLowerCase() !== "reservations"
+                ? "left-[10px]"
+                : "right-[10px]"
+            }`}
           ></span>
           {itemChildren?.map((item, index) => {
             if (
@@ -60,11 +64,13 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <Link
                       className={`${
                         item?.url.includes(router.asPath) &&
+                        router.asPath != "/" &&
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "!bg-secondary3 !text-[#fff]"
                           : ""
                       } ${
                         item?.url.includes(router.asPath) &&
+                        router.asPath != "/" &&
                         process.env.NEXT_PUBLIC_TEMPLATE == 2
                           ? "!bg-[#ddd7cc] !text-primary"
                           : ""
@@ -162,7 +168,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                             ? "active"
                             : ""
                         }`}
-                        href={item?.url}
+                        href={item?.url || "#"}
                         target={item.target}
                       >
                         {item.label}
