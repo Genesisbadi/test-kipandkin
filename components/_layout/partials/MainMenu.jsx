@@ -66,12 +66,20 @@ export default function MainMenu({ parentNodes, ...props }) {
                       } ${
                         item?.url.includes(router.asPath) &&
                         process.env.NEXT_PUBLIC_TEMPLATE == 2
-                          ? "hover:!bg-[#ddd7cc] hover:!text-primary"
+                          ? "!bg-[#ddd7cc] !text-primary"
                           : ""
-                      } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
+                      } ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? " text-primary hover:text-[#fff] hover:bg-secondary3"
+                          : "hover:!bg-[#ddd7cc] hover:!text-primary"
+                      }  text-primary transition block py-[10px] px-[10px]`}
                       href={item?.url}
                       target={item?.target}
                     >
+                      {console.log(
+                        item?.url.includes(router.asPath),
+                        item?.label
+                      )}
                       {item?.label}
                     </Link>
                     {item?.children && item?.children?.length > 0 && (
