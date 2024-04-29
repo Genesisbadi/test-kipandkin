@@ -63,7 +63,9 @@ export default function DestinationDetails({ block, page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2 className="text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]">
+          <h2
+            className={`font-tenor text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]`}
+          >
             {title}
           </h2>
         )}

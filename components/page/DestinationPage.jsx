@@ -64,11 +64,7 @@ export default function DestinationDetails({ page }) {
         />
         {title && (
           <h2
-            className={`${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1
-                ? "font-tenor"
-                : "font-domine"
-            } text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]`}
+            className={`font-tenor text-[35px] md:text-[42px] px-5 text-center text-white relative z-[3] leading-[50px]`}
           >
             {title}
           </h2>
