@@ -81,7 +81,9 @@ export default function RoomSuitePage({ page }) {
             </span>
             <div className="px-[15px]">
               <CustomSelect
-                className="react-select w-full max-w-[350px] cursor-pointer"
+                className={`max-w-[350px] react-select w-full cursor-pointer ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "min-w-[350px]" : ""
+                }`}
                 id="roomsuites-select"
                 instanceId="roomsuites-select"
                 value={getDefaultValue()}
@@ -107,18 +109,24 @@ export default function RoomSuitePage({ page }) {
             />
           )}
           {features && (
-            <div className={`mb-[50px] ${styles.description}`}>
+            <>
               <h2 className="text-[25px] uppercase text-center text-primary mb-[15px]">
                 Features
               </h2>
-              <div
-                className="text-[14px]"
-                dangerouslySetInnerHTML={{ __html: features }}
-              />
-            </div>
+              <div className={`mb-[50px] ${styles.description}`}>
+                <div
+                  className="text-[14px]"
+                  dangerouslySetInnerHTML={{ __html: features }}
+                />
+              </div>
+            </>
           )}
         </div>
-        <CarouselGallery images={gallery} title={"Gallery"} alt_title={title || "Thumbnail"} />
+        <CarouselGallery
+          images={gallery}
+          title={"Gallery"}
+          alt_title={title || "Thumbnail"}
+        />
         {button_links?.length > 0 && (
           <div className="bg-[#f1f1f1] flex flex-col md:flex-row gap-x-3 w-full justify-center pb-10">
             <div className="flex flex-wrap justify-center ">

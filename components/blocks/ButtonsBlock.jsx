@@ -2,7 +2,7 @@ import Link from "next/link";
 export default function ButtonsBlock({ block }) {
   return (
     <section
-      className={`${!block?.main.bg_white ? "bg-[#75D3CF]" : "bg-[#fff]"}`}
+      className={`${!block?.main.bg_white ? "bg-[#F1F1F1]" : "bg-[#fff]"}`}
     >
       <div className="container">
         <div

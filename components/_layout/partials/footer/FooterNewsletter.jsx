@@ -41,8 +41,11 @@ export default function FooterNewsletter() {
       }));
     }
 
+    console.log(errors.email);
+
     if (agree && !errors.email) {
       setIsSending(true);
+      console.log("eeeeasdasad");
       await FORMAPI.submitForm("newsletter-form", payload)
         .then((res) => {
           e.target.reset();
