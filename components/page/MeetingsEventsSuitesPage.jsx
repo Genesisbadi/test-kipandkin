@@ -120,7 +120,13 @@ export default function MeetingsEventsSuitesPage({ page }) {
       <article className="bg-[#f1f1f1]">
         <div className="container overflow-hidden">
           {title && (
-            <h2 className="text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]">
+            <h2
+              className={`${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              } text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]`}
+            >
               {title}
             </h2>
           )}
@@ -172,7 +178,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   </h2>
                   <div
                     className={`${
-                      images.length > 2 ? "" : "container"
+                      images.length > 2 ? "" : ""
                     } flex flex-col w-full slick-gallery`}
                   >
                     <Slick {...settings} className="h-[330px] lg:h-[530px]">

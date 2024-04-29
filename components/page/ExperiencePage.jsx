@@ -73,7 +73,7 @@ export default function ExperiencePage({ page }) {
         </span>
         <div className="px-[15px]">
           <CustomSelect
-            className="react-select w-full max-w-[350px] cursor-pointer"
+            className="react-select w-full max-w-[350px] min-w-[350px] cursor-pointer"
             id="experiences-select"
             isSearchable={false}
             instanceId="experiences-select"
