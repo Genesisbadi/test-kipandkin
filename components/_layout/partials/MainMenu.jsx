@@ -59,15 +59,13 @@ export default function MainMenu({ parentNodes, ...props }) {
                   <>
                     <Link
                       className={`${
-                        item?.url == router.asPath ||
-                        (item?.url?.includes(router.query["id"]) &&
-                          process.env.NEXT_PUBLIC_TEMPLATE == 1)
+                        item?.url.includes(router.asPath) &&
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "!bg-secondary3 !text-[#fff]"
                           : ""
                       } ${
-                        item?.url == router.asPath ||
-                        (item?.url?.includes(router.query["id"]) &&
-                          process.env.NEXT_PUBLIC_TEMPLATE == 2)
+                        item?.url.includes(router.asPath) &&
+                        process.env.NEXT_PUBLIC_TEMPLATE == 2
                           ? "hover:!bg-[#ddd7cc] hover:!text-primary"
                           : ""
                       } text-primary hover:text-[#fff] transition hover:bg-secondary3 block py-[10px] px-[10px]`}
