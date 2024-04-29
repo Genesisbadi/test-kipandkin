@@ -82,10 +82,6 @@ export default function MainMenu({ parentNodes, ...props }) {
                       href={item?.url}
                       target={item?.target}
                     >
-                      {console.log(
-                        item?.url.includes(router.asPath),
-                        item?.label
-                      )}
                       {item?.label}
                     </Link>
                     {item?.children && item?.children?.length > 0 && (
