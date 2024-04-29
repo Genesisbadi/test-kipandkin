@@ -112,7 +112,13 @@ export default function RoomSuitePage({ page }) {
           )}
           {features && (
             <>
-              <h2 className="text-[25px] uppercase text-center text-primary mb-[15px]">
+              <h2
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "font-tenor"
+                    : "font-domine"
+                } text-[25px] uppercase text-center text-primary mb-[15px]`}
+              >
                 Features
               </h2>
               <div className={`mb-[50px] ${styles.description}`}>
