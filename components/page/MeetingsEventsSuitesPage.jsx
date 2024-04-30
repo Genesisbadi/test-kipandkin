@@ -173,7 +173,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
             <>
               {images.length > 0 && (
                 <>
-                  <h2 className="text-primary text-[25px] text-center tracking-[1px] mb-[20px]">
+                  <h2 className="font-tenor text-primary text-[25px] text-center tracking-[1px] mb-[20px]">
                     GALLERY
                   </h2>
                   <div

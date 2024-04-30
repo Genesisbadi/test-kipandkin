@@ -42,7 +42,7 @@ export default function OfferDetails({ page }) {
   };
   return (
     <article className="bg-[#F1F1F1]">
-      <div className="max-w-[950px] mx-auto">
+      <div className="container mx-auto">
         <h2
           className={`${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
@@ -113,7 +113,7 @@ export default function OfferDetails({ page }) {
         <>
           {currentVenue && (
             <>
-              <div className="max-w-[950px] mx-auto mt-[30px]">
+              <div className="container mx-auto mt-[30px]">
                 {currentVenue && (
                   <>
                     {currentVenue?.description && (

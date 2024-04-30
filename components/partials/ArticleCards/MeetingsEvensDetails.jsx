@@ -162,7 +162,17 @@ export default function MeetingsEvensDetails({ block, page }) {
             height={1080}
             className="w-full h-full  object-cover absolute top-0 left-0"
           />
-          {title && <div className="relative text-[42px]">{title}</div>}
+          {title && (
+            <div
+              className={`relative text-[42px] px-[15px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "font-tenor"
+                  : "font-domine"
+              }`}
+            >
+              {title}
+            </div>
+          )}
         </div>
 
         {showLazy && (
