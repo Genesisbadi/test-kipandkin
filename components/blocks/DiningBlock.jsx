@@ -26,11 +26,7 @@ export default function DiningBlock({ block }) {
                 <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
 
                 <Image
-                  src={
-                    item?.mediaHandler?.[`main.image`]?.[0]?.conversions
-                      ?.desktop ||
-                    item?.mediaHandler?.[`main.image`]?.[0]?.original
-                  }
+                  src={item?.data?.main?.banner_desktop}
                   className="w-full min-h-[300px] object-cover"
                   width={500}
                   height={200}
