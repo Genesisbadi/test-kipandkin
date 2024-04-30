@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import selectEntries from "@/lib/preBuildScripts/static/experiences.json";
 import styles from "@/styles/description.module.css";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 export default function ExperiencePage({ page }) {
   const CustomSelect = dynamic(() =>
     import("../forms/CustomSelect").then((module) => module.default)
@@ -94,6 +95,26 @@ export default function ExperiencePage({ page }) {
           className={`${styles.descriptionExperience} container`}
           dangerouslySetInnerHTML={{ __html: description }}
         />
+      )}
+
+      {page?.data?.main?.button_items.length > 0 && (
+        <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mb-[30px]">
+          <div className="flex flex-wrap justify-center ">
+            {page?.data?.main?.button_items?.map((item, index) => (
+              <Link
+                key={index}
+                href={item?.button_link}
+                className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                  item.button_variant === "dark"
+                    ? "text-white bg-primary"
+                    : "border-secondary"
+                } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+              >
+                {item?.button_label}
+              </Link>
+            ))}
+          </div>
+        </div>
       )}
 
       {gallery && (
