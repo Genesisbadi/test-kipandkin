@@ -181,7 +181,7 @@ export default function DiningDetails({ block, page }) {
                 </div>
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
+                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px] font-tenor">
                       Awards / Recognitions
                     </span>
                     <div className="flex gap-x-10">
@@ -193,7 +193,7 @@ export default function DiningDetails({ block, page }) {
                               src={item}
                               width={160}
                               height={160}
-                              className="w-full lg:h-[160px] object-cover"
+                              className="w-full lg:h-[140px] object-cover"
                             />
                           </div>
                         );

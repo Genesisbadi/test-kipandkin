@@ -41,11 +41,8 @@ export default function FooterNewsletter() {
       }));
     }
 
-    console.log(errors.email);
-
     if (agree && !errors.email) {
       setIsSending(true);
-      console.log("eeeeasdasad");
       await FORMAPI.submitForm("newsletter-form", payload)
         .then((res) => {
           e.target.reset();
@@ -141,7 +138,7 @@ export default function FooterNewsletter() {
                 htmlFor="agree"
                 className="pl-[20px] block leading-4  select-none cursor-pointer"
               >
-                I Agree to the {tenantDetails.name}{" "}
+                I agree to the {tenantDetails.name}{" "}
                 <span>
                   <Link
                     className="text-primary"
@@ -160,6 +157,7 @@ export default function FooterNewsletter() {
                   >
                     Privacy Policy
                   </Link>
+                  .
                 </span>
               </label>
               {errors.agree && (

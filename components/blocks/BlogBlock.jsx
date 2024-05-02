@@ -294,7 +294,7 @@ export default function BlogBlock({ block }) {
                             ? "cursor-not-allowed pointer-events-none opacity-[.5]"
                             : ""
                         } cursor-pointer hover:text-primary mb-[15px] border-b-[#ccc] border-b-[1px] pb-[10px] text-[14px] ${
-                          selectedCategory === item.id ? "font-bold" : ""
+                          selectedCategory === item.id ? "text-primary" : ""
                         }`}
                         onClick={filterByCategory}
                         key={index}

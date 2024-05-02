@@ -1,3 +1,6 @@
+.description {
+  text-align: justify;
+}
 .description iframe {
   min-height: 400px;
   width: 100%;
@@ -8,7 +11,7 @@
   color: var(--primary);
   margin-bottom: 20px;
   letter-spacing: 1px;
-  font-family: "Tenor", sans-serif;
+  font-family: "Tenor" !important;
 }
 .description ul,
 .description ol {
@@ -20,6 +23,7 @@
   font-size: 14px;
   color: #555;
   margin-bottom: 15px;
+  font-family: "Montserrat";
 }
 .description strong {
   margin-bottom: 20px;

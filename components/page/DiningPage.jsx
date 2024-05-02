@@ -228,16 +228,16 @@ export default function DiningPage({ page }) {
                       dangerouslySetInnerHTML={{
                         __html: description,
                       }}
-                      className="text-[14px] leading-[25px] "
+                      className="text-[14px] leading-[25px] text-justify"
                     />
                   )}
                 </div>
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px]">
+                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px] font-tenor">
                       Awards / Recognitions
                     </span>
-                    <div className="flex gap-x-10">
+                    <div className="flex flex-wrap gap-x-10">
                       {award_images?.map((item, i) => {
                         return (
                           <div key={i} className="flex flex-wrap">
@@ -246,7 +246,7 @@ export default function DiningPage({ page }) {
                               src={item}
                               width={160}
                               height={160}
-                              className="w-full lg:h-[160px] object-cover"
+                              className="w-full lg:h-[120px] object-cover"
                             />
                           </div>
                         );
@@ -340,7 +340,7 @@ export default function DiningPage({ page }) {
                       </Link>
                     </div>
                     <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
-                      <div className="flex flex-col">
+                      <div className="flex flex-col flex-grow justify-center">
                         <h3
                           className={`text-primary text-[20px] text-center ${
                             process.env.NEXT_PUBLIC_TEMPLATE == 1
