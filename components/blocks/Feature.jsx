@@ -79,7 +79,7 @@ export default function Feature({ block }) {
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "text-[#d4bebe]"
                 : "text-white"
-            } text-[14px] mb-[30px] leading-[21px]`}
+            } text-justify text-[14px] mb-[30px] leading-[21px]`}
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <div>

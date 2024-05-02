@@ -99,7 +99,7 @@ export default function AdvocaciesReviews({ block }) {
                 {title}
               </h2>
               <div
-                className="grow"
+                className="grow text-justify"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
               <div className="mt-[30px]">
@@ -136,13 +136,13 @@ export default function AdvocaciesReviews({ block }) {
               <Slick className="" {...settings}>
                 {reviewItems.map((item, index) => (
                   <div key={index}>
-                    <h3 className="font-bold text-[14px] uppercase">
+                    <h3 className="font-bold text-[14px] uppercase mb-3">
                       {item.title}
                     </h3>
 
                     {item.data.main.description && (
                       <div
-                        className="text-[14px]"
+                        className="text-[14px] text-justify"
                         dangerouslySetInnerHTML={{
                           __html: item.data.main.description,
                         }}

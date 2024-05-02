@@ -104,7 +104,7 @@ export default function DiscoverBlog({ block }) {
               </h2>
               {description && (
                 <div
-                  className="py-[30px] text-[14px]"
+                  className="py-[30px] text-[14px] text-justify"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}

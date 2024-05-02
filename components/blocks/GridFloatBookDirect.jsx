@@ -65,7 +65,7 @@ export default function GridFloatBookDirect({ block }) {
                     </h2>
                     <div className="relative text-center text-white">
                       <Image
-                        src={item?.image  || `/images/image_makati-large.jpg`}
+                        src={item?.image || `/images/image_makati-large.jpg`}
                         width={900}
                         height={500}
                         alt={item.title || "Thumbnail"}
@@ -73,7 +73,7 @@ export default function GridFloatBookDirect({ block }) {
                       />
                       <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
                         <div
-                          className="grow relative text-[14px]"
+                          className="grow relative text-[14px] text-justify"
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}
