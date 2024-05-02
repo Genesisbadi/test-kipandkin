@@ -188,7 +188,7 @@ export default function OurCollectionPage({ page }) {
               // value={getDefaultValue()}
               defaultValue={getDefaultValue()}
               onChange={handleSelectChange}
-              options={ourCollection?.map((d, index) => {
+              options={ourCollection?.sort((a, b) => a?.order - b?.order).map((d, index) => {
                 return {
                   label: d?.title,
                   value: d?.route_url,
