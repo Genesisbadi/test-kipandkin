@@ -336,3 +336,51 @@ p {
   left: -99999px;
   text-indent: -99999px;
 }
+
+#instafeed .j-overlay {
+  z-index: -1500;
+}
+
+#instafeed .juicer-feed .juicer {
+  display: none!important;
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0 !important;
+}
+
+#instafeed .juicer-feed h1.referral {
+  display: none;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+#instafeed .juicer-feed h1.referral a {
+  display: none;
+  height: 0;
+}
+
+#instafeed .juicer-feed.night li.feed-item {
+  background: none !important;
+}
+
+#instafeed .juicer-feed.night li.j-instagram {
+  @apply 
+  md:max-h-[300px]
+  2sm:max-h-[250px]
+}
+
+#instafeed .juicer-feed.night .j-poster-meta {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #1f1f1f;
+}
+
+#instafeed .juicer-feed.night li.feed-item a img {
+  @apply 
+  md:min-h-[300px]
+  2sm:min-h-[250px]
+  object-cover;
+}
+

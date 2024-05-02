@@ -157,7 +157,7 @@ export default function OurCollectionPage({ page }) {
   return (
     <>
       <section className="page-banner relative flex items-center justify-center h-[560px] 3xl:h-[812px] w-full bg-[#f1f1f1]">
-        <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+        {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
         <Image
           alt={"Banner"}
           src={inner_banner || "../images/image_makati-large.jpg"}
@@ -289,19 +289,19 @@ export default function OurCollectionPage({ page }) {
                   >
                     Awards
                   </span>
-                  <div className="flex flex-wrap  gap-x-5 items-center gap-y-5 justify-center">
+                  <div className="flex flex-wrap lg:flex-nowrap gap-x-[50px] items-center gap-y-[50px] justify-center">
                     {award_images?.map((item, index) => {
                       return (
                         <div
                           key={index}
-                          className="flex w-full 2sm:w-auto justify-center"
+                          className="flex w-full max-w-[120px] justify-center"
                         >
                           <Image
-                            alt={"Banner"}
+                            alt={"awards"}
                             src={item}
                             width={160}
                             height={194}
-                            className="2sm:w-full h-full 2sm:min-h-[100px] 2sm:max-h-[139px] object-contain"
+                            className="max-w-[120px] w-full h-full"
                           />
                         </div>
                       );

@@ -20,7 +20,7 @@ export default function Introduction({ block }) {
 
           <div
             dangerouslySetInnerHTML={{ __html: description }}
-            className="text-[#d4bebe] text-[14px] leading-[25px] text-center max-w-[957px]"
+            className="text-[#d4bebe] text-[14px] leading-[25px] text-justify max-w-[957px]"
           />
         </div>
       </section>
