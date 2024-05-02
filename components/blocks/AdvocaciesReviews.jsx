@@ -107,7 +107,7 @@ export default function AdvocaciesReviews({ block }) {
                   className="inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
                   href={link}
                 >
-                  Learn More
+                  Discover More
                 </Link>
               </div>
             </div>

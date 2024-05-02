@@ -12,7 +12,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
           <SectionAccordion
-            childrenClassname="pb-0 h-full bg-primary1"
+            childrenClassname="pb-0 h-full bg-primary1 flex flex-col"
             key={index}
             title={item.title}
             className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
@@ -40,7 +40,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               </h2>
               {item.description && (
                 <div
-                  className="text-[14px] mb-[30px] grow line-clamp-3 leading-[21px] text-justify"
+                  className="text-[14px] mb-[30px] grow leading-[21px] text-justify"
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               )}

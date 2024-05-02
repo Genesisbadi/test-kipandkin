@@ -327,6 +327,12 @@ p {
   background: #e6efee;
 }
 
-.juicer-feed h1.referral {
+#instafeed .juicer-feed h1.referral,
+#instafeed .juicer-about {
   display: none !important;
+  position: absolute;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  left: -99999px;
+  text-indent: -99999px;
 }
