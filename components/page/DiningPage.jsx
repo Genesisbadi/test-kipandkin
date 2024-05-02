@@ -180,11 +180,7 @@ export default function DiningPage({ page }) {
         </picture>
         {title && (
           <h2
-            className={`text-[35px] md:text-[42px] text-white relative z-[3] ${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1
-                ? "font-tenor"
-                : "font-domine"
-            }`}
+            className={`text-[35px] md:text-[42px] text-white relative z-[3] font-tenor`}
           >
             {title}
           </h2>

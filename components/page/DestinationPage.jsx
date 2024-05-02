@@ -139,7 +139,7 @@ export default function DestinationDetails({ page }) {
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}
-                          className="text-[#d4bebe] text-[14px] leading-[27px] pt-5"
+                          className="text-[#d4bebe] text-[14px] leading-[21px] pt-5"
                         />
                       )}
                     </div>

@@ -40,11 +40,7 @@ export default function Dining({ block, page }) {
         <div className="container overflow-hidden">
           {title && (
             <h2
-              className={`text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc] ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor"
-                  : "font-domine"
-              }`}
+              className={`text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc] font-tenor`}
             >
               {title}
             </h2>

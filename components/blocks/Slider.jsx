@@ -128,7 +128,7 @@ export default function Slider({ block, mediaHandler }) {
         <Slick {...settings}>
           {slider_items?.map((item, index) => (
             <div className="w-full relative" key={index}>
-              <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+              {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
               <picture>
                 <source
                   media="(min-width: 415px)"
