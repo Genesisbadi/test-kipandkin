@@ -9,7 +9,7 @@ export default function OurCollection({ block, mediaHandler }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {collection.contents.map((item, index) => (
             <div key={index} className="flex relative">
-              <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+              {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
               <Image
                 src={
                   item?.mediaHandler["main.thumbnail"]?.[0].conversions
