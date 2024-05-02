@@ -4,7 +4,7 @@ export default function Block({ page, block, mediaHandler }) {
   const { title, banner } = block.main;
   return (
     <div className="page-banner relative flex items-center justify-center w-full bg-[#f1f1f1]">
-      <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
+      {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span> */}
       <Image
         alt={title || "Discover"}
         src={banner || mediaHandler["main.image"]?.[0].original}
@@ -13,7 +13,7 @@ export default function Block({ page, block, mediaHandler }) {
         className="w-full object-cover absolute top-0 left-0 h-full"
       />
       <div className="w-full flex relative items-center justify-center h-[560px] 3xl:h-[812px]">
-        <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span>
+        {/* <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span> */}
         <div
           className={`text-[42px] text-white relative z-[20] tracking-[1px] font-tenor ${
             title ? "" : "hidden"
