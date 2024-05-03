@@ -112,7 +112,7 @@ export default function Block({ block }) {
           ) : (
             <div>
               {offers && offers.data.length > 0 ? (
-                <div className="flex flex-wrap mx-[-15px] py-[30px]">
+                <div className="flex flex-wrap lg:flex-nowrap py-[30px] gap-x-[15px] gap-y-[30px]">
                   {offers.data.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
                     const options = {
@@ -125,7 +125,7 @@ export default function Block({ block }) {
                     return (
                       <div
                         key={index}
-                        className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
+                        className="relative w-full sm:max-w-[48%] lg:max-w-[33.33%] bg-secondary flex flex-col justify-between"
                       >
                         {item?.attributes?.data?.main?.members_badge !==
                         null ? (
@@ -146,7 +146,7 @@ export default function Block({ block }) {
                         ) : (
                           <></>
                         )}
-                        <div className="relative w-full min-h-[160px] bg-secondary p-[20px] z-10">
+                        <div className="relative w-full min-h-[160px] p-[20px] z-10">
                           <h3 className="text-white text-[20px] truncate mb-[10px]">
                             {item?.attributes?.title
                               ?.split(" ")
@@ -159,7 +159,7 @@ export default function Block({ block }) {
                           </h3>
                           {item?.attributes?.data?.main?.description && (
                             <div
-                              className="text-white text-[14px] line-clamp-3"
+                              className="text-white text-[14px]"
                               dangerouslySetInnerHTML={{
                                 __html:
                                   item?.attributes?.data?.main?.description.replace(
@@ -171,7 +171,7 @@ export default function Block({ block }) {
                           )}
                           <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
                         </div>
-                        <div className="relative flex flex-col items-center justify-end mb-[30px]">
+                        <div className="relative flex flex-col items-center justify-end">
                           <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
                           {item?.attributes?.data?.main?.featured_image && (
                             <Image
