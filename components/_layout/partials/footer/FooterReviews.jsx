@@ -103,6 +103,7 @@ export default function FooterReviews() {
 
                           {item.data.main.description && (
                             <div
+                              className="text-justify"
                               dangerouslySetInnerHTML={{
                                 __html: item.data.main.description,
                               }}

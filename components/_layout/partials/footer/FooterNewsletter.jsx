@@ -61,7 +61,7 @@ export default function FooterNewsletter() {
     <SectionAccordion title="Stay Updated">
       <section className="footer-newsletter md:py-[40px]">
         <h2
-          className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] mb-[15px] ${
+          className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
           }`}
         >
@@ -70,7 +70,7 @@ export default function FooterNewsletter() {
 
         <div className="container md:!max-w-[550px]">
           <p className="text-[#555] md:text-center">
-            Enter your email address below to receive our newsletter
+            Enter your email address below to receive our newsletter.
           </p>
 
           <form

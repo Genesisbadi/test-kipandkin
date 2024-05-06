@@ -234,19 +234,19 @@ export default function DiningPage({ page }) {
                 </div>
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px] font-tenor">
+                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[20px] font-tenor">
                       Awards / Recognitions
                     </span>
                     <div className="flex flex-wrap gap-x-10">
                       {award_images?.map((item, i) => {
                         return (
-                          <div key={i} className="flex flex-wrap">
+                          <div key={i} className="flex flex-wrap max-w-[100px]">
                             <Image
                               alt={"Banner"}
                               src={item}
                               width={160}
                               height={160}
-                              className="w-full lg:h-[120px] object-cover"
+                              className="w-full object-cover"
                             />
                           </div>
                         );
@@ -255,7 +255,7 @@ export default function DiningPage({ page }) {
                   </div>
                 )}
               </div>
-              <div className="flex flex-col w-full md:w-1/4">
+              <div className="flex flex-col w-full md:w-1/4 mt-[40px] lg:mt-0">
                 <div className="pb-7">
                   {schedules.map((item, index) => {
                     return (
