@@ -43,20 +43,25 @@ export default function BlogPage({ page }) {
         >
           {title}
         </h2>
-        <figure>
-          <Image
-            className="mb-[30px]"
-            src={
-              mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
-              mediaHandler["main.image"]?.[0]?.original || page?.data?.main?.featured_image
-            }
-            alt={title || "Thumbnail"}
-            width={1200}
-            height={400}
-          />
-        </figure>
+        {mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
+          mediaHandler["main.image"]?.[0]?.original ||
+          (page?.data?.main?.featured_image && (
+            <figure>
+              <Image
+                className="mb-[30px]"
+                src={
+                  mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
+                  mediaHandler["main.image"]?.[0]?.original ||
+                  page?.data?.main?.featured_image
+                }
+                alt={title || "Thumbnail"}
+                width={1200}
+                height={400}
+              />
+            </figure>
+          ))}
         <div
-          className={`px-[30px] ${styles.description} text-[14px]`}
+          className={`px-[15px] md:px-[30px] ${styles.description} text-[14px]`}
           dangerouslySetInnerHTML={{ __html: data.main.description }}
         />
 

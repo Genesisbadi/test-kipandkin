@@ -16,6 +16,7 @@
 .description a:not(.button) {
   color: var(--primary);
   text-decoration: underline;
+  word-break: break-all;
 }
 
 .description p {
