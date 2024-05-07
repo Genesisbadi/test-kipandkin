@@ -107,7 +107,7 @@ export default function FooterDestinations({}) {
         >
           <section className="footer-strip text-white md:pt-[30px]">
             <h2
-              className={`text-center hidden md:block text-primary text-[25px] mb-[30px] tracking-[1px] ${
+              className={`font-tenor text-center hidden md:block text-primary text-[25px] mb-[30px] tracking-[1px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
                   : "font-domine"

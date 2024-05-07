@@ -30,7 +30,7 @@ const BackTop = () => {
   return (
     <div className={styles.backTop}>
       <button
-        className={`hover:opacity-[.9] ${styles.backTopButton} ${
+        className={`flex items-center justify-center w-[60px] h-[60px] hover:opacity-[.9] ${
           isVisible ? styles.visible : styles.invisible
         }`}
         onClick={scrollToTop}
@@ -41,7 +41,7 @@ const BackTop = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-10 h-10"
         >
           <path
             strokeLinecap="round"
