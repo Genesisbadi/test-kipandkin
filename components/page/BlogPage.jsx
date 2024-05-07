@@ -60,9 +60,9 @@ export default function BlogPage({ page }) {
           dangerouslySetInnerHTML={{ __html: data.main.description }}
         />
 
-        {data.main.button_links && data.main.button_links.length > 0 && (
+        {data?.main?.button_links && data?.main?.button_links.length > 0 && (
           <div className="flex mt-[30px] flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-            {data.main.button_links.map((item, index) => {
+            {data?.main?.button_links.map((item, index) => {
               return (
                 <Link
                   key={index}
@@ -79,7 +79,7 @@ export default function BlogPage({ page }) {
                       : "border-secondary"
                   } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                 >
-                  {item.btn_label}
+                  {item.btn_label || "Learn More"}
                 </Link>
               );
             })}
