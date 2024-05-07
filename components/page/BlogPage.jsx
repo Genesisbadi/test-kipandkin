@@ -33,8 +33,6 @@ export default function BlogPage({ page }) {
   };
   const post_date = date.toLocaleDateString("en-US", options);
 
-  console.log(mediaHandler,'mediaHandler')
-
   return (
     <article className="bg-[#F1F1F1]">
       <div className="container overflow-hidden">
