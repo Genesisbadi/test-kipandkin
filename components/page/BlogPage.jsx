@@ -46,7 +46,10 @@ export default function BlogPage({ page }) {
         <figure>
           <Image
             className="mb-[30px]"
-            src={mediaHandler["main.image"]?.[0]?.conversions?.blog_show || page?.data?.main?.featured_image}
+            src={
+              mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
+              mediaHandler["main.image"]?.[0]?.original || page?.data?.main?.featured_image
+            }
             alt={title || "Thumbnail"}
             width={1200}
             height={400}
@@ -56,6 +59,32 @@ export default function BlogPage({ page }) {
           className={`px-[30px] ${styles.description} text-[14px]`}
           dangerouslySetInnerHTML={{ __html: data.main.description }}
         />
+
+        {data?.main?.button_links && data?.main?.button_links.length > 0 && (
+          <div className="flex mt-[30px] flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+            {data?.main?.button_links.map((item, index) => {
+              return (
+                <Link
+                  key={index}
+                  href={item.btn_link || item?.file || "#"}
+                  target={
+                    item?.btn_link?.includes("http") ||
+                    item?.file?.includes("http")
+                      ? "_blank"
+                      : "_self"
+                  }
+                  className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                    item.variant === "filled"
+                      ? "text-white bg-primary"
+                      : "border-secondary"
+                  } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                >
+                  {item.btn_label || "Learn More"}
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
         <time
           className="text-[#aaa] text-[14px] mt-[50px] block mb-[10px]"

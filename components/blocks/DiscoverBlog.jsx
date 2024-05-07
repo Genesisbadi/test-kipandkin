@@ -151,7 +151,7 @@ export default function DiscoverBlog({ block }) {
               </Slick>
             </>
           )}
-          <div className="flex justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
+          <div className="flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
             <span className="w-full font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
               Discovery Blog
             </span>
