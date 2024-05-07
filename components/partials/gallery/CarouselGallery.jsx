@@ -44,6 +44,7 @@ export default function CarouselGallery({ ...props }) {
             width={25}
             height={54}
             viewBox="0 0 19.349 30"
+            className="w-[25px] h-[45px] md:w-[35px] md:h-[55px]"
           >
             <path
               id="_002-right-arrow"

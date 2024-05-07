@@ -56,7 +56,10 @@ export default function MainMenu({ parentNodes, ...props }) {
               }, 100);
             }
             return (
-              <div className={`${item.children ? "dropdown" : ""}`} key={index}>
+              <div
+                className={`${item.children ? "dropdown relative" : ""}`}
+                key={index}
+              >
                 {item?.url?.includes("nolink") ? (
                   <>{item.label}</>
                 ) : (
@@ -110,7 +113,7 @@ export default function MainMenu({ parentNodes, ...props }) {
             item.label.toLowerCase() !== "reservations"
               ? "px-[10px] xxl:px-[10px]"
               : ""
-          } ${item.children ? "dropdown" : ""} `}
+          } ${item.children ? "dropdown relative" : ""} `}
           key={index}
         >
           <div

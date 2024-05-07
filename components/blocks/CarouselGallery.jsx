@@ -46,7 +46,7 @@ export default function CarouselGallery({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] right-0 px-[10px] lg:px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -55,6 +55,7 @@ export default function CarouselGallery({ block }) {
             width="35"
             height="55"
             viewBox="0 0 19.349 30"
+            className="w-[25px] h-[45px] md:w-[35px] md:h-[55px]"
           >
             <path
               id="_002-right-arrow"
@@ -74,7 +75,7 @@ export default function CarouselGallery({ block }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
+        } absolute top-[50%] translate-y-[-50%] left-0 px-[10px] lg:px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -83,6 +84,7 @@ export default function CarouselGallery({ block }) {
             width="35"
             height="55"
             viewBox="0 0 19.349 30"
+            className="w-[25px] h-[45px] md:w-[35px] md:h-[55px]"
           >
             <path
               id="_002-right-arrow"
