@@ -33,6 +33,8 @@ export default function BlogPage({ page }) {
   };
   const post_date = date.toLocaleDateString("en-US", options);
 
+  console.log(mediaHandler,'mediaHandler')
+
   return (
     <article className="bg-[#F1F1F1]">
       <div className="container overflow-hidden">
@@ -43,9 +45,8 @@ export default function BlogPage({ page }) {
         >
           {title}
         </h2>
-        {mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
-          mediaHandler["main.image"]?.[0]?.original ||
-          (page?.data?.main?.featured_image && (
+        {mediaHandler?.main?.image ||
+          page?.data?.main?.featured_image && (
             <figure>
               <Image
                 className="mb-[30px]"
@@ -59,7 +60,7 @@ export default function BlogPage({ page }) {
                 height={400}
               />
             </figure>
-          ))}
+          )}
         <div
           className={`px-[15px] md:px-[30px] ${styles.description} text-[14px]`}
           dangerouslySetInnerHTML={{ __html: data.main.description }}
