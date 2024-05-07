@@ -48,7 +48,7 @@ export default function BlogPage({ page }) {
             className="mb-[30px]"
             src={
               mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
-              mediaHandler["main.image"]?.[0]?.original
+              mediaHandler["main.image"]?.[0]?.original || page?.data?.main?.featured_image
             }
             alt={title || "Thumbnail"}
             width={1200}
