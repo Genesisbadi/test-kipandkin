@@ -4,6 +4,7 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import dynamic from "next/dynamic";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
+import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 export default function DiscoverBlog({ block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
@@ -69,7 +70,7 @@ export default function DiscoverBlog({ block }) {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: true,
+    autoplay: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
@@ -82,19 +83,24 @@ export default function DiscoverBlog({ block }) {
   return (
     <section className="overflow-hidden py-[5px]">
       <div className="flex flex-wrap mx-[-3px] relative">
-        <div className="px-[3px] w-full md:max-w-[50%]">
+        <SectionAccordion
+          className="px-[3px] w-full md:max-w-[50%]"
+          title={title}
+          childrenClassname=""
+        >
           <div className="flex justify-between items-start md:items-end h-full relative bg-[#f1f1f1] min-h-[350px] p-[15px]">
-            <div className="absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] md:opacity-[.3] xl:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
+            <div className="h-full absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] md:opacity-[.3] xl:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
               <Image
                 src={`/static/ph_map.png`}
                 width={300}
                 height={300}
                 alt="Discover"
+                className="h-full object-contain"
               />
             </div>
             <div className="relative md:absolute w-full top-0 right-0 max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
               <h2
-                className={`text-primary text-[25px] ${
+                className={`hidden md:block text-primary text-[25px] ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
                     : "font-domine"
@@ -123,11 +129,16 @@ export default function DiscoverBlog({ block }) {
               )}
             </div>
           </div>
-        </div>
-        <div className="w-full flex relative flex-col px-[3px] md:max-w-[50%]">
+        </SectionAccordion>
+
+        <SectionAccordion
+          className="w-full relative px-[3px] md:max-w-[50%]"
+          title="Discovery Blog"
+          childrenClassname="md:h-full flex flex-col"
+        >
           {blogEntries && blogEntries.length > 0 && (
             <>
-              <Slick className="grow slide-fill" {...settings}>
+              <Slick className="carousel-gallery grow slide-fill" {...settings}>
                 {blogEntries.map((item, index) => {
                   const { featured_image, description, title } = item.data.main;
                   return (
@@ -141,9 +152,10 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="max-w-[440px] mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative flex justify-center items-center text-white">
-                          <h3>{item.title}</h3>
+                        <div className="max-w-[440px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative justify-center items-center text-white">
+                          <h3 className="!leading-[37px] ">{item.title}</h3>
                         </div>
+                        <div className="pb-[100%] block md:hidden" />
                       </Link>
                     </div>
                   );
@@ -152,7 +164,7 @@ export default function DiscoverBlog({ block }) {
             </>
           )}
           <div className="flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
               Discovery Blog
             </span>
             <Link
@@ -162,7 +174,7 @@ export default function DiscoverBlog({ block }) {
               Explore Now
             </Link>
           </div>
-        </div>
+        </SectionAccordion>
       </div>
     </section>
   );

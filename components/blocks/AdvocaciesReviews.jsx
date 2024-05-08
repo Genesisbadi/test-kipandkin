@@ -3,6 +3,7 @@ import reviewItems from "../../lib/preBuildScripts/static/reviews.json";
 import "slick-carousel/slick/slick.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 
 export default function AdvocaciesReviews({ block }) {
   const Slick = dynamic(() =>
@@ -25,13 +26,19 @@ export default function AdvocaciesReviews({ block }) {
         onClick={onClick}
       >
         <svg
-          className="!fill-white"
-          width={25}
-          height={54}
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 27 44"
+          width="25"
+          height="54"
+          viewBox="0 0 19.349 30"
+          className="!fill-white"
         >
-          <path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" />
+          <path
+            id="_002-right-arrow"
+            data-name="002-right-arrow"
+            d="M87.566,30,106.33,15,87.566,0l-.585.732L104.829,15,86.981,29.268Z"
+            transform="translate(-86.981)"
+            fill="#fff"
+          ></path>
         </svg>
       </div>
     );
@@ -79,7 +86,11 @@ export default function AdvocaciesReviews({ block }) {
   return (
     <section className="overflow-hidden">
       <div className="flex flex-wrap mx-[-3px]">
-        <div className="px-[3px] w-full md:max-w-[50%]">
+        <SectionAccordion
+          className="flex flex-col lg:max-w-[50%] px-[3px] w-full md:max-w-[50%]"
+          title={title}
+          childrenClassname="w-full"
+        >
           <div className="bg-primary1 h-full">
             <Image
               src={image_advocacy || `/images/image_makati-large.jpg`}
@@ -90,7 +101,7 @@ export default function AdvocaciesReviews({ block }) {
             />
             <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
               <h2
-                className={`mb-[30px] text-[25px] ${
+                className={`mb-[25px] text-[25px] hidden md:block ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
                     : "font-domine"
@@ -99,12 +110,12 @@ export default function AdvocaciesReviews({ block }) {
                 {title}
               </h2>
               <div
-                className="grow text-justify"
+                className="grow text-justify text-[14px]"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
-              <div className="mt-[30px]">
+              <div className="mt-[15px]">
                 <Link
-                  className="inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+                  className="text-[14px] inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
                   href={link}
                 >
                   Discover More
@@ -112,8 +123,13 @@ export default function AdvocaciesReviews({ block }) {
               </div>
             </div>
           </div>
-        </div>
-        <div className="px-[3px] flex flex-col w-full md:max-w-[50%]">
+        </SectionAccordion>
+
+        <SectionAccordion
+          className="px-[3px] flex flex-col w-full md:max-w-[50%]"
+          title="Reviews"
+          childrenClassname="w-full"
+        >
           <Image
             src={image_reviews || `/images/image_makati-large.jpg`}
             width={900}
@@ -124,7 +140,7 @@ export default function AdvocaciesReviews({ block }) {
           {reviewItems && reviewItems.length > 0 && (
             <div className="bg-primary1 px-[50px] lg:px-[60px] py-[30px] text-white grow">
               <h2
-                className={`mb-[30px] text-[25px] ${
+                className={`mb-[25px] hidden md:block text-[25px] ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
                     : "font-domine"
@@ -136,9 +152,9 @@ export default function AdvocaciesReviews({ block }) {
               <Slick className="" {...settings}>
                 {reviewItems.map((item, index) => (
                   <div key={index}>
-                    <h3 className="font-bold text-[14px] uppercase mb-3">
+                    {/* <h3 className="font-bold text-[14px] uppercase mb-3">
                       {item.title}
-                    </h3>
+                    </h3> */}
 
                     {item.data.main.description && (
                       <div
@@ -149,7 +165,7 @@ export default function AdvocaciesReviews({ block }) {
                       />
                     )}
 
-                    <div className="flex fpex-wrap mt-[30px]">
+                    <div className="flex flex-wrap mt-[15px] text-[14px]">
                       {item.data.main.name && (
                         <span>{item.data.main.name},</span>
                       )}
@@ -165,7 +181,7 @@ export default function AdvocaciesReviews({ block }) {
                       )}
                     </div>
                     {item.data.main.stars && (
-                      <div className="flex mt-[30px]">
+                      <div className="flex mt-[15px]">
                         {Array.from(
                           { length: parseInt(item.data.main.stars) },
                           (_, index) => (
@@ -184,7 +200,7 @@ export default function AdvocaciesReviews({ block }) {
               </Slick>
             </div>
           )}
-        </div>
+        </SectionAccordion>
       </div>
     </section>
   );

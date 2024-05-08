@@ -145,7 +145,7 @@ export default function CarouselGallery({ block }) {
     <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
       {title && (
         <h2
-          className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] md:mb-[30px] ${
+          className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
           }`}
         >

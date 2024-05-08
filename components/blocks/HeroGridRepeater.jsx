@@ -34,7 +34,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
                     : "font-domine"
-                } text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
+                } hidden md:block text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
               >
                 {item.title}
               </h2>
@@ -46,7 +46,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               )}
               <div className="text-center">
                 <Link
-                  className="uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                  className="text-[14px] uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >

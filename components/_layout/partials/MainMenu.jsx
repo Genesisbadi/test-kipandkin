@@ -111,7 +111,7 @@ export default function MainMenu({ parentNodes, ...props }) {
           id={`menu-item-${item?.id}`}
           className={`item relative text-[14px] ${
             item.label.toLowerCase() !== "reservations"
-              ? "px-[10px] xxl:px-[10px]"
+              ? "px-[10px] xxl:px-[11px]"
               : ""
           } ${item.children ? "dropdown relative" : ""} `}
           key={index}

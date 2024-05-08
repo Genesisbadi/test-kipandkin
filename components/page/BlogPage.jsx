@@ -37,26 +37,31 @@ export default function BlogPage({ page }) {
     <article className="bg-[#F1F1F1]">
       <div className="container overflow-hidden">
         <h2
-          className={`text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px] ${
+          className={`text-primary text-[20px] md:text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
           }`}
         >
           {title}
         </h2>
-        <figure>
-          <Image
-            className="mb-[30px]"
-            src={
-              mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
-              mediaHandler["main.image"]?.[0]?.original || page?.data?.main?.featured_image
-            }
-            alt={title || "Thumbnail"}
-            width={1200}
-            height={400}
-          />
-        </figure>
+
+        {mediaHandler["main.image"]?.[0]?.original && (
+          <figure>
+            <Image
+              className="mb-[30px]"
+              src={
+                mediaHandler["main.image"]?.[0]?.conversions?.blog_show ||
+                mediaHandler["main.image"]?.[0]?.original ||
+                page?.data?.main?.featured_image
+              }
+              alt={title || "Thumbnail"}
+              width={1200}
+              height={400}
+            />
+          </figure>
+        )}
+
         <div
-          className={`px-[30px] ${styles.description} text-[14px]`}
+          className={`${styles.description} lg:px-[30px] text-[14px]`}
           dangerouslySetInnerHTML={{ __html: data.main.description }}
         />
 

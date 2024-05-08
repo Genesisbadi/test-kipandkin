@@ -5,6 +5,7 @@
   background-color: #b88e21;
   font-weight: 700;
   text-decoration: none;
+  transition: all ease 0.3s;
 }
 
 .backTop {

@@ -80,7 +80,7 @@ export default function GridFloatBookDirect({ block }) {
                         />
                         <div className="text-center mt-[15px] relative">
                           <Link
-                            className="uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                            className="text-[14px] uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
                             href={item?.link}
                           >
                             Discover More

@@ -79,12 +79,12 @@ export default function Feature({ block }) {
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "text-[#d4bebe]"
                 : "text-white"
-            } text-justify text-[14px] mb-[30px] leading-[21px]`}
+            } text-justify text-[14px] mb-[15px] leading-[21px]`}
             dangerouslySetInnerHTML={{ __html: description }}
           />
           <div>
             <Link
-              className={`uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
+              className={`text-[14px] uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "hover:bg-[#d4bebe] text-[#d4bebe] border-[#d4bebe]"
                   : "hover:bg-white text-white border-white"
