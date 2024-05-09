@@ -4,6 +4,7 @@ import Textarea from "@/components/forms/Textarea";
 import Select from "@/components/forms/Select";
 import Checkbox from "@/components/forms/Checkbox";
 import Radio from "@/components/forms/Radio";
+import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain";
 export default function FormField(props) {
   const error = props?.error || "";
   const required = props?.rules.includes("required");
@@ -73,7 +74,7 @@ export default function FormField(props) {
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
-              {props?.title}
+              {props?.title.replace("site_name", tenantDetails?.site_name)}
               {required ? " *" : ""}
             </label>
             <Radio

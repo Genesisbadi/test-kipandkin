@@ -69,7 +69,7 @@ export default function ContactForm({ form }) {
                       )}`}
                       wrapperclassname={`${findWrapperClass(
                         field?.state_name
-                      )} mb-[15px]`}
+                      )} mb-[16px]`}
                       error={isError(
                         errors,
                         section?.state_name,
