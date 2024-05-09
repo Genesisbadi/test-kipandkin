@@ -9,10 +9,10 @@ export default function GridFloatBookDirect({ block }) {
     <section className="md:py-[58px] overflow-hidden">
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
-          <div className="w-full px-[15px] lg:mb-0 lg:max-w-[33.33%]">
+          <div className="w-full md:px-[15px] lg:mb-0 lg:max-w-[33.33%]">
             <SectionAccordion
               title="Why Book Direct?"
-              childrenClassname="pb-[15px] md:pb-0"
+              childrenClassname="pb-[15px] md:pb-0 px-[15px] md:px-0"
             >
               <h2 className="hidden md:block text-primary text-[22px] mb-[20px] font-tenor">
                 Why Book Direct?
