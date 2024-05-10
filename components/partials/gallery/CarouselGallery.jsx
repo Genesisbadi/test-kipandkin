@@ -61,12 +61,13 @@ export default function CarouselGallery({ ...props }) {
 
   var settings = {
     dots: false,
-    // infinite: false,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     cssEase: "linear",
     arrows: true,
+    draggable: images.length > 2 ? true : false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
@@ -110,7 +111,12 @@ export default function CarouselGallery({ ...props }) {
               </span>
             )}
 
-            <Slick {...settings} className="carousel-gallery ">
+            <Slick
+              {...settings}
+              className={`carousel-gallery ${
+                images.length < 3 ? "not-slider" : ""
+              }`}
+            >
               {images?.map((item, index) => {
                 return (
                   <div key={index} className="flex cursor-pointer">

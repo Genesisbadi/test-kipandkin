@@ -30,7 +30,7 @@ const BackTop = () => {
   return (
     <div className={styles.backTop}>
       <button
-        className={`flex items-center justify-center w-[50px] h-[50px] md:w-[60px] md:h-[60px] hover:opacity-[.9] ${
+        className={`flex items-center justify-center w-[50px] h-[50px] hover:opacity-[.9] ${
           isVisible ? styles.visible : styles.invisible
         }`}
         onClick={scrollToTop}

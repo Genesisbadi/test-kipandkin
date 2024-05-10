@@ -249,6 +249,12 @@
   transition: all ease 0.3s;
 }
 
+.not-slider .slick-track {
+  margin: 0;
+}
+.not-slider .slick-arrow {
+  display: none !important;
+}
 @keyframes modalIn {
   0% {
     transform: scale(0);
@@ -342,7 +348,7 @@ p {
 }
 
 #instafeed .juicer-feed .juicer {
-  display: none!important;
+  display: none !important;
   opacity: 0;
   height: 0;
   margin-bottom: 0 !important;
@@ -365,9 +371,8 @@ p {
 }
 
 #instafeed .juicer-feed.night li.j-instagram {
-  @apply 
-  md:max-h-[300px]
-  2sm:max-h-[250px]
+  @apply md:max-h-[300px]
+  2sm:max-h-[250px];
 }
 
 #instafeed .juicer-feed.night .j-poster-meta {
@@ -378,9 +383,7 @@ p {
 }
 
 #instafeed .juicer-feed.night li.feed-item a img {
-  @apply 
-  md:min-h-[300px]
+  @apply md:min-h-[300px]
   2sm:min-h-[250px]
   object-cover;
 }
-
