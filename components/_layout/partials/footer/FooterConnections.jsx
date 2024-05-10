@@ -48,7 +48,7 @@ export default function footerConnections() {
                           key={index}
                         >
                           <Link
-                            href={item?.link}
+                            href={item?.link || "#"}
                             target={
                               item?.link?.includes("http") ? "_blank" : "_self"
                             }
