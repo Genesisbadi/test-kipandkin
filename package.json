@@ -23,7 +23,7 @@
     "axios": "^1.6.8",
     "dotenv": "^16.0.3",
     "eslint": "8.31.0",
-    "eslint-config-next": "13.4.20",
+    "eslint-config-next": "13.1.1",
     "fs": "^0.0.1-security",
     "husky": "^9.0.11",
     "jsona": "^1.11.0",
