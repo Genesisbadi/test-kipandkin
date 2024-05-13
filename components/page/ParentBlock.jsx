@@ -2,15 +2,24 @@ import Header from "@/components/_layout/partials/Header";
 import globalState from "@/lib/store/globalState";
 import { components } from "@/lib/services/componentService";
 import { useEffect } from "react";
+import { useMobileDetector } from "@/lib/services/isMobileDetector";
 export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
   const showLazy = globalState((state) => state.showLazy);
   const activeBlocks = blocks.slice(0, initialBlocks);
   const lazyBlocks = blocks.slice(initialBlocks);
+  const isMobile = useMobileDetector();
 
   const hasTitleBlock = blocks.find((object) => object.key === "Title");
 
   const hasPromoBlock = blocks.find((object) => object.key === "PromoBlock");
 
+  const hasSlider = blocks.find((object) => object.key === "Slider");
+
+  if (!isMobile && hasSlider) {
+    initialBlocks = 2;
+  } else if (isMobile && hasSlider) {
+    initialBlocks = 1;
+  }
   if (hasPromoBlock) {
     initialBlocks = 4;
   }
