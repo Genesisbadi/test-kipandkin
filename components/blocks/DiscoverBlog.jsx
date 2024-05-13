@@ -3,6 +3,7 @@ import Image from "next/image";
 // import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discoverBlog.json";
 import "slick-carousel/slick/slick.css";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
 import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 export default function DiscoverBlog({ block }) {
@@ -12,6 +13,7 @@ export default function DiscoverBlog({ block }) {
 
   const { title, description, link } = block.main;
   const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
+  const [currentS, setCurrentS] = useState(blogEntries[0]);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;

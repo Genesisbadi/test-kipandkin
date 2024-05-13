@@ -45,7 +45,7 @@
 @layer utilities {
   .block-slider .slick-dots {
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     display: flex !important;
     justify-content: center;
     list-style: none;

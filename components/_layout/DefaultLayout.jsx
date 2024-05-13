@@ -35,7 +35,7 @@ export default function DefaultLayout(props) {
 
       <BookingForm page={page} blocks={blocks} />
 
-      <main id="main-content" className="main-content grow">
+      <main id="main-content" className="main-content">
         {props.children}
       </main>
       {showLazy && <Footer />}

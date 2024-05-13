@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import globalState from "@/lib/store/globalState";
 export default function CallToActions({ block }) {
+  const showLazy = globalState((state) => state.showLazy);
+
+  console.log(showLazy, "showLazy");
   const SectionAccordion = dynamic(() =>
     import("@/components/partials/collapsibles/SectionAccordion")
   );
@@ -47,11 +51,24 @@ export default function CallToActions({ block }) {
                       />
                     </span>
                     <div className="flex flex-col">
-                      <h3>{item.title}</h3>
-                      {item?.short_text && (
-                        <p className="text-[14px] text-[#555] group-hover:text-primary">
-                          {item?.short_text}
-                        </p>
+                      {showLazy ? (
+                        <>
+                          <h3>{item.title}</h3>
+                          {item?.short_text && (
+                            <p className="text-[14px] text-[#555] group-hover:text-primary">
+                              {item?.short_text}
+                            </p>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <div className="h-[54px] animate-pulse bg-[#ccc] w-[150px] block mb-3" />
+                          {item?.short_text && (
+                            <p className="h-[20px] animate-pulse bg-[#ccc] w-[150px] block">
+                              {item?.short_text}
+                            </p>
+                          )}
+                        </>
                       )}
                     </div>
                   </Link>
