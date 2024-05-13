@@ -176,15 +176,23 @@ export default function MainMenuMobile({ ...props }) {
 
   return (
     <>
-      <div className="remove-highlight select-none absolute left-0 flex justify-between right-0 px-[15px]">
+      <div
+        className={`remove-highlight select-none absolute left-0 flex items-center right-0 px-[15px] ${
+          process.env.NEXT_PUBLIC_TEMPLATE == 1
+            ? "justify-between"
+            : "justify-end"
+        }`}
+      >
         <span
-          className="w-[20px] select-none block cursor-pointer"
+          className={`min-w-[20px] w-[20px] select-none block cursor-pointer ${
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "" : "order-2 px-[5px]"
+          }`}
           onClick={openMenu}
         >
           {Array.from({ length: 3 }, (_, index) => (
             <span
               key={index}
-              className="w-full block h-[3px] bg-primary mb-[3px] last-of-type:mb-0"
+              className="min-w-[20px] w-full block h-[3px] bg-primary mb-[3px] last-of-type:mb-0"
             ></span>
           ))}
         </span>

@@ -11,13 +11,6 @@ import dynamic from "next/dynamic";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 
 export default function Menu({ ...props }) {
-  const MainMenu = dynamic(() =>
-    import("./MainMenu").then((module) => module.default)
-  );
-  const MainMenuMobile = dynamic(() =>
-    import("./MainMenuMobile").then((module) => module.default)
-  );
-
   const ready = globalState((state) => state.ready);
   const { tenantDetails, menus, locales } = globalData;
   const { parentNodes, nodes } = menus;
@@ -108,13 +101,19 @@ export default function Menu({ ...props }) {
             process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "pr-[2px]" : ""
           }`}
         >
-          <div className="xl:pl-[25px] z-[1] max-w-[154px] mx-auto xl:max-w-[100%] absolute top-0 left-0 right-0 xl:right-auto h-full flex items-center">
+          <div
+            className={`xl:pl-[25px] z-[1] max-w-[154px] xl:max-w-[100%] absolute top-0 left-0  xl:right-auto h-full flex justify-center items-center ${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "mx-auto right-0"
+                : "pl-[15px]"
+            }`}
+          >
             <Link href="/" className="h-full block">
               <Image
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
                 height={50}
-                className={`h-full object-contain max-w-[154px] w-full`}
+                className={`h-full object-contain max-w-[112px] md:max-w-[154px] w-full`}
                 alt={tenantDetails.name || "Logo"}
               />
             </Link>
