@@ -5,7 +5,6 @@ import globalState from "@/lib/store/globalState";
 export default function CallToActions({ block }) {
   const showLazy = globalState((state) => state.showLazy);
 
-  console.log(showLazy, "showLazy");
   const SectionAccordion = dynamic(() =>
     import("@/components/partials/collapsibles/SectionAccordion")
   );
@@ -17,10 +16,16 @@ export default function CallToActions({ block }) {
     >
       <section className="bg-[#F1F1F1] overflow-hidden py-[30px] lg:py-[40px]">
         <div className="container">
-          {block_title && (
-            <h2 className="font-tenor text-center text-primary hidden md:block text-[22px] mb-[30px]">
-              {block_title}
-            </h2>
+          {showLazy ? (
+            <>
+              {block_title && (
+                <h2 className="font-tenor text-center text-primary hidden md:block text-[22px] mb-[30px]">
+                  {block_title}
+                </h2>
+              )}
+            </>
+          ) : (
+            <div className="h-[34px] animate-pulse bg-[#ccc] w-[250px] block mx-auto mb-[30px]" />
           )}
           {items?.length > 0 && (
             <div className="flex flex-wrap mx-[-15px]">
