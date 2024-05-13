@@ -1,7 +1,10 @@
 import Head from "next/head";
 import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 import tenantMetatags from "@/lib/preBuildScripts/static/tenantMetatags.json";
+import { useEffect, useState } from "react";
 export default function Header({ meta, page }) {
+
+  const [currentUrl, setCurrentUrl] = useState();
   const findMeta = (type) => {
     switch (type) {
       case "title":
@@ -17,7 +20,9 @@ export default function Header({ meta, page }) {
       case "keywords":
         return meta?.keywords || tenantMetatags?.keywords;
       case "url":
-        return process.env.NEXT_PUBLIC_SITE_URL;
+        return currentUrl;
+      case "page_type":
+        return page?.type;
     }
   };
 
@@ -27,20 +32,26 @@ export default function Header({ meta, page }) {
     return arr ? arr[arr.length - 1] : "webp";
   };
 
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
+
   return (
     <Head>
       {/* META FAVICON */}
+      {currentUrl && <link rel="canonical" href={window.location.href} />}
       <link rel="icon" href={findMeta("favicon")} />
 
       {/* META TITLE */}
       <title>{findMeta("title")}</title>
+      <meta name="og:title" content={findMeta("title")} />
       <meta name="twitter:title" content={findMeta("title")} />
 
       {/* META KEYWORDS */}
       <meta name="keywords" content={findMeta("keywords")} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      <meta name="url" property="og:url" content={findMeta("url")} />
+      {currentUrl && <meta property="og:url" content={window.location.href} />}
 
       {/* META AUTHOR */}
       <meta name="author" content={findMeta("author")} />
@@ -69,10 +80,13 @@ export default function Header({ meta, page }) {
       />
       <meta name="twitter:image" content={findMeta("image")} />
       <meta name="image" property="og:image" content={findMeta("image")} />
+      <meta name="og:image" property="og:image" content={findMeta("image")} />
 
       {/* META TYPES */}
       <meta name="type" property="og:image:type" content={imageType()} />
       <meta name="twitter:card" content="summary_large_image" />
+
+      <meta property="og:type" content={findMeta("page_type")} />
 
       {/* META DOMAIN */}
       <meta name="twitter:domain" content={findMeta("url")} />
