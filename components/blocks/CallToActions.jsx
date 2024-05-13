@@ -25,7 +25,7 @@ export default function CallToActions({ block }) {
               )}
             </>
           ) : (
-            <div className="h-[34px] animate-pulse bg-[#ccc] w-[250px] block mx-auto mb-[30px]" />
+            <div className="h-[34px] animate-pulse bg-[#ccc] w-[250px] hidden md:block mx-auto mb-[30px]" />
           )}
           {items?.length > 0 && (
             <div className="flex flex-wrap mx-[-15px]">

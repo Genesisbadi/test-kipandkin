@@ -35,7 +35,7 @@ export default function SectionAccordion({ children, ...props }) {
           )}
         </>
       ) : (
-        <div className="h-[24px] animate-pulse bg-[#ccc] w-full mt-2 max-w-[calc(100%-15px)] block mx-auto mb-[30px]" />
+        <div className="h-[24px] animate-pulse bg-[#ccc] w-full mt-2 max-w-[calc(100%-15px)] block md:hidden mx-auto mb-[30px]" />
       )}
       <div
         className={`${
