@@ -339,7 +339,7 @@ export default function BookingForm({ ...props }) {
             ) : (
               <div className="flex justify-end py-[5px] uppercase text-primary">
                 <span className="flex  gap-x-[15px]" onClick={showModalForm}>
-                  Book Now <CalendarIcon className="mr-[10px] fill-primary" />
+                  Quick Book <CalendarIcon className="mr-[10px] fill-primary" />
                 </span>
               </div>
             )}
