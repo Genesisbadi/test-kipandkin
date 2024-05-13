@@ -60,6 +60,7 @@ export default function Selection({ block }) {
               // value={selectedValue}
               className="react-select"
               defaultValue={getDefaultValue()}
+              isSearchable={false}
               onChange={(e) =>
                 setSelectedValue(() => {
                   Number(e.value);

@@ -85,12 +85,15 @@ export default function DestinationDetails({ page }) {
                 value={getDefaultValue()}
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
-                options={destinations?.sort((a, b) => a?.order - b?.order).map((item, index) => {
-                  return {
-                    label: item?.title,
-                    value: item?.route_url,
-                  };
-                })}
+                isSearchable={false}
+                options={destinations
+                  ?.sort((a, b) => a?.order - b?.order)
+                  .map((item, index) => {
+                    return {
+                      label: item?.title,
+                      value: item?.route_url,
+                    };
+                  })}
               />
             </div>
             <div
