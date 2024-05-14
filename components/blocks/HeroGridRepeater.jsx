@@ -12,7 +12,11 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
           <SectionAccordion
-            childrenClassname="pb-0 h-full bg-primary1 flex flex-col"
+            childrenClassname={`${
+              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                ? "bg-[#f5f5f5]"
+                : "bg-primary1"
+            } pb-0 h-full flex flex-col`}
             key={index}
             title={item.title}
             className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
@@ -28,7 +32,14 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               alt={item.title}
               className="w-full h-[300px] object-cover"
             />
-            <div className="px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
+
+            <div
+              className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                  ? "text-[#654E43]"
+                  : "text-white"
+              }`}
+            >
               <h2
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
@@ -46,7 +57,11 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               )}
               <div className="text-center">
                 <Link
-                  className="text-[14px] uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "border-[#654E43] hover:bg-[#654E43] hover:text-white"
+                      : "border-[#fff] hover:text-primary1 hover:bg-white"
+                  } text-[14px] uppercase inline-block border  py-[15px] px-[30px] transition `}
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >
