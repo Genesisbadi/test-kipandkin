@@ -3,7 +3,7 @@ import Image from "next/image";
 // import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discoverBlog.json";
 import "slick-carousel/slick/slick.css";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect, useRef, React } from "react";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
 import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 export default function DiscoverBlog({ block }) {
@@ -12,8 +12,14 @@ export default function DiscoverBlog({ block }) {
   );
 
   const { title, description, link } = block.main;
+  const [currentLink, setCurrentLink] = useState("");
   const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
-  const [currentS, setCurrentS] = useState(blogEntries[0]);
+
+  useEffect(() => {
+    const currentSlideTitle = document.querySelector(".current-slide-title");
+    currentSlideTitle.innerHTML = blogEntries[0].title;
+    setCurrentLink(blogEntries[0].route_url);
+  }, []);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -80,6 +86,14 @@ export default function DiscoverBlog({ block }) {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    afterChange: (index) => {
+      const currentSlideTitle = document.querySelector(".current-slide-title");
+      const currentSlideLink = document.querySelector(
+        ".current-slide-readmore"
+      );
+      currentSlideTitle.innerHTML = blogEntries[index].title;
+      currentSlideLink.href = blogEntries[index].route_url;
+    },
   };
 
   return (
@@ -157,7 +171,7 @@ export default function DiscoverBlog({ block }) {
                         <div className="max-w-[440px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
                         </div>
-                        <div className="pb-[100%] block md:hidden" />
+                        <div className="pb-[75%] min-h-[100px] block md:hidden" />
                       </Link>
                     </div>
                   );
@@ -165,7 +179,16 @@ export default function DiscoverBlog({ block }) {
               </Slick>
             </>
           )}
-          <div className="flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
+          <div className="block md:hidden bg-secondary text-white text-center p-[20px]">
+            <div className="current-slide-title font-tenor text-[20px] mb-[12px]"></div>
+            <Link
+              href={currentLink}
+              className="current-slide-readmore inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+            >
+              Explore Now
+            </Link>
+          </div>
+          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
             <span className="w-full hidden md:block font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
               Discovery Blog
             </span>
