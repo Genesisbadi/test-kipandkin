@@ -11,6 +11,11 @@
   --dropdownBorder: #ebbbc9;
 }
 
+body {
+  font-family: "Gotham", sans-serif;
+  font-weight: 400;
+}
+
 .st-1 #header .active::after {
   content: "";
   width: 100%;

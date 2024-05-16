@@ -56,9 +56,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <div
-        className={`text-[#555] ${primary.className} text-[16px] flex flex-col min-h-[102vh]`}
-      >
+      <div className={`text-[#555] text-[16px] flex flex-col min-h-[102vh]`}>
         <DefaultLayout page={page} blocks={blocks}>
           <Component {...pageProps} />
         </DefaultLayout>

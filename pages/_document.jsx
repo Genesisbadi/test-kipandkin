@@ -41,35 +41,61 @@ export default function Document() {
           }
           /* montserrat-regular - latin */
           @font-face {
-            font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+            font-display: swap; 
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 400;
-            src: url('/fonts/montserrat-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+            src: url('/fonts/montserrat-regular.woff2') format('woff2');
           }
           /* montserrat-italic - latin */
           @font-face {
-            font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+            font-display: swap; 
             font-family: 'Montserrat';
             font-style: italic;
             font-weight: 400;
-            src: url('/fonts/montserrat-v26-latin-italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+            src: url('/fonts/montserrat-v26-latin-italic.woff2') format('woff2');
           }
           /* montserrat-700 - latin */
           @font-face {
-            font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+            font-display: swap; 
             font-family: 'Montserrat';
             font-style: normal;
             font-weight: 700;
-            src: url('/fonts/montserrat-v26-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+            src: url('/fonts/montserrat-v26-latin-700.woff2') format('woff2');
           }
           /* montserrat-700italic - latin */
           @font-face {
-            font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+            font-display: swap; 
             font-family: 'Montserrat';
             font-style: italic;
             font-weight: 700;
-            src: url('/fonts/montserrat-v26-latin-700italic.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+            src: url('/fonts/montserrat-v26-latin-700italic.woff2') format('woff2');
+          }
+          @font-face {
+            font-display: swap; 
+            font-family: 'Gotham';
+            font-weight: 400;
+            src: url('/fonts/Gotham-Book.woff2') format('woff2');
+          }
+          @font-face {
+            font-display: swap; 
+            font-family: 'Gotham';
+            font-weight: 400;
+            font-style: italic; 
+            src: url('/fonts/Gotham-BookItalic.woff2') format('woff2');
+          }
+          @font-face {
+            font-display: swap; 
+            font-family: 'Gotham';
+            font-weight: 700;
+            src: url('/fonts/Gotham-Medium.woff2') format('woff2');
+          }
+          @font-face {
+            font-display: swap; 
+            font-family: 'Gotham';
+            font-weight: 700;
+            font-style: italic; 
+            src: url('/fonts/Gotham-MediumItalic.woff2') format('woff2');
           }
           `,
           }}
