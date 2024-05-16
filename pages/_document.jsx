@@ -39,38 +39,6 @@ export default function Document() {
             src: url("/fonts/TenorSans-Regular.woff");
             font-display: swap;
           }
-          /* montserrat-regular - latin */
-          @font-face {
-            font-display: swap; 
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            src: url('/fonts/montserrat-regular.woff2') format('woff2');
-          }
-          /* montserrat-italic - latin */
-          @font-face {
-            font-display: swap; 
-            font-family: 'Montserrat';
-            font-style: italic;
-            font-weight: 400;
-            src: url('/fonts/montserrat-v26-latin-italic.woff2') format('woff2');
-          }
-          /* montserrat-700 - latin */
-          @font-face {
-            font-display: swap; 
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 700;
-            src: url('/fonts/montserrat-v26-latin-700.woff2') format('woff2');
-          }
-          /* montserrat-700italic - latin */
-          @font-face {
-            font-display: swap; 
-            font-family: 'Montserrat';
-            font-style: italic;
-            font-weight: 700;
-            src: url('/fonts/montserrat-v26-latin-700italic.woff2') format('woff2');
-          }
           @font-face {
             font-display: swap; 
             font-family: 'Gotham';

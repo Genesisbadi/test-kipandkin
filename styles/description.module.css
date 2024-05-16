@@ -23,7 +23,7 @@
   font-size: 14px;
   color: #555;
   margin-bottom: 15px;
-  font-family: "Montserrat";
+  font-family: "Gotham", sans-serif !important;
 }
 .description strong {
   margin-bottom: 20px;

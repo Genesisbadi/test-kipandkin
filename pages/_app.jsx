@@ -5,13 +5,8 @@ import globalState from "@/lib/store/globalState";
 import { useEffect } from "react";
 import { useShowLazyCookie } from "@/lib/services/showLazyCookie";
 
-import { Montserrat } from "next/font/google";
 import dynamic from "next/dynamic";
 
-const primary = Montserrat({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
 export default function App({ Component, pageProps }) {
   const test = useShowLazyCookie();
   const TenantScripts = dynamic(() =>
