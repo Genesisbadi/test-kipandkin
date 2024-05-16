@@ -13,7 +13,6 @@
 
 body {
   font-family: "Gotham", sans-serif;
-  font-weight: 400;
 }
 
 .st-1 #header .active::after {
@@ -291,6 +290,19 @@ body {
   100% {
     transform: translateX(0%);
   }
+}
+
+.triangle-left {
+  left: -10px;
+  border-bottom: 20px solid var(--primary);
+  border-left: 11px solid transparent;
+  filter: brightness(65%);
+}
+.triangle-right {
+  right: -10px;
+  border-bottom: 20px solid var(--primary);
+  border-right: 11px solid transparent;
+  filter: brightness(65%);
 }
 
 .animate-wobble {

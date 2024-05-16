@@ -112,7 +112,7 @@ export default function Block({ block }) {
           ) : (
             <div>
               {offers && offers.data.length > 0 ? (
-                <div className="flex flex-wrap lg:flex-nowrap py-[30px] gap-x-[15px] gap-y-[30px]">
+                <div className="flex flex-wrap py-[30px] gap-y-[30px]">
                   {offers.data.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
                     const options = {
@@ -122,74 +122,83 @@ export default function Block({ block }) {
                     };
                     const post_date = date.toLocaleDateString("en-US", options);
 
+                    let firstParagraph = null;
+
+                    if (item?.attributes?.data?.main?.description) {
+                      const paragraphs =
+                        item?.attributes?.data?.main?.description.split(/\n+/);
+                      firstParagraph = paragraphs.find(
+                        (paragraph) => paragraph.trim() !== ""
+                      );
+                    }
+
+                    console.log(firstParagraph);
                     return (
                       <div
                         key={index}
-                        className="relative w-full sm:max-w-[48%] lg:max-w-[33.33%] bg-secondary flex flex-col justify-between"
+                        className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
-                        {item?.attributes?.data?.main?.members_badge !==
-                        null ? (
-                          <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
-                            <div className="max-w-[150px] relative">
-                              <div className="absolute w-[20px] h-[20px] text-center top-[5px] left-[-5px] bg-[#481322] rotate-[25deg]"></div>
-                              <div className="absolute w-[20px] h-[20px] text-center top-[5px] right-[-5px] bg-[#481322] rotate-[65deg]"></div>
+                        <div className="bg-secondary relative">
+                          {item?.attributes?.data?.main?.members_badge !==
+                          null ? (
+                            <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
+                              <div className="max-w-[150px] relative">
+                                <div className="absolute triangle-left"></div>
+                                <div className="absolute triangle-right"></div>
 
-                              <div className="text-center relative  bg-primary text-xs text-white px-[20px] pt-[7px] pb-[0] z-20">
-                                <span className="relative z-[2]">
-                                  Members Only
-                                </span>
-                                <div className="absolute w-[65px] h-[15px] text-center left-[1px] bottom-[-3px] bg-primary rotate-[5deg]"></div>
-                                <div className="absolute w-[65px] h-[15px] text-center right-[1px] bottom-[-3px] bg-primary rotate-[-5deg]"></div>
+                                <div className="text-center relative  bg-primary text-xs text-white px-[20px] pt-[7px] pb-[0] z-20">
+                                  <span className="relative z-[2]">
+                                    Members Only
+                                  </span>
+                                  <div className="absolute w-[65px] h-[15px] text-center left-[1px] bottom-[-3px] bg-primary rotate-[5deg]"></div>
+                                  <div className="absolute w-[65px] h-[15px] text-center right-[1px] bottom-[-3px] bg-primary rotate-[-5deg]"></div>
+                                </div>
                               </div>
                             </div>
+                          ) : (
+                            <></>
+                          )}
+                          <div className="relative w-full min-h-[160px] p-[20px] z-10">
+                            <h3 className="text-white text-[20px]  mb-[10px] font-tenor">
+                              {item?.attributes?.title
+                                ?.split(" ")
+                                .map(
+                                  (word) =>
+                                    word.charAt(0).toUpperCase() +
+                                    word.slice(1).toLowerCase()
+                                )
+                                .join(" ")}
+                            </h3>
+                            {item?.attributes?.data?.main?.description && (
+                              <div
+                                className="text-white text-[14px]"
+                                dangerouslySetInnerHTML={{
+                                  __html: firstParagraph,
+                                }}
+                              />
+                            )}
+                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
                           </div>
-                        ) : (
-                          <></>
-                        )}
-                        <div className="relative w-full min-h-[160px] p-[20px] z-10">
-                          <h3 className="text-white text-[20px] truncate mb-[10px]">
-                            {item?.attributes?.title
-                              ?.split(" ")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() +
-                                  word.slice(1).toLowerCase()
-                              )
-                              .join(" ")}
-                          </h3>
-                          {item?.attributes?.data?.main?.description && (
-                            <div
-                              className="text-white text-[14px]"
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  item?.attributes?.data?.main?.description.replace(
-                                    /(<([^>]+)>)/gi,
-                                    ""
-                                  ),
-                              }}
-                            />
-                          )}
-                          <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
-                        </div>
-                        <div className="relative flex flex-col items-center justify-end">
-                          <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
-                          {item?.attributes?.data?.main?.featured_image && (
-                            <Image
-                              src={item.attributes.data.main.featured_image}
-                              className="w-full min-h-[300px] object-cover"
-                              width={500}
-                              height={200}
-                              alt={item?.attributes?.title}
-                            />
-                          )}
-                          {item?.attributes?.route_url && (
-                            <Link
-                              href={item.attributes.route_url || "#"}
-                              className="absolute bottom-[28px] border-[1px] border-white text-white hover:bg-white transition hover:text-[#212529] uppercase p-[15px] z-20"
-                            >
-                              More Details
-                            </Link>
-                          )}
+                          <div className="relative flex flex-col items-center justify-end">
+                            <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
+                            {item?.attributes?.data?.main?.featured_image && (
+                              <Image
+                                src={item.attributes.data.main.featured_image}
+                                className="w-full min-h-[300px] object-cover"
+                                width={500}
+                                height={200}
+                                alt={item?.attributes?.title}
+                              />
+                            )}
+                            {item?.attributes?.route_url && (
+                              <Link
+                                href={item.attributes.route_url || "#"}
+                                className="absolute bottom-[28px] border-[1px] border-white text-white hover:bg-white transition hover:text-[#212529] uppercase p-[15px] z-20"
+                              >
+                                More Details
+                              </Link>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
