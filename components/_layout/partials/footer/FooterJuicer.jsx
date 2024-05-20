@@ -30,7 +30,7 @@ export default function FooterJuicer() {
                   data-feed-id={juicer_id}
                   data-origin="embed-code"
                   data-filter="Instagram"
-                  data-per="7"
+                  data-per="6"
                 ></ul>
               </div>
             </div>
