@@ -110,7 +110,7 @@ export default function AdvocaciesReviews({ block }) {
                 {title}
               </h2>
               <div
-                className="grow text-justify text-[14px]"
+                className="grow   text-[14px]"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
               <div className="mt-[15px]">
@@ -128,7 +128,7 @@ export default function AdvocaciesReviews({ block }) {
         <SectionAccordion
           className="px-[3px] flex flex-col w-full md:max-w-[50%]"
           title="Reviews"
-          childrenClassname="w-full"
+          childrenClassname="w-full h-full flex flex-col"
         >
           <Image
             src={image_reviews || `/images/image_makati-large.jpg`}
@@ -152,13 +152,9 @@ export default function AdvocaciesReviews({ block }) {
               <Slick className="" {...settings}>
                 {reviewItems.map((item, index) => (
                   <div key={index}>
-                    {/* <h3 className="font-bold text-[14px] uppercase mb-3">
-                      {item.title}
-                    </h3> */}
-
                     {item.data.main.description && (
                       <div
-                        className="text-[14px] text-justify"
+                        className="text-[14px]  "
                         dangerouslySetInnerHTML={{
                           __html: item.data.main.description,
                         }}

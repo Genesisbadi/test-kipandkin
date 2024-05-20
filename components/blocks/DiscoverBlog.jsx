@@ -114,7 +114,7 @@ export default function DiscoverBlog({ block }) {
                 className="h-full object-contain"
               />
             </div>
-            <div className="relative md:absolute w-full top-0 right-0 max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
+            <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
               <h2
                 className={`hidden md:block text-primary text-[25px] ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
@@ -126,7 +126,7 @@ export default function DiscoverBlog({ block }) {
               </h2>
               {description && (
                 <div
-                  className="py-[30px] text-[14px] text-justify"
+                  className="py-[30px] text-[14px]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
@@ -150,7 +150,7 @@ export default function DiscoverBlog({ block }) {
         <SectionAccordion
           className="w-full relative px-[3px] md:max-w-[50%]"
           title="Discovery Blog"
-          childrenClassname="md:h-full flex flex-col"
+          childrenClassname="md:h-full flex flex-col overflow-hidden"
         >
           {blogEntries && blogEntries.length > 0 && (
             <>

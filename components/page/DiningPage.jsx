@@ -180,7 +180,7 @@ export default function DiningPage({ page }) {
         </picture>
         {title && (
           <h2
-            className={`text-[35px] md:text-[42px] text-white relative z-[3] font-tenor`}
+            className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor`}
           >
             {title}
           </h2>
@@ -228,7 +228,7 @@ export default function DiningPage({ page }) {
                       dangerouslySetInnerHTML={{
                         __html: description,
                       }}
-                      className="text-[14px] leading-[25px] text-justify"
+                      className="text-[14px] leading-[25px]"
                     />
                   )}
                 </div>
@@ -316,7 +316,7 @@ export default function DiningPage({ page }) {
           )}
           {diningOfferTitle && (
             <div className="w-full bg-[#f1f1f1]">
-              <div className="container py-[50px]">
+              <div className="container pb-[50px]">
                 <div className="flex flex-col w-full">
                   <h2
                     className={`text-primary text-[25px] uppercase text-center pb-[30px] ${

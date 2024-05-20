@@ -17,7 +17,7 @@ export default function GridFloatBookDirect({ block }) {
               <h2 className="hidden md:block text-primary text-[22px] mb-[20px] font-tenor">
                 Why Book Direct?
               </h2>
-              <div className="pl-[15px] lg:pl-[40px]">
+              <div className="pl-[15px]">
                 <div className="flex flex-wrap mx-[-15px] lg:flex-col">
                   {items?.map((item, index) => (
                     <div
@@ -73,7 +73,7 @@ export default function GridFloatBookDirect({ block }) {
                       />
                       <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
                         <div
-                          className="grow relative text-[14px] text-justify"
+                          className="grow relative text-[14px] flex items-center"
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}

@@ -51,7 +51,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               </h2>
               {item.description && (
                 <div
-                  className="text-[14px] mb-[30px] grow leading-[21px] text-justify"
+                  className="text-[14px] mb-[30px] grow leading-[21px]  "
                   dangerouslySetInnerHTML={{ __html: item.description }}
                 />
               )}

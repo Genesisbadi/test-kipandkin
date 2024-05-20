@@ -26,7 +26,7 @@ export default function MeetingsEvensDetails({ page }) {
 
   const showLazy = globalState((state) => state.showLazy);
   const { title } = page;
-  const { description, venues } = page.data.main;
+  const { description, venues, buttons } = page.data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
@@ -56,11 +56,7 @@ export default function MeetingsEvensDetails({ page }) {
         />
         {title && (
           <div
-            className={`relative text-[42px] px-[15px] ${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1
-                ? "font-tenor"
-                : "font-domine"
-            }`}
+            className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor`}
           >
             {title}
           </div>
@@ -70,7 +66,7 @@ export default function MeetingsEvensDetails({ page }) {
       <div className="container py-[20px] sm:py-[30px]">
         {description && (
           <div
-            className={`${styles.description} py-[30px]`}
+            className={`${styles.description}`}
             dangerouslySetInnerHTML={{ __html: description }}
           />
         )}
@@ -109,7 +105,7 @@ export default function MeetingsEvensDetails({ page }) {
       {showLazy && (
         <>
           {currentVenue && (
-            <div className="container pb-[50px] mt-[30px]">
+            <div className="container mt-[30px]">
               {currentVenue.image && (
                 <ModalImage
                   className="w-full h-full object-cover"
@@ -145,11 +141,32 @@ export default function MeetingsEvensDetails({ page }) {
               )}
             </div>
           )}
+
           {currentVenue?.images && (
             <CarouselGallery
               alt_title={currentVenue?.title || "Thumbnail"}
               images={currentVenue?.images}
             />
+          )}
+
+          {buttons?.length > 0 && (
+            <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center pb-[30px]">
+              <div className="flex flex-wrap justify-center ">
+                {buttons?.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item?.button_link}
+                    className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                      item.button_variant === "dark"
+                        ? "text-white bg-primary"
+                        : "border-secondary"
+                    } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                  >
+                    {item?.button_label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           )}
         </>
       )}
