@@ -15,7 +15,7 @@ export default function Block({ page, block, mediaHandler }) {
       <div className="w-full flex relative items-center justify-center h-[560px] 3xl:h-[812px]">
         {/* <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span> */}
         <div
-          className={`text-[42px] text-white relative z-[20] tracking-[1px] font-tenor ${
+          className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor ${
             title ? "" : "hidden"
           }`}
         >

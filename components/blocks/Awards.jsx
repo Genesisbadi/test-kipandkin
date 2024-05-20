@@ -5,7 +5,7 @@ export default function Awards({ block }) {
   return (
     <section className="flex bg-[#f1f1f1] pt-[20px]">
       <div className="container mb-[30px]">
-        <h2 className="text-[20px] text-primary text-center tracking-[1px] border-b-[1px] border-[#ccc] pb-[10px] mb-[20px]">
+        <h2 className="text-[20px] text-primary text-center tracking-[1px] border-b-[1px] border-[#ccc] pb-[10px] mb-[20px] font-tenor">
           {title}
         </h2>
         <div className="flex justify-center items-center flex-wrap">

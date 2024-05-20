@@ -151,7 +151,7 @@ export default function Slider({ block, mediaHandler }) {
               <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
                 {item?.title && (
                   <div
-                    className={`text-[35px] text-center md:text-[42px] mb-[15px] font-tenor`}
+                    className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor mb-[15px]`}
                   >
                     {item?.title}
                   </div>
