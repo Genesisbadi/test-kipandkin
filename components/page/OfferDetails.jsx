@@ -113,12 +113,18 @@ export default function OfferDetails({ page }) {
         <>
           {currentVenue && (
             <>
-              <div className="container mx-auto mt-[30px]">
+              <div
+                className={`container mx-auto mt-[30px]  ${
+                  currentVenue?.buttons && currentVenue?.buttons?.length < 1
+                    ? "pb-[50px]"
+                    : ""
+                }`}
+              >
                 {currentVenue && (
                   <>
                     {currentVenue?.description && (
                       <VenueDescription
-                        className={`bg-white shadow-md px-[40px] py-[30px] mb-[50px] `}
+                        className={`bg-white shadow-md px-[40px] py-[30px] mb-[50px]`}
                         description={currentVenue.description}
                       />
                     )}
