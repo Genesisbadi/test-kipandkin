@@ -17,6 +17,7 @@ export default function FooterNewsletter() {
   };
 
   const handleSubmit = async (e) => {
+    console.log("on submit");
     e.preventDefault();
 
     setErrors({});
@@ -45,14 +46,15 @@ export default function FooterNewsletter() {
       setIsSending(true);
       await FORMAPI.submitForm("newsletter-form", payload)
         .then((res) => {
-          e.target.reset();
-          if (res.status === 200 || res.status === 201) {
+          if (res.status == 200 || res.status == 201) {
             setShowSuccessModal(true);
             setIsSending(false);
+            e.target.reset();
           }
         })
         .catch((err) => {
           setIsSending(false);
+          alert("There was an error. Please try again later.");
         });
     }
   };
@@ -171,7 +173,7 @@ export default function FooterNewsletter() {
 
         {/* Success Modal */}
         {showSuccessModal && (
-          <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
+          <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-[#000] bg-opacity-50">
             <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
               <h2 className="text-2xl font-bold mb-4">Success!</h2>
               <p>You have been subscribed successfully.</p>

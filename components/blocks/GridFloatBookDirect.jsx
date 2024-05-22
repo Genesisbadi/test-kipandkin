@@ -47,7 +47,7 @@ export default function GridFloatBookDirect({ block }) {
             <div className="flex flex-wrap mx-[-15px]">
               {gridItems?.map((item, index) => (
                 <div
-                  className="px-[15px] w-full md:max-w-[50%] mb-[15px] md:mb-0"
+                  className="px-[15px] w-full md:max-w-[50%] mb-0"
                   key={index}
                 >
                   <SectionAccordion

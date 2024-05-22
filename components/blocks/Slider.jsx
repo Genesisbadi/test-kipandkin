@@ -151,7 +151,7 @@ export default function Slider({ block, mediaHandler }) {
               <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
                 {item?.title && (
                   <div
-                    className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor mb-[15px]`}
+                    className={`text-center text-[30px] sm:text-[35px] lg:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor mb-[30px] md:mb-[15px]`}
                   >
                     {item?.title}
                   </div>
@@ -165,7 +165,7 @@ export default function Slider({ block, mediaHandler }) {
 
                 {item?.url && (
                   <Link
-                    className="uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                    className="text-[14px] uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
                     href={item?.url}
                   >
                     {process.env.NEXT_PUBLIC_TEMPLATE == 1
