@@ -139,8 +139,7 @@ export default function Block({ block }) {
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
                         <div className="bg-secondary relative">
-                          {item?.attributes?.data?.main?.members_badge !==
-                          null ? (
+                          {item?.attributes?.data?.main?.members_badge && (
                             <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
                               <div className="max-w-[150px] relative">
                                 <div className="absolute triangle-left"></div>
@@ -155,8 +154,6 @@ export default function Block({ block }) {
                                 </div>
                               </div>
                             </div>
-                          ) : (
-                            <></>
                           )}
                           <div className="relative w-full min-h-[160px] p-[20px] z-10">
                             <h3 className="text-white text-[20px]  mb-[10px] font-tenor">
