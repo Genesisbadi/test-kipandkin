@@ -119,6 +119,7 @@ export default function FooterReviews() {
                                 <Link
                                   className="text-primary ml-[5px]"
                                   href={item.data.main.link}
+                                  target="_blank"
                                 >
                                   {item.data.main.link_label || "View Review"}
                                 </Link>
