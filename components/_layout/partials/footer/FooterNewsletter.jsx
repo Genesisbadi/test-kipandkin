@@ -17,7 +17,6 @@ export default function FooterNewsletter() {
   };
 
   const handleSubmit = async (e) => {
-    console.log("on submit");
     e.preventDefault();
 
     setErrors({});

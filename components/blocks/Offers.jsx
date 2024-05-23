@@ -131,8 +131,6 @@ export default function Block({ block }) {
                         (paragraph) => paragraph.trim() !== ""
                       );
                     }
-
-                    console.log(firstParagraph);
                     return (
                       <div
                         key={index}
