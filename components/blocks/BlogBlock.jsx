@@ -118,24 +118,26 @@ export default function BlogBlock({ block }) {
         if (router.query.category) {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort=-published_at`
           );
         } else {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort=-published_at`
           );
         }
         setArticles(res.data);
         setLoading(false);
 
-        if (res?.data?.links?.prev) {
+        if (res?.links?.prev) {
           setHasPrevPage(true);
         } else {
           setHasPrevPage(false);
         }
 
-        if (res?.data?.links?.next) {
+        console.log("res", res);
+
+        if (res?.links?.next) {
           setHasNextPage(true);
         } else {
           setHasNextPage(false);
