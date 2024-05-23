@@ -65,6 +65,7 @@ export default function FooterReviews() {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
