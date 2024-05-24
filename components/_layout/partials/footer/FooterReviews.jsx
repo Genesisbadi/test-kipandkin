@@ -66,6 +66,7 @@ export default function FooterReviews() {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     adaptiveHeight: true,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -104,7 +105,7 @@ export default function FooterReviews() {
 
                           {item.data.main.description && (
                             <div
-                              className="text-justify"
+                              className="text-justify line-clamp-1"
                               dangerouslySetInnerHTML={{
                                 __html: item.data.main.description,
                               }}
