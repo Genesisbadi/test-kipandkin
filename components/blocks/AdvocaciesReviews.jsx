@@ -334,9 +334,18 @@ export default function AdvocaciesReviews({ block }) {
                 {reviewItems.map((item, index) => (
                   <div key={index}>
                     <h2 className="text-2xl font-bold mb-4 mt-[50px] md:mt-0 md:pr-[120px]">
-                      {item?.title}!
+                      {item?.title}
                     </h2>
-                    {item?.data?.main?.name}
+                    <div className="flex">
+                      {item?.data?.main?.name},
+                      <Link
+                        href={item?.data?.main?.link}
+                        target="_blank"
+                        className="text-primary ml-1 underline"
+                      >
+                        {item?.data?.main?.link_label || "View Review"}
+                      </Link>
+                    </div>
                     {item.data.main.stars && (
                       <div className="flex my-[15px] gap-x-[5px]">
                         {Array.from(

@@ -105,7 +105,7 @@ export default function FooterReviews() {
 
                           {item.data.main.description && (
                             <div
-                              className="text-justify line-clamp-1"
+                              className="text-justify"
                               dangerouslySetInnerHTML={{
                                 __html: item.data.main.description,
                               }}
