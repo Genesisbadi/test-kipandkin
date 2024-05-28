@@ -42,7 +42,7 @@ export default function MeetingsEvensDetails({ page }) {
 
   return (
     <article className="bg-[#f1f1f1]">
-      <div className="relative min-h-[560px] 3xl:h-[812px] text-white flex text-center items-center justify-center">
+      <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">
         <Image
           alt={title || "Banner"}
           src={
@@ -56,7 +56,7 @@ export default function MeetingsEvensDetails({ page }) {
         />
         {title && (
           <div
-            className={`text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white z-[3]`}
           >
             {title}
           </div>

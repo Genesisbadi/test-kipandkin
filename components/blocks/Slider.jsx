@@ -128,7 +128,7 @@ export default function Slider({ block, mediaHandler }) {
         <Slick {...settings}>
           {slider_items?.map((item, index) => (
             <div className="w-full relative" key={index}>
-              {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
+              <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
               <picture>
                 <source
                   media="(min-width: 415px)"
@@ -151,7 +151,7 @@ export default function Slider({ block, mediaHandler }) {
               <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
                 {item?.title && (
                   <div
-                    className={`text-center text-[30px] sm:text-[35px] lg:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] font-tenor mb-[30px] md:mb-[15px]`}
+                    className={`text-center leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor mb-[30px] md:mb-[30px]`}
                   >
                     {item?.title}
                   </div>

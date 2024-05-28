@@ -190,12 +190,12 @@ export default function AdvocaciesReviews({ block }) {
                   {title}
                 </h2>
                 <div
-                  className="grow   text-[14px]"
+                  className="grow text-[14px]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
                 <div className="mt-[15px]">
                   <Link
-                    className="text-[14px] inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+                    className="text-[14px] uppercase inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
                     href={link}
                   >
                     Discover More

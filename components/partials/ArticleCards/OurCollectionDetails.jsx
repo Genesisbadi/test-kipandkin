@@ -240,7 +240,7 @@ export default function OurCollectionDetails({ block, page }) {
                     return (
                       <Link
                         key={index}
-                        href={item.btn_link || []}
+                        href={item.btn_link || "#"}
                         className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
                           item.variant === "filled"
                             ? "text-white bg-primary"

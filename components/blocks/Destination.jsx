@@ -29,6 +29,7 @@ export default function OurCollection({ block, mediaHandler }) {
                 <div className="flex flex-col 2sm:flex-row gap-y-3 2sm:gap-y-0 gap-x-5 px-3 w-full justify-center">
                   {item?.data.main.book_now_button_link && (
                     <Link
+                      target="_blank"
                       href={item?.data.main.book_now_button_link}
                       className={`w-full h-full 2sm:w-auto text-center text-white text-sm border-[1px] border-primary bg-primary hover:bg-secondary hover:border-secondary py-[20px] px-[30px] uppercase`}
                     >
@@ -36,7 +37,7 @@ export default function OurCollection({ block, mediaHandler }) {
                     </Link>
                   )}
                   <Link
-                    href={item?.route_url || []}
+                    href={item?.route_url}
                     className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] text-white border border-white py-[20px] px-[30px] hover:bg-white hover:text-secondary uppercase`}
                   >
                     More Details

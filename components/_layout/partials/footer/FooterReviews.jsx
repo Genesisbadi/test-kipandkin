@@ -99,7 +99,7 @@ export default function FooterReviews() {
                     <Slick className="lg:px-[70px] text-[14px]" {...settings}>
                       {reviewsData.map((item, index) => (
                         <div key={index}>
-                          <h3 className="font-bold text-[14px] uppercase">
+                          <h3 className="font-bold text-[14px] uppercase mb-[15px]">
                             {item.title}
                           </h3>
 

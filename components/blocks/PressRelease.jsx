@@ -14,7 +14,7 @@ export default function PressRelease({ block }) {
                   {item.pdf_file.map((pdf, index) => (
                     <Link
                       key={index}
-                      href={pdf.file || []}
+                      href={pdf.file}
                       target="_blank"
                       className="flex flex-col text-primary pb-3 text-[14px]"
                     >

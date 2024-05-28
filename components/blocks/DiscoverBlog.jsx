@@ -11,7 +11,8 @@ export default function DiscoverBlog({ block }) {
     import("react-slick").then((module) => module.default)
   );
 
-  const { title, description, link } = block.main;
+  const { title, description, link, image } = block.main;
+
   const [currentLink, setCurrentLink] = useState("");
   const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
 
@@ -112,7 +113,7 @@ export default function DiscoverBlog({ block }) {
           <div className="flex justify-between items-start md:items-end h-full relative bg-[#f1f1f1] min-h-[350px] p-[15px]">
             <div className="h-full absolute top-0 object-fit object-top opacity-[.2] sm:opacity-[1] md:opacity-[.3] xl:opacity-[1] sm:relative w-full md:max-w-[120px] xl:max-w-[unset]">
               <Image
-                src={`/static/ph_map.png`}
+                src={image}
                 width={300}
                 height={300}
                 alt="Discover"
@@ -142,7 +143,7 @@ export default function DiscoverBlog({ block }) {
                     target={
                       link ? (link?.includes("http") ? "_blank" : "_self") : ""
                     }
-                    className="inline-block text-center text-[14px] md:text-[16px] text-primary md:min-w-[200px] border border-primary py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-primary"
+                    className="inline-block uppercase text-center text-[14px] md:text-[16px] text-primary md:min-w-[200px] border border-primary py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-primary"
                   >
                     Explore Now
                   </Link>

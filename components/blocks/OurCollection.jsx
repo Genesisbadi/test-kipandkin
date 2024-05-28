@@ -36,7 +36,7 @@ export default function OurCollection({ block, mediaHandler }) {
                     </Link>
                   )}
                   <Link
-                    href={item?.route_url || []}
+                    href={item?.route_url}
                     className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] text-white border border-white py-[20px] px-[30px] hover:bg-white hover:text-secondary uppercase`}
                   >
                     More Details

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import NProgress from "nprogress";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
+import styles from "@/styles/description.module.css";
 export default function OurCollectionPage({ page }) {
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
@@ -156,7 +157,7 @@ export default function OurCollectionPage({ page }) {
   };
   return (
     <>
-      <section className="page-banner relative flex items-center justify-center h-[560px] 3xl:h-[812px] w-full bg-[#f1f1f1]">
+      <section className="page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]">
         {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
         <Image
           alt={"Banner"}
@@ -166,11 +167,11 @@ export default function OurCollectionPage({ page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
         />
         {title && (
-          <h2
-            className={`font-tenor text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] px-5 text-center text-white relative z-[3] leading-[50px]`}
+          <div
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] px-5 text-center text-white  z-[3] leading-[50px]`}
           >
             {title}
-          </h2>
+          </div>
         )}
       </section>
 
@@ -214,7 +215,7 @@ export default function OurCollectionPage({ page }) {
 
             <div
               dangerouslySetInnerHTML={{ __html: description }}
-              className="text-[14px] mb-[40px] leading-[25px]"
+              className={`${styles.description} text-[14px] mb-[40px] leading-[25px]`}
             />
           </div>
           {button_links && button_links.length > 0 && (
