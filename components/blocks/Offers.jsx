@@ -136,25 +136,36 @@ export default function Block({ block }) {
                         key={index}
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
-                        <div className="bg-secondary relative">
+                        <div className="bg-[#f5f5f5] relative">
                           {item?.attributes?.data?.main?.members_badge && (
-                            <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
-                              <div className="max-w-[150px] relative">
-                                <div className="absolute triangle-left"></div>
-                                <div className="absolute triangle-right"></div>
+                            // <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
+                            //   <div className="max-w-[150px] relative">
+                            //     <div className="absolute triangle-left"></div>
+                            //     <div className="absolute triangle-right"></div>
 
-                                <div className="text-center relative  bg-primary text-xs text-white px-[20px] pt-[7px] pb-[0] z-20">
-                                  <span className="relative z-[2]">
-                                    Members Only
-                                  </span>
-                                  <div className="absolute w-[65px] h-[15px] text-center left-[1px] bottom-[-3px] bg-primary rotate-[5deg]"></div>
-                                  <div className="absolute w-[65px] h-[15px] text-center right-[1px] bottom-[-3px] bg-primary rotate-[-5deg]"></div>
+                            //     <div className="text-center relative  bg-primary text-xs text-white px-[20px] pt-[7px] pb-[0] z-20">
+                            //       <span className="relative z-[2]">
+                            //         Members Only
+                            //       </span>
+                            //       <div className="absolute w-[65px] h-[15px] text-center left-[1px] bottom-[-3px] bg-primary rotate-[5deg]"></div>
+                            //       <div className="absolute w-[65px] h-[15px] text-center right-[1px] bottom-[-3px] bg-primary rotate-[-5deg]"></div>
+                            //     </div>
+                            //   </div>
+                            // </div>
+                            <>
+                              <div className="absolute top-[-20px] w-full flex justify-center mb-[-15px] text-[14px]">
+                                <div className="max-w-[150px] relative">
+                                  <div className="text-center relative  bg-primary text-xs text-white px-[20px] py-[7px] z-20">
+                                    <span className="relative z-[2]">
+                                      Members Only
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </>
                           )}
                           <div className="relative w-full min-h-[160px] p-[20px] z-10">
-                            <h3 className="text-white text-[20px]  mb-[10px] font-tenor">
+                            <h3 className="text-[#654E43] text-[20px]  mb-[10px] font-tenor">
                               {item?.attributes?.title
                                 ?.split(" ")
                                 .map(
@@ -166,13 +177,13 @@ export default function Block({ block }) {
                             </h3>
                             {item?.attributes?.data?.main?.description && (
                               <div
-                                className="text-white text-[14px]"
+                                className="text-[#654E43] text-[14px]"
                                 dangerouslySetInnerHTML={{
                                   __html: firstParagraph,
                                 }}
                               />
                             )}
-                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
+                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-[#f5f5f5] rotate-45 z-10" />
                           </div>
                           <div className="relative flex flex-col items-center justify-end">
                             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
