@@ -176,6 +176,7 @@ export default function DiningPage({ page }) {
             height={1080}
             className="w-full h-full  object-cover absolute top-0 left-0"
             alt="Page Banner"
+            priority={true}
           />
         </picture>
         {title && (
@@ -259,13 +260,19 @@ export default function DiningPage({ page }) {
                 <div className="pb-7">
                   {schedules.map((item, index) => {
                     return (
-                      <div key={index}>
-                        <span className="flex pb-3">{item.title}</span>
+                      <div key={index} className="pb-[10px]">
+                        <span
+                          className={`flex pb-1 ${
+                            index > 0 ? "text-[14px]" : ""
+                          }`}
+                        >
+                          {item.title}
+                        </span>
                         <div
                           dangerouslySetInnerHTML={{
                             __html: item.time,
                           }}
-                          className={`text-[18px] font-[700] leading-[25px] pb-3 ${
+                          className={`text-[18px] leading-[25px] ${
                             process.env.NEXT_PUBLIC_TEMPLATE == 1
                               ? "font-tenor"
                               : "font-domine"

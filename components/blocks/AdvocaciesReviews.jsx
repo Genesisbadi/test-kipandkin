@@ -34,14 +34,13 @@ export default function AdvocaciesReviews({ block }) {
           width="25"
           height="54"
           viewBox="0 0 19.349 30"
-          className="!fill-white"
+          className="!fill-[#654E43]"
         >
           <path
             id="_002-right-arrow"
             data-name="002-right-arrow"
             d="M87.566,30,106.33,15,87.566,0l-.585.732L104.829,15,86.981,29.268Z"
             transform="translate(-86.981)"
-            fill="#fff"
           ></path>
         </svg>
       </div>
@@ -57,7 +56,7 @@ export default function AdvocaciesReviews({ block }) {
         onClick={onClick}
       >
         <svg
-          className="!fill-white"
+          className="!fill-[#654E43]"
           xmlns="http://www.w3.org/2000/svg"
           width={25}
           height={54}
@@ -171,7 +170,7 @@ export default function AdvocaciesReviews({ block }) {
             title={title}
             childrenClassname="w-full"
           >
-            <div className="bg-primary1 h-full">
+            <div className="bg-[#F5F5F5] h-full">
               <Image
                 src={image_advocacy || `/images/image_makati-large.jpg`}
                 width={900}
@@ -179,7 +178,7 @@ export default function AdvocaciesReviews({ block }) {
                 alt={title || "Thumbnail"}
                 className="w-full h-[250px] md:h-[575px] object-cover"
               />
-              <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-white">
+              <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-[#654E43]">
                 <h2
                   className={`mb-[25px] text-[25px] hidden md:block ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
@@ -195,7 +194,7 @@ export default function AdvocaciesReviews({ block }) {
                 />
                 <div className="mt-[15px]">
                   <Link
-                    className="text-[14px] uppercase inline-block text-center border border-[#fff] min-w-[170px] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+                    className="text-[14px] inline-block text-center border border-[#654E43] min-w-[170px] py-[15px] px-[30px] transition hover:text-white hover:bg-[#654E43]"
                     href={link}
                   >
                     Discover More
@@ -218,7 +217,7 @@ export default function AdvocaciesReviews({ block }) {
               className="w-full h-[250px] md:h-[575px] object-cover"
             />
             {reviewItems && reviewItems.length > 0 && (
-              <div className="bg-primary1 px-[50px] lg:px-[60px] py-[30px] text-white grow">
+              <div className="bg-[#f5f5f5] px-[50px] lg:px-[60px] py-[30px] text-[#654E43] grow">
                 <h2
                   className={`mb-[25px] hidden md:block text-[25px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
@@ -253,7 +252,7 @@ export default function AdvocaciesReviews({ block }) {
                                   onClick={() => {
                                     readMore(index);
                                   }}
-                                  className="text-white cursor-pointer underline"
+                                  className="text-[#654E43] cursor-pointer underline"
                                 >
                                   Read More
                                 </span>
@@ -276,7 +275,7 @@ export default function AdvocaciesReviews({ block }) {
                           {item.data.main.link && (
                             <span>
                               <Link
-                                className="text-white ml-[5px]"
+                                className="text-[#654E43] ml-[5px]"
                                 href={item.data.main.link}
                                 target="_blank"
                               >
@@ -294,7 +293,7 @@ export default function AdvocaciesReviews({ block }) {
                                   width={20}
                                   height={20}
                                   key={index}
-                                  color="#fff"
+                                  color="#654E43"
                                 />
                               )
                             )}

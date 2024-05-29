@@ -22,6 +22,7 @@ export default function CollectionBanner({ ...props }) {
         width={1920}
         height={1080}
         className="w-full h-full  object-cover absolute top-0 left-0"
+        priority={true}
       />
       <span className="bg-[#000] bg-opacity-[.3] absolute top-0 left-0 w-full h-full"></span>
       {title && <div className="relative text-[42px] font-tenor">{title}</div>}

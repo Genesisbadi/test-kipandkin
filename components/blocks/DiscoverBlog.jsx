@@ -122,7 +122,7 @@ export default function DiscoverBlog({ block }) {
             </div>
             <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
               <h2
-                className={`hidden md:block text-primary text-[25px] ${
+                className={`hidden md:block text-[#654E43] text-[25px] ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
                     : "font-domine"
@@ -132,7 +132,7 @@ export default function DiscoverBlog({ block }) {
               </h2>
               {description && (
                 <div
-                  className="py-[30px] text-[14px]"
+                  className="py-[30px] text-[14px] text-[#654E43]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
@@ -143,7 +143,7 @@ export default function DiscoverBlog({ block }) {
                     target={
                       link ? (link?.includes("http") ? "_blank" : "_self") : ""
                     }
-                    className="inline-block uppercase text-center text-[14px] md:text-[16px] text-primary md:min-w-[200px] border border-primary py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-primary"
+                    className="inline-block uppercase text-center text-[14px] md:text-[16px] text-[#654E43] md:min-w-[200px] border border-[#654E43] py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-[#654E43]"
                   >
                     Explore Now
                   </Link>

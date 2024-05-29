@@ -61,6 +61,7 @@ export default function DestinationDetails({ page }) {
           width={1920}
           height={1080}
           className="w-full h-full  object-cover absolute top-0 left-0"
+          priority={true}
         />
         {title && (
           <h2
