@@ -163,7 +163,7 @@ export default function DiningPage({ page }) {
   return (
     <>
       <section className="page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]">
-        {/* <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span> */}
+        <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <picture>
           <source media="(min-width:415px)" srcSet={banner_desktop} />
           <source
@@ -181,7 +181,7 @@ export default function DiningPage({ page }) {
         </picture>
         {title && (
           <h2
-            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white z-[3]`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  text-white z-[3]`}
           >
             {title}
           </h2>

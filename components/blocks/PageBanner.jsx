@@ -12,9 +12,9 @@ export default function Block({ page, block, mediaHandler }) {
         height={1080}
         className="w-full object-cover absolute top-0 left-0 h-full"
       />
-      {/* <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.2]"></span> */}
+      <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.3]"></span>
       <div
-        className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] [text-shadow:_2px_5px_5px_rgb(0_0_0_/_100%)] text-white relative z-[3] ${
+        className={`relative px-[15px] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] text-center text-white relative z-[3] ${
           title ? "" : "hidden"
         }`}
       >

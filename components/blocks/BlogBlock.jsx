@@ -135,8 +135,6 @@ export default function BlogBlock({ block }) {
           setHasPrevPage(false);
         }
 
-        console.log("res", res);
-
         if (res?.links?.next) {
           setHasNextPage(true);
         } else {

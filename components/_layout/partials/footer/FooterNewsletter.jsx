@@ -90,7 +90,7 @@ export default function FooterNewsletter() {
               />
               <button
                 type="submit"
-                className={`w-full group flex justify-center text-uppercase sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out ${
+                className={`w-full uppercase group flex justify-center text-uppercase sm:w-[150px] text-primary border-primary border px-[15px] py-[15px] h-[60px] hover:bg-primary hover:text-[#fff] transition-all duration-300 ease-in-out ${
                   isSending
                     ? "cursor-not-allowed opacity-[.5]"
                     : "cursor-pointer"

@@ -14,6 +14,7 @@ export default function CollectionBanner({ ...props }) {
         className ? "" : ""
       } relative min-h-[calc(100vh-61px)] text-white flex items-center justify-center`}
     >
+      <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
       <Image
         alt={title}
         src={
