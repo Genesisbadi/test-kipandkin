@@ -71,13 +71,8 @@ export default function AccordionItem({ ...props }) {
                   {item.button_links.map((item, index) => (
                     <Link
                       key={index}
-                      href={item.button_link || item.file || "#"}
-                      target={`${
-                        item.button_link.includes("http") ||
-                        item.file.includes("http")
-                          ? "_blank"
-                          : "_self"
-                      }`}
+                      href={item?.button_link || item?.file || "#"}
+                      target="_blank"
                       className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
                         item.variant == "filled"
                           ? "text-white bg-primary"
