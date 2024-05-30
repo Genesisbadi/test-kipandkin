@@ -92,16 +92,8 @@ export default function DiscoverBlog({ block }) {
       const currentSlideLink = document.querySelector(
         ".current-slide-readmore"
       );
-
       currentSlideTitle.innerHTML = blogEntries[index].title;
-
-      currentSlideLink.setAttribute("href", blogEntries[index].route_url);
-      // currentSlideLink.href = blogEntries[index].route_url;
-
-      if (currentSlideLink.href != blogEntries[index].route_url) {
-        // currentSlideLink.href = blogEntries[index].route_url;
-        currentSlideLink.setAttribute("href", blogEntries[index].route_url);
-      }
+      currentSlideLink.outerHTML = `<a href="${blogEntries[index].route_url}" class="current-slide-readmore inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white">Explore Now</a>`;
     },
   };
 
