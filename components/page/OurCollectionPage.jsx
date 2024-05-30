@@ -258,7 +258,7 @@ export default function OurCollectionPage({ page }) {
           )}
 
           <div className="container px-5 2xl:px-0">
-            {virtual_url && virtual_url?.length > 0 && (
+            {/* {virtual_url && virtual_url?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col w-full">
                   <span
@@ -280,7 +280,7 @@ export default function OurCollectionPage({ page }) {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
             {award_images && award_images?.length > 0 && (
               <div className="flex w-full justify-center pt-10 pb-[50px]">
                 <div className="flex flex-col">
