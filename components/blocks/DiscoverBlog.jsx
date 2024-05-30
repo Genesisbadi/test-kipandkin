@@ -94,10 +94,13 @@ export default function DiscoverBlog({ block }) {
       );
 
       currentSlideTitle.innerHTML = blogEntries[index].title;
-      currentSlideLink.href = blogEntries[index].route_url;
+
+      currentSlideLink.setAttribute("href", blogEntries[index].route_url);
+      // currentSlideLink.href = blogEntries[index].route_url;
 
       if (currentSlideLink.href != blogEntries[index].route_url) {
-        currentSlideLink.href = blogEntries[index].route_url;
+        // currentSlideLink.href = blogEntries[index].route_url;
+        currentSlideLink.setAttribute("href", blogEntries[index].route_url);
       }
     },
   };
