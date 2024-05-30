@@ -62,7 +62,7 @@ export default function Feature({ block }) {
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "text-[#c5baa6]"
                 : "text-white"
-            } text-[20px] mb-[10px] tracking-[2px]`}
+            } text-[20px] mb-[10px]`}
           >
             {title}
           </h2>
