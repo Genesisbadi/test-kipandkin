@@ -9,7 +9,7 @@ export default function ContactUsBlock({ block }) {
   );
   const { description, offices, form } = block.main;
   return (
-    <section className="bg-[#F1F1F1] py-[10px]">
+    <section className="bg-[#F1F1F1] pt-[10px] pb-[50px]">
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full mb-[15px] md:mb-0 md:max-w-[50%] px-[15px]">

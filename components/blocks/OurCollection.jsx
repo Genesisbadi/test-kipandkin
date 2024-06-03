@@ -30,7 +30,7 @@ export default function OurCollection({ block, mediaHandler }) {
                   {item?.data.main.book_now_button_link && (
                     <Link
                       href={item?.data.main.book_now_button_link}
-                      className={`w-full h-full 2sm:w-auto text-center text-white text-sm border-[1px] border-primary bg-primary hover:bg-secondary hover:border-secondary py-[20px] px-[30px] uppercase`}
+                      className={`w-full h-full 2sm:w-auto text-center text-white text-sm border-[1px] border-primary bg-primary hover:bg-[secondary] hover:border-[secondary] py-[20px] px-[30px] uppercase`}
                     >
                       Book Now
                     </Link>

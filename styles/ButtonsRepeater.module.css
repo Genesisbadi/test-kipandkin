@@ -2,6 +2,9 @@
   max-width: fit-content;
   margin: 0 auto;
 }
+.buttonRepeater * {
+  font-family: "Gotham", sans-serif !important;
+}
 @media (min-width: 768px) {
   .buttonRepeater > div:not(:last-of-type) {
     border-right: 1px solid #ccc;

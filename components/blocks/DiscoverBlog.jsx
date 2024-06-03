@@ -195,7 +195,7 @@ export default function DiscoverBlog({ block }) {
             </span>
             <Link
               href="/blog"
-              className="inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
+              className="inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
             >
               Explore Now
             </Link>

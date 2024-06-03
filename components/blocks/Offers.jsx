@@ -136,7 +136,7 @@ export default function Block({ block }) {
                         key={index}
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
-                        <div className="bg-[#f5f5f5] relative">
+                        <div className="bg-secondary relative">
                           {item?.attributes?.data?.main?.members_badge && (
                             // <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
                             //   <div className="max-w-[150px] relative">
@@ -165,7 +165,7 @@ export default function Block({ block }) {
                             </>
                           )}
                           <div className="relative w-full min-h-[160px] p-[20px] z-10">
-                            <h3 className="text-[#654E43] text-[20px]  mb-[10px] font-tenor">
+                            <h3 className="text-[#f5f5f5] text-[20px]  mb-[10px] font-tenor">
                               {item?.attributes?.title
                                 ?.split(" ")
                                 .map(
@@ -177,13 +177,13 @@ export default function Block({ block }) {
                             </h3>
                             {item?.attributes?.data?.main?.description && (
                               <div
-                                className="text-[#654E43] text-[14px]"
+                                className="text-[#f5f5f5] text-[14px]"
                                 dangerouslySetInnerHTML={{
                                   __html: firstParagraph,
                                 }}
                               />
                             )}
-                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-[#f5f5f5] rotate-45 z-10" />
+                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
                           </div>
                           <div className="relative flex flex-col items-center justify-end">
                             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
@@ -199,7 +199,7 @@ export default function Block({ block }) {
                             {item?.attributes?.route_url && (
                               <Link
                                 href={item.attributes.route_url || "#"}
-                                className="absolute bottom-[28px] border-[1px] border-white text-white hover:bg-white transition hover:text-[#212529] uppercase p-[15px] z-20"
+                                className="absolute bottom-[28px] border-[1px] border-white text-white hover:bg-white transition hover:text-secondary uppercase p-[15px] z-20"
                               >
                                 More Details
                               </Link>

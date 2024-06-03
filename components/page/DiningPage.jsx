@@ -311,7 +311,7 @@ export default function DiningPage({ page }) {
                 )}
               </div>
             </div>
-            <FooterReviews />
+            {/* <FooterReviews /> */}
           </div>
 
           {gallery_images && gallery_images?.length > 0 && (
