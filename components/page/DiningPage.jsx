@@ -311,7 +311,6 @@ export default function DiningPage({ page }) {
                 )}
               </div>
             </div>
-            {/* <FooterReviews /> */}
           </div>
 
           {gallery_images && gallery_images?.length > 0 && (
@@ -323,7 +322,7 @@ export default function DiningPage({ page }) {
           )}
           {diningOfferTitle && (
             <div className="w-full bg-[#f1f1f1]">
-              <div className="container pb-[50px]">
+              <div className="container pb-[50px] !max-w-[980px] mx-auto">
                 <div className="flex flex-col w-full">
                   <h2
                     className={`text-primary text-[25px] uppercase text-center pb-[30px] ${

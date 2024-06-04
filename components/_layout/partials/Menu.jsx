@@ -108,7 +108,12 @@ export default function Menu({ ...props }) {
                 : "pl-[15px]"
             }`}
           >
-            <Link href="/" className="h-full block">
+            <Link
+              href="/"
+              className={`h-full block ${
+                process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "py-[5px]" : ""
+              }`}
+            >
               <Image
                 src={tenantDetails?.data?.main?.tenant_logo}
                 width={154}
