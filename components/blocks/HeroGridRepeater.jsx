@@ -30,11 +30,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
             />
 
             <div
-              className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "text-[#654E43]"
-                  : "text-white"
-              }`}
+              className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-[#654E43]`}
             >
               <h2
                 className={`${
