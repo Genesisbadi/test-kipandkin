@@ -57,7 +57,7 @@ export default function RoomSuitePage({ page }) {
       <section className="page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <Image
-          alt={"Banner"}
+          alt={title}
           src={
             page.mediaHandler?.[`main.image`]?.[0]?.conversions.desktop ||
             page.mediaHandler?.[`main.image`]?.[0]?.original

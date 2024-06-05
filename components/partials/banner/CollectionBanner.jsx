@@ -10,9 +10,7 @@ export default function CollectionBanner({ ...props }) {
   } = props;
   return (
     <div
-      className={`${
-        className ? "" : ""
-      } relative min-h-[calc(100vh-61px)] text-white flex items-center justify-center`}
+      className={`page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]`}
     >
       <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
       <Image
@@ -25,8 +23,11 @@ export default function CollectionBanner({ ...props }) {
         className="w-full h-full  object-cover absolute top-0 left-0"
         priority={true}
       />
-      <span className="bg-[#000] bg-opacity-[.3] absolute top-0 left-0 w-full h-full"></span>
-      {title && <div className="relative text-[42px] font-tenor">{title}</div>}
+      {title && (
+        <div className="relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  px-5 text-center text-white z-[3] leading-[50px]">
+          {title}
+        </div>
+      )}
     </div>
   );
 }
