@@ -67,13 +67,11 @@ export default function RoomSuitePage({ page }) {
           className="w-full h-full  object-cover absolute top-0 left-0"
           priority={true}
         />
-        {title && (
-          <h2
-            className={`font-tenor text-[35px] md:text-[42px]  px-5 text-center text-white relative z-[3] leading-[50px]`}
-          >
-            {title}
-          </h2>
-        )}
+        <div
+          className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  px-5 text-center text-white z-[3] leading-[50px]`}
+        >
+          {title}
+        </div>
       </section>
 
       <article>
