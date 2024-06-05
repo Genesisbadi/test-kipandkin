@@ -49,11 +49,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               )}
               <div className="text-center">
                 <Link
-                  className={`${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "border-[#654E43] hover:bg-[#654E43] hover:text-white"
-                      : "border-[#fff] hover:text-primary1 hover:bg-white"
-                  } text-[14px] uppercase inline-block border  py-[15px] px-[30px] transition `}
+                  className={`border-[#654E43] hover:bg-[#654E43] hover:text-white text-[14px] uppercase inline-block border  py-[15px] px-[30px] transition `}
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >
