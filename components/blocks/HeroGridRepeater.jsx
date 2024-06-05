@@ -30,7 +30,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
             />
 
             <div
-              className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-[#654E43]`}
+              className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary`}
             >
               <h2
                 className={`${
@@ -49,7 +49,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               )}
               <div className="text-center">
                 <Link
-                  className={`border-[#654E43] hover:bg-[#654E43] hover:text-white text-[14px] uppercase inline-block border  py-[15px] px-[30px] transition `}
+                  className={`border-secondary hover:bg-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition `}
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >

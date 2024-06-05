@@ -75,7 +75,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                         item?.url.includes(router.asPath) &&
                         router.asPath != "/" &&
                         process.env.NEXT_PUBLIC_TEMPLATE == 2
-                          ? "!bg-[#ddd7cc] !text-primary"
+                          ? "!bg-[#e4e3e3] !text-primary"
                           : ""
                       } ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
