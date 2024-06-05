@@ -31,14 +31,19 @@ export default function CallToActions({ block }) {
             <div className="flex flex-wrap mx-[-15px]">
               {items?.map((item, index) => (
                 <div
-                  className="w-full px-[15px] mb-[40px] md:max-w-[33.33%]"
+                  className="w-full px-[15px] mb-[40px] md:max-w-[33.33%] relative"
                   key={index}
                 >
-                  <Link
-                    href={item?.link}
-                    target={item?.link?.includes("http") ? "_blank" : "_self"}
-                    className="flex items-center group hover:text-primary text-[#999] text-[18px]"
-                  >
+                  <div className="flex items-center group hover:text-primary text-[#999] text-[18px] relative">
+                    {item?.link && (
+                      <Link
+                        href={item?.link}
+                        target={
+                          item?.link?.includes("http") ? "_blank" : "_self"
+                        }
+                        className="absolute top-0 left-0 w-full h-full z-1"
+                      />
+                    )}
                     <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-[#ddd7cc] group-hover:bg-primary ">
                       <Image
                         src={item.icon}
@@ -76,7 +81,7 @@ export default function CallToActions({ block }) {
                         </>
                       )}
                     </div>
-                  </Link>
+                  </div>
                 </div>
               ))}
             </div>

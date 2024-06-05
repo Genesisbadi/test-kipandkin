@@ -191,7 +191,7 @@ export default function DiningPage({ page }) {
         <article>
           <div className="container py-[50px]">
             {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
-              <div className="flex text-[14px] mb-[30px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
+              <div className="flex text-[14px] mb-[30px] flex-wrap px-[15px] justify-center items-center pb-[30px] border-b-[1px] border-b-[#ccc] container">
                 <div className="px-[15px]">
                   <CustomSelect
                     className="react-select w-full min-w-[400px] cursor-pointer"
