@@ -24,7 +24,7 @@ export default function MainMenu({ parentNodes, ...props }) {
           className={`w-full  transition translate-y-[10px] relative ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1
               ? "bg-secondary2"
-              : "bg-[#c5baa6]"
+              : "bg-[#f5f5f5]"
           }`}
         >
           <span
@@ -33,7 +33,7 @@ export default function MainMenu({ parentNodes, ...props }) {
               border-l-transparent ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "border-b-secondary2"
-                  : "border-b-[#c5baa6]"
+                  : "border-b-[#f5f5f5]"
               }  ${
               parent.label.toLowerCase() !== "reservations"
                 ? "left-[10px]"
@@ -80,7 +80,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       } ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "text-primary hover:text-[#fff] hover:bg-secondary3"
-                          : "hover:!bg-[#ddd7cc] hover:!text-primary"
+                          : "hover:!bg-[#e4e3e3] hover:!text-primary"
                       }  text-primary transition block py-[10px] px-[10px]`}
                       href={item?.url}
                       target={item?.target}

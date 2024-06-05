@@ -12,11 +12,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div className="mx-[-3px] flex flex-wrap ">
         {items.map((item, index) => (
           <SectionAccordion
-            childrenClassname={`${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1
-                ? "bg-[#f5f5f5]"
-                : "bg-primary1"
-            } pb-0 h-full flex flex-col`}
+            childrenClassname={`bg-[#f5f5f5] pb-0 h-full flex flex-col`}
             key={index}
             title={item.title}
             className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
