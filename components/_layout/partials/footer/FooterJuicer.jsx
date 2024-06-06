@@ -11,7 +11,7 @@ export default function FooterJuicer() {
   return (
     <>
       {juicer_id && router.asPath === "/" && (
-        <SectionAccordion title={`Instagram (@${juicer_id})`}>
+        <SectionAccordion title={`Instagram`}>
           <section className="py-[30px]">
             <link
               href="https://assets.juicer.io/embed.css"
