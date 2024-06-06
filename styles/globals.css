@@ -364,6 +364,9 @@ p {
   z-index: -1500;
 }
 
+.juicer-feed {
+  max-height: unset !important;
+}
 #instafeed .juicer-feed .juicer {
   display: none !important;
   opacity: 0;
