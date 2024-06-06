@@ -131,7 +131,7 @@ export default function AdvocaciesReviews({ block }) {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: true,
+    autoplay: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplaySpeed: 5000,
@@ -228,7 +228,7 @@ export default function AdvocaciesReviews({ block }) {
                   Reviews
                 </h2>
 
-                <Slick className="" {...settings}>
+                <Slick className="carousel-gallery" {...settings}>
                   {reviewItems.map((item, index) => {
                     // Truncate description, strip HTML tags, and append "Hello"
                     const truncatedDescription = item.data.main.description
@@ -236,14 +236,14 @@ export default function AdvocaciesReviews({ block }) {
                       .slice(0, 150);
                     const shortDesc = truncatedDescription + "...";
                     return (
-                      <div key={index}>
+                      <div className="!leading-[21px]" key={index}>
                         {item.data.main.description && (
                           <>
                             {item.data.main.description.replace(/<[^>]*>/g, "")
                               .length > 200 ? (
                               <>
-                                <div
-                                  className="text-[14px]  inline"
+                                <p
+                                  className="text-[14px]  !leading-[21px] inline"
                                   dangerouslySetInnerHTML={{
                                     __html: `${shortDesc}`,
                                   }}
@@ -259,7 +259,7 @@ export default function AdvocaciesReviews({ block }) {
                               </>
                             ) : (
                               <div
-                                className="text-[14px]  "
+                                className="text-[14px] !leading-[21px] "
                                 dangerouslySetInnerHTML={{
                                   __html: `${item.data.main.description}`,
                                 }}
@@ -268,14 +268,14 @@ export default function AdvocaciesReviews({ block }) {
                           </>
                         )}
 
-                        <div className="flex flex-wrap mt-[15px] text-[14px]">
+                        <div className="!leading-[21px] flex flex-wrap mt-[10px] text-[14px]">
                           {item.data.main.name && (
                             <span>{item.data.main.name},</span>
                           )}
                           {item.data.main.link && (
                             <span>
                               <Link
-                                className="text-[#654E43] ml-[5px]"
+                                className="text-[#654E43] ml-[5px] hover:underline"
                                 href={item.data.main.link}
                                 target="_blank"
                               >
@@ -285,7 +285,7 @@ export default function AdvocaciesReviews({ block }) {
                           )}
                         </div>
                         {item.data.main.stars && (
-                          <div className="flex mt-[15px]">
+                          <div className="!leading-[21px] flex mt-[15px]">
                             {Array.from(
                               { length: parseInt(item.data.main.stars) },
                               (_, index) => (

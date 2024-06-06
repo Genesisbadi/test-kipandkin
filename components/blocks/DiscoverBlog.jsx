@@ -127,7 +127,7 @@ export default function DiscoverBlog({ block }) {
               </h2>
               {description && (
                 <div
-                  className="py-[30px] text-[14px] text-[#654E43]"
+                  className=" text-[14px] text-[#654E43]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
@@ -169,7 +169,7 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="max-w-[440px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative justify-center items-center text-white">
+                        <div className="max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
                         </div>
                         <div className="pb-[75%] min-h-[100px] block md:hidden" />
