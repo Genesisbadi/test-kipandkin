@@ -116,17 +116,16 @@ export default function FooterReviews() {
                             {item.data.main.name && (
                               <span>{item.data.main.name},</span>
                             )}
-                            {item.data.main.link && (
-                              <span>
-                                <Link
-                                  className="text-primary ml-[5px]"
-                                  href={item.data.main.link}
-                                  target="_blank"
-                                >
-                                  {item.data.main.link_label || "View Review"}
-                                </Link>
-                              </span>
-                            )}
+
+                            <span>
+                              <Link
+                                className="text-primary ml-[5px]"
+                                href="/tripadvisor-reviews"
+                                target="_blank"
+                              >
+                                {item.data.main.link_label || "View Review"}
+                              </Link>
+                            </span>
                           </div>
                           {item.data.main.stars && (
                             <div className="flex mt-[30px]">

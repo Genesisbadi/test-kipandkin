@@ -28,7 +28,7 @@ export default function RoomsSuiteBlock({ block }) {
                     className="uppercase bg-primary hover:bg-primary1 py-[20px] px-[30px] inline-block"
                     href={item?.route_url}
                   >
-                    Book Now
+                    Learn More
                   </Link>
                 </div>
               </div>

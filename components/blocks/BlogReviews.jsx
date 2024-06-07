@@ -217,16 +217,14 @@ export default function BlogReviews({ block }) {
                       {item.data.main.name && (
                         <span>{item?.data?.main?.name},</span>
                       )}
-                      {item?.data?.main?.link && (
-                        <span>
-                          <Link
-                            className="underline text-white ml-[5px]"
-                            href={item?.data?.main?.link || "#"}
-                          >
-                            {item?.data?.main?.link_label || "View Review"}
-                          </Link>
-                        </span>
-                      )}
+                      <span>
+                        <Link
+                          className="underline text-white ml-[5px]"
+                          href="/tripadvisor-reviews"
+                        >
+                          {item?.data?.main?.link_label || "View Review"}
+                        </Link>
+                      </span>
                     </div>
                     {item?.data?.main?.stars && (
                       <div className="flex mt-[15px]">
