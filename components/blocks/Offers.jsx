@@ -136,7 +136,7 @@ export default function Block({ block }) {
                         key={index}
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
-                        <div className="bg-secondary relative">
+                        <div className="bg-secondary h-full relative flex flex-col">
                           {item?.attributes?.data?.main?.members_badge && (
                             // <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
                             //   <div className="max-w-[150px] relative">
@@ -164,16 +164,18 @@ export default function Block({ block }) {
                               </div>
                             </>
                           )}
-                          <div className="relative w-full min-h-[160px] p-[20px] z-10">
+                          <div className="relative w-full min-h-[160px] flex-grow p-[20px] z-10">
                             <h3 className="text-[#f5f5f5] text-[20px]  mb-[10px] font-tenor">
-                              {item?.attributes?.title
-                                ?.split(" ")
-                                .map(
-                                  (word) =>
-                                    word.charAt(0).toUpperCase() +
-                                    word.slice(1).toLowerCase()
-                                )
-                                .join(" ")}
+                              <Link href={item.attributes.route_url}>
+                                {item?.attributes?.title
+                                  ?.split(" ")
+                                  .map(
+                                    (word) =>
+                                      word.charAt(0).toUpperCase() +
+                                      word.slice(1).toLowerCase()
+                                  )
+                                  .join(" ")}
+                              </Link>
                             </h3>
                             {item?.attributes?.data?.main?.description && (
                               <div
