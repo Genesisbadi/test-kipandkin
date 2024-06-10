@@ -9,6 +9,7 @@ export default function FooterNewsletter() {
     import("@/components/partials/collapsibles/SectionAccordion")
   );
   const { tenantDetails } = globalData;
+
   const [errors, setErrors] = useState({});
   const [isSending, setIsSending] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -153,7 +154,7 @@ export default function FooterNewsletter() {
                 <span>
                   <Link
                     className="text-primary"
-                    href="/privacy-policy"
+                    href={tenantDetails?.data?.main?.privacy_link || "#"}
                     target="_blank"
                   >
                     Privacy Policy
