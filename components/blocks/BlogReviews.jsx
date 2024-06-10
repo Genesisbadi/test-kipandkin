@@ -219,7 +219,7 @@ export default function BlogReviews({ block }) {
                       )}
                       <span>
                         <Link
-                          className="underline text-white ml-[5px]"
+                          className="underline text-white ml-[5px] underline font-bold"
                           href="/tripadvisor-reviews"
                           prefetch={false}
                         >

@@ -274,7 +274,7 @@ export default function AdvocaciesReviews({ block }) {
                           )}
                           <span>
                             <Link
-                              className="text-[#654E43] ml-[5px] hover:underline"
+                              className="ml-[5px] text-primary underline font-bold"
                               href="/tripadvisor-reviews"
                               prefetch={false}
                             >

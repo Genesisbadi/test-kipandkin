@@ -119,7 +119,7 @@ export default function FooterReviews() {
 
                             <span>
                               <Link
-                                className="text-primary ml-[5px]"
+                                className="text-primary ml-[5px] underline font-bold"
                                 href="/tripadvisor-reviews"
                                 target="_blank"
                               >
