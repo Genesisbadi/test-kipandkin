@@ -59,16 +59,17 @@ body {
     padding: 0 3px;
   }
   .block-slider .slick-dots .slick-active button {
-    transform: scale(1.1);
+    transform: scale(1.3);
     transition: all ease 0.3s;
+    background-color: rgba(204, 204, 204, 0.7);
   }
   .block-slider .slick-dots button {
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
     text-indent: -9999px;
     border-radius: 100%;
-    background-color: #ccc;
     transition: all ease 0.3s;
+    border: 2px solid #ccc;
   }
 
   /* .react-select {
