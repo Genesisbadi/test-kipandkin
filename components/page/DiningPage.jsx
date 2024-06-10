@@ -35,9 +35,13 @@ export default function DiningPage({ page }) {
     schedules,
     gallery_images,
     file_button,
+    dining_offer_description,
+    dining_offer_title,
+    dining_offer_image,
   } = page.data.main;
 
   const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
+
   const { route_url, title: diningOfferTitle, data } = diningOffer;
 
   const NextArrow = (props) => {
@@ -337,8 +341,8 @@ export default function DiningPage({ page }) {
                     <div className="w-full md:max-w-[500px]">
                       <Link href={route_url || "#"}>
                         <Image
-                          alt={diningOfferTitle || "Thumbnail"}
-                          src={data?.main?.featured_image}
+                          alt={dining_offer_title || diningOfferTitle}
+                          src={dining_offer_image || data?.main?.featured_image}
                           width={628}
                           height={280}
                           className="w-full h-[300px] object-cover"
@@ -354,14 +358,18 @@ export default function DiningPage({ page }) {
                               : "font-domine"
                           }`}
                         >
-                          {diningOfferTitle}
+                          <Link href={route_url || "#"}>
+                            {dining_offer_title || diningOfferTitle}
+                          </Link>
                         </h3>
                         <div className="w-full flex justify-center pt-[15px] pb-[10px]">
                           <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
                         </div>
                         <div
                           dangerouslySetInnerHTML={{
-                            __html: data?.main?.description,
+                            __html:
+                              dining_offer_description ||
+                              data?.main?.description,
                           }}
                           className="text-[14px] text-center leading-[25px] line-clamp-4 "
                         />
