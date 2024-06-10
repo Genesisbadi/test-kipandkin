@@ -15,6 +15,10 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
 
   const hasSlider = blocks.find((object) => object.key === "Slider");
 
+  const hasTripAdvisorWidget = blocks.find(
+    (object) => object.key === "TripAdvisorWidget"
+  );
+
   if (!isMobile && hasSlider) {
     initialBlocks = 2;
   } else if (isMobile && hasSlider) {
@@ -28,6 +32,9 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
     initialBlocks = 3;
   }
 
+  if (hasTripAdvisorWidget) {
+    initialBlocks = 4;
+  }
   useEffect(() => {
     if (blocks.length <= initialBlocks) {
       globalState.setState({ showLazy: true });

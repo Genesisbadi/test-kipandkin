@@ -221,6 +221,7 @@ export default function BlogReviews({ block }) {
                         <Link
                           className="underline text-white ml-[5px]"
                           href="/tripadvisor-reviews"
+                          prefetch={false}
                         >
                           {item?.data?.main?.link_label || "View Review"}
                         </Link>

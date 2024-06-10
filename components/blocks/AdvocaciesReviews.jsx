@@ -276,6 +276,7 @@ export default function AdvocaciesReviews({ block }) {
                             <Link
                               className="text-[#654E43] ml-[5px] hover:underline"
                               href="/tripadvisor-reviews"
+                              prefetch={false}
                             >
                               {item.data.main.link_label || "View Review"}
                             </Link>

@@ -115,36 +115,26 @@ export default function DiscoverBlog({ block }) {
                 className="h-full object-contain"
               />
             </div>
-            <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[50%] flex flex-col py-[30px] px-[30px] w-full">
-              <h2
-                className={`hidden md:block text-[#654E43] text-[25px] ${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : "font-domine"
-                }`}
-              >
-                {title}
-              </h2>
+            <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[55%] flex flex-col py-[30px] px-[30px] w-full">
               {description && (
                 <div
                   className=" text-[14px] text-[#654E43]"
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
-              {link && (
-                <div>
-                  <Link
-                    href={link}
-                    target={
-                      link ? (link?.includes("http") ? "_blank" : "_self") : ""
-                    }
-                    className="inline-block uppercase text-center text-[14px] md:text-[16px] text-[#654E43] md:min-w-[200px] border border-[#654E43] py-[10px] px-[15px] md:py-[15px] md:px-[30px] transition hover:text-white hover:bg-[#654E43]"
-                  >
-                    Explore Now
-                  </Link>
-                </div>
-              )}
             </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap md:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full font-tenor md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+              Discover our Locations
+            </span>
+            <Link
+              href={link}
+              className="inline-block text-[12px] lg:text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
+            >
+              Explore Now
+            </Link>
           </div>
         </SectionAccordion>
 
@@ -189,13 +179,13 @@ export default function DiscoverBlog({ block }) {
               Explore Now
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-[20px] block text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[25px]">
+          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto block text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
             <Link
               href="/blog"
-              className="inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
+              className="inline-block text-[12px] lg:text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
             >
               Explore Now
             </Link>
