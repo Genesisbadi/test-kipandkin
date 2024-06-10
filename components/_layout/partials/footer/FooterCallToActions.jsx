@@ -16,8 +16,7 @@ export default function CallToActions() {
                   : "font-domine"
               }`}
             >
-              {`${block_title} at ${globalData.tenantDetails.name}?` ||
-                "Why Book Direct?"}
+              {`${block_title}` || "Why Book Direct?"}
             </h2>
             {items && (
               <div className="flex flex-wrap">

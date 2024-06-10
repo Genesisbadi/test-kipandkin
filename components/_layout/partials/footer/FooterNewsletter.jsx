@@ -143,8 +143,8 @@ export default function FooterNewsletter() {
                 I agree to the {tenantDetails.name}{" "}
                 <span>
                   <Link
-                    className="text-primary"
-                    href="/terms-condition"
+                    className="text-primary hover:underline"
+                    href="/legal-information"
                     target="_blank"
                   >
                     Terms and Conditions
@@ -153,7 +153,7 @@ export default function FooterNewsletter() {
                 and have read the{" "}
                 <span>
                   <Link
-                    className="text-primary"
+                    className="text-primary hover:underline"
                     href={tenantDetails?.data?.main?.privacy_link || "#"}
                     target="_blank"
                   >
