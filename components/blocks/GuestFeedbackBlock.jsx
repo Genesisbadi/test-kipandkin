@@ -1,10 +1,11 @@
 import dynamic from "next/dynamic";
+import GuestFeedbackForm from "../partials/forms/GuestFeedbackForm";
 export default function GuestFeedbackBlock({ block }) {
-  const GuestFeedBackForm = dynamic(() =>
-    import("@/components/partials/forms/GuestFeedBackForm").then(
-      (module) => module.default
-    )
-  );
+  // const GuestFeedBackForm = dynamic(() =>
+  //   import("@/components/partials/forms/GuestFeedbackForm").then(
+  //     (module) => module.default
+  //   )
+  // );
 
   return (
     <div className="bg-[#F1F1F1] py-[20px]">
@@ -16,7 +17,7 @@ export default function GuestFeedbackBlock({ block }) {
               dangerouslySetInnerHTML={{ __html: block?.main?.description }}
             />
           )}
-          <GuestFeedBackForm form={block?.main?.form} />
+          <GuestFeedbackForm form={block?.main?.form} />
         </div>
       </div>
     </div>
