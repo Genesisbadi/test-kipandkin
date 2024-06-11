@@ -8,11 +8,6 @@ import { useEffect } from "react";
 export default function FooterConnections() {
   const isMobile = useMobileDetector();
   const connections = tenantDetailsConnections;
-  const checkOddEven = (number) => {
-    if (number % 2 !== 0) {
-      return "odd";
-    }
-  };
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -89,9 +84,7 @@ export default function FooterConnections() {
               {connections?.connection_items?.map((item, index) => (
                 <div
                   key={index}
-                  className={`${
-                    checkOddEven(index + 1) ? "odd" : "even"
-                  } border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[20px] mb-[30px] `}
+                  className={`border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[20px] mb-[30px] `}
                 >
                   {item?.title && (
                     <h2
@@ -123,7 +116,7 @@ export default function FooterConnections() {
                               width={322}
                               height={160}
                               alt="Logo"
-                              className="w-auto md:max-w-[100px]"
+                              className="w-auto md:max-w-[100px] h-[60px] object-contain"
                             />
                           </Link>
                         </span>
