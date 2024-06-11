@@ -35,14 +35,18 @@ export default function CallToActions({ block }) {
                   key={index}
                 >
                   <div className="flex items-center group hover:text-primary text-[#999] text-[18px] relative">
-                    {item?.link && (
-                      <Link
-                        href={item?.link}
-                        target={
-                          item?.link?.includes("http") ? "_blank" : "_self"
-                        }
-                        className="absolute top-0 left-0 w-full h-full z-1"
-                      />
+                    {showLazy && (
+                      <>
+                        {item?.link && (
+                          <Link
+                            href={item?.link}
+                            target={
+                              item?.link?.includes("http") ? "_blank" : "_self"
+                            }
+                            className="absolute top-0 left-0 w-full h-full z-1"
+                          />
+                        )}
+                      </>
                     )}
                     <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-[#ddd7cc] group-hover:bg-primary ">
                       <Image
