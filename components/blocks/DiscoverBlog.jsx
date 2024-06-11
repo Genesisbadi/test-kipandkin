@@ -112,7 +112,7 @@ export default function DiscoverBlog({ block }) {
                 width={300}
                 height={300}
                 alt="Discover"
-                className="object-contain h-full md:h-[330px]"
+                className="object-contain h-full md:h-[480px]"
               />
             </div>
             <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[55%] flex flex-col py-[30px] px-[30px] w-full">
@@ -162,7 +162,7 @@ export default function DiscoverBlog({ block }) {
                           className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
                         />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="w-full max-h-[250px] md:max-h-[330px] max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
+                        <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
                         </div>
                         <div className="pb-[75%] min-h-[100px] block md:hidden" />
