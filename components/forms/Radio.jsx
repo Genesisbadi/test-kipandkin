@@ -1,12 +1,17 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain";
 
 export default function Radio(props) {
+  let defaultValue = "";
   const { options } = props;
   const inputProps = {
     ...props,
   };
+
+  if (inputProps?.state_name === "privacy_consent") {
+    defaultValue = inputProps?.options[0].value;
+  }
 
   delete inputProps.inline;
   return (
@@ -17,8 +22,9 @@ export default function Radio(props) {
             type="radio"
             name={inputProps.state_name}
             id={`${inputProps?.state_name}-${i}`}
-            value={n.value}
+            value={defaultValue || n.value}
             className="mt-[8px]"
+            checked={defaultValue ? "checked" : ""}
           />
           <label
             htmlFor={`${inputProps?.state_name}-${i}`}
