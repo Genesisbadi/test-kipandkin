@@ -3,7 +3,15 @@ import { useState } from "react";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
+
+import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
+import NProgress from "nprogress";
+import { useRouter } from "next/router";
 export default function OfferDetails({ page }) {
+  const offersCategories = filteredOffersCategory();
+
+  const router = useRouter();
+
   const VenueDescription = dynamic(() =>
     import("../nodes/meetings-events/VenueDescription").then(
       (module) => module.default
@@ -40,6 +48,19 @@ export default function OfferDetails({ page }) {
   const getDefaultValue = () => {
     return { label: currentVenue.title, value: currentVenue.title };
   };
+
+  const handleCategoryChange = (selectedOption) => {
+    NProgress.start();
+
+    router
+      .push(`/offers?category=${selectedOption.value}`)
+      .then(() => {
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
+  };
   return (
     <article className="bg-[#F1F1F1]">
       <div className="container mx-auto">
@@ -50,6 +71,22 @@ export default function OfferDetails({ page }) {
         >
           {title}
         </h2>
+
+        {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+          <div className="pb-[15px]">
+            <CustomSelect
+              isSearchable={false}
+              className="react-select z-30 max-w-[300px] mx-auto"
+              onChange={handleCategoryChange}
+              placeholder={"Select Category"}
+              options={offersCategories?.map((item, index) => ({
+                label: item?.name,
+                value: item?.id,
+              }))}
+            />
+          </div>
+        )}
+
         {mediaHandler["main.image"]?.[0] && (
           <Image
             className="mb-[30px]"
@@ -73,15 +110,17 @@ export default function OfferDetails({ page }) {
           <>
             {venues.length > 0 && (
               <>
-                <div
-                  className={`${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : "font-domine"
-                  } text-primary text-[20px] tracking-[1px] mb-[10px]`}
-                >
-                  Select Venue:
-                </div>
+                {process.env.NEXT_PUBLIC_TEMPLATE == 1 && (
+                  <div
+                    className={`${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "font-tenor"
+                        : "font-domine"
+                    } text-primary text-[20px] tracking-[1px] mb-[10px]`}
+                  >
+                    Select Venue:
+                  </div>
+                )}
                 <CustomSelect
                   value={getDefaultValue()}
                   isSearchable={false}
