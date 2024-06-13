@@ -5,17 +5,17 @@ import { useEffect } from "react";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
   const showLazy = globalState((state) => state.showLazy);
-  const activeBlocks = blocks.slice(0, initialBlocks);
-  const lazyBlocks = blocks.slice(initialBlocks);
+  const activeBlocks = blocks?.slice(0, initialBlocks);
+  const lazyBlocks = blocks?.slice(initialBlocks);
   const isMobile = useMobileDetector();
 
-  const hasTitleBlock = blocks.find((object) => object.key === "Title");
+  const hasTitleBlock = blocks?.find((object) => object.key === "Title");
 
-  const hasPromoBlock = blocks.find((object) => object.key === "PromoBlock");
+  const hasPromoBlock = blocks?.find((object) => object.key === "PromoBlock");
 
-  const hasSlider = blocks.find((object) => object.key === "Slider");
+  const hasSlider = blocks?.find((object) => object.key === "Slider");
 
-  const hasTripAdvisorWidget = blocks.find(
+  const hasTripAdvisorWidget = blocks?.find(
     (object) => object.key === "TripAdvisorWidget"
   );
 
@@ -36,18 +36,18 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
     initialBlocks = 4;
   }
   useEffect(() => {
-    if (blocks.length <= initialBlocks) {
+    if (blocks?.length <= initialBlocks) {
       globalState.setState({ showLazy: true });
     }
   }, [blocks, initialBlocks]);
   return (
     <>
-      {activeBlocks.map((block) => {
-        const Component = components[block.key];
+      {activeBlocks?.map((block) => {
+        const Component = components[block?.key];
         return (
           <Component
-            key={block.key + block?.order?.toString()}
-            block={block.data}
+            key={block?.key + block?.order?.toString()}
+            block={block?.data}
             page={page}
             index={block?.order}
             mediaHandler={block?.mediaHandler}
@@ -57,12 +57,12 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
 
       {showLazy && (
         <>
-          {lazyBlocks.map((block) => {
-            const Component = components[block.key];
+          {lazyBlocks?.map((block) => {
+            const Component = components[block?.key];
             return (
               <Component
-                key={block.key + block?.order?.toString()}
-                block={block.data}
+                key={block?.key + block?.order?.toString()}
+                block={block?.data}
                 page={page}
                 index={block?.order}
                 mediaHandler={block?.mediaHandler}

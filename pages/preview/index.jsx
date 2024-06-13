@@ -8,6 +8,56 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ParentBlock from "@/components/page/ParentBlock";
 import NotFound from "@/components/page/NotFound";
+import dynamic from "next/dynamic";
+
+const DestinationPage = dynamic(() =>
+  import("../../components/page/DestinationPage").then(
+    (module) => module.default
+  )
+);
+
+const OurCollectionPage = dynamic(() =>
+  import("../../components/page/OurCollectionPage").then(
+    (module) => module.default
+  )
+);
+
+const MeetingsEventsPage = dynamic(() =>
+  import("../../components/page/MeetingsEventsPage").then(
+    (module) => module.default
+  )
+);
+
+const MeetingsEventsSuitesPage = dynamic(() =>
+  import("../../components/page/MeetingsEventsSuitesPage").then(
+    (module) => module.default
+  )
+);
+
+const BlogPage = dynamic(() =>
+  import("../../components/page/BlogPage").then((module) => module.default)
+);
+
+const OfferDetails = dynamic(() =>
+  import("../../components/page/OfferDetails").then((module) => module.default)
+);
+const DiningPage = dynamic(() =>
+  import("../../components/page/DiningPage").then((module) => module.default)
+);
+const FaqsPage = dynamic(() =>
+  import("../../components/page/FaqsPage").then((module) => module.default)
+);
+
+const RoomSuitePage = dynamic(() =>
+  import("../../components/page/RoomSuitePage").then((module) => module.default)
+);
+
+const ExperiencePage = dynamic(() =>
+  import("../../components/page/ExperiencePage").then(
+    (module) => module.default
+  )
+);
+
 export default function DynamicPage() {
   const router = useRouter();
   const [page, setPage] = useState(null);
@@ -75,8 +125,36 @@ export default function DynamicPage() {
 
   const Renderer = ({ page, blocks }) => {
     switch (page?.content?.id) {
-      case "apartments":
-        return "Content";
+      case "destinations":
+        return <DestinationPage page={page} />;
+        break;
+      case "our-collection":
+        return <OurCollectionPage page={page} />;
+        break;
+      case "meetings-events-article":
+        return <MeetingsEventsPage page={page} />;
+        break;
+      case "meetings-events-suites":
+        return <MeetingsEventsSuitesPage page={page} />;
+        break;
+      case "dining":
+        return <DiningPage page={page} />;
+        break;
+      case "blog":
+        return <BlogPage page={page} />;
+        break;
+      case "offers":
+        return <OfferDetails page={page} />;
+        break;
+      case "roomssuites":
+        return <RoomSuitePage page={page} />;
+        break;
+      case "frequently-asked-questions":
+        return <FaqsPage page={page} />;
+        break;
+      case "experiences":
+        return <ExperiencePage page={page} />;
+        break;
       default:
         return <ParentBlock page={page} blocks={blocks} />;
     }
