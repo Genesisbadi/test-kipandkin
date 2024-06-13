@@ -9,7 +9,7 @@ export default function GuestFeedbackBlock({ block }) {
   return (
     <div className="bg-[#F1F1F1] py-[50px]">
       <div className="container">
-        <div className="bg-white [">
+        <div className="bg-white p-[30px]">
           {block?.main?.description && (
             <div
               className="mb-[15px] text-[14px]"
