@@ -8,18 +8,20 @@ export default function PressRelease({ block }) {
         <div className="flex flex-col w-full bg-white p-[30px] rounded-md shadow-md">
           {releases.map((item, index) => {
             return (
-              <div key={index}>
-                <span className="text-[20px] text-[#343a40]">{item.title}</span>
-                <div className="flex flex-col w-auto pt-3">
+              <div key={index} className="mb-[15px]">
+                <h2 className="text-[20px] text-[#343a40]">{item.title}</h2>
+                <div className="flex flex-col w-auto pt-2">
                   {item.pdf_file.map((pdf, index) => (
-                    <Link
-                      key={index}
-                      href={pdf.file}
-                      target="_blank"
-                      className="flex flex-col text-primary pb-3 text-[14px]"
-                    >
-                      {pdf.name}
-                    </Link>
+                    <div key={index}>
+                      <Link
+                        href={pdf.file}
+                        target="_blank"
+                        title={pdf.name}
+                        className="inline-flex flex-col text-primary pb-3 text-[14px] hover:underline"
+                      >
+                        {pdf.name}
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </div>
