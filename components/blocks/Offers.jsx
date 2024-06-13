@@ -122,11 +122,16 @@ export default function Block({ block }) {
                     };
                     const post_date = date.toLocaleDateString("en-US", options);
 
+                    const summary = item?.attributes?.data?.main?.summary;
+
                     let firstParagraph = null;
 
-                    if (item?.attributes?.data?.main?.description) {
+                    if (summary) {
+                      firstParagraph = summary;
+                    } else {
                       const paragraphs =
                         item?.attributes?.data?.main?.description.split(/\n+/);
+
                       firstParagraph = paragraphs.find(
                         (paragraph) => paragraph.trim() !== ""
                       );
