@@ -29,6 +29,7 @@
 }
 .description strong {
   margin-bottom: 20px;
+  font-weight: 500 !important;
 }
 /* .description ol,
 .description ul {

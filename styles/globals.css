@@ -151,6 +151,11 @@ body {
   }
 }
 
+hr {
+  background-color: #ccc;
+  height: 2px;
+}
+
 @layer base {
   .book-modal .modal-content {
     animation: modalIn 0.3s;
