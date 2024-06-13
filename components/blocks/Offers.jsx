@@ -5,56 +5,100 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import offersCategoryTaxonomies from "@/lib/preBuildScripts/static/offers-category.json";
 import dynamic from "next/dynamic";
+import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
+import Router from "next/router";
+import NProgress from "nprogress";
 export default function Block({ block }) {
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
 
   const { title, description } = block.main;
-  const offersCategories = offersCategoryTaxonomies;
 
-  const [selectedCategory, setSelectedCategory] = useState({
-    label: "All",
+  const offersCategories = filteredOffersCategory();
+
+  const all = {
     value: "",
-  });
+    name: "All",
+  };
+
+  offersCategories.unshift(all);
+
   const router = useRouter();
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [initialCategory, setInitialCategory] = useState();
+
+  const [selectedCategory, setSelectedCategory] = useState();
+
   const handleCategoryChange = (selectedOption) => {
+    NProgress.start();
     setSelectedCategory({
       label: selectedOption.label,
       value: selectedOption.value,
     });
 
-    router.push(`/${router?.query?.id}?category=${selectedOption.value}`);
+    router
+      .push(`/${router?.query?.id}?category=${selectedOption.value || ""}`)
+      .then(() => {
+        setSelectedCategory(e.target.getAttribute("id"));
+        setCurrentPage(1);
+        NProgress.done();
+      })
+      .catch(() => {
+        NProgress.done();
+      });
   };
 
   useEffect(() => {
+    let findInitial = null;
+
+    findInitial = offersCategories[0];
+
+    if (router?.query?.category) {
+      findInitial = offersCategories.find(
+        (item) => item.id === router.query.category
+      );
+    }
+    setInitialCategory(findInitial);
+
+    setSelectedCategory({
+      label: findInitial?.name,
+      value: findInitial?.id,
+    });
+
     const getOffers = async () => {
       setLoading(true);
+
       try {
         const response = await axios.get(
-          process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${selectedCategory.value}&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
+          `${
+            process.env.NEXT_PUBLIC_TENANT_API
+          }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
+            selectedCategory?.value || ""
+          }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
         );
         setOffers(response.data);
         if (response.status === 200) {
           setLoading(false);
+          NProgress.done();
         }
       } catch (error) {
         console.error("Error fetching articles:", error);
+        NProgress.done();
         setLoading(false);
       }
     };
 
     getOffers();
-  }, [selectedCategory, currentPage]);
+  }, [currentPage, router]);
 
-  const getDefaultValue = () => {
-    return { label: selectedCategory.label, value: selectedCategory.value };
-  };
+  const getDefaultValue = () => ({
+    label: selectedCategory?.label,
+    value: selectedCategory?.value,
+  });
 
   return (
     <section className="bg-[#F1F1F1] pb-[30px]">
@@ -78,7 +122,7 @@ export default function Block({ block }) {
             className="react-select z-30"
             defaultValue={getDefaultValue()}
             onChange={handleCategoryChange}
-            options={offersCategories?.taxonomyTerms.map((item, index) => ({
+            options={offersCategories?.map((item, index) => ({
               label: item?.name,
               value: item?.id,
             }))}
