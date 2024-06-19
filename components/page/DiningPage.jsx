@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
 import diningEntriesData from "@/lib/preBuildScripts/static/dining.json";
@@ -11,11 +10,6 @@ import dynamic from "next/dynamic";
 export default function DiningPage({ page }) {
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
-      (module) => module.default
-    )
-  );
-  const FooterReviews = dynamic(() =>
-    import("@/layout/partials/footer/FooterReviews").then(
       (module) => module.default
     )
   );
@@ -34,109 +28,9 @@ export default function DiningPage({ page }) {
     button_links,
     schedules,
     gallery_images,
-    file_button,
-    dining_offer_description,
-    dining_offer_title,
-    dining_offer_image,
   } = page.data.main;
 
-  const diningOffer = page?.data?.main?.dining_offer?.attributes || {};
-
-  const { route_url, title: diningOfferTitle, data } = diningOffer;
-
-  const NextArrow = (props) => {
-    const { className, style, onClick } = props;
-
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] right-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
-        onClick={onClick}
-      >
-        <div className="flex items-center h-full">
-          <svg
-            width={25}
-            height={54}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 27 44"
-          >
-            <path
-              d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"
-              fill="#fff"
-            />
-          </svg>
-        </div>
-      </div>
-    );
-  };
-  const PrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[50%] translate-y-[-50%] left-0 px-5 z-[20] cursor-pointer bg-black/50 h-full hover:bg-black/70 transition-all duration-300`}
-        onClick={onClick}
-      >
-        <div className="flex items-center h-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={25}
-            height={54}
-            viewBox="0 0 19.349 30"
-          >
-            <path
-              id="_002-right-arrow"
-              data-name="002-right-arrow"
-              d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
-              transform="translate(-86.981)"
-              fill="#fff"
-            />
-          </svg>
-        </div>
-      </div>
-    );
-  };
-
-  var settings = {
-    dots: false,
-    // infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    cssEase: "linear",
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const router = useRouter();
-
-  const [selectedValue, setSelectedValue] = useState(route_url);
 
   const handleSelectChange = (option) => {
     const selectedRoute = option?.value;
@@ -153,14 +47,9 @@ export default function DiningPage({ page }) {
       });
   };
 
-  useEffect(() => {
-    setSelectedValue(route_url);
-  }, [route_url]);
-
   const getDefaultValue = () => {
     return {
       label: title,
-      value: route_url,
     };
   };
 
@@ -262,7 +151,7 @@ export default function DiningPage({ page }) {
               </div>
               <div className="flex flex-col w-full md:w-1/4 mt-[40px] lg:mt-0">
                 <div className="pb-7">
-                  {schedules.map((item, index) => {
+                  {schedules.map((item, index) => { 
                     return (
                       <div key={index} className="pb-[10px]">
                         <span
@@ -276,15 +165,10 @@ export default function DiningPage({ page }) {
                           dangerouslySetInnerHTML={{
                             __html: item.time,
                           }}
-                          className={`text-[18px] leading-[25px] ${
-                            process.env.NEXT_PUBLIC_TEMPLATE == 1
-                              ? "font-tenor"
-                              : "font-domine"
-                          }`}
                         />
                       </div>
                     );
-                  })}
+                  })} 
                 </div>
                 {button_links && button_links.length > 0 && (
                   <div className={`flex flex-col w-full gap-y-3`}>
@@ -320,74 +204,85 @@ export default function DiningPage({ page }) {
           {gallery_images && gallery_images?.length > 0 && (
             <CarouselGallery
               alt_title={page?.title || "Thumbnail"}
-              images={gallery_images}
+              images={gallery_images} 
               title="Gallery"
             />
           )}
-          {diningOfferTitle && (
-            <div className="w-full bg-[#f1f1f1]">
-              <div className="container pb-[50px] !max-w-[980px] mx-auto">
-                <div className="flex flex-col w-full">
-                  <h2
-                    className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
-                      process.env.NEXT_PUBLIC_TEMPLATE == 1
-                        ? "font-tenor"
-                        : "font-domine"
-                    }`}
-                  >
-                    Dining Offer
-                  </h2>
-                  <div className="flex flex-col md:flex-row w-full bg-white shadow-md">
-                    <div className="w-full md:max-w-[500px]">
-                      <Link href={route_url || "#"}>
-                        <Image
-                          alt={dining_offer_title || diningOfferTitle}
-                          src={dining_offer_image || data?.main?.featured_image}
-                          width={628}
-                          height={280}
-                          className="w-full h-[300px] object-cover"
-                        />
-                      </Link>
-                    </div>
-                    <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
-                      <div className="flex flex-col flex-grow justify-center">
-                        <h3
-                          className={`text-primary text-[20px] text-center ${
-                            process.env.NEXT_PUBLIC_TEMPLATE == 1
-                              ? "font-tenor"
-                              : "font-domine"
-                          }`}
-                        >
+          
+          {page?.data?.featured_offers?.offer_items && page?.data?.featured_offers?.offer_items.length > 0 && (
+                      
+          <div className="w-full bg-[#f1f1f1]">
+            <div className="container pb-[20px] !max-w-[980px] mx-auto">
+              <div className="flex flex-col w-full">
+                <h2
+                  className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "font-tenor"
+                      : "font-domine"
+                  }`}
+                >
+                  Dining Offer
+                </h2>
+                  {page?.data?.featured_offers.offer_items.map((item, index) => {
+                    const { dining_offer_title, dining_offer_description, dining_offer_image, dining_offer } = item;
+
+                    const { description } = dining_offer.attributes.data?.main;
+                    const { title, route_url } = dining_offer.attributes; 
+                    return(
+                      <div className="flex mb-[30px] flex-col md:flex-row w-full bg-white shadow-md" key={index}>
+                        <div className="w-full md:max-w-[500px]">
+
                           <Link href={route_url || "#"}>
-                            {dining_offer_title || diningOfferTitle}
-                          </Link>
-                        </h3>
-                        <div className="w-full flex justify-center pt-[15px] pb-[10px]">
-                          <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
+                            <Image
+                              alt={dining_offer_title || diningOfferTitle}
+                              src={dining_offer_image || dining_offer?.attributes?.mediaHandler["main.image"][0].conversions.desktop || dining_offer?.attributes?.mediaHandler["main.image"][0].original} 
+                              width={628}
+                              height={280}
+                              className="w-full h-[300px] object-cover" 
+                            />
+                          </Link> 
                         </div>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html:
-                              dining_offer_description ||
-                              data?.main?.description,
-                          }}
-                          className="text-[14px] text-center leading-[25px] line-clamp-4 "
-                        />
+                        <div className="flex flex-col justify-between w-full md:w-1/2 p-5">
+                          <div className="flex flex-col flex-grow justify-center">
+                            <h3
+                              className={`text-primary text-[20px] text-center ${
+                                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                                  ? "font-tenor"
+                                  : "font-domine"
+                              }`}
+                            >
+                              <Link href={route_url || "#"}>
+                                {item.dining_offer_title || title}
+                              </Link>
+                            </h3>
+                            <div className="w-full flex justify-center pt-[15px] pb-[10px]">
+                              <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
+                            </div>
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                dining_offer_description ||
+                                  description,
+                              }}
+                              className="text-[14px] text-center leading-[25px] line-clamp-4 "
+                            />
+                          </div>
+                          <Link
+                            href={route_url || "#"}
+                            className={`w-full mt-5 py-[15px] px-[30px] 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                          >
+                            View Offer
+                          </Link>
+                        </div>
                       </div>
-                      <Link
-                        href={route_url || "#"}
-                        className={`w-full mt-5 py-[15px] px-[30px] 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
-                      >
-                        View Offer
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                    )
+                  })}
               </div>
             </div>
-          )}
+          </div> 
+          )} 
         </article>
       )}
     </>
   );
-}
+} 
