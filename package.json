@@ -39,6 +39,7 @@
     "react-select": "^5.8.0",
     "react-slick": "^0.30.2",
     "release": "^6.3.1",
+    "sharethis-reactjs": "^1.6.0",
     "sharp": "^0.31.3",
     "slick-carousel": "^1.8.1",
     "swr": "^2.0.0",
