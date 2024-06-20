@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 
 import dynamic from "next/dynamic";
 export default function DiningPage({ page }) {
+ 
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
       (module) => module.default

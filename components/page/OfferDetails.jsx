@@ -46,6 +46,8 @@ export default function OfferDetails({ page }) {
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
+  const [accordionOpen, setAccordionOpen] = useState(false);
+
 
   useEffect(() => {
     setCurrentVenue(venues[0]);
@@ -68,6 +70,10 @@ export default function OfferDetails({ page }) {
         NProgress.done();
       });
   };
+
+  const accordion = () => {
+    setAccordionOpen(!accordionOpen);
+  }
 
   return (
     <article className="bg-[#F1F1F1]">
@@ -185,6 +191,24 @@ export default function OfferDetails({ page }) {
                   </>
                 )}
               </div>
+              {page?.data?.main?.terms_condition && (
+                <div className="py-[15px] container">
+                  <div className={`accordion-header select-none flex justify-between cursor-pointer items-center py-[15px] px-[15px] border-b-[1px] border-[#ccc] border-t-[1px] border-[#ccc] ${accordionOpen ? 'bg-white' : ''}`} onClick={accordion}>
+                    <h2 className="text-primary font-bold text-[20px] font-tenor" >Terms & Condition</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-5 h-5 transition ${accordionOpen ? 'rotate-180' : 'rotate-0'} `}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg> 
+
+                  </div>
+  
+                  {accordionOpen && (
+                    <div className="content py-[15px] bg-[#fff] py-[30px] px-[15px]">
+                      <div dangerouslySetInnerHTML={{ __html: page?.data?.main?.terms_condition }}>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {currentVenue?.gallery && (
                 <CarouselGallery
@@ -196,8 +220,6 @@ export default function OfferDetails({ page }) {
           )}
         </>
       )}
-
-
       {currentUrl && showLazy && (
         <StickyShareButtons
         config={{
@@ -223,23 +245,18 @@ export default function OfferDetails({ page }) {
           show_toggle: true,    // show/hide the toggle buttons (true, false)
           size: 48,             // the size of each button (INTEGER)
           top: 160,             // offset in pixels from the top of the page
-
-
-          // OPTIONAL PARAMETERS
-
           min_count: 10,                    // (threshold for total share count to be displayed)
           url: currentUrl, // (defaults to current url)
           image: 'https://bit.ly/2CMhCMC',  // (defaults to og:image or twitter:image)
-          description: 'custom text',       // (defaults to og:description or twitter:description)
-          title: 'custom title',            // (defaults to og:title or twitter:title)
-          message: 'custom email text',     // (only for email sharing)
-          subject: 'custom email subject',  // (only for email sharing)
-          username: 'custom twitter handle' // (only for twitter sharing)
-
-        }}
+          description: page?.data?.main?.description,       // (defaults to og:description or twitter:description)
+          title: page?.title,            // (defaults to og:title or twitter:title)
+          message: "New Offer Deal: " + page?.title,     // (only for email sharing) 
+          // subject: 'custom email subject',  // (only for email sharing)
+          // username: 'custom twitter handle' // (only for twitter sharing)
+        }}  
       /> 
       )}
- 
+  
 
     </article>
   );
