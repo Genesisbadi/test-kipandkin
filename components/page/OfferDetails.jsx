@@ -286,7 +286,7 @@ export default function OfferDetails({ page }) {
           top: 160,             // offset in pixels from the top of the page
           min_count: 1,                    // (threshold for total share count to be displayed)
           url: currentUrl, // (defaults to current url)
-          image: page?.data?.main?.images[0],  // (defaults to og:image or twitter:image)
+          image: page?.data?.main?.images?.[0],  // (defaults to og:image or twitter:image)
           description: page?.data?.main?.description,       // (defaults to og:description or twitter:description)
           title: page?.title,            // (defaults to og:title or twitter:title)
           message: `New Offer Deal from ${tenantDetails?.site_name}`,     // (only for email sharing) 
