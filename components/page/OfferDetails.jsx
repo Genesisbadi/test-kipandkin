@@ -11,6 +11,10 @@ const StickyShareButtons = dynamic(() => import('sharethis-reactjs').then(mod =>
   ssr: false,  // This line ensures that the component is only loaded on the client side.
 }); 
 
+import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
+
+import styles from "@/styles/offerDetail.module.css";
+
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
 
@@ -40,6 +44,11 @@ export default function OfferDetails({ page }) {
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
 
+  const Slider = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
+
+
   const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
   const { description, image, venues } = data.main;
@@ -62,7 +71,7 @@ export default function OfferDetails({ page }) {
     NProgress.start();
 
     router
-      .push(`/offers?category=${selectedOption.value}`)
+      .push(`/special-offers?category=${selectedOption.value}`)
       .then(() => {
         NProgress.done();
       })
@@ -74,6 +83,33 @@ export default function OfferDetails({ page }) {
   const accordion = () => {
     setAccordionOpen(!accordionOpen);
   }
+
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1, 
+    arrows: false,
+    autoplay: true, 
+    autoplaySpeed: 2000,
+    pauseOnHover: true, 
+    appendDots: dots => (
+        <div style={{ gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "999", margin: "0px", listStyle: "none", padding: "0px", display: page?.data?.main?.images.length < 2 ? "none !important" : "flex", justifyContent: "center"
+         }}> 
+            {dots}
+        </div> 
+    ), 
+    customPaging: i => (
+      <div
+        className="text-[14px] font-tenor text-primary font-bold cursor-pointer indent-[-9999px] rounded-full w-[10px] h-[10px] bg-white"
+      >
+        {i + 1}
+      </div>
+    )
+  }; 
+
 
   return (
     <article className="bg-[#F1F1F1]">
@@ -96,22 +132,26 @@ export default function OfferDetails({ page }) {
               options={offersCategories?.map((item, index) => ({
                 label: item?.name,
                 value: item?.id,
-              }))}
+              }))} 
             />
-          </div>
+          </div> 
         )}
 
-        {mediaHandler["main.image"]?.[0] && (
-          <Image
-            className="mb-[30px]"
-            src={
-              mediaHandler["main.image"]?.[0].conversions.desktop ||
-              mediaHandler["main.image"]?.[0].original
-            }
-            width={1200}
-            height={450}
-            alt={title || "Thumbnail"}
-          />
+        {page?.data?.main?.images && (
+          <>
+
+            <Slider className={`offer-slider relative mb-[30px]`} {...settings}>
+              {page?.data?.main?.images.map((item, index) => (
+                <div key={index}>
+                  <Image
+                    src={item}
+                    width={1200}
+                    height={450}  
+                  /> 
+                </div>
+              ))} 
+            </Slider>
+          </>
         )}
         {description && (
           <div
@@ -235,8 +275,7 @@ export default function OfferDetails({ page }) {
             'linkedin',
             'facebook',
             'twitter',
-            'pinterest',
-            'email'
+            'email' 
           ],
           padding: 12,          // padding within buttons (INTEGER)
           radius: 4,            // the corner radius on each button (INTEGER)
@@ -245,13 +284,13 @@ export default function OfferDetails({ page }) {
           show_toggle: true,    // show/hide the toggle buttons (true, false)
           size: 48,             // the size of each button (INTEGER)
           top: 160,             // offset in pixels from the top of the page
-          min_count: 10,                    // (threshold for total share count to be displayed)
+          min_count: 1,                    // (threshold for total share count to be displayed)
           url: currentUrl, // (defaults to current url)
-          image: 'https://bit.ly/2CMhCMC',  // (defaults to og:image or twitter:image)
+          image: page?.data?.main?.images[0],  // (defaults to og:image or twitter:image)
           description: page?.data?.main?.description,       // (defaults to og:description or twitter:description)
           title: page?.title,            // (defaults to og:title or twitter:title)
-          message: "New Offer Deal: " + page?.title,     // (only for email sharing) 
-          // subject: 'custom email subject',  // (only for email sharing)
+          message: `New Offer Deal from ${tenantDetails?.site_name}`,     // (only for email sharing) 
+          subject: "New Offer Deal" + page?.title,  // (only for email sharing)
           // username: 'custom twitter handle' // (only for twitter sharing)
         }}  
       /> 

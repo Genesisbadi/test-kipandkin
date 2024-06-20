@@ -425,3 +425,40 @@ p {
 .popupCarousel .slick-next {
   @apply right-0;
 }
+
+
+/* .offer-slider .slick-active {
+  @apply border-[1px] border-solid border-[#fff] p-[3px];
+} */
+
+
+@keyframes rota2 {
+  from {
+      transform: rotate(-225deg)
+  }
+
+  to {
+      transform: rotate(-45deg)
+  }
+}
+
+@keyframes rota {
+  from {
+      transform: rotate(-45deg)
+  }
+
+  to {
+      transform: rotate(315deg)
+  }
+}  
+
+.offer-slider .slick-dots li {
+  @apply relative; 
+}
+
+.offer-slider .slick-dots li {
+  @apply border-[2px] transition border-solid border-transparent p-[3px] rounded-full;
+}
+.offer-slider .slick-dots .slick-active {
+    @apply border-[#fff] transition scale-125;
+}
