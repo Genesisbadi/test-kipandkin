@@ -81,7 +81,7 @@ export default function MeetingsEvensDetails({ page }) {
                   : "font-domine"
               } text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
             >
-              Select Venue:
+              Select Property:
             </div>
             <CustomSelect
               // value={selectedValue}
