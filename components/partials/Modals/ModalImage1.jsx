@@ -73,7 +73,7 @@ export default function ModalImage1({ ...props }) {
 
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: images?.length > 1 ? true : false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
