@@ -13,7 +13,6 @@ const StickyShareButtons = dynamic(() => import('sharethis-reactjs').then(mod =>
 
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
-import styles from "@/styles/offerDetail.module.css";
 
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
@@ -86,17 +85,17 @@ export default function OfferDetails({ page }) {
 
 
   var settings = {
-    dots: true,
-    infinite: true,
+    dots: page?.data?.main?.images.length < 2 ? false : true,
+    infinite: page?.data?.main?.images.length < 2 ? false : true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1, 
-    arrows: false,
+    slidesToScroll: 1,  
+    arrows: false, 
     autoplay: true, 
     autoplaySpeed: 2000,
     pauseOnHover: true, 
     appendDots: dots => (
-        <div style={{ gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "999", margin: "0px", listStyle: "none", padding: "0px", display: page?.data?.main?.images.length < 2 ? "none !important" : "flex", justifyContent: "center"
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "999", margin: "0px", listStyle: "none", padding: "0px",
          }}> 
             {dots}
         </div> 
