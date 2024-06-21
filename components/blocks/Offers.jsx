@@ -155,12 +155,12 @@ export default function Block({ block }) {
             </div>
           ) : (
             <div>
-              {offers && offers.data.length > 0 ? (
-                <div className="flex flex-wrap py-[30px] gap-y-[30px]">
+              {offers && offers.data.length > 0 ? ( 
+                <div className="flex flex-wrap py-[30px] gap-y-[30px] mx-[-15px]">
                   {offers.data.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
                     const options = {
-                      year: "numeric",
+                      year: "numeric", 
                       month: "short",
                       day: "numeric",
                     };
