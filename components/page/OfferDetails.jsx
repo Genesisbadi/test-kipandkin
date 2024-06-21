@@ -85,8 +85,8 @@ export default function OfferDetails({ page }) {
 
 
   var settings = {
-    dots: page?.data?.main?.images.length < 2 ? false : true,
-    infinite: page?.data?.main?.images.length < 2 ? false : true,
+    dots: page?.data?.main?.images?.length < 2 ? false : true,
+    infinite: page?.data?.main?.images?.length < 2 ? false : true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,  
