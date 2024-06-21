@@ -89,7 +89,7 @@ export default function FooterReviews() {
                   className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                       ? "font-tenor"
-                      : "font-domine"
+                      : " "
                   }`}
                 >
                   Reviews

@@ -78,7 +78,7 @@ export default function MeetingsEvensDetails({ page }) {
               className={`${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               } text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
             >
               Select Property:

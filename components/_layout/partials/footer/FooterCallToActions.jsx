@@ -13,7 +13,7 @@ export default function CallToActions() {
               className={`tracking-[1px] text-primary text-[22px] mb-[30px] mb-[15px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               }`}
             >
               {`${block_title}` || "Why Book Direct?"}
@@ -39,7 +39,7 @@ export default function CallToActions() {
                         className={`font-medium ${
                           process.env.NEXT_PUBLIC_TEMPLATE == 1
                             ? "font-tenor"
-                            : "font-domine"
+                            : " "
                         }`}
                       >
                         {item?.title}

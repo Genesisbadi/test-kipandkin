@@ -38,7 +38,7 @@ export default function BlogPage({ page }) {
       <div className="container overflow-hidden">
         <h2
           className={`text-primary text-[20px] md:text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px] ${
-            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
           }`}
         >
           {title}

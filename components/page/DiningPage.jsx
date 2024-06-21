@@ -114,7 +114,7 @@ export default function DiningPage({ page }) {
                       className={`text-[22px] text-primary leading-[25px] mb-[15px] ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
-                          : "font-domine"
+                          : " "
                       }`}
                     />
                   )}
@@ -219,7 +219,7 @@ export default function DiningPage({ page }) {
                   className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                       ? "font-tenor"
-                      : "font-domine"
+                      : " "
                   }`}
                 >
                   Dining Offer
@@ -249,7 +249,7 @@ export default function DiningPage({ page }) {
                               className={`text-primary text-[20px] text-center ${
                                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                                   ? "font-tenor"
-                                  : "font-domine"
+                                  : " "
                               }`}
                             >
                               <Link href={route_url || "#"}>

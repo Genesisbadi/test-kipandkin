@@ -199,7 +199,7 @@ export default function BlogBlock({ block }) {
                             className={`text-primary text-[25px] mb-[30px] ${
                               process.env.NEXT_PUBLIC_TEMPLATE == 1
                                 ? "font-tenor"
-                                : "font-domine"
+                                : " "
                             }`}
                           >
                             <Link

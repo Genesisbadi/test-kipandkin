@@ -108,7 +108,7 @@ export default function Block({ block }) {
             className={`${
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "font-tenor"
-                : "font-domine"
+                : " "
             } text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]`}
           >
             {title}

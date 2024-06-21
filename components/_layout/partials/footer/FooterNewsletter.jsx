@@ -64,7 +64,7 @@ export default function FooterNewsletter() {
       <section className="footer-newsletter md:py-[40px]">
         <h2
           className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] ${
-            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
           }`}
         >
           Stay Updated

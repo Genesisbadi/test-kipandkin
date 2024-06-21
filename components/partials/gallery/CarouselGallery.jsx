@@ -104,7 +104,7 @@ export default function CarouselGallery({ ...props }) {
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
-                    : "font-domine"
+                    : " "
                 } tracking-[1px] text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[30px]`}
               >
                 {title || "Gallery"}

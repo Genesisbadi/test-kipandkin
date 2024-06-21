@@ -139,7 +139,7 @@ export default function BlogReviews({ block }) {
               className={`hidden md:block pb-[20px] text-[25px] pb-[20px] px-[60px] text-white ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               }`}
             >
               Discovery Blog
@@ -195,7 +195,7 @@ export default function BlogReviews({ block }) {
                 className={`hidden md:block px-[60px] text-[25px] pb-[20px] text-white ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
-                    : "font-domine"
+                    : " "
                 }`}
               >
                 Reviews

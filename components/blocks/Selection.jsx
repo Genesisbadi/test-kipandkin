@@ -32,7 +32,7 @@ export default function Selection({ block }) {
               className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               }`}
             >
               {title}
@@ -51,7 +51,7 @@ export default function Selection({ block }) {
               className={`text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px] tracking-[1px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               }`}
             >
               {selection_label}:

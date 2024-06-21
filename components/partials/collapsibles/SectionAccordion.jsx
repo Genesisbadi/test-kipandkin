@@ -23,7 +23,7 @@ export default function SectionAccordion({ children, ...props }) {
               className={`${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
                   ? "font-tenor"
-                  : "font-domine"
+                  : " "
               } text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]`}
               onClick={handleCollapse}
             >

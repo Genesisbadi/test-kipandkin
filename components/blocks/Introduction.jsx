@@ -10,7 +10,7 @@ export default function Introduction({ block }) {
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
-                    : "font-domine"
+                    : " "
                 } flex w-full border-b border-[#c5baa6] leading-[30px] tracking-[2px] mb-[30px] justify-center text-[#c5baa6] text-[20px] pb-[30px] mb-[30px] text-center px-5 2xl:px-0`}
               >
                 {title}

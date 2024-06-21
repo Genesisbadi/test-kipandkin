@@ -146,7 +146,7 @@ export default function CarouselGallery({ block }) {
       {title && (
         <h2
           className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
-            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
           }`}
         >
           {title}

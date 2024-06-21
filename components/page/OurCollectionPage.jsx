@@ -209,7 +209,7 @@ export default function OurCollectionPage({ page }) {
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
-                    : "font-domine"
+                    : " "
                 } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
               />
             )}
@@ -265,7 +265,7 @@ export default function OurCollectionPage({ page }) {
                     className={`${
                       process.env.NEXT_PUBLIC_TEMPLATE == 1
                         ? "font-tenor"
-                        : "font-domine"
+                        : " "
                     } tracking-[1px] text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[30px]`}
                   >
                     Virtual Tour
@@ -288,7 +288,7 @@ export default function OurCollectionPage({ page }) {
                     className={`${
                       process.env.NEXT_PUBLIC_TEMPLATE == 1
                         ? "font-tenor"
-                        : "font-domine"
+                        : " "
                     } text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]`}
                   >
                     Awards

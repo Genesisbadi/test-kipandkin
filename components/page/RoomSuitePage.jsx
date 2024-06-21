@@ -115,7 +115,7 @@ export default function RoomSuitePage({ page }) {
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1
                     ? "font-tenor"
-                    : "font-domine"
+                    : " "
                 } text-[25px] uppercase text-center text-primary mb-[15px]`}
               >
                 Features

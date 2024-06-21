@@ -183,7 +183,7 @@ export default function AdvocaciesReviews({ block }) {
                   className={`mb-[25px] text-[25px] hidden md:block ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                       ? "font-tenor"
-                      : "font-domine"
+                      : " "
                   }`}
                 >
                   {title}
@@ -222,7 +222,7 @@ export default function AdvocaciesReviews({ block }) {
                   className={`mb-[25px] hidden md:block text-[25px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                       ? "font-tenor"
-                      : "font-domine"
+                      : " "
                   }`}
                 >
                   Reviews

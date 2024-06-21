@@ -116,7 +116,7 @@ export default function OfferDetails({ page }) {
       <div className="container mx-auto">
         <h2
           className={`${
-            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : "font-domine"
+            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
           } text-primary text-[25px] tracking-[1px] text-center pt-[35px] pb-[25px] border-b-[1px] border-[#ccc] mb-[20px]`}
         >
           {title}
@@ -169,7 +169,7 @@ export default function OfferDetails({ page }) {
                     className={`${
                       process.env.NEXT_PUBLIC_TEMPLATE == 1
                         ? "font-tenor"
-                        : "font-domine"
+                        : " "
                     } text-primary text-[20px] tracking-[1px] mb-[10px]`}
                   >
                     Select Property:

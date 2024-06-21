@@ -58,7 +58,7 @@ export default function GridFloatBookDirect({ block }) {
                       className={`hidden md:block text-center text-primary text-[22px] mb-[20px] ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
-                          : "font-domine"
+                          : " "
                       }`}
                     >
                       {item?.title}
