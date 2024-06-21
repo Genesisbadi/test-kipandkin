@@ -240,10 +240,10 @@ export default function Block({ block }) {
                             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
                             {item?.attributes?.data?.main?.featured_image && (
                               <Image
-                                src={item.attributes.data.main.featured_image}
+                                src={item.attributes.data.main.featured_image || item?.attributes?.data?.main?.images?.[0]}
                                 className="w-full min-h-[300px] object-cover"
                                 width={500}
-                                height={200}
+                                height={200} 
                                 alt={item?.attributes?.title}
                               />
                             )}
