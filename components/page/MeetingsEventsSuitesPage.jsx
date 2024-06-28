@@ -117,7 +117,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
 
   return (
     <>
-      <article className="bg-[#f1f1f1]">
+      <article className="bg-[#f1f1f1]"> 
         <div className="container overflow-hidden">
           {title && (
             <h2
@@ -126,15 +126,17 @@ export default function MeetingsEventsSuitesPage({ page }) {
               {title}
             </h2>
           )}
-          {image && (
-            <ModalImage1
-              className="w-full h-full object-cover mb-[20px]"
-              title={title}
-              content={image}
-              image={image}
-            />
-          )}
+          
           {showLazy && (
+            <>
+              {image && (
+              <ModalImage1
+                className="w-full h-full object-cover mb-[20px]"
+                title={title}
+                content={image}
+                image={image}
+              />
+            )}
             <div className="md:px-[40px]">
               {description && (
                 <div
@@ -162,6 +164,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                 )}
               </div>
             </div>
+            </>
           )}
         </div>
         <div className="w-full bg-[#f1f1f1] pt-[10px] pb-[30px]">

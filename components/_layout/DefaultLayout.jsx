@@ -18,10 +18,6 @@ export default function DefaultLayout(props) {
     import("@/components/partials/forms/BookingForm")
   );
 
-  const BookingFormFake = dynamic(() =>
-    import("@/components/partials/forms/BookingForm")
-  );
-
   const BackTop = dynamic(() => import("@/components/partials/BackTop"));
 
   const Footer = dynamic(() => import("@/layout/partials/Footer"));
@@ -30,10 +26,7 @@ export default function DefaultLayout(props) {
     <>
       <Menu page={page} blocks={blocks} />
 
-      {/* {!showLazy && <BookingFormFake page={page} blocks={blocks} />} */}
-      {/* {showLazy && <BookingForm page={page} blocks={blocks} />} */}
-
-      <BookingForm page={page} blocks={blocks} />
+      {showLazy && <BookingForm page={page} blocks={blocks} />}
 
       <main id="main-content" className="main-content">
         {props.children}

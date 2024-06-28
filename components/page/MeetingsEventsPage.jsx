@@ -65,47 +65,51 @@ export default function MeetingsEvensDetails({ page }) {
         )}
       </div>
 
-      <div className="container py-[20px] sm:py-[30px]">
-        {description && (
-          <div
-            className={`${styles.description}`}
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-        )}
-        {venues.length > 0 && (
-          <>
-            <div
-              className={`${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor"
-                  : " "
-              } text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
-            >
-              Select Property:
-            </div>
-            <CustomSelect
-              // value={selectedValue}
-              isSearchable={false}
-              className="react-select"
-              defaultValue={getDefaultValue()}
-              onChange={(e) => {
-                const curVenue = venues.find((obj) => obj.title === e.value);
-                setSelectedValue(e.value);
-                setCurrentVenue(curVenue);
-              }}
-              options={venues?.map((item, index) => {
-                return {
-                  label: item?.title,
-                  value: item?.title,
-                };
-              })}
-            />
-          </>
-        )}
-      </div>
+      
 
       {showLazy && (
         <>
+          <div className="container py-[20px] sm:py-[30px]">
+            {description && (
+              <div
+                className={`${styles.description}`}
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+            {venues.length > 0 && (
+              <>
+                <label
+                  htmlFor="select-property"
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1
+                      ? "font-tenor"
+                      : " "
+                  } block text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
+                >
+                  Select Property:
+                </label>
+
+                <CustomSelect
+                  // value={selectedValue}
+                  isSearchable={false}
+                  className="react-select"
+                  name="select-property"
+                  defaultValue={getDefaultValue()}
+                  onChange={(e) => {
+                    const curVenue = venues.find((obj) => obj.title === e.value);
+                    setSelectedValue(e.value);
+                    setCurrentVenue(curVenue);
+                  }}
+                  options={venues?.map((item, index) => {
+                    return {
+                      label: item?.title,
+                      value: item?.title,
+                    };
+                  })}
+                />
+              </>
+            )}
+          </div> 
           {currentVenue && (
             <div className="container mt-[30px]">
               {currentVenue.image && (

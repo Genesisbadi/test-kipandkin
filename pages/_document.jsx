@@ -11,28 +11,23 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
+ 
+        <link
+          rel="preload"
+          as="font"
+          href="/fonts/Gotham-Book.woff2"
+          type="font/woff"
+          crossOrigin="anonymous"
+        /> 
+
         <link
           rel="preconnect"
           href="https://haspcms-discovery-suites.s3.ap-southeast-1.amazonaws.com"
         />
 
-        {process.env.NEXT_PUBLIC_TEMPLATE === "2" && (
-          <link
-            rel="preload"
-            as="font"
-            href="/fonts/Domine-Regular.woff"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-        )}
         <style
           dangerouslySetInnerHTML={{
-            __html: `@font-face {
-            font-family: "Domine";
-            font-weight: 400;
-            src: url("/fonts/Domine-Regular.woff");
-            font-display: swap;
-          }
+            __html: `
           @font-face {
             font-family: "Tenor";
             font-weight: 400;
