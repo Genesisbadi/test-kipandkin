@@ -26,7 +26,7 @@ export default function DefaultLayout(props) {
     <>
       <Menu page={page} blocks={blocks} />
 
-      {showLazy && <BookingForm page={page} blocks={blocks} />}
+      {showLazy && process.env.NEXT_PUBLIC_TEMPLATE == 2 && <BookingForm page={page} blocks={blocks} />}
 
       <main id="main-content" className="main-content">
         {props.children}
