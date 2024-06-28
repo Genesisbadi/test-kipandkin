@@ -176,78 +176,83 @@ export default function OurCollectionPage({ page }) {
         )}
       </section>
 
-      <div className="w-full bg-[#f1f1f1]">
-        <div className="container px-5 2xl:px-0 py-[50px] ">
-          <div className="flex flex-col pb-[40px]">
-            <span className="text-center text-sm pb-3">
-              More from our collection
-            </span>
-            <CustomSelect
-              className="react-select"
-              id="ourCollectionSelect"
-              instanceId="ourCollectionSelect"
-              isSearchable={false}
-              // value={getDefaultValue()}
-              defaultValue={getDefaultValue()}
-              onChange={handleSelectChange}
-              options={ourCollection
-                ?.sort((a, b) => a?.order - b?.order)
-                .map((d, index) => {
-                  return {
-                    label: d?.title,
-                    value: d?.route_url,
-                  };
-                })}
-            />
-          </div>
-          <div className="flex flex-col py-5">
-            {page?.data.contents?.content_title && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: page?.data.contents?.content_title,
-                }}
-                className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : " "
-                } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
-              />
-            )}
-
-            <div
-              dangerouslySetInnerHTML={{ __html: description }}
-              className={`${styles.description} text-[14px] mb-[40px] leading-[25px]`}
-            />
-          </div>
-          {button_links && button_links.length > 0 && (
-            <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-              {button_links.map((item, index) => {
-                return (
-                  <Link
-                    key={index}
-                    href={item.btn_link || item?.file || "#"}
-                    target={
-                      item?.btn_link?.includes("http") ||
-                      item?.file?.includes("http")
-                        ? "_blank"
-                        : "_self"
-                    }
-                    className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                      item.variant === "filled"
-                        ? "text-white bg-primary"
-                        : "border-secondary"
-                    } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                  >
-                    {item.btn_label}
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
+      
       {showLazy && (
         <article>
+          <div className="w-full bg-[#f1f1f1]">
+            <div className="container px-5 2xl:px-0 py-[50px] ">
+              <div className="flex flex-col pb-[40px]">
+                <span className="text-center text-sm pb-3">
+                  More from our collection
+                </span>
+                <label for="ourCollectionSelect" className="hidden">
+                  Our Collection
+                </label> 
+                <CustomSelect
+                  className="react-select"
+                  id="ourCollectionSelect"
+                  name="ourCollectionSelect"
+                  instanceId="ourCollectionSelect"
+                  isSearchable={false}
+                  // value={getDefaultValue()}
+                  defaultValue={getDefaultValue()}
+                  onChange={handleSelectChange}
+                  options={ourCollection
+                    ?.sort((a, b) => a?.order - b?.order)
+                    .map((d, index) => {
+                      return {
+                        label: d?.title,
+                        value: d?.route_url,
+                      };
+                    })}
+                />
+              </div>
+              <div className="flex flex-col py-5">
+                {page?.data.contents?.content_title && (
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: page?.data.contents?.content_title,
+                    }}
+                    className={`${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "font-tenor"
+                        : " "
+                    } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
+                  />
+                )}
+
+                <div
+                  dangerouslySetInnerHTML={{ __html: description }}
+                  className={`${styles.description} text-[14px] mb-[40px] leading-[25px]`}
+                />
+              </div>
+              {button_links && button_links.length > 0 && (
+                <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+                  {button_links.map((item, index) => {
+                    return (
+                      <Link
+                        key={index}
+                        href={item.btn_link || item?.file || "#"}
+                        target={
+                          item?.btn_link?.includes("http") ||
+                          item?.file?.includes("http")
+                            ? "_blank"
+                            : "_self"
+                        }
+                        className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                          item.variant === "filled"
+                            ? "text-white bg-primary"
+                            : "border-secondary"
+                        } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                      >
+                        {item.btn_label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
           {images && images?.length > 0 && (
             <CarouselGallery
               alt_title={page?.title || "Thumbnail"}
