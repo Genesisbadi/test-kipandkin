@@ -48,7 +48,7 @@ export default function MeetingsEvensDetails({ page }) {
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.mobile} media="(max-width: 414px)" />
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.laptop} media="(min-width: 415px)" />
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.desktop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 1366px)" />
-          <Image src={page.mediaHandler["main.image"]?.[0].conversions.desktop} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
+          <Image src={page.mediaHandler["main.image"]?.[0].conversions.mobile} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
         </picture>
         {title && (
           <div
