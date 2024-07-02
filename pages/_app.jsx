@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
       globalState.setState({
         showLazy: true,
       });
-    };
+    }; 
 
     const removeInteractionListeners = () => {
       document.removeEventListener("scroll", handleInteraction, {

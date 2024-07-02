@@ -55,7 +55,7 @@ export default function DestinationDetails({ page }) {
         <picture>
           <source srcSet={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile} media="(max-width: 414px)" />
           <source srcSet={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.desktop} media="(min-width: 415px)" />
-          <Image src={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
+          <Image src={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile || page.mediaHandler?.[`main.banner`]?.[0]?.original} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
         </picture> 
         {title && (
           <h2
