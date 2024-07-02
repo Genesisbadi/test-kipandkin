@@ -48,8 +48,16 @@ export default function MeetingsEvensDetails({ page }) {
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.mobile} media="(max-width: 414px)" />
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.laptop} media="(min-width: 415px)" />
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.desktop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 1366px)" />
-          <Image src={page.mediaHandler["main.image"]?.[0].conversions.mobile} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
-        </picture>
+          <Image 
+            src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+            srcSet={`${page.mediaHandler["main.image"]?.[0].conversions.mobile} 414w, ${page.mediaHandler["main.image"]?.[0].conversions.laptop} 1365w, ${page.mediaHandler["main.image"]?.[0].conversions.desktop} 1920w`}
+            size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
+            alt={title} 
+            width={1920} 
+            height={1080} 
+            className="w-full h-full object-cover absolute top-0 left-0" 
+            priority={true} />
+        </picture> 
         {title && (
           <div
             className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  text-white z-[3]`}
