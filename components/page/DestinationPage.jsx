@@ -52,22 +52,16 @@ export default function DestinationDetails({ page }) {
     <>
       <section className="page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-        <Image
-          alt={"Banner"}
-          src={
-            page.mediaHandler?.[`main.banner`]?.[0]?.conversions.desktop ||
-            page.mediaHandler?.[`main.banner`]?.[0]?.original
-          }
-          width={1920}
-          height={1080}
-          className="w-full h-full  object-cover absolute top-0 left-0"
-          priority={true}
-        />
+        <picture>
+          <source srcSet={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile} media="(max-width: 414px)" />
+          <source srcSet={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.desktop} media="(min-width: 415px)" />
+          <Image src={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
+        </picture> 
         {title && (
           <h2
             className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  px-5 text-center text-white z-[3] leading-[50px]`}
           >
-            {title}
+            {title} 
           </h2>
         )}
       </section>

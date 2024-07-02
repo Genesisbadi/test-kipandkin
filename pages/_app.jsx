@@ -3,12 +3,10 @@ import "@/styles/customs.css";
 import DefaultLayout from "@/components/_layout/DefaultLayout";
 import globalState from "@/lib/store/globalState";
 import { useEffect } from "react";
-import { useShowLazyCookie } from "@/lib/services/showLazyCookie";
 
 import dynamic from "next/dynamic";
 
 export default function App({ Component, pageProps }) {
-  const test = useShowLazyCookie();
   const TenantScripts = dynamic(() =>
     import("@/layout/partials/TenantScripts")
   );
@@ -35,7 +33,7 @@ export default function App({ Component, pageProps }) {
       document.removeEventListener("touchstart", handleInteraction, {
         passive: true,
       });
-    };
+    }; 
 
     document.addEventListener("scroll", handleInteraction, { passive: true });
     document.addEventListener("click", handleInteraction, { passive: true });
