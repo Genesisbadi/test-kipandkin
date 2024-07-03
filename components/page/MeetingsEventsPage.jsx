@@ -39,14 +39,13 @@ export default function MeetingsEvensDetails({ page }) {
     let defaultVenue = currentVenue?.title || title;
     return { label: defaultVenue, value: defaultVenue };
   };
-
   return (
     <article className="bg-[#f1f1f1]">
       <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <picture>
-          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.mobile} media="(max-width: 414px)" />
-          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.laptop} media="(min-width: 415px)" />
+          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.mobile || page.mediaHandler["main.image"]?.[0].original} media="(max-width: 414px)" />
+          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.laptop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 415px)" />
           <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.desktop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 1366px)" />
           <Image 
             src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}

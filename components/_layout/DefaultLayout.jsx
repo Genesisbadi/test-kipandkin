@@ -30,7 +30,8 @@ export default function DefaultLayout(props) {
 
       <main id="main-content" className="main-content">
         {props.children}
-      </main>
+      </main> 
+
       {showLazy && <Footer />}
       {showLazy && (
         <>
