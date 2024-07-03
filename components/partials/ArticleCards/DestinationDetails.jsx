@@ -61,6 +61,7 @@ export default function DestinationDetails({ block, page }) {
           width={1920}
           height={1080}
           className="w-full h-full  object-cover absolute top-0 left-0"
+          priority={true}
         />
         {title && (
           <h2
@@ -70,6 +71,7 @@ export default function DestinationDetails({ block, page }) {
           </h2>
         )}
       </section>
+
 
       {showLazy && (
         <article>

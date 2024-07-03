@@ -27,6 +27,7 @@ export default function Block({ page, block, mediaHandler }) {
               width={1920}
               height={1080}
               className="w-full object-cover absolute top-0 left-0 h-full"
+              priority={true}
             />
             <span className="absolute top-0 left-0 w-full h-full bg-black opacity-[.3]"></span>
           </>
