@@ -302,6 +302,7 @@ export default function MainMenuMobile({ ...props }) {
                   width={200}
                   height={54}
                   alt="Site Logo"
+                  priority={true}
                   className="w-auto h-auto max-w-[90px]"
                 />
                 <span
