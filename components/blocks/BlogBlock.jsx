@@ -8,10 +8,13 @@ import NProgress from "nprogress";
 import blogCategoryTaxonomies from "@/lib/preBuildScripts/static/blog-categories.json";
 
 import CONTENTAPI from "@/lib/api/content/request";
+import globalState from "@/lib/store/globalState";
 
 export default function BlogBlock({ block }) {
   const blogCategories = blogCategoryTaxonomies.blogCategoryTaxonomies;
   const router = useRouter();
+
+  const showLazy = globalState((state) => state.showLazy);
 
   const [selectedCategory, setSelectedCategory] = useState(
     router.query.category || ""
@@ -153,7 +156,7 @@ export default function BlogBlock({ block }) {
       }
     };
 
-    getArticles(currentPage);
+    getArticles(currentPage); 
     truncateHTML();
   }, [currentPage, router, selectedCategory]);
 
@@ -162,7 +165,7 @@ export default function BlogBlock({ block }) {
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="lg:max-w-[70%] w-full px-[15px]">
-            {loading ? (
+            {!showLazy || loading ? (
               <>
                 {Array.from({ length: 2 }, (_, index) => (
                   <div key={index} className="mb-[60px]">
@@ -203,7 +206,7 @@ export default function BlogBlock({ block }) {
                             }`}
                           >
                             <Link
-                              href={item.attributes.route_url}
+                              href={item?.attributes?.route_url || "#"}
                               className="hover:underline"
                             >
                               {item?.attributes?.title}
@@ -211,16 +214,17 @@ export default function BlogBlock({ block }) {
                           </h2>
 
                           {item?.attributes?.data?.main?.featured_image && (
-                            <Link href={item.attributes.route_url}>
+                            <Link href={item?.attributes?.route_url || "#"}>
                               <Image
                                 src={item.attributes.data.main.featured_image}
-                                className="w-full mb-[15px]"
+                                className="w-full mb-[15px] bg-[#ccc]"
                                 width={500}
                                 height={200}
                                 alt={item?.attributes?.title}
                               />
                             </Link>
                           )}
+
 
                           {item?.attributes?.data?.main?.description && (
                             <>
