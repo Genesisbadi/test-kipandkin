@@ -121,84 +121,97 @@ export default function OfferDetails({ page }) {
           {title}
         </h2>
 
-        {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
-          <div className="pb-[15px]">
-            <CustomSelect
-              isSearchable={false}
-              className="react-select z-30 max-w-[300px] mx-auto"
-              onChange={handleCategoryChange}
-              placeholder={"Select Category"}
-              options={offersCategories?.map((item, index) => ({
-                label: item?.name,
-                value: item?.id,
-              }))} 
-            />
-          </div> 
-        )}
-
-        {page?.data?.main?.images && (
+        {!showLazy ? (
           <>
-
-            <Slider className={`offer-slider relative mb-[30px]`} {...settings}>
-              {page?.data?.main?.images.map((item, index) => (
-                <div key={index}>
-                  <Image
-                    src={item}
-                    width={1200}
-                    height={450}  
-                  /> 
-                </div>
-              ))} 
-            </Slider>
+            <div className="animate-pulse h-[400px] bg-[#ccc] mb-[30px]" />
+            <div className="animate-pulse h-[20px] w-full max-w-[400px] bg-[#ccc] mb-[30px]" />
+            <div className="animate-pulse h-[40px] w-full max-w-[200px] bg-[#ccc] mb-[30px]" />
+            <div className="animate-pulse h-[50px] w-full bg-[#ccc] mb-[30px]" />
+            <div className="animate-pulse h-[250px] w-full bg-[#ccc] mb-[30px]" />
           </>
-        )}
-        {description && (
-          <div
-            className="text-[14px] mb-[30px]"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-        )}
-
-        {showLazy && (
+        ) : (
           <>
-            {venues.length > 0 && (
-              <>
-                {process.env.NEXT_PUBLIC_TEMPLATE == 1 && (
-                  <div
-                    className={`${
-                      process.env.NEXT_PUBLIC_TEMPLATE == 1
-                        ? "font-tenor"
-                        : " "
-                    } text-primary text-[20px] tracking-[1px] mb-[10px]`}
-                  >
-                    Select Property:
-                  </div>
-                )}
+            {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+              <div className="pb-[15px]">
                 <CustomSelect
-                  value={getDefaultValue()}
                   isSearchable={false}
-                  className="react-select"
-                  defaultValue={getDefaultValue()}
-                  onChange={(e) =>
-                    setSelectedValue(() => {
-                      Number(e.value);
-                      const curVenue = venues.find(
-                        (obj) => obj.title === e.value
-                      );
-                      setCurrentVenue(curVenue);
-                    })
-                  }
-                  options={venues?.map((item, index) => {
-                    return {
-                      label: item?.title,
-                      value: item?.title,
-                    };
-                  })}
+                  className="react-select z-30 max-w-[300px] mx-auto"
+                  onChange={handleCategoryChange}
+                  placeholder={"Select Category"}
+                  options={offersCategories?.map((item, index) => ({
+                    label: item?.name,
+                    value: item?.id,
+                  }))} 
                 />
+              </div> 
+            )}
+    
+            {page?.data?.main?.images && (
+              <>
+    
+                <Slider className={`offer-slider relative mb-[30px]`} {...settings}>
+                  {page?.data?.main?.images.map((item, index) => (
+                    <div key={index}>
+                      <Image
+                        src={item}
+                        width={1200}
+                        height={450}  
+                      /> 
+                    </div>
+                  ))} 
+                </Slider>
               </>
             )}
+            {description && (
+              <div
+                className="text-[14px] mb-[30px]"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+
+            <>
+              {venues.length > 0 && (
+                <>
+                  {process.env.NEXT_PUBLIC_TEMPLATE == 1 && (
+                    <div
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : " "
+                      } text-primary text-[20px] tracking-[1px] mb-[10px]`}
+                    >
+                      Select Property:
+                    </div>
+                  )}
+                  <CustomSelect
+                    value={getDefaultValue()}
+                    isSearchable={false}
+                    className="react-select"
+                    defaultValue={getDefaultValue()}
+                    onChange={(e) =>
+                      setSelectedValue(() => {
+                        Number(e.value);
+                        const curVenue = venues.find(
+                          (obj) => obj.title === e.value
+                        );
+                        setCurrentVenue(curVenue);
+                      })
+                    }
+                    options={venues?.map((item, index) => {
+                      return {
+                        label: item?.title,
+                        value: item?.title,
+                      };
+                    })}
+                  />
+                </>
+              )}
+            </>
           </>
         )}
+
+        
+          
       </div>
 
       {showLazy && (
@@ -239,7 +252,7 @@ export default function OfferDetails({ page }) {
                     </svg> 
 
                   </div>
-  
+
                   {accordionOpen && (
                     <div className="content py-[15px] bg-[#fff] py-[30px] px-[15px]">
                       <div dangerouslySetInnerHTML={{ __html: page?.data?.main?.terms_condition }}>
@@ -259,6 +272,9 @@ export default function OfferDetails({ page }) {
           )}
         </>
       )}
+
+
+
       {currentUrl && showLazy && (
         <StickyShareButtons
         config={{
