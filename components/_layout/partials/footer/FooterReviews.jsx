@@ -5,6 +5,7 @@ import Link from "next/link";
 import globalState from "@/lib/store/globalState";
 export default function FooterReviews() {
   const showLazy = globalState((state) => state.showLazy);
+  const router = useRouter();
 
   if(!showLazy) {
     return (
@@ -30,7 +31,6 @@ export default function FooterReviews() {
     import("@/components/icons/Star").then((module) => module.default)
   );
 
-  const router = useRouter();
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
