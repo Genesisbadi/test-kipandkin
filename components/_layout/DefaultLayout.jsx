@@ -32,7 +32,7 @@ export default function DefaultLayout(props) {
         {props.children}
       </main> 
 
-      {showLazy && <Footer />}
+      <Footer />
       {showLazy && (
         <>
           <Script
