@@ -4,11 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import globalState from "@/lib/store/globalState";
 
 export default function CarouselGallery({ block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
   );
+
+  const showLazy = globalState((state) => state.showLazy);
 
   const ModalImage = dynamic(() =>
     import("@/components/partials/Modals/ModalImage").then(
@@ -120,7 +123,7 @@ export default function CarouselGallery({ block }) {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -130,7 +133,7 @@ export default function CarouselGallery({ block }) {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -143,43 +146,82 @@ export default function CarouselGallery({ block }) {
 
   return (
     <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
-      {title && (
-        <h2
-          className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
-            process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-          }`}
-        >
-          {title}
-        </h2>
-      )}
-      <div
-        className={`${
-          variation.length === 0 ? "container pb-[50px]" : ""
-        } flex w-full`}
-      >
-        {imagesLength > 0 && (
-          <div className="flex flex-col w-full slick-gallery">
-            <Slick className="carousel-gallery" {...settings}>
-              {images.map((item, index) => (
-                <Fragment key={index}>
-                  <ModalImage1
-                    key={index}
-                    className={`${
-                      variation.length === 0
-                        ? "h-[260px]"
-                        : "h-[330px] lg:h-[420px]"
-                    } `}
-                    title={title}
-                    content={index}
-                    image={item}
-                    images={images || []}
-                  />
-                </Fragment>
-              ))}
-            </Slick>
+
+      {!showLazy ? (
+        <>
+          <div className="mb-[30px] mt-[40px]">
+            {title && (
+              <div className="animate-pulse bg-[#ccc] h-[30px] w-full max-w-[300px] mx-auto mb-[20px]" />
+            )}
+
+            <div className="flex gap-x-[15px] mb-[30px]">
+              <div className="w-full animate-pulse bg-[#ccc] sm:max-w-[50%] lg:max-w-[33.33%] h-[330px] lg:h-[420px]" />
+              <div className="w-full animate-pulse bg-[#ccc] sm:max-w-[50%] lg:max-w-[33.33%] h-[330px] hidden sm:block lg:h-[420px]" />
+              <div className="w-full animate-pulse bg-[#ccc] sm:max-w-[50%] lg:max-w-[33.33%] h-[330px] lg:h-[420px] hidden md:block" />
+            </div>
+
+            {button_link && (
+              <div className="animate-pulse bg-[#ccc] h-[50px] w-full max-w-[300px] mx-auto md:mt-[40px] mb-[20px]" />
+            )}
           </div>
-        )}
-      </div>
+        </>
+      ) : (
+        <>
+          {title && (
+            <h2
+              className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+              }`}
+            >
+              {title}
+            </h2>
+          )}
+          <div
+            className={`${
+              variation.length === 0 ? "container pb-[50px]" : ""
+            } flex w-full`}
+          >
+            {imagesLength > 0 && (
+              <div className="flex flex-col w-full slick-gallery">
+                <Slick className="carousel-gallery" {...settings}>
+                  {images.map((item, index) => (
+                    <Fragment key={index}>
+                      <ModalImage1
+                        key={index}
+                        className={`${
+                          variation.length === 0
+                            ? "h-[260px]"
+                            : "h-[330px] lg:h-[420px]"
+                        } `}
+                        title={title}
+                        content={index}
+                        image={item}
+                        images={images || []}
+                      />
+                    </Fragment>
+                  ))}
+                </Slick>
+              </div>
+            )}
+          </div>
+          
+          {button_link && (
+            <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
+              <div className="flex flex-wrap justify-center ">
+                <Link
+                  href={button_link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-[30px] py-[20px] text-center text-xs 2sm:text-sm border border-secondary text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300"
+                >
+                  View More Photos
+                </Link>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
       {isModalOpen && (
         <ModalImage
           isOpen={isModalOpen}
@@ -188,20 +230,6 @@ export default function CarouselGallery({ block }) {
           content={images[selectedImageIndex]}
           images={images || []}
         />
-      )}
-      {button_link && (
-        <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
-          <div className="flex flex-wrap justify-center ">
-            <Link
-              href={button_link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-[30px] py-[20px] text-center text-xs 2sm:text-sm border border-secondary text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300"
-            >
-              View More Photos
-            </Link>
-          </div>
-        </div>
       )}
     </section>
   );
