@@ -85,7 +85,7 @@ export default function ContactForm({ form }) {
                 <>
                   {!showLazy ? (
                     <>
-                      <div className="animate-pulse bg-[#ddd] min-h-[50px] w-full max-w-[250px] mb-[30px] p-[20px] flex items-center justify-center text-[#000] opacity-[.3] pointer-events-none select-none">
+                      <div className="animate-pulse bg-[#ddd] min-h-[50px] w-full max-w-[250px] mb-[30px] p-[20px] flex items-center justify-center text-[#000] pointer-events-none select-none">
                           Loading captcha
                       </div>
                     </>
