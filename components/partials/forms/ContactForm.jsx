@@ -8,6 +8,7 @@ export default function ContactForm({ form }) {
   const [formSuccessInfo, setFormSuccessInfo] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const captcha = globalState((state) => state.captcha);
+  const showLazy = globalState((state) => state.showLazy);
   const sections = form?.fields?.blueprint?.schema?.sections || [];
   const [errors, setErrors] = useState([]);
   const findClass = (field) => {
@@ -82,11 +83,25 @@ export default function ContactForm({ form }) {
 
               {form?.attributes?.uses_captcha && (
                 <>
-                  <RenderCaptcha setToken={setToken} />
-                  {errors?.captcha_token && (
-                    <div className="text-[12px] mt-[2px] text-red-600">
-                      {errors?.captcha_token}
-                    </div>
+                  {!showLazy ? (
+                    <>
+                      <div className="animate-pulse bg-[#ddd] min-h-[50px] w-full max-w-[250px] mb-[30px] p-[20px] flex items-center justify-center text-[#ababab] pointer-events-none select-none">
+                          Loading captcha
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                    
+                      <>
+                        <RenderCaptcha setToken={setToken} />
+                        {errors?.captcha_token && (
+                          <div className="text-[12px] mt-[2px] text-red-600">
+                            {errors?.captcha_token}
+                          </div>
+                        )}
+                      </>
+                    
+                    </>
                   )}
                 </>
               )}
