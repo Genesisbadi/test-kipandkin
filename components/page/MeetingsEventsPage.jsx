@@ -25,6 +25,7 @@ export default function MeetingsEvensDetails({ page }) {
   );
 
   const showLazy = globalState((state) => state.showLazy);
+  
   const { title } = page;
   const { description, venues, buttons, gallery } = page.data.main;
 
@@ -67,8 +68,19 @@ export default function MeetingsEvensDetails({ page }) {
       </div>
 
       
-
-      {showLazy && (
+      {!showLazy ? (
+        <>
+          <div className="container py-[20px] sm:py-[30px]">
+            <div className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[300px] mb-[30px]" />
+            <div className="animate-pulse bg-[#ccc] h-[10px] w-full mb-[10px]" />
+            <div className="animate-pulse bg-[#ccc] h-[10px] w-full mb-[40px] max-w-[30%]" />
+            <div className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[35%] mb-[20px]" />
+            <div className="animate-pulse bg-[#ccc] h-[50px] w-full mb-[50px]" />
+            <div className="animate-pulse bg-[#ccc] h-[10px] w-full mb-[10px]" />
+            <div className="animate-pulse bg-[#ccc] h-[10px] max-w-[50%] w-full mb-[10px]" />
+          </div>
+        </>
+      ) : (
         <>
           <div className="container py-[20px] sm:py-[30px]">
             {description && (
