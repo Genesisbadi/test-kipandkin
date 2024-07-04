@@ -13,7 +13,7 @@ export default function ContactUsBlock({ block }) {
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           <div className="w-full mb-[15px] md:mb-0 md:max-w-[50%] px-[15px]">
-            <div className="bg-white shadow-md p-[30px] sticky top-[85px]">
+            <div className="bg-white shadow-md p-[30px] sticky top-[85px] min-h-[657px]">
               {description && (
                 <div
                   className="text-[14px] mb-[20px]"
