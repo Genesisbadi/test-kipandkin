@@ -52,6 +52,7 @@ export default function Menu({ ...props }) {
                     <span className="px-[5px]">
                       <Link
                         className="flex items-center hover:opacity-[.5]"
+                        aria-label={`Email ${tenantDetails?.data?.main?.email}`}
                         href={`mailto:${tenantDetails?.data?.main?.email}`}
                       >
                         <Email className="mr-[5px]" />
@@ -64,6 +65,7 @@ export default function Menu({ ...props }) {
                     <span className="px-[5px]">
                       <Link
                         className="flex items-center hover:opacity-[.5]"
+                        aria-label={`Call ${tenantDetails?.data?.main?.phone}`}
                         href={`mailto:${tenantDetails?.data?.main?.phone}`}
                       >
                         <Phone className="mr-[5px]" />

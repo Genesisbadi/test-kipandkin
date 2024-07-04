@@ -164,7 +164,7 @@ export default function OfferDetails({ page }) {
             )}
             {description && (
               <div
-                className="text-[14px] mb-[30px]"
+                className="text-[14px] pb-[30px]"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}

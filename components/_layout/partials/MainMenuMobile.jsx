@@ -201,6 +201,7 @@ export default function MainMenuMobile({ ...props }) {
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
+                aria-label={`Email ${tenantInformation?.email}`}
                 href={`mailto:${tenantInformation?.email}`}
               >
                 <Email className="mr-[5px] !fill-primary" />
@@ -211,6 +212,7 @@ export default function MainMenuMobile({ ...props }) {
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
+                aria-label={`Call ${tenantInformation?.phone}`}
                 href={`tel:${tenantInformation?.phone}`}
               >
                 <Phone className="mr-[5px] !fill-primary" />
