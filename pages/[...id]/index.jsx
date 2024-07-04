@@ -1,4 +1,4 @@
-import ParentBlock from "@/components/page/ParentBlock";
+// import ParentBlock from "@/components/page/ParentBlock";
 import Header from "@/layout/partials/Header";
 import { paths, props } from "@/lib/props/page";
 import dynamic from "next/dynamic";
@@ -13,6 +13,12 @@ const DestinationPage = dynamic(() =>
 
 const OurCollectionPage = dynamic(() =>
   import("../../components/page/OurCollectionPage").then(
+    (module) => module.default
+  )
+);
+
+const ParentBlock = dynamic(() =>
+  import("../../components/page/ParentBlock").then(
     (module) => module.default
   )
 );
