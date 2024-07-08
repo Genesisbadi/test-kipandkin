@@ -1,5 +1,5 @@
 import formStore from "@/lib/store/formStore";
-
+import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain";
 export default function Radio(props) {
   const { state_name, name, options } = props;
 
@@ -36,7 +36,7 @@ export default function Radio(props) {
             htmlFor={`${state_name}-${i}`}
             className={`text-[14px] cursor-pointer pl-[5px]`}
           >
-            {option.label}
+            {option.label.replace('site_name', tenantDetails?.site_name)}
           </label>
         </div>
       ))}

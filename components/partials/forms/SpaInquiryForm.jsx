@@ -1,11 +1,12 @@
 import FormField from "@/components/forms/FormField";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
 import { shallow } from "zustand/shallow";
-export default function ProposalForm({ form }) {
+export default function SpaInquiryForm({ form }) {
   const formData = formStore((state) => state);
+  const [formSuccessInfo, setFormSuccessInfo] = useState(false);
   const captcha = globalState((state) => state.captcha);
   const [uploading, submitLoading] = formStore(
     (state) => [state.uploading, state.submitLoading],
@@ -18,7 +19,7 @@ export default function ProposalForm({ form }) {
       case "name":
         return "border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%]";
       case "message":
-        return "w-full rounded-[5px] border-[1px] border-[#C9AAE1] py-[8.5px] px-3 min-h-[100px] col-span-2";
+        return "w-full rounded-[5px] border-[1px] border-[#ccc] py-[8.5px] px-3 min-h-[100px] col-span-2";
       case "file":
         return "";
       case "multi_select":
@@ -42,11 +43,19 @@ export default function ProposalForm({ form }) {
         return "col-span-2";
       case "radio_list":
         return "flex flex-col";
+      case "data_privacy_consent":
+        return "col-span-2";
       default:
         return "col-span-2 sm:col-span-1";
     }
   };
   const [token, setToken] = useState();
+
+  useEffect(() => {
+    if (formData?.formSuccessInfo) {
+      setFormSuccessInfo(true);
+    }
+  }, [formData?.formSuccessInfo]);
   return (
     <>
       {sections.map((section) => {
@@ -65,7 +74,7 @@ export default function ProposalForm({ form }) {
                   setErrors,
                   formData,
                 })
-              }
+              } 
             >
               <div className="text-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {fields.map((field) => (
@@ -87,6 +96,7 @@ export default function ProposalForm({ form }) {
               {form?.attributes?.uses_captcha && (
                 <div className="mt-[16px]">
                   <RenderCaptcha setToken={setToken} />
+
                   {errors?.captcha_token && (
                     <div className="text-[12px] mt-[2px] text-red-600">
                       {errors?.captcha_token}
@@ -96,7 +106,7 @@ export default function ProposalForm({ form }) {
               )}
 
 
-              <div className="mt-[18px]">
+<div className="mt-[18px]">
                 {uploading || submitLoading ? (
                   <button
                     type="button"
@@ -134,18 +144,6 @@ export default function ProposalForm({ form }) {
                   </button>
                 )}
               </div>
-              {/* <div className="flex flex-col mt-[18px]">
-                  <button
-                    disabled={uploading || submitLoading}
-                    className={`${
-                      !uploading && !submitLoading
-                        ? "cursor-pointer bg-[#994cd7]"
-                        : "cursor-not-allowed bg-[#c696ed]"
-                    }  rounded-[10px] text-[#FFFFFF] text-[15px] flex justify-center items-center w-[95px] h-[40px] font-[600]`}
-                  >
-                    Submit
-                  </button>
-              </div> */}
             </form>
 
             {formStore.getState().formSuccessInfo && (
@@ -164,7 +162,7 @@ export default function ProposalForm({ form }) {
                   </button>
                 </div>
               </div>
-            )} 
+            )}
           </Fragment>
         );
       })}

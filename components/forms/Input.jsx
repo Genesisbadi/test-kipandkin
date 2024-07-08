@@ -1,9 +1,10 @@
 import formStore from "@/lib/store/formStore";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import countries from "@/lib/country/countries";
 import "react-datepicker/dist/react-datepicker.css";
 import "flatpickr/dist/themes/material_green.css";
+
 const Select = dynamic(() => import("react-select").then((module) => module.default), {
   ssr: false,
 });
@@ -11,21 +12,41 @@ const Select = dynamic(() => import("react-select").then((module) => module.defa
 const DatePicker = dynamic(() => import("react-datepicker").then((module) => module.default), {
   ssr: false,
 });
+
 const Flatpickr = dynamic(() => import("react-flatpickr").then((module) => module.default), {
   ssr: false,
 });
 
-const CustomInput = ({ value, defaultValue, inputRef, ...props }) => {
-  return <input className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%] " {...props} defaultValue={defaultValue} ref={inputRef} />;
-}; 
+const CustomInput = ({ inputRef, ...props }) => {
+
+
+  return (
+    <input
+      {...props}
+      className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%]"
+      ref={inputRef}
+      value={formStore.getState()[props?.state_name]}
+    />
+  );
+};
 
 export default function Input(props) {
-  const { state_name, automated = false } = props;
+  const { state_name } = props;
   const [value, setValue] = useState("");
 
-  const onChange = (value) => {
-    formStore.setState({ [state_name]: value.map((n) => n.value) });
+  
+  useEffect(() => {
+    if (props.value) {
+      setValue(props.value);
+    }
+  }, [props.value, state_name]);
+
+  const onChange = (newValue) => {
+    setValue(newValue);
+    formStore.setState({ [state_name]: newValue });
+    if (props.onChange) props.onChange(newValue);
   };
+
 
   const handleFocus = (e) => {
     const parentContainer = e.target.closest(".parent-select");
@@ -48,35 +69,71 @@ export default function Input(props) {
     if (e.target.value === "") {
       parentContainer.classList.remove("is-active");
     }
-  };
-
+  }; 
   switch (state_name) {
+    case "date":
+      return (
+        <>
+          <Flatpickr
+            options={{
+              enableTime: false,
+              dateFormat: "Y-m-d",
+            }}
+            onChange={(selectedDates) => {
+              const date = selectedDates[0];
+              onChange(date);
+            }} 
+            value={formStore.getState()[props?.state_name]}
+            render={({ ...props }, ref) => {
+              return <CustomInput 
+              name={state_name}
+              state_name={state_name}
+              id={state_name} inputRef={ref} />;
+            }}
+          />
+        </>
+      );
     case "preferred_time":
-      return(
-        <Flatpickr
-          options={{
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "h:i K", // Formats the time as HH:MM AM/PM
-            time_24hr: false, // 12-hour format with AM/PM
-          }} 
-          render={
-            ({defaultValue, value, ...props}, ref) => {
-              return <CustomInput defaultValue={defaultValue} inputRef={ref} />
-            }
-          }
-        />
-      )
+      return (
+        <>
+          <Flatpickr
+            options={{
+              enableTime: true,
+              noCalendar: true,
+              dateFormat: "h:i K",
+              time_24hr: false,
+            }}
+            onChange={(selectedTimes) => {
+              const time = selectedTimes[0];
+              onChange(time);
+            }}
+            name={state_name}
+            id={state_name}
+            value={formStore.getState()[props?.state_name]}
+            render={({ ...props }, ref) => {
+              return <CustomInput 
+              name={state_name}
+              state_name={state_name}
+              id={state_name} inputRef={ref} />;
+            }}
+          />
+        </>
+      );
     case "country":
       return (
         <div className={`${props?.wrapperclassname} parent-select`} onFocus={handleFocus}>
           <Select
             isClearable={true}
+            id={state_name}
+            state_name={state_name}
+            name={state_name}
+            value={formStore.getState()[state_name]}
             {...props}
             onChange={(e) => {
+              onChange(e);
+              formStore.setState({ [state_name]: e })
               if (props?.onChange) props?.onChange(e);
-              if (automated) onChange(e);
-            }}
+            }} 
             options={countries}
           />
         </div>
@@ -86,13 +143,9 @@ export default function Input(props) {
         <DatePicker
           selected={value}
           className="w-full"
-          placeholderText={'Please select a date'} 
-          onChange={(date) => {
-            setValue(date);
-            if (props?.onChange) props?.onChange(date);
-          }}
-          {...props} 
-          
+          placeholderText={"Please select a date"}
+          onChange={(date) => onChange(date)}
+          {...props}
         />
       );
     default:
@@ -100,7 +153,6 @@ export default function Input(props) {
         <input
           {...props}
           onChange={(e) => {
-            setValue(e.target.value);
             if (props?.onChange) props?.onChange(e);
           }}
         />
