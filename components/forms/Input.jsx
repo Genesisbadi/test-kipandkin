@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import countries from "@/lib/country/countries";
 import "react-datepicker/dist/react-datepicker.css";
-
+import "flatpickr/dist/themes/material_green.css";
 const Select = dynamic(() => import("react-select").then((module) => module.default), {
   ssr: false,
 });
@@ -11,6 +11,13 @@ const Select = dynamic(() => import("react-select").then((module) => module.defa
 const DatePicker = dynamic(() => import("react-datepicker").then((module) => module.default), {
   ssr: false,
 });
+const Flatpickr = dynamic(() => import("react-flatpickr").then((module) => module.default), {
+  ssr: false,
+});
+
+const CustomInput = ({ value, defaultValue, inputRef, ...props }) => {
+  return <input className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%] " {...props} defaultValue={defaultValue} ref={inputRef} />;
+}; 
 
 export default function Input(props) {
   const { state_name, automated = false } = props;
@@ -44,6 +51,22 @@ export default function Input(props) {
   };
 
   switch (state_name) {
+    case "preferred_time":
+      return(
+        <Flatpickr
+          options={{
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "h:i K", // Formats the time as HH:MM AM/PM
+            time_24hr: false, // 12-hour format with AM/PM
+          }} 
+          render={
+            ({defaultValue, value, ...props}, ref) => {
+              return <CustomInput defaultValue={defaultValue} inputRef={ref} />
+            }
+          }
+        />
+      )
     case "country":
       return (
         <div className={`${props?.wrapperclassname} parent-select`} onFocus={handleFocus}>

@@ -36,6 +36,7 @@
     "react-date-range": "^2.0.0-alpha.4",
     "react-datepicker": "^7.2.0",
     "react-dom": "^18.2.0",
+    "react-flatpickr": "^3.10.13",
     "react-google-recaptcha": "^2.1.0",
     "react-select": "^5.8.0",
     "react-slick": "^0.30.2",
