@@ -140,7 +140,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
             <div className="md:px-[40px]">
               {description && (
                 <div
-                  className="text-[14px] p-[10px] md:p-[15px]"
+                  className={`text-[14px] p-[10px] md:p-[15px] ${styles.description}`}
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
               )}
