@@ -1,39 +1,45 @@
-import { Fragment, useState } from "react";
-
-import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain";
+import formStore from "@/lib/store/formStore";
 
 export default function Radio(props) {
-  let defaultValue = "";
-  const { options } = props;
-  const inputProps = {
-    ...props,
+  const { state_name, name, options } = props;
+
+  const dataHandler = formStore((state) => state[state_name]) || [];
+  const entryOnChange = (e) => {
+    const checked = e.target.checked;
+    const value = e.target.value;
+    const handler = checked ? [value] : [];
+    formStore.setState({ [state_name]: handler });
   };
 
-  if (inputProps?.state_name === "privacy_consent") {
-    defaultValue = inputProps?.options[0].value;
-  }
+  const isChecked = (value, index) => {
+    if (dataHandler.length === 0) {
+      return index === 0;
+    } else {
+      return dataHandler.includes(value);
+    }
+  };
 
-  delete inputProps.inline;
   return (
-    <Fragment>
-      {options.map((n, i) => (
-        <div key={i} className="flex items-start gap-2">
+    <div className="md:flex flex-wrap w-full gap-x-[20px]">
+      {options.map((option, i) => (
+        <div key={i} className="flex items-start mb-[20px] md:mb-0">
           <input
+            id={`${state_name}-${i}`}
             type="radio"
-            name={inputProps.state_name}
-            id={`${inputProps?.state_name}-${i}`}
-            value={defaultValue || n.value}
-            className="mt-[8px]"
-            checked={defaultValue ? "checked" : ""}
+            value={option.value}
+            onChange={entryOnChange}
+            checked={isChecked(option.value, i)}
+            className="top-[5px] relative"
+            name={name}
           />
           <label
-            htmlFor={`${inputProps?.state_name}-${i}`}
-            className="text-[14px] cursor-pointer"
+            htmlFor={`${state_name}-${i}`}
+            className={`text-[14px] cursor-pointer pl-[5px]`}
           >
-            {n.label.replace("site_name", tenantDetails?.site_name)}
+            {option.label}
           </label>
         </div>
       ))}
-    </Fragment>
+    </div>
   );
 }

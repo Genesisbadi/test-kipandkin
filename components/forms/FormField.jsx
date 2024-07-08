@@ -23,20 +23,23 @@ export default function FormField(props) {
   delete inputProps.children;
   delete inputProps.helpText;
   const renderInput = () => {
+
     switch (props?.type) {
       case "textarea":
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`!col-span-2 ${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
               {props?.title}
-              {required ? " *" : ""}
+              <span className="text-red-500">
+                {required ? " *" : ""}
+              </span>
             </label>
             <Textarea
               {...inputProps}
-              className={`${fieldClass} ${
+              className={`!min-h-[130px] ${fieldClass} ${
                 error && errortype === "border" ? "!border-1 !border-[red]" : ""
               }`}
             />
@@ -47,7 +50,7 @@ export default function FormField(props) {
         );
       case "select":
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
@@ -69,13 +72,15 @@ export default function FormField(props) {
         );
       case "radio":
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
               {props?.title.replace("site_name", tenantDetails?.site_name)}
-              {required ? " *" : ""}
+              <span className="text-red-500">
+                {required ? " *" : ""}
+              </span>
             </label>
             <Radio
               {...inputProps}
@@ -90,13 +95,15 @@ export default function FormField(props) {
         );
       case "file":
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
               {props?.title}
-              {required ? " *" : ""}
+              <span className="text-red-500">
+                {required ? " *" : ""}
+              </span>
             </label>
             <FileInput
               {...inputProps}
@@ -111,13 +118,15 @@ export default function FormField(props) {
         );
       case "checkbox":
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
               {props?.title}
-              {required ? " *" : ""}
+              <span className="text-red-500">
+                {required ? " *" : ""}
+              </span>
             </label>
             <Checkbox {...inputProps} />
             {error && errortype === "text" && (
@@ -127,13 +136,15 @@ export default function FormField(props) {
         );
       default:
         return (
-          <div className={props?.wrapperclassname}>
+          <div className={`${props?.wrapperclassname} form-item-${props?.state_name}`}>
             <label
               htmlFor={props?.state_name}
               className="text-[14px] mb-[5px] block"
             >
               {props?.title}
-              {required ? " *" : ""}
+              <span className="text-red-500">
+                {required ? " *" : ""}
+              </span>
             </label>
             <Input
               {...inputProps}
