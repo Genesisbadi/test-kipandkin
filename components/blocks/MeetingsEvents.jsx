@@ -44,18 +44,23 @@ export default function MeetingsEvents({ block }) {
         <div className="events">
           {loading ? (
             <>
-              {Array.from({ length: 2 }, (_, index) => (
-                <div key={index} className="mb-[60px]">
-                  <div className="h-6 max-w-[50%] bg-gray-300 animate-pulse mb-[15px]"></div>
-                  <div className="min-h-[300px] bg-gray-300 animate-pulse mb-[30px]"></div>
+              <div className="flex flex-wrap">
+                {Array.from({ length: 6 }, (_, index) => (
+                  <div
+                    key={index}
+                    className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
+                  >
+                    <div className="h-6 max-w-[50%] bg-gray-300 animate-pulse mb-[15px]"></div>
+                    <div className="min-h-[300px] bg-gray-300 animate-pulse mb-[30px]"></div>
 
-                  <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
-                  <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
-                  <div className="h-[15px] bg-gray-300 animate-pulse mb-[30px]"></div>
+                    <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
+                    <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
+                    <div className="h-[15px] bg-gray-300 animate-pulse mb-[30px]"></div>
 
-                  <div className="h-[15px] bg-gray-300 animate-pulse max-w-[250px]"></div>
-                </div>
-              ))}
+                    <div className="h-[15px] bg-gray-300 animate-pulse max-w-[250px]"></div>
+                  </div>
+                ))}
+              </div>
             </>
           ) : (
             <div>
