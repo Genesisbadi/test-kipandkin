@@ -27,7 +27,7 @@ export default function PhotoGallery({ block }) {
                   images={photos}
                   title="Photo"
                   image={item}
-                  className="w-full h-[150px] sm:h-[360px] object-cover bg-[#ddd]"
+                  className="w-full h-[100px] xs:h-[170px] md:h-[250px] lg:h-[360px] object-cover bg-[#ddd]"
                 />
               </div>
             ))}
