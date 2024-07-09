@@ -95,7 +95,7 @@ export default function OfferDetails({ page }) {
     autoplaySpeed: 2000,
     pauseOnHover: true, 
     appendDots: dots => (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "999", margin: "0px", listStyle: "none", padding: "0px",
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "20", margin: "0px", listStyle: "none", padding: "0px",
          }}> 
             {dots}
         </div> 

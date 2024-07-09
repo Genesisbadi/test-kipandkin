@@ -4,6 +4,7 @@ import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 export default function MeetingsEventsSuitesPage({ page }) {
   const ModalImage1 = dynamic(() =>
     import("@/components/partials/Modals/ModalImage1").then(
@@ -130,12 +131,13 @@ export default function MeetingsEventsSuitesPage({ page }) {
           {showLazy && (
             <>
               {image && (
-              <ModalImage1
-                className="w-full h-full object-cover mb-[20px]"
-                title={title}
-                content={image}
-                image={image}
-              />
+              // <ModalImage1
+              //   className="w-full h-full object-cover mb-[20px]"
+              //   title={title}
+              //   content={image}
+              //   image={image}
+              // />
+              <Image src={image} alt={title} width={1920} height={1080} className="w-full h-full object-cover mb-[20px]" />
             )}
             <div className="md:px-[40px]">
               {description && (
