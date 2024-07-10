@@ -34,10 +34,9 @@
   margin-bottom: 20px;
   font-weight: 500 !important;
 }
-/* .description ol,
-.description ul {
-  padding-left: 40px;
-} */
+.description img {
+  margin: 0 auto;
+}
 .description li {
   font-size: 14px;
   line-height: 21px;

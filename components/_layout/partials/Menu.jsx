@@ -74,7 +74,7 @@ export default function Menu({ ...props }) {
                       </Link>
                     </span>
                   )}
-                  {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+                  {/* {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
                     <div className="px-5 flex items-center">
                       <LangEn />{" "}
                       <span>
@@ -90,7 +90,7 @@ export default function Menu({ ...props }) {
                         />
                       </span>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             ) : (

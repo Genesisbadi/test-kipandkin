@@ -7,12 +7,14 @@ import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 
-const StickyShareButtons = dynamic(() => import('sharethis-reactjs').then(mod => mod.StickyShareButtons), {
-  ssr: false,  // This line ensures that the component is only loaded on the client side.
-}); 
+const StickyShareButtons = dynamic(
+  () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
+  {
+    ssr: false, // This line ensures that the component is only loaded on the client side.
+  }
+);
 
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
-
 
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
@@ -47,7 +49,6 @@ export default function OfferDetails({ page }) {
     import("react-slick").then((module) => module.default)
   );
 
-
   const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
   const { description, image, venues } = data.main;
@@ -55,7 +56,6 @@ export default function OfferDetails({ page }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues[0]);
   const [accordionOpen, setAccordionOpen] = useState(false);
-
 
   useEffect(() => {
     setCurrentVenue(venues[0]);
@@ -81,34 +81,44 @@ export default function OfferDetails({ page }) {
 
   const accordion = () => {
     setAccordionOpen(!accordionOpen);
-  }
-
+  };
 
   var settings = {
     dots: page?.data?.main?.images?.length < 2 ? false : true,
     infinite: page?.data?.main?.images?.length < 2 ? false : true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1,  
-    arrows: false, 
-    autoplay: true, 
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: true, 
-    appendDots: dots => (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 15, position: "absolute", bottom: 30, left: 0, right: 0, zIndex: "20", margin: "0px", listStyle: "none", padding: "0px",
-         }}> 
-            {dots}
-        </div> 
-    ), 
-    customPaging: i => (
+    pauseOnHover: true,
+    appendDots: (dots) => (
       <div
-        className="text-[14px] font-tenor text-primary font-bold cursor-pointer indent-[-9999px] rounded-full w-[10px] h-[10px] bg-white"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 15,
+          position: "absolute",
+          bottom: 30,
+          left: 0,
+          right: 0,
+          zIndex: "20",
+          margin: "0px",
+          listStyle: "none",
+          padding: "0px",
+        }}
       >
+        {dots}
+      </div>
+    ),
+    customPaging: (i) => (
+      <div className="text-[14px] font-tenor text-primary font-bold cursor-pointer indent-[-9999px] rounded-full w-[10px] h-[10px] bg-white">
         {i + 1}
       </div>
-    )
-  }; 
-
+    ),
+  };
 
   return (
     <article className="bg-[#F1F1F1]">
@@ -141,24 +151,22 @@ export default function OfferDetails({ page }) {
                   options={offersCategories?.map((item, index) => ({
                     label: item?.name,
                     value: item?.id,
-                  }))} 
+                  }))}
                 />
-              </div> 
+              </div>
             )}
-    
+
             {page?.data?.main?.images && (
               <>
-    
-                <Slider className={`offer-slider relative mb-[30px]`} {...settings}>
+                <Slider
+                  className={`offer-slider relative mb-[30px]`}
+                  {...settings}
+                >
                   {page?.data?.main?.images.map((item, index) => (
                     <div key={index}>
-                      <Image
-                        src={item}
-                        width={1200}
-                        height={450}  
-                      /> 
+                      <Image src={item} width={1200} height={450} />
                     </div>
-                  ))} 
+                  ))}
                 </Slider>
               </>
             )}
@@ -209,9 +217,6 @@ export default function OfferDetails({ page }) {
             </>
           </>
         )}
-
-        
-          
       </div>
 
       {showLazy && (
@@ -245,18 +250,40 @@ export default function OfferDetails({ page }) {
               </div>
               {page?.data?.main?.terms_condition && (
                 <div className="py-[15px] container">
-                  <div className={`accordion-header select-none flex justify-between cursor-pointer items-center py-[15px] px-[15px] border-b-[1px] border-[#ccc] border-t-[1px] border-[#ccc] ${accordionOpen ? 'bg-white' : ''}`} onClick={accordion}>
-                    <h2 className="text-primary font-bold text-[20px] font-tenor" >Terms & Condition</h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-5 h-5 transition ${accordionOpen ? 'rotate-180' : 'rotate-0'} `}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg> 
-
+                  <div
+                    className={`accordion-header select-none flex justify-between cursor-pointer items-center py-[15px] px-[15px] border-b-[1px] border-[#ccc] border-t-[1px] border-[#ccc] ${
+                      accordionOpen ? "bg-white" : ""
+                    }`}
+                    onClick={accordion}
+                  >
+                    <h2 className="text-primary font-bold text-[20px] font-tenor">
+                      Terms & Condition
+                    </h2>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className={`w-5 h-5 transition ${
+                        accordionOpen ? "rotate-180" : "rotate-0"
+                      } `}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
                   </div>
 
                   {accordionOpen && (
                     <div className="content py-[15px] bg-[#fff] py-[30px] px-[15px]">
-                      <div dangerouslySetInnerHTML={{ __html: page?.data?.main?.terms_condition }}>
-                      </div>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: page?.data?.main?.terms_condition,
+                        }}
+                      ></div>
                     </div>
                   )}
                 </div>
@@ -273,45 +300,43 @@ export default function OfferDetails({ page }) {
         </>
       )}
 
-
-
       {currentUrl && showLazy && (
         <StickyShareButtons
-        config={{
-          alignment: 'left',    // alignment of buttons (left, right)
-          color: 'social',      // set the color of buttons (social, white)
-          enabled: true,        // show/hide buttons (true, false)
-          font_size: 16,        // font size for the buttons
-          hide_desktop: false,  // hide buttons on desktop (true, false)
-          labels: 'counts',     // button labels (cta, counts, null)
-          language: 'en',       // which language to use (see LANGUAGES)
-          min_count: 0,         // hide react counts less than min_count (INTEGER)
-          networks: [           // which networks to include (see SHARING NETWORKS)
-            'linkedin',
-            'facebook',
-            'twitter',
-            'email' 
-          ],
-          padding: 12,          // padding within buttons (INTEGER)
-          radius: 4,            // the corner radius on each button (INTEGER)
-          show_total: true,     // show/hide the total share count (true, false)
-          show_mobile: true,    // show/hide the buttons on mobile (true, false)
-          show_toggle: true,    // show/hide the toggle buttons (true, false)
-          size: 48,             // the size of each button (INTEGER)
-          top: 160,             // offset in pixels from the top of the page
-          min_count: 1,                    // (threshold for total share count to be displayed)
-          url: currentUrl, // (defaults to current url)
-          image: page?.data?.main?.images?.[0],  // (defaults to og:image or twitter:image)
-          description: page?.data?.main?.description,       // (defaults to og:description or twitter:description)
-          title: page?.title,            // (defaults to og:title or twitter:title)
-          message: `New Offer Deal from ${tenantDetails?.site_name}`,     // (only for email sharing) 
-          subject: "New Offer Deal" + page?.title,  // (only for email sharing)
-          // username: 'custom twitter handle' // (only for twitter sharing)
-        }}  
-      /> 
+          className="!z-[100]"
+          config={{
+            alignment: "left", // alignment of buttons (left, right)
+            color: "social", // set the color of buttons (social, white)
+            enabled: true, // show/hide buttons (true, false)
+            font_size: 16, // font size for the buttons
+            hide_desktop: false, // hide buttons on desktop (true, false)
+            labels: "counts", // button labels (cta, counts, null)
+            language: "en", // which language to use (see LANGUAGES)
+            min_count: 0, // hide react counts less than min_count (INTEGER)
+            networks: [
+              // which networks to include (see SHARING NETWORKS)
+              "linkedin",
+              "facebook",
+              "twitter",
+              "email",
+            ],
+            padding: 12, // padding within buttons (INTEGER)
+            radius: 4, // the corner radius on each button (INTEGER)
+            show_total: true, // show/hide the total share count (true, false)
+            show_mobile: true, // show/hide the buttons on mobile (true, false)
+            show_toggle: true, // show/hide the toggle buttons (true, false)
+            size: 48, // the size of each button (INTEGER)
+            top: 160, // offset in pixels from the top of the page
+            min_count: 1, // (threshold for total share count to be displayed)
+            url: currentUrl, // (defaults to current url)
+            image: page?.data?.main?.images?.[0], // (defaults to og:image or twitter:image)
+            description: page?.data?.main?.description, // (defaults to og:description or twitter:description)
+            title: page?.title, // (defaults to og:title or twitter:title)
+            message: `New Offer Deal from ${tenantDetails?.site_name}`, // (only for email sharing)
+            subject: "New Offer Deal" + page?.title, // (only for email sharing)
+            // username: 'custom twitter handle' // (only for twitter sharing)
+          }}
+        />
       )}
-  
-
     </article>
   );
 }

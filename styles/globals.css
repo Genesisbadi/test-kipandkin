@@ -15,7 +15,7 @@ body {
   font-family: "Gotham", sans-serif;
 }
 .react-datepicker-wrapper {
-  width: 100%; 
+  width: 100%;
 }
 
 .st-1 #header .active::after {
@@ -31,7 +31,7 @@ body {
 
 .font-domine {
   font-family: "Domine", sans-serif;
-} 
+}
 .font-tenor {
   font-family: "Tenor", sans-serif;
 }
@@ -97,7 +97,6 @@ body {
     display: none;
   }
 
- 
   .connections .even img {
     max-width: 65px;
   }
@@ -430,39 +429,41 @@ p {
   @apply right-0;
 }
 
-
 /* .offer-slider .slick-active {
   @apply border-[1px] border-solid border-[#fff] p-[3px];
 } */
 
-
 @keyframes rota2 {
   from {
-      transform: rotate(-225deg)
+    transform: rotate(-225deg);
   }
 
   to {
-      transform: rotate(-45deg)
+    transform: rotate(-45deg);
   }
 }
 
 @keyframes rota {
   from {
-      transform: rotate(-45deg)
+    transform: rotate(-45deg);
   }
 
   to {
-      transform: rotate(315deg)
+    transform: rotate(315deg);
   }
-}  
+}
 
 .offer-slider .slick-dots li {
-  @apply relative; 
+  @apply relative;
 }
 
 .offer-slider .slick-dots li {
   @apply border-[2px] transition border-solid border-transparent p-[3px] rounded-full;
 }
 .offer-slider .slick-dots .slick-active {
-    @apply border-[#fff] transition scale-125;
+  @apply border-[#fff] transition scale-125;
+}
+
+.st-sticky-share-buttons {
+  z-index: 100 !important;
 }
