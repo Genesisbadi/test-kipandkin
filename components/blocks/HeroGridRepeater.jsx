@@ -18,11 +18,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
             className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
           >
             <Image
-              src={
-                mediaHandler?.[`main.items.${index}.image`]?.[0]?.conversions
-                  .desktop ||
-                mediaHandler?.[`main.items.${index}.image`]?.[0]?.original
-              }
+              src={item?.image_file}
               width={500}
               height={500}
               alt={item.title}
@@ -34,9 +30,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
             >
               <h2
                 className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : ""
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
                 } hidden md:block text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
               >
                 {item.title}
