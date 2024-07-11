@@ -4,8 +4,10 @@ import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
 import { shallow } from "zustand/shallow";
+import dynamic from "next/dynamic";
 export default function GuestFeedbackForm({ form }) {
   const formData = formStore((state) => state);
+
   const [formSuccessInfo, setFormSuccessInfo] = useState(false);
   const captcha = globalState((state) => state.captcha);
   const [uploading, submitLoading] = formStore(
@@ -14,6 +16,13 @@ export default function GuestFeedbackForm({ form }) {
   );
   const sections = form?.fields?.blueprint?.schema?.sections || [];
   const [errors, setErrors] = useState([]);
+
+  const FormGenericNotification = dynamic(() =>
+    import("../notifications/FormGenericNotification").then(
+      (module) => module.default
+    )
+  );
+
   const findClass = (field) => {
     switch (field) {
       case "message":
@@ -22,6 +31,7 @@ export default function GuestFeedbackForm({ form }) {
         return "border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%]";
     }
   };
+
   const findWrapperClass = (field) => {
     switch (field) {
       case "message":
@@ -123,21 +133,8 @@ export default function GuestFeedbackForm({ form }) {
               </div>
             </form>
 
-            {formSuccessInfo && (
-              <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
-                <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
-                  <h2 className="text-2xl font-bold mb-4">Success!</h2>
-                  <p>{`Your inquiry has been received. We'll get back to you shortly.`}</p>
-                  <button
-                    onClick={(e) => {
-                      setFormSuccessInfo(false);
-                    }}
-                    className="min-w-[150px] mt-[30px] inline-block py-[8px] px-[20px] bg-primary text-[#fff] rounded-[30px] text-[14px] font-bold"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+            {formData?.formSuccessInfo && !formData.submitLoading && (
+              <FormGenericNotification />
             )}
           </Fragment>
         );

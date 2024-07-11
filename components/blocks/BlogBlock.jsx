@@ -156,7 +156,7 @@ export default function BlogBlock({ block }) {
       }
     };
 
-    getArticles(currentPage); 
+    getArticles(currentPage);
     truncateHTML();
   }, [currentPage, router, selectedCategory]);
 
@@ -224,7 +224,6 @@ export default function BlogBlock({ block }) {
                               />
                             </Link>
                           )}
-
 
                           {item?.attributes?.data?.main?.description && (
                             <>

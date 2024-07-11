@@ -4,6 +4,7 @@ import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
 import { shallow } from "zustand/shallow";
+import dynamic from "next/dynamic";
 export default function ProposalForm({ form }) {
   const formData = formStore((state) => state);
   const captcha = globalState((state) => state.captcha);
@@ -13,6 +14,11 @@ export default function ProposalForm({ form }) {
   );
   const sections = form?.fields?.blueprint?.schema?.sections || [];
   const [errors, setErrors] = useState([]);
+  const FormGenericNotification = dynamic(() =>
+    import("../notifications/FormGenericNotification").then(
+      (module) => module.default
+    )
+  );
   const findClass = (field) => {
     switch (field) {
       case "name":
@@ -27,15 +33,14 @@ export default function ProposalForm({ form }) {
       case "radio_list":
         return "cursor-pointer";
       case "event_type":
-        return ""
+        return "";
       case "country":
-        return ""
+        return "";
       default:
         return "border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%]";
     }
   };
   const findWrapperClass = (field) => {
-
     switch (field) {
       case "message":
       case "name":
@@ -95,7 +100,6 @@ export default function ProposalForm({ form }) {
                 </div>
               )}
 
-
               <div className="mt-[18px]">
                 {uploading || submitLoading ? (
                   <button
@@ -148,7 +152,7 @@ export default function ProposalForm({ form }) {
               </div> */}
             </form>
 
-            {formStore.getState().formSuccessInfo && (
+            {/* {formStore.getState().formSuccessInfo && (
               <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
                 <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
                   <h2 className="text-2xl font-bold mb-4">Success!</h2>
@@ -164,7 +168,10 @@ export default function ProposalForm({ form }) {
                   </button>
                 </div>
               </div>
-            )} 
+            )}  */}
+            {formData?.formSuccessInfo && !formData.submitLoading && (
+              <FormGenericNotification />
+            )}
           </Fragment>
         );
       })}

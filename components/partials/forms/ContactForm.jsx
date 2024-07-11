@@ -3,9 +3,9 @@ import { Fragment, useState, useEffect } from "react"; // Added useEffect
 import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
+import dynamic from "next/dynamic";
 export default function ContactForm({ form }) {
   const formData = formStore((state) => state);
-  const [formSuccessInfo, setFormSuccessInfo] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const captcha = globalState((state) => state.captcha);
   const showLazy = globalState((state) => state.showLazy);
@@ -19,6 +19,11 @@ export default function ContactForm({ form }) {
         return "";
     }
   };
+  const FormGenericNotification = dynamic(() =>
+    import("../notifications/FormGenericNotification").then(
+      (module) => module.default
+    )
+  );
 
   const findWrapperClass = (field) => {
     switch (field) {
@@ -33,12 +38,6 @@ export default function ContactForm({ form }) {
     }
   };
   const [token, setToken] = useState();
-
-  useEffect(() => {
-    if (formData?.formSuccessInfo) {
-      setFormSuccessInfo(true);
-    }
-  }, [formData?.formSuccessInfo]);
 
   return (
     <>
@@ -86,12 +85,11 @@ export default function ContactForm({ form }) {
                   {!showLazy ? (
                     <>
                       <div className="animate-pulse bg-[#ddd] min-h-[50px] w-full max-w-[250px] mb-[30px] p-[20px] flex items-center justify-center text-[#000] pointer-events-none select-none">
-                          Loading captcha
+                        Loading captcha
                       </div>
                     </>
                   ) : (
                     <>
-                    
                       <>
                         <RenderCaptcha setToken={setToken} />
                         {errors?.captcha_token && (
@@ -100,7 +98,6 @@ export default function ContactForm({ form }) {
                           </div>
                         )}
                       </>
-                    
                     </>
                   )}
                 </>
@@ -147,22 +144,9 @@ export default function ContactForm({ form }) {
           </Fragment>
         );
       })}
-      {formSuccessInfo && (
-        <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
-            <h2 className="text-2xl font-bold mb-4">Success!</h2>
-            <p>{`Your inquiry has been received. We'll get back to you shortly.`}</p>
-            <button
-              onClick={(e) => {
-                setFormSuccessInfo(false);
-              }}
-              className="min-w-[150px] mt-[30px] inline-block py-[8px] px-[20px] bg-primary text-[#fff] rounded-[30px] text-[14px] font-bold"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+    {formData?.formSuccessInfo && !formData.submitLoading && (
+      <FormGenericNotification />
+    )}
     </>
   );
 }
