@@ -97,7 +97,7 @@ export default function ExperiencePage({ page }) {
         />
       )}
 
-      {page?.data?.main?.button_items.length > 0 && (
+      {page?.data?.main?.button_items?.length > 0 && (
         <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mb-[30px]">
           <div className="flex flex-wrap justify-center ">
             {page?.data?.main?.button_items?.map((item, index) => (
