@@ -1,5 +1,21 @@
 
 
+## [0.4.0](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/compare/0.3.0...0.4.0) (2024-07-11)
+
+
+### Features
+
+* added accordion block ([cf46627](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/cf46627dc7d6f6b41181732b889ff531a8f4034f))
+* added embed code block ([6222842](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/6222842a915addff5761dac1579bf572d3c92722))
+* added experience page, refactor ([17e82d9](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/17e82d96f1d5de74da399bc47d576c92558ae311))
+* added guest feedback block ([cd790cf](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/cd790cf6b70dad5982b3ae9ed2c7c20e83d65136))
+
+
+### Bug Fixes
+
+* offers query params default. ([d2f21a9](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/d2f21a972dacae8cdfdad170fecb158c2e61c070))
+* preview ([895d46f](https://bitbucket.org/halcyonlaravel/discovery-hospitality-revamp/commit/895d46f6e8cc65da170f43db0c0b26181f7af1d4))
+
 ## 0.3.0 (2024-05-23)
 
 
