@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,8 +63,7 @@ export default function BlogBlock({ block }) {
     setCurrentPage(initialPage);
   }, []);
 
-  const filterByCategory = (e) => {
-    // if (!selectedCategory) {
+  const filterByCategory = useCallback((e) => {
     if (e?.target?.getAttribute("id")) {
       NProgress.start();
       router
@@ -78,8 +77,7 @@ export default function BlogBlock({ block }) {
           NProgress.done();
         });
     }
-    // }
-  };
+  }, []);
 
   useEffect(() => {
     if (articles.length > 0) {
@@ -158,7 +156,7 @@ export default function BlogBlock({ block }) {
 
     getArticles(currentPage);
     truncateHTML();
-  }, [currentPage, router, selectedCategory]);
+  }, [currentPage, router, selectedCategory, articles, filterByCategory]);
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
