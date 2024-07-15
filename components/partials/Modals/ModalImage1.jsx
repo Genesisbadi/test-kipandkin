@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
 import Slick from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -170,12 +170,12 @@ export default function ModalImage1({ ...props }) {
     }
     document.body.style.overflow = "unset";
   };
-
-  const closeOnEsc = (event) => {
+  const closeOnEsc = useCallback((event) => {
     if (event.key === "Escape" || event.keyCode === 27) {
       closedPopup();
     }
-  };
+  }, []);
+
   useEffect(() => {
     document.addEventListener("keydown", closeOnEsc);
 
@@ -198,7 +198,7 @@ export default function ModalImage1({ ...props }) {
         </React.StrictMode>
       );
     }
-  }, [isOpen]);
+  }, [isOpen, closeOnEsc]);
 
   return (
     <>

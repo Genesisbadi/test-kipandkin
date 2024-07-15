@@ -22,7 +22,7 @@ export default function FooterJuicer() {
             <Script src="https://assets.juicer.io/embed.js" />
             <div className="container">
               <h2 className="font-tenor text-center hidden md:block text-primary text-[25px] mb-[30px]">
-                Let's Get Social!
+                {`Let's Get Social!`}
               </h2>
               <div id="instafeed">
                 <ul
