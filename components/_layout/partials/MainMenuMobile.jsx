@@ -305,7 +305,7 @@ export default function MainMenuMobile({ ...props }) {
                   height={54}
                   alt="Site Logo"
                   priority={true}
-                  className="w-auto h-auto max-w-[90px]"
+                  className="w-auto h-auto max-w-[90px] max-h-[50px]"
                 />
                 <span
                   className="cursor-pointer relative top-[0]"
