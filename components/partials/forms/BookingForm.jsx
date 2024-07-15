@@ -45,8 +45,13 @@ export default function BookingForm({ ...props }) {
 
   const { page, blocks } = props;
 
-  const disabledTypes = ["offers", "blog", "meetings-events-suites"];
-  const disabledBlocks = ["Title"];
+  // const disabledTypes = ["offers", "blog", "meetings-events-suites"];
+  // const disabledBlocks = ["Title"];
+  const disabledTypes = useMemo(
+    () => ["offers", "blog", "meetings-events-suites"],
+    []
+  );
+  const disabledBlocks = useMemo(() => ["Title"], []);
 
   const { booking_id } = globalData.tenantDetails.data.main;
 

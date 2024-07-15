@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import { useMobileDetector } from "@/lib/services/isMobileDetect.js";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export default function BookingFormFake({ ...props }) {
   const isMobile = useMobileDetector();
@@ -17,8 +17,11 @@ export default function BookingFormFake({ ...props }) {
   );
 
   const { page, blocks } = props;
-  const disabledTypes = ["offers", "blog"];
-  const disabledBlocks = ["Title"];
+  const disabledTypes = useMemo(
+    () => ["offers", "blog", "meetings-events-suites"],
+    []
+  );
+  const disabledBlocks = useMemo(() => ["Title"], []);
   useEffect(() => {
     setIsFloat(true);
     disabledBlocks.forEach((blockName) => {
