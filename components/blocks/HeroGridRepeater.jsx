@@ -35,6 +35,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               >
                 {item.title}
               </h2>
+
               {item.description && (
                 <div
                   className="text-[14px] mb-[30px] grow leading-[21px]  "
@@ -47,7 +48,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                   href={item.link}
                   target={item.link.includes("http:") ? "_blank" : "_self"}
                 >
-                  Discover More
+                  {item?.button_label ? item?.button_label : "Discover More"}
                 </Link>
               </div>
             </div>
