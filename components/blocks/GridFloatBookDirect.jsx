@@ -77,7 +77,7 @@ export default function GridFloatBookDirect({ block }) {
                       />
                       <div className="flex flex-col relative bg-black/[0.4] min-h-[300px] lg:min-h-[500px] px-[40px] py-[30px]">
                         <div
-                          className="grow relative text-[14px] flex"
+                          className="grow relative text-[14px]"
                           dangerouslySetInnerHTML={{
                             __html: item?.description,
                           }}
