@@ -63,21 +63,24 @@ export default function BlogBlock({ block }) {
     setCurrentPage(initialPage);
   }, []);
 
-  const filterByCategory = useCallback((e) => {
-    if (e?.target?.getAttribute("id")) {
-      NProgress.start();
-      router
-        .push(`/blog?category=${e.target.getAttribute("id")}`)
-        .then(() => {
-          setSelectedCategory(e.target.getAttribute("id"));
-          setCurrentPage(1);
-          NProgress.done();
-        })
-        .catch(() => {
-          NProgress.done();
-        });
-    }
-  }, []);
+  const filterByCategory = useCallback(
+    (e) => {
+      if (e?.target?.getAttribute("id")) {
+        NProgress.start();
+        router
+          .push(`/blog?category=${e.target.getAttribute("id")}`)
+          .then(() => {
+            setSelectedCategory(e.target.getAttribute("id"));
+            setCurrentPage(1);
+            NProgress.done();
+          })
+          .catch(() => {
+            NProgress.done();
+          });
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     if (articles.length > 0) {

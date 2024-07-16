@@ -5,6 +5,7 @@ import globalState from "@/lib/store/globalState";
 import diningEntriesData from "@/lib/preBuildScripts/static/dining.json";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
+import styles from "@/styles/description.module.css";
 
 import dynamic from "next/dynamic";
 export default function DiningPage({ page }) {
@@ -122,7 +123,7 @@ export default function DiningPage({ page }) {
                       dangerouslySetInnerHTML={{
                         __html: description,
                       }}
-                      className="text-[14px] leading-[25px]"
+                      className={`text-[14px] leading-[25px] ${styles.description}`}
                     />
                   )}
                 </div>
