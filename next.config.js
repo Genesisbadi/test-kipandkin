@@ -26,8 +26,42 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        source: "/(.*)",
         headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY", // This prevents the site from being framed
+          },
+          {
+            key: "Permissions-Policy",
+            value: "geolocation=(), microphone=()", // Customize the permissions as needed
+          },
+          {
+            key: "Content-Security-Policy",
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.discoveryhotels-resorts.com/;
+              style-src 'self' 'unsafe-inline' https://www.discoveryhotels-resorts.com/;
+              img-src 'self' data:;
+              connect-src 'self' https://discoverysuites.haspcms.net;
+              font-src 'self' https://fonts.gstatic.com;
+              object-src 'none';
+              frame-ancestors 'none';
+              base-uri 'self';
+              form-action 'self';
+              upgrade-insecure-requests;
+            `
+              .replace(/\s{2,}/g, " ")
+              .trim(),
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload", // Customize as per your requirement
+          },
+          {
+            key: "X-Robots-Tag",
+            value: "",
+          },
           {
             key: "Cache-control",
             value: "public, max-age=31536000, immutable",

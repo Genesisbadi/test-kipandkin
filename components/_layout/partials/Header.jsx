@@ -3,7 +3,6 @@ import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.js
 import tenantMetatags from "@/lib/preBuildScripts/static/tenantMetatags.json";
 import { useEffect, useState } from "react";
 export default function Header({ meta, page }) {
-
   const [currentUrl, setCurrentUrl] = useState();
   const findMeta = (type) => {
     switch (type) {
@@ -50,6 +49,8 @@ export default function Header({ meta, page }) {
       {/* META KEYWORDS */}
       <meta name="keywords" content={findMeta("keywords")} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <meta name="robots" content="all" />
 
       {currentUrl && <meta property="og:url" content={window.location.href} />}
 
