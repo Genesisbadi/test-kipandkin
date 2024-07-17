@@ -1,18 +1,16 @@
 "use client";
 
-import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import persistentStore from "@/lib/store/persistentStore";
 import Link from "next/link";
 import globalState from "@/lib/store/globalState";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-
+import menus from "@/lib/preBuildScripts/static/headerMenu.json";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
-
+import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 export default function Menu({ ...props }) {
   const ready = globalState((state) => state.ready);
-  const { tenantDetails, menus, locales } = globalData;
   const { parentNodes, nodes } = menus;
 
   const isMobile = useMobileDetector();
@@ -117,7 +115,7 @@ export default function Menu({ ...props }) {
               }`}
             >
               <Image
-                src={tenantDetails?.data?.main?.tenant_logo}
+                src={tenantDetails?.tenant_logo}
                 width={154}
                 height={50}
                 className={`h-full object-contain max-w-[112px] md:max-w-[154px] w-full`}

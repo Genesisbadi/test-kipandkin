@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import dynamic from "next/dynamic";
 
-import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import config from "site.config";
 
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 import globalState from "@/lib/store/globalState";
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function BookingForm({ ...props }) {
   const showLazy = globalState((state) => state.showLazy);
@@ -53,7 +53,7 @@ export default function BookingForm({ ...props }) {
   );
   const disabledBlocks = useMemo(() => ["Title"], []);
 
-  const { booking_id } = globalData.tenantDetails.data.main;
+  const { booking_id } = tenantDetailsMain;
 
   const { bookingUrl } = config;
 

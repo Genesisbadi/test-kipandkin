@@ -159,7 +159,13 @@ export default function BlogBlock({ block }) {
 
     getArticles(currentPage);
     truncateHTML();
-  }, [currentPage, router, selectedCategory, articles, filterByCategory]);
+  }, [
+    currentPage,
+    router,
+    selectedCategory,
+    articles.length,
+    filterByCategory,
+  ]);
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">

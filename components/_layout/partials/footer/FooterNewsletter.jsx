@@ -1,6 +1,6 @@
-import globalData from "@/lib/preBuildScripts/static/globalData.json";
 import Link from "next/link";
 import FORMAPI from "@/lib/api/forms/request";
+import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
@@ -8,7 +8,6 @@ export default function FooterNewsletter() {
   const SectionAccordion = dynamic(() =>
     import("@/components/partials/collapsibles/SectionAccordion")
   );
-  const { tenantDetails } = globalData;
 
   const [errors, setErrors] = useState({});
   const [isSending, setIsSending] = useState(false);
@@ -140,7 +139,7 @@ export default function FooterNewsletter() {
                 htmlFor="agree"
                 className="pl-[20px] block leading-4  select-none cursor-pointer"
               >
-                I agree to the {tenantDetails.name}{" "}
+                I agree to the {tenantDetails?.site_name}{" "}
                 <span>
                   <Link
                     className="text-primary hover:underline"

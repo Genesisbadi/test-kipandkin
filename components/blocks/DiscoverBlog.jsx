@@ -20,7 +20,7 @@ export default function DiscoverBlog({ block }) {
     const currentSlideTitle = document.querySelector(".current-slide-title");
     currentSlideTitle.innerHTML = blogEntries[0].title;
     setCurrentLink(blogEntries[0].route_url);
-  }, []);
+  }, [blogEntries]);
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
