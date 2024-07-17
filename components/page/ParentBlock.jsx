@@ -37,11 +37,10 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
   }
   // useEffect(() => {
   //   if (blocks?.length <= initialBlocks) {
-  //     console.log('trueeee', blocks?.length, initialBlocks)
   //     globalState.setState({ showLazy: true });
   //   }
   // }, [blocks, initialBlocks]);
-  return ( 
+  return (
     <>
       {activeBlocks?.map((block) => {
         const Component = components[block?.key];

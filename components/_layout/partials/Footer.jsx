@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function Footer() {
-  console.log("tenantDetailsMain", tenantDetailsMain);
   const showLazy = globalState((state) => state.showLazy);
   const FooterDestinations = dynamic(() =>
     import("@/components/_layout/partials/footer/FooterDestinations")

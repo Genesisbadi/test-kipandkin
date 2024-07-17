@@ -4,7 +4,6 @@ export default function Input(props) {
   const { options, multiple = false, state_name } = props;
   const values = formStore((state) => state[state_name]) || null;
 
-  console.log('values', values)
   const onChange = (value) => {
     if (multiple) {
       formStore.setState({ [state_name]: value?.map((n) => n.value) });
