@@ -1,42 +1,37 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import offersCategoryTaxonomies from "@/lib/preBuildScripts/static/offers-category.json";
 import dynamic from "next/dynamic";
-import NProgress from "nprogress";
 import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
-
+import Router from "next/router";
+import NProgress from "nprogress";
 export default function Block({ block }) {
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
 
   const { title, description } = block.main;
-  const offersCategories = filteredOffersCategory();
-  const router = useRouter();
 
+  const offersCategories = filteredOffersCategory();
+
+  const all = {
+    value: "",
+    name: "All",
+  };
+
+  offersCategories.unshift(all);
+
+  const router = useRouter();
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState({
-    label: "All",
-    value: "",
-  });
 
-  useEffect(() => {
-    if (router?.query?.category) {
-      const initialCategory = offersCategories.find(
-        (item) => item.id === router.query.category
-      );
-      if (initialCategory) {
-        setSelectedCategory({
-          label: initialCategory.name,
-          value: initialCategory.id,
-        });
-      }
-    }
-  }, [router.query.category, offersCategories]);
+  const [initialCategory, setInitialCategory] = useState();
+
+  const [selectedCategory, setSelectedCategory] = useState();
 
   const handleCategoryChange = (selectedOption) => {
     NProgress.start();
@@ -48,6 +43,7 @@ export default function Block({ block }) {
     router
       .push(`/${router?.query?.id}?category=${selectedOption.value || ""}`)
       .then(() => {
+        setSelectedCategory(e.target.getAttribute("id"));
         setCurrentPage(1);
         NProgress.done();
       })
@@ -56,28 +52,53 @@ export default function Block({ block }) {
       });
   };
 
-  const getOffers = useCallback(async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `${
-          process.env.NEXT_PUBLIC_TENANT_API
-        }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
-          selectedCategory.value || ""
-        }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
-      );
-      setOffers(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-      setLoading(false);
-    }
-    NProgress.done();
-  }, [currentPage, selectedCategory]);
-
   useEffect(() => {
+    let findInitial = null;
+
+    findInitial = offersCategories[0];
+
+    if (router?.query?.category) {
+      findInitial = offersCategories.find(
+        (item) => item.id === router.query.category
+      );
+    }
+    setInitialCategory(findInitial);
+
+    setSelectedCategory({
+      label: findInitial?.name,
+      value: findInitial?.id,
+    });
+
+    const getOffers = async () => {
+      setLoading(true);
+
+      try {
+        const response = await axios.get(
+          `${
+            process.env.NEXT_PUBLIC_TENANT_API
+          }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
+            selectedCategory?.value || ""
+          }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
+        );
+        setOffers(response.data);
+        if (response.status === 200) {
+          setLoading(false);
+          NProgress.done();
+        }
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+        NProgress.done();
+        setLoading(false);
+      }
+    };
+
     getOffers();
-  }, [getOffers]);
+  }, [currentPage, router]);
+
+  const getDefaultValue = () => ({
+    label: selectedCategory?.label,
+    value: selectedCategory?.value,
+  });
 
   return (
     <section className="bg-[#F1F1F1] pb-[30px]">
@@ -85,7 +106,7 @@ export default function Block({ block }) {
         <div className="pb-[20px] md:pb-[40px]">
           <h2
             className={`${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
+              process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
             } text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]`}
           >
             {title}
@@ -94,11 +115,12 @@ export default function Block({ block }) {
             Select Category:
           </div>
           <CustomSelect
+            // value={selectedCategory}
             isSearchable={false}
             className="react-select z-30"
-            defaultValue={selectedCategory}
+            defaultValue={getDefaultValue()}
             onChange={handleCategoryChange}
-            options={offersCategories.map((item) => ({
+            options={offersCategories?.map((item, index) => ({
               label: item?.name,
               value: item?.id,
             }))}
@@ -120,9 +142,11 @@ export default function Block({ block }) {
                 >
                   <div className="h-6 max-w-[50%] bg-gray-300 animate-pulse mb-[15px]"></div>
                   <div className="min-h-[300px] bg-gray-300 animate-pulse mb-[30px]"></div>
+
                   <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
                   <div className="h-[15px] bg-gray-300 animate-pulse mb-[10px]"></div>
                   <div className="h-[15px] bg-gray-300 animate-pulse mb-[30px]"></div>
+
                   <div className="h-[15px] bg-gray-300 animate-pulse max-w-[250px]"></div>
                 </div>
               ))}
@@ -141,34 +165,54 @@ export default function Block({ block }) {
                     const post_date = date.toLocaleDateString("en-US", options);
 
                     const summary = item?.attributes?.data?.main?.summary;
-                    let firstParagraph = summary;
-                    if (!firstParagraph) {
+
+                    let firstParagraph = null;
+
+                    if (summary) {
+                      firstParagraph = summary;
+                    } else {
                       const paragraphs =
                         item?.attributes?.data?.main?.description.split(/\n+/);
+
                       firstParagraph = paragraphs.find(
                         (paragraph) => paragraph.trim() !== ""
                       );
                     }
-
                     return (
                       <div
                         key={index}
-                        className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px] flex flex-col justify-between"
+                        className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
                         <div className="bg-secondary h-full relative flex flex-col">
                           {item?.attributes?.data?.main?.members_badge && (
-                            <div className="absolute top-[-20px] w-full flex justify-center mb-[-15px] text-[14px]">
-                              <div className="max-w-[150px] relative">
-                                <div className="text-center relative bg-primary text-xs text-white px-[20px] py-[7px] z-20">
-                                  <span className="relative z-[2]">
-                                    Members Only
-                                  </span>
+                            // <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
+                            //   <div className="max-w-[150px] relative">
+                            //     <div className="absolute triangle-left"></div>
+                            //     <div className="absolute triangle-right"></div>
+
+                            //     <div className="text-center relative  bg-primary text-xs text-white px-[20px] pt-[7px] pb-[0] z-20">
+                            //       <span className="relative z-[2]">
+                            //         Members Only
+                            //       </span>
+                            //       <div className="absolute w-[65px] h-[15px] text-center left-[1px] bottom-[-3px] bg-primary rotate-[5deg]"></div>
+                            //       <div className="absolute w-[65px] h-[15px] text-center right-[1px] bottom-[-3px] bg-primary rotate-[-5deg]"></div>
+                            //     </div>
+                            //   </div>
+                            // </div>
+                            <>
+                              <div className="absolute top-[-20px] w-full flex justify-center mb-[-15px] text-[14px]">
+                                <div className="max-w-[150px] relative">
+                                  <div className="text-center relative  bg-primary text-xs text-white px-[20px] py-[7px] z-20">
+                                    <span className="relative z-[2]">
+                                      Members Only
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </>
                           )}
                           <div className="relative w-full min-h-[160px] flex-grow p-[20px] z-10">
-                            <h3 className="text-[#f5f5f5] text-[20px] mb-[10px] font-tenor">
+                            <h3 className="text-[#f5f5f5] text-[20px]  mb-[10px] font-tenor">
                               <Link href={item.attributes.route_url}>
                                 {item?.attributes?.title
                                   ?.split(" ")
