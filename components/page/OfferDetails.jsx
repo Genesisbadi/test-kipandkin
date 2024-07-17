@@ -164,7 +164,12 @@ export default function OfferDetails({ page }) {
                 >
                   {page?.data?.main?.images.map((item, index) => (
                     <div key={index}>
-                      <Image src={item} width={1200} height={450} />
+                      <Image
+                        src={item}
+                        width={1200}
+                        height={450}
+                        alt={page?.title}
+                      />
                     </div>
                   ))}
                 </Slider>

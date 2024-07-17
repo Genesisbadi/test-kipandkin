@@ -1,8 +1,9 @@
 import globalState from "@/lib/store/globalState";
-import globalData from "../../../lib/preBuildScripts/static/globalData.json";
 import dynamic from "next/dynamic";
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function Footer() {
+  console.log("tenantDetailsMain", tenantDetailsMain);
   const showLazy = globalState((state) => state.showLazy);
   const FooterDestinations = dynamic(() =>
     import("@/components/_layout/partials/footer/FooterDestinations")
@@ -53,7 +54,7 @@ export default function Footer() {
                 <div className="copy-right text-center md:text-left order-1 md:order-[-2]">
                   <p className="text-[12px] uppercase">
                     &copy; {new Date().getFullYear()}{" "}
-                    {globalData.tenantDetails.name}. All rights reserved
+                    {tenantDetailsMain.site_name}. All rights reserved
                   </p>
                 </div>
                 <FooterSocial />
@@ -62,7 +63,6 @@ export default function Footer() {
           </div>
         </>
       )}
-      
     </footer>
   );
 }

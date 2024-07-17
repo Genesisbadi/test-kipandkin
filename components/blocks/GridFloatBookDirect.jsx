@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import globalData from "@/lib/preBuildScripts/static/globalData.json";
+import callToActions from "@/lib/preBuildScripts/static/tenantDetailsCallToActions.json";
 import SectionAccordion from "../partials/collapsibles/SectionAccordion";
 export default function GridFloatBookDirect({ block }) {
-  const { block_title, items } = globalData.tenantDetails.data.call_to_actions;
+  const { block_title, items } = callToActions;
   const gridItems = block.main.items;
   return (
     <section className="md:py-[58px] overflow-hidden">

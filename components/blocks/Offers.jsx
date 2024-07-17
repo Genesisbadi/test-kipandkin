@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,6 +52,29 @@ export default function Block({ block }) {
       });
   };
 
+  const getOffers = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      const response = await axios.get(
+        `${
+          process.env.NEXT_PUBLIC_TENANT_API
+        }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
+          selectedCategory?.value || ""
+        }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
+      );
+      setOffers(response.data);
+      if (response.status === 200) {
+        setLoading(false);
+        NProgress.done();
+      }
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      NProgress.done();
+      setLoading(false);
+    }
+  }, [currentPage, selectedCategory]);
+
   useEffect(() => {
     let findInitial = null;
 
@@ -69,29 +92,6 @@ export default function Block({ block }) {
       value: findInitial?.id,
     });
 
-    const getOffers = async () => {
-      setLoading(true);
-
-      try {
-        const response = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_TENANT_API
-          }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
-            selectedCategory?.value || ""
-          }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
-        );
-        setOffers(response.data);
-        if (response.status === 200) {
-          setLoading(false);
-          NProgress.done();
-        }
-      } catch (error) {
-        console.error("Error fetching articles:", error);
-        NProgress.done();
-        setLoading(false);
-      }
-    };
-
     getOffers();
   }, [currentPage, router]);
 
@@ -106,9 +106,7 @@ export default function Block({ block }) {
         <div className="pb-[20px] md:pb-[40px]">
           <h2
             className={`${
-              process.env.NEXT_PUBLIC_TEMPLATE == 1
-                ? "font-tenor"
-                : " "
+              process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
             } text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]`}
           >
             {title}
@@ -155,12 +153,12 @@ export default function Block({ block }) {
             </div>
           ) : (
             <div>
-              {offers && offers.data.length > 0 ? ( 
+              {offers && offers.data.length > 0 ? (
                 <div className="flex flex-wrap py-[30px] gap-y-[30px] mx-[-15px]">
                   {offers.data.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
                     const options = {
-                      year: "numeric", 
+                      year: "numeric",
                       month: "short",
                       day: "numeric",
                     };
@@ -240,10 +238,13 @@ export default function Block({ block }) {
                             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
                             {item?.attributes?.data?.main?.featured_image && (
                               <Image
-                                src={item.attributes.data.main.featured_image || item?.attributes?.data?.main?.images?.[0]}
+                                src={
+                                  item.attributes.data.main.featured_image ||
+                                  item?.attributes?.data?.main?.images?.[0]
+                                }
                                 className="w-full min-h-[300px] object-cover"
                                 width={500}
-                                height={200} 
+                                height={200}
                                 alt={item?.attributes?.title}
                               />
                             )}

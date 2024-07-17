@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import globalData from "../../../lib/preBuildScripts/static/globalData.json";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
