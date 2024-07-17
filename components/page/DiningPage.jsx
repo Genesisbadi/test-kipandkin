@@ -215,7 +215,7 @@ export default function DiningPage({ page }) {
             page?.data?.featured_offers?.offer_items.length > 0 && (
               <div
                 className={`w-full bg-[#f1f1f1] lg:pb-[20px] ${
-                  !gallery_images ? "pt-[20px] lg:pt-[50px]" : ""
+                  gallery_images.length === 0 ? "pt-[20px] lg:pt-[50px]" : ""
                 }`}
               >
                 <div className="container pb-[20px] !max-w-[980px] mx-auto">
