@@ -23,10 +23,10 @@ export default function OurCollection({ block, mediaHandler }) {
                 className="w-full h-[400px] object-cover"
               />
               <div className="flex flex-col absolute w-full h-full items-center justify-center z-[2]">
-                <span className="text-white font-[700] text-[20px] pb-[20px]">
+                <h2 className="text-white font-[700] text-[20px] pb-[20px] px-[15px] text-center">
                   {item?.title}
-                </span>
-                <div className="flex flex-col 2sm:flex-row gap-y-3 2sm:gap-y-0 gap-x-5 px-3 w-full justify-center">
+                </h2>
+                <div className="flex flex-col xl:flex-row gap-3 gap-x-5 px-3 w-full justify-center">
                   {item?.data.main.book_now_button_link && (
                     <Link
                       target="_blank"
@@ -38,7 +38,7 @@ export default function OurCollection({ block, mediaHandler }) {
                   )}
                   <Link
                     href={item?.route_url}
-                    className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] text-white border border-white py-[20px] px-[30px] hover:bg-white hover:text-secondary uppercase`}
+                    className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] border border-white py-[20px] px-[30px] text-secondary lg:text-white bg-[#fff] bg-opacity-80 lg:bg-transparent hover:bg-[#fff] hover:text-secondary uppercase`}
                   >
                     More Details
                   </Link>
