@@ -5,13 +5,20 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  domains: ["res.cloudinary.com"],
   images: {
     loader: "custom",
-    loaderFile: "./components/partials/ImageLoader.jsx",
+    loaderFile: "./lib/utils/cloudinaryLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",
         hostname: process.env.NEXT_PUBLIC_TENANT_S3_HOSTNAME,
+        port: "",
+        pathname: `/**`,
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
         port: "",
         pathname: `/**`,
       },
