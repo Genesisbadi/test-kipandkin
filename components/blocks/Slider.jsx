@@ -5,6 +5,8 @@ import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
+import { getCldImageUrl } from "next-cloudinary";
+import customGetCldImageUrl from "@/lib/utils/cloudinaryLoader";
 export default function Slider({ block, mediaHandler }) {
   const [isMobile, setIsMobile] = useState(useMobileDetector());
   const linkElementRef = useRef(null);
@@ -126,56 +128,70 @@ export default function Slider({ block, mediaHandler }) {
     <div className="block-slider slider relative">
       {slider_items && slider_items.length > 0 && (
         <Slick {...settings}>
-          {slider_items?.map((item, index) => (
-            <div className="w-full relative" key={index}>
-              <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-              <picture>
-                <source
-                  media="(min-width: 415px)"
-                  srcSet={item?.image_desktop}
-                />
-                <source
-                  media="(max-width: 414px)"
-                  srcSet={item?.image_mobile}
-                />
-                <Image
-                  src={item?.image_mobile}
-                  alt={item?.title || "Slider Image"}
-                  width={1920}
-                  height={750}
-                  className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
-                  loading="eager"
-                />
-              </picture>
+          {slider_items?.map((item, index) => {
+            const desktop_img = customGetCldImageUrl({
+              width: 1920,
+              height: 812,
+              src: item?.image_desktop,
+            });
+            const laptop_image = customGetCldImageUrl({
+              width: 1350,
+              height: 812,
+              src: item?.image_desktop,
+            });
 
-              <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
-                {item?.title && (
-                  <div
-                    className={`text-center leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor mb-[30px] md:mb-[30px]`}
-                  >
-                    {item?.title}
-                  </div>
-                )}
-                {item?.description && (
-                  <div
-                    className="mb-[15px] text-center"
-                    dangerouslySetInnerHTML={{ __html: item?.description }}
+            const mobile_image = customGetCldImageUrl({
+              width: 414,
+              height: 526,
+              src: item?.image_desktop,
+            });
+
+            return (
+              <div className="w-full relative" key={index}>
+                <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+                <picture>
+                  <source media="(min-width: 415px)" srcSet={laptop_image} />
+                  <source media="(min-width: 1351px)" srcSet={desktop_img} />
+                  <source media="(max-width: 414px)" srcSet={mobile_image} />
+                  <Image
+                    src={mobile_image}
+                    alt={item?.title || "Slider Image"}
+                    width={1920}
+                    height={750}
+                    className="absolute z-[-1] top-0 left-0 h-full w-full object-cover"
+                    loading="eager"
                   />
-                )}
+                </picture>
 
-                {item?.url && (
-                  <Link
-                    className="text-[14px] uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
-                    href={item?.url}
-                  >
-                    {process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "Discover More"
-                      : "Learn More"}
-                  </Link>
-                )}
+                <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+                  {item?.title && (
+                    <div
+                      className={`text-center leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor mb-[30px] md:mb-[30px]`}
+                    >
+                      {item?.title}
+                    </div>
+                  )}
+                  {item?.description && (
+                    <div
+                      className="mb-[15px] text-center"
+                      dangerouslySetInnerHTML={{ __html: item?.description }}
+                    />
+                  )}
+
+                  {item?.url && (
+                    <Link
+                      className="text-[14px] uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                      href={item?.url}
+                    >
+                      {process.env.NEXT_PUBLIC_TEMPLATE == 1
+                        ? "Discover More"
+                        : "Learn More"}
+                    </Link>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </Slick>
       )}
     </div>
