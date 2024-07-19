@@ -34,10 +34,21 @@ export default function Slider({ block, mediaHandler }) {
         linkElement.as = "image";
         document.head.appendChild(linkElement);
         linkElementRef.current = linkElement;
+
         if (window.innerWidth <= 414) {
-          preloadImg = slider_items[0]?.image_mobile;
+          preloadImg = getCloudfrontUrl({
+            src: slider_items[0]?.image_mobile,
+            width: 1920,
+            height: 812,
+            quality: 75,
+          });
         } else {
-          preloadImg = slider_items[0]?.image_desktop;
+          preloadImg = getCloudfrontUrl({
+            src: slider_items[0]?.image_desktop,
+            width: 1920,
+            height: 812,
+            quality: 75,
+          });
         }
 
         if (preloadImg) {
