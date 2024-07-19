@@ -49,6 +49,7 @@ export default function Menu({ ...props }) {
                   {tenantDetails?.data?.main?.email && (
                     <span className="px-[5px]">
                       <Link
+                        prefetch={false}
                         className="flex items-center hover:opacity-[.5]"
                         aria-label={`Email ${tenantDetails?.data?.main?.email}`}
                         href={`mailto:${tenantDetails?.data?.main?.email}`}
@@ -62,6 +63,7 @@ export default function Menu({ ...props }) {
                   {tenantDetails?.data?.main?.phone && (
                     <span className="px-[5px]">
                       <Link
+                        prefetch={false}
                         className="flex items-center hover:opacity-[.5]"
                         aria-label={`Call ${tenantDetails?.data?.main?.phone}`}
                         href={`mailto:${tenantDetails?.data?.main?.phone}`}
@@ -109,6 +111,7 @@ export default function Menu({ ...props }) {
             }`}
           >
             <Link
+              prefetch={false}
               href="/"
               className={`h-full block ${
                 process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "py-[5px]" : ""

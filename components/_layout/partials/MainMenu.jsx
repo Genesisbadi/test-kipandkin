@@ -65,6 +65,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
+                      prefetch={false}
                       className={`${
                         item?.url.includes(router.asPath) &&
                         router.asPath != "/" &&
@@ -161,6 +162,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                   ) : (
                     <>
                       <Link
+                        prefetch={false}
                         id={`nav-link-${item?.id}`}
                         className={`relative nav-link text-primary flex items-center uppercase ${
                           item?.url?.includes(router.query["id"])
@@ -206,6 +208,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                 ) : (
                   <>
                     <Link
+                      prefetch={false}
                       id={`nav-link-${item?.id}`}
                       className={`nav-link text-primary relative flex flex-wrap items-center uppercase hover:text-[#000] ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
