@@ -50,11 +50,12 @@ export default function CallToActions({ block }) {
                     )}
                     <span className="mr-[15px] min-w-[60px] min-h-[60px] w-[60px] h-[60px] p-[5px] rounded-full flex items-center justify-center bg-[#ddd7cc] group-hover:bg-primary ">
                       {showLazy && (
-                          <Image
+                        <Image
                           src={item.icon}
                           width={35}
                           height={35}
-                          alt="What Guests Love?"
+                          alt={item.title}
+                          title={item.title}
                           className={`w-[35px] h-[35px] object-contain transition ${
                             process.env.NEXT_PUBLIC_TEMPLATE == 1
                               ? "group-hover:!invert-[100%] group-hover:!contrast-[100%] group-hover:!brightness-[100%]"

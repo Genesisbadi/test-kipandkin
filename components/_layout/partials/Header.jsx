@@ -35,6 +35,13 @@ export default function Header({ meta, page }) {
     quality: 75,
   });
 
+  const favicon = getCloudfrontUrl({
+    src: findMeta("favicon"),
+    width: 1200,
+    height: 630,
+    quality: 75,
+  });
+
   const imageType = () => {
     const image = meta?.image || tenantMetatags?.image;
     const arr = image ? image?.split(".") : null;
@@ -48,8 +55,14 @@ export default function Header({ meta, page }) {
   return (
     <Head>
       {/* META FAVICON */}
-      {currentUrl && <link rel="canonical" href={window.location.href} />}
-      <link rel="icon" href={findMeta("favicon")} />
+      {currentUrl && (
+        <>
+          <link rel="canonical" href={window.location.href} />
+          <link rel="alternate" hreflang="en-ph" href={window.location.href} />
+        </>
+      )}
+
+      <link rel="icon" href={favicon} />
 
       {/* META TITLE */}
       <title>{findMeta("title")}</title>

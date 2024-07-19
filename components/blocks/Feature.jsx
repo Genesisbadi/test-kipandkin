@@ -30,6 +30,7 @@ export default function Feature({ block }) {
                   width={900}
                   className="w-full h-full object-cover"
                   alt={title}
+                  title={title}
                 />
               )}
               {video_link && !image && (

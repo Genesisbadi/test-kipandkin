@@ -121,6 +121,7 @@ export default function Menu({ ...props }) {
                 className={`h-full object-contain max-w-[112px] md:max-w-[154px] w-full`}
                 priority={true}
                 alt={tenantDetails.name || "Logo"}
+                title={tenantDetails.name || "Logo"}
               />
             </Link>
           </div>

@@ -22,6 +22,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               width={500}
               height={500}
               alt={item.title}
+              title={item.title}
               className="w-full h-[300px] object-cover"
             />
 

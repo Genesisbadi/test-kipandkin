@@ -163,6 +163,7 @@ export default function Slider({ block, mediaHandler }) {
                   <source media="(max-width: 414px)" srcSet={mobile_image} />
                   <Image
                     src={mobile_image}
+                    title={item?.title || "Slider Image"}
                     alt={item?.title || "Slider Image"}
                     width={1920}
                     height={750}
