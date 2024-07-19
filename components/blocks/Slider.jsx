@@ -151,8 +151,14 @@ export default function Slider({ block, mediaHandler }) {
                 <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
                 <picture>
                   <source media="(min-width: 415px)" srcSet={laptop_image} />
-                  <source media="(min-width: 1351px)" srcSet={desktop_img} />
-                  <source media="(max-width: 414px)" srcSet={mobile_image} />
+                  <source
+                    media="(min-width: 1351px)"
+                    srcSet={item?.image_desktop}
+                  />
+                  <source
+                    media="(max-width: 414px)"
+                    srcSet={item?.image_mobile}
+                  />
                   <Image
                     src={mobile_image}
                     alt={item?.title || "Slider Image"}

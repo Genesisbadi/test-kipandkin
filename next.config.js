@@ -8,8 +8,9 @@ const nextConfig = {
   domains: ["res.cloudinary.com"],
   images: {
     loader: "custom",
+    loaderFile: "./lib/utils/cloudfrontLoader.jsx",
     // loaderFile: "./lib/utils/cloudinaryLoader.jsx",
-    loaderFile: "./components/partials/ImageLoader.jsx",
+    // loaderFile: "./components/partials/ImageLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",
@@ -19,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "d3s2eyc2s4knf3.cloudfront.net",
         port: "",
         pathname: `/**`,
       },
