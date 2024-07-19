@@ -8,7 +8,8 @@ const nextConfig = {
   domains: ["res.cloudinary.com"],
   images: {
     loader: "custom",
-    loaderFile: "./lib/utils/cloudinaryLoader.jsx",
+    // loaderFile: "./lib/utils/cloudinaryLoader.jsx",
+    loaderFile: "./components/partials/ImageLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",
