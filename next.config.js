@@ -9,8 +9,6 @@ const nextConfig = {
   images: {
     loader: "custom",
     loaderFile: "./lib/utils/cloudfrontLoader.jsx",
-    // loaderFile: "./lib/utils/cloudinaryLoader.jsx",
-    // loaderFile: "./components/partials/ImageLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",

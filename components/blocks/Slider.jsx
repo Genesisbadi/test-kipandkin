@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 import { getCldImageUrl } from "next-cloudinary";
 import customGetCldImageUrl from "@/lib/utils/cloudinaryLoader";
+import getCloudfrontUrl from "@/lib/utils/cloudfrontLoader";
 export default function Slider({ block, mediaHandler }) {
   const [isMobile, setIsMobile] = useState(useMobileDetector());
   const linkElementRef = useRef(null);
@@ -129,36 +130,26 @@ export default function Slider({ block, mediaHandler }) {
       {slider_items && slider_items.length > 0 && (
         <Slick {...settings}>
           {slider_items?.map((item, index) => {
-            const desktop_img = customGetCldImageUrl({
+            const desktop_image = getCloudfrontUrl({
+              src: item?.image_desktop,
               width: 1920,
               height: 812,
-              src: item?.image_desktop,
-            });
-            const laptop_image = customGetCldImageUrl({
-              width: 1350,
-              height: 812,
-              src: item?.image_desktop,
+              quality: 75,
             });
 
-            const mobile_image = customGetCldImageUrl({
-              width: 414,
-              height: 526,
-              src: item?.image_desktop,
+            const mobile_image = getCloudfrontUrl({
+              src: item?.image_mobile,
+              width: 1920,
+              height: 812,
+              quality: 75,
             });
 
             return (
               <div className="w-full relative" key={index}>
                 <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
                 <picture>
-                  <source media="(min-width: 415px)" srcSet={laptop_image} />
-                  <source
-                    media="(min-width: 1351px)"
-                    srcSet={item?.image_desktop}
-                  />
-                  <source
-                    media="(max-width: 414px)"
-                    srcSet={item?.image_mobile}
-                  />
+                  <source media="(min-width: 415px)" srcSet={desktop_image} />
+                  <source media="(max-width: 414px)" srcSet={mobile_image} />
                   <Image
                     src={mobile_image}
                     alt={item?.title || "Slider Image"}
