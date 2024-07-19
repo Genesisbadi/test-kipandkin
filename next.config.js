@@ -7,7 +7,8 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     loader: "custom",
-    loaderFile: "./components/partials/ImageLoader.jsx",
+    // loaderFile: "./components/partials/ImageLoader.jsx",
+    loaderFile: "./lib/utils/cloudfrontLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",

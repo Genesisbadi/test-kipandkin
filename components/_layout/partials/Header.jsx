@@ -2,6 +2,9 @@ import Head from "next/head";
 import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 import tenantMetatags from "@/lib/preBuildScripts/static/tenantMetatags.json";
 import { useEffect, useState } from "react";
+
+import getCloudfrontUrl from "@/lib/utils/cloudfrontLoader";
+
 export default function Header({ meta, page }) {
   const [currentUrl, setCurrentUrl] = useState();
   const findMeta = (type) => {
@@ -24,6 +27,13 @@ export default function Header({ meta, page }) {
         return page?.type;
     }
   };
+
+  const metaImg = getCloudfrontUrl({
+    src: findMeta("image"),
+    width: 1200,
+    height: 630,
+    quality: 75,
+  });
 
   const imageType = () => {
     const image = meta?.image || tenantMetatags?.image;
@@ -77,11 +87,11 @@ export default function Header({ meta, page }) {
       <meta
         name="secure_url"
         property="og:image:secure_url"
-        content={findMeta("image")}
+        content={metaImg}
       />
-      <meta name="twitter:image" content={findMeta("image")} />
-      <meta name="image" property="og:image" content={findMeta("image")} />
-      <meta name="og:image" property="og:image" content={findMeta("image")} />
+      <meta name="twitter:image" content={metaImg} />
+      <meta name="image" property="og:image" content={metaImg} />
+      <meta name="og:image" property="og:image" content={metaImg} />
 
       {/* META TYPES */}
       <meta name="type" property="og:image:type" content={imageType()} />
