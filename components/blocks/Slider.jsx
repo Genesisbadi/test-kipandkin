@@ -5,8 +5,6 @@ import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
-import { getCldImageUrl } from "next-cloudinary";
-import customGetCldImageUrl from "@/lib/utils/cloudinaryLoader";
 import getCloudfrontUrl from "@/lib/utils/cloudfrontLoader";
 export default function Slider({ block, mediaHandler }) {
   const [isMobile, setIsMobile] = useState(useMobileDetector());

@@ -16,9 +16,6 @@ const StickyShareButtons = dynamic(
 
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
-import customGetCldImageUrl from "@/lib/utils/cloudinaryLoader";
-import { CldImage } from "next-cloudinary";
-
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
 
@@ -166,14 +163,6 @@ export default function OfferDetails({ page }) {
                   {...settings}
                 >
                   {page?.data?.main?.images.map((item, index) => {
-                    const img = customGetCldImageUrl({
-                      src: item,
-                      width: 1200,
-                      height: 450,
-                      crop: "crop",
-                    });
-
-                    console.log("img", img);
                     return (
                       <div key={index}>
                         <Image
