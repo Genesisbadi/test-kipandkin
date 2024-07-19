@@ -18,9 +18,7 @@ const OurCollectionPage = dynamic(() =>
 );
 
 const ParentBlock = dynamic(() =>
-  import("../../components/page/ParentBlock").then(
-    (module) => module.default
-  )
+  import("../../components/page/ParentBlock").then((module) => module.default)
 );
 
 const MeetingsEventsPage = dynamic(() =>
