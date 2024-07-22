@@ -28,7 +28,10 @@ export default function Slider({ block, mediaHandler }) {
       linkElement.rel = "preload";
       let preloadImg;
 
-      if (linkElement) {
+      if (
+        linkElement &&
+        (slider_items[0]?.image_mobile || slider_items[0]?.image_desktop)
+      ) {
         linkElement.as = "image";
         document.head.appendChild(linkElement);
         linkElementRef.current = linkElement;
