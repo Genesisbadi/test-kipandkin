@@ -109,6 +109,7 @@ export default function DynamicPage({ page, blocks }) {
       break;
     default:
       ComponentToRender = ParentBlock;
+      break;
   }
   return (
     <>
