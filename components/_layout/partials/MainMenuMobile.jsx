@@ -102,7 +102,7 @@ export default function MainMenuMobile({ ...props }) {
         id={`child-${id}`}
       >
         <div
-          className="flex text-primary select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+          className="flex cursor-pointer text-primary select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
           id={id}
           onClick={() => {
             const parentObjects = findParentAndSiblings(parentNodes, item.id);
@@ -134,32 +134,49 @@ export default function MainMenuMobile({ ...props }) {
             key={index}
             id={item?.id}
             parent={"parent-nodes"}
-            onClick={() => {
-              const parentObjects = findParentAndSiblings(parentNodes, item.id);
-              if (item?.children.length > 0) {
-                const current = document.querySelector(".current");
-                current.classList.remove("current");
-                const newCurrent = document.querySelector(`#child-${item.id}`);
-                newCurrent.classList.add("current");
-              } else {
-                NProgress.start();
-                router
-                  .push(`${item.url}`)
-                  .then(() => {
-                    NProgress.done();
-                  })
-                  .catch(() => {
-                    NProgress.done();
-                  });
-                closeMenu();
-              }
-            }}
           >
-            {item.label}
+            <span
+              onClick={() => {
+                if (
+                  item.url.includes("<nolink>") &&
+                  item?.children &&
+                  item?.children.length > 0
+                ) {
+                  const topLevel = document.querySelector(".current");
+                  topLevel.classList.remove("current");
+                  topLevel.classList.add("prev");
+                  const child = document.querySelector(`#child-${item.id}`);
+
+                  child.classList.add("current");
+                } else {
+                  NProgress.start();
+                  router
+                    .push(`${item.url}`)
+                    .then(() => {
+                      NProgress.done();
+                    })
+                    .catch(() => {
+                      NProgress.done();
+                    });
+                }
+              }}
+            >
+              {item.label}
+            </span>
             {item?.children && item?.children.length > 0 && (
-              <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
-                <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
-                <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
+              <div
+                className="flex flex-col justify-center items-center relative w-[15px] h-[17px]"
+                onClick={() => {
+                  const topLevel = document.querySelector(".current");
+                  topLevel.classList.remove("current");
+                  topLevel.classList.add("prev");
+                  const child = document.querySelector(`#child-${item.id}`);
+
+                  child.classList.add("current");
+                }}
+              >
+                <div className="w-[1px] border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-main-black group-hover:border-main-red" />
+                <div className="w-[1px] border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red" />
               </div>
             )}
           </div>
@@ -330,38 +347,58 @@ export default function MainMenuMobile({ ...props }) {
                     if (item.label.toLowerCase() !== "reservations") {
                       return (
                         <div
-                          className="select-none flex justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+                          className="select-none cursor-pointer flex items-center justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
                           key={index}
                           id={item?.id}
-                          onClick={() => {
-                            if (item?.children && item?.children.length > 0) {
-                              const topLevel =
-                                document.querySelector(".current");
-                              topLevel.classList.remove("current");
-                              topLevel.classList.add("prev");
-                              const child = document.querySelector(
-                                `#child-${item.id}`
-                              );
-
-                              child.classList.add("current");
-                            } else {
-                              NProgress.start();
-                              router
-                                .push(`${item.url}`)
-                                .then(() => {
-                                  NProgress.done();
-                                })
-                                .catch(() => {
-                                  NProgress.done();
-                                });
-                            }
-                          }}
                         >
-                          {item.label}
+                          <span
+                            onClick={() => {
+                              if (
+                                item.url.includes("<nolink>") &&
+                                item?.children &&
+                                item?.children.length > 0
+                              ) {
+                                const topLevel =
+                                  document.querySelector(".current");
+                                topLevel.classList.remove("current");
+                                topLevel.classList.add("prev");
+                                const child = document.querySelector(
+                                  `#child-${item.id}`
+                                );
+
+                                child.classList.add("current");
+                              } else {
+                                NProgress.start();
+                                router
+                                  .push(`${item.url}`)
+                                  .then(() => {
+                                    NProgress.done();
+                                  })
+                                  .catch(() => {
+                                    NProgress.done();
+                                  });
+                              }
+                            }}
+                          >
+                            {item.label}
+                          </span>
                           {item?.children && item?.children.length > 0 && (
-                            <div className="flex flex-col justify-center items-center relative mr-[10px] w-0 h-[17px]">
-                              <div className="w-full border-[#555] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-t-[1.8px] border-main-black group-hover:border-main-red"></div>
-                              <div className="w-full border-[#555] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-r-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red"></div>
+                            <div
+                              className="flex flex-col justify-center items-center relative w-[15px] h-[17px]"
+                              onClick={() => {
+                                const topLevel =
+                                  document.querySelector(".current");
+                                topLevel.classList.remove("current");
+                                topLevel.classList.add("prev");
+                                const child = document.querySelector(
+                                  `#child-${item.id}`
+                                );
+
+                                child.classList.add("current");
+                              }}
+                            >
+                              <div className="border-[#555] w-[1px] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-main-black group-hover:border-main-red" />
+                              <div className="border-[#555] w-[1px] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red" />
                             </div>
                           )}
                         </div>
