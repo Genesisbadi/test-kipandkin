@@ -189,6 +189,7 @@ export default function Slider({ block, mediaHandler }) {
                     <Link
                       className="text-[14px] uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
                       href={item?.url}
+                      prefetch={false}
                     >
                       {process.env.NEXT_PUBLIC_TEMPLATE == 1
                         ? "Discover More"
