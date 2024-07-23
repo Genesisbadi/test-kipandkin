@@ -1,7 +1,5 @@
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
-import Script from "next/script";
-
 const NextTopLoader = dynamic(() =>
   import("nextjs-toploader").then((module) => module.default)
 );
@@ -22,6 +20,8 @@ export default function DefaultLayout(props) {
 
   const Footer = dynamic(() => import("@/layout/partials/Footer"));
 
+  const CookieBot = dynamic(() => import("../partials/consent/CookieBot"));
+
   return (
     <>
       <Menu page={page} blocks={blocks} />
@@ -39,22 +39,7 @@ export default function DefaultLayout(props) {
         <>{showLazy && <Footer />}</>
       )}
 
-      {showLazy && (
-        <>
-          <Script
-            id="Cookiebot"
-            src="https://consent.cookiebot.com/uc.js"
-            data-cbid="7054889a-af36-421c-a37f-2093f8f0e978"
-            data-blockingmode="auto"
-            type="text/javascript"
-          />
-          <Script
-            id="CookieDeclaration"
-            src="https://consent.cookiebot.com/7054889a-af36-421c-a37f-2093f8f0e978/cd.js"
-            type="text/javascript"
-          />
-        </>
-      )}
+      {showLazy && <CookieBot />}
 
       {showLazy && (
         <NextTopLoader
