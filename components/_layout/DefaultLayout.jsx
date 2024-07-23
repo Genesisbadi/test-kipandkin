@@ -33,7 +33,11 @@ export default function DefaultLayout(props) {
         {props.children}
       </main>
 
-      {blocks.length <= 2 ? <Footer /> : <>{showLazy && <Footer />}</>}
+      {blocks && blocks?.length <= 2 ? (
+        <Footer />
+      ) : (
+        <>{showLazy && <Footer />}</>
+      )}
 
       {showLazy && (
         <>
