@@ -467,3 +467,8 @@ p {
 .st-sticky-share-buttons {
   z-index: 100 !important;
 }
+
+.CookieDeclaration,
+.CookieDeclarationType {
+  display: none !important;
+}

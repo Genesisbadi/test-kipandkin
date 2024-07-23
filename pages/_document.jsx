@@ -11,18 +11,13 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
- 
+
         <link
           rel="preload"
           as="font"
           href="/fonts/Gotham-Book.woff2"
           type="font/woff"
           crossOrigin="anonymous"
-        /> 
-
-        <link
-          rel="preconnect"
-          href="https://haspcms-discovery-suites.s3.ap-southeast-1.amazonaws.com"
         />
 
         <style
