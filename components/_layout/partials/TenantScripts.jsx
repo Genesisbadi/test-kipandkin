@@ -1,66 +1,78 @@
-import tenantScripts from "@/lib/preBuildScripts/static/tenantScripts.json";
-import Head from "next/head";
-import { useEffect, useState } from "react";
+// import tenantScripts from "@/lib/preBuildScripts/static/tenantScripts.json";
+import globalState from "@/lib/store/globalState";
+import { useCallback, useEffect, useState } from "react";
 
 export default function TenantScripts() {
   const [scripts, setScripts] = useState([]);
+  const showLazy = globalState((state) => state.showLazy);
+  const [tags, setTags] = useState([]);
 
-  const tags = tenantScripts;
+  const loadScriptData = useCallback(async () => {
+    if (showLazy) {
+      const scripts = (
+        await import("@/lib/preBuildScripts/static/tenantScripts.json")
+      ).default;
+      setTags(scripts);
+    }
+  });
 
   useEffect(() => {
     const extractScripts = (htmlString) => {
       const scriptRegex = /<script\b([^>]*)>([\s\S]*?)<\/script>/gm;
       let match;
       while ((match = scriptRegex.exec(htmlString)) !== null) {
-        const scriptTag = match[0];
         const scriptAttrs = match[1];
         const scriptContent = match[2];
 
         const srcMatch = scriptAttrs.match(/src=["']([^"']+)["']/);
         const scriptSrc = srcMatch ? srcMatch[1] : null;
-        setScripts((prevScripts) => {
-          return [...prevScripts, { src: scriptSrc, content: scriptContent }];
-        });
+
+        setScripts((prevScripts) => [
+          ...prevScripts,
+          { src: scriptSrc, content: scriptContent },
+        ]);
       }
     };
 
-    tags?.map((item) => {
+    tags?.forEach((item) => {
       extractScripts(item?.code);
     });
   }, [tags]);
 
-  const uniqueArray = scripts.filter((value, index) => {
-    const _value = JSON.stringify(value);
-    return (
-      index ===
-      scripts.findIndex((obj) => {
-        return JSON.stringify(obj) === _value;
-      })
-    );
-  });
+  useEffect(() => {
+    loadScriptData();
+    if (showLazy) {
+      const existingScripts = Array.from(document.scripts).map((script) => ({
+        src: script.src,
+        content: script.innerText,
+      }));
 
-  uniqueArray.forEach((script) => {
-    if (script.content) {
-      const inlineScript = document.createElement("script");
-      inlineScript.text = script.content;
-      document.body.appendChild(inlineScript);
+      const uniqueArray = scripts.filter((script) => {
+        if (script.src) {
+          return !existingScripts.some(
+            (existingScript) => existingScript.src === script.src
+          );
+        } else {
+          return !existingScripts.some(
+            (existingScript) => existingScript.content === script.content
+          );
+        }
+      });
+
+      uniqueArray.forEach((script) => {
+        const inlineScript = document.createElement("script");
+        inlineScript.classList.add("third-party");
+
+        if (script.content) {
+          inlineScript.text = script.content;
+          document.head.appendChild(inlineScript);
+        } else if (script.src) {
+          inlineScript.src = script.src;
+          document.head.appendChild(inlineScript);
+        }
+      });
     }
-  });
+  }, [scripts, loadScriptData]);
 
-  return (
-    <>
-      <Head>
-        <>
-          {uniqueArray.map((script, index) => (
-            <script
-              async
-              className="third-party"
-              key={index}
-              src={script.src || ""}
-            />
-          ))}
-        </>
-      </Head>
-    </>
-  );
+  return null;
 }

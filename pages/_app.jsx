@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 import dynamic from "next/dynamic";
 import ShowLazy from "@/lib/services/showLazy";
+import Header from "@/layout/partials/Header";
 export default function App({ Component, pageProps }) {
   const TenantScripts = dynamic(() =>
     import("@/layout/partials/TenantScripts")
@@ -16,13 +17,14 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+      <Header page={page} meta={page?.metaData} />
       <div className={`text-[#555] text-[16px] flex flex-col min-h-[102vh]`}>
         <DefaultLayout page={page} blocks={blocks}>
           <Component {...pageProps} />
         </DefaultLayout>
       </div>
 
-      {showLazy && <TenantScripts />}
+      <TenantScripts />
     </>
   );
 }
