@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
         </DefaultLayout>
       </div>
 
-      {showLazy && <TenantScripts />}
+      <TenantScripts />
     </>
   );
 }
