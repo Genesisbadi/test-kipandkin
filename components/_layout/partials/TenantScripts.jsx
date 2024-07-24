@@ -39,6 +39,14 @@ export default function TenantScripts() {
     );
   });
 
+  uniqueArray.forEach((script) => {
+    if (script.content) {
+      const inlineScript = document.createElement("script");
+      inlineScript.text = script.content;
+      document.body.appendChild(inlineScript);
+    }
+  });
+
   return (
     <>
       <Head>
@@ -49,8 +57,7 @@ export default function TenantScripts() {
               className="third-party"
               key={index}
               src={script.src || ""}
-              dangerouslySetInnerHTML={{ __html: script.content }}
-            ></script>
+            />
           ))}
         </>
       </Head>
