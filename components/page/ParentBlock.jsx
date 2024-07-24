@@ -71,7 +71,6 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
           })}
         </>
       )}
-      <Header page={page} meta={page?.metaData || {}} />
     </>
   );
 }
