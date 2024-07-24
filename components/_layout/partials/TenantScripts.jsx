@@ -24,7 +24,7 @@ export default function TenantScripts() {
       }
     };
 
-    tags.map((item) => {
+    tags?.map((item) => {
       extractScripts(item?.code);
     });
   }, [tags]);
