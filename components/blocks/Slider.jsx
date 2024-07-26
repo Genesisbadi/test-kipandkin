@@ -194,9 +194,10 @@ export default function Slider({ block, mediaHandler }) {
                       href={item?.url}
                       prefetch={false}
                     >
-                      {process.env.NEXT_PUBLIC_TEMPLATE == 1
-                        ? "Discover More"
-                        : "Learn More"}
+                      {item?.button_label ||
+                        (process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "Discover More"
+                          : "Learn More")}
                     </Link>
                   )}
                 </div>
