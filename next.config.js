@@ -2,6 +2,19 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+const runtimeCaching = require("next-pwa/cache");
+
+// Configuration object tells the next-pwa plugin
+const withPWA = require("next-pwa")({
+  dest: "public",
+  sw: "service-worker.js",
+  register: true,
+  disable: process.env.NODE_ENV === "development",
+  skipWaiting: true,
+  runtimeCaching,
+  buildExcludes: [/middleware-manifest.json$/],
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -107,4 +120,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = withPWA(nextConfig);

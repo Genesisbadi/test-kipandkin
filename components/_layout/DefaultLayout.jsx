@@ -21,6 +21,7 @@ export default function DefaultLayout(props) {
   const Footer = dynamic(() => import("@/layout/partials/Footer"));
 
   const CookieBot = dynamic(() => import("../partials/consent/CookieBot"));
+  const InstallButton = dynamic(() => import("../partials/InstallButton"));
 
   return (
     <>
@@ -57,6 +58,8 @@ export default function DefaultLayout(props) {
           showAtBottom={false}
         />
       )}
+
+      {showLazy && <InstallButton />}
 
       {showLazy && <BackTop />}
     </>
