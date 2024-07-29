@@ -1,8 +1,10 @@
 import { Html, Head, Main, NextScript } from "next/document";
-export default function Document() {
+
+export default function Document({ isNoIndex }) {
   return (
     <Html lang="en">
       <Head>
+        {isNoIndex && <meta name="robots" content="noindex" />}
         <link
           rel="preload"
           as="font"
@@ -10,7 +12,6 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
-
         <link
           rel="preload"
           as="font"
@@ -18,7 +19,6 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
-
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -65,3 +65,15 @@ export default function Document() {
     </Html>
   );
 }
+
+Document.getInitialProps = async (ctx) => {
+  const initialProps = await ctx.defaultGetInitialProps(ctx);
+  const isNoIndex = ctx.req
+    ? ctx.req.headers.host.startsWith("new.discoveryhotels-resorts.com")
+    : false;
+
+  return {
+    ...initialProps,
+    isNoIndex,
+  };
+};
