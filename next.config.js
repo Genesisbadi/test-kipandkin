@@ -19,9 +19,9 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    loader: "custom",
+    // loader: "custom",
     // loaderFile: "./components/partials/ImageLoader.jsx",
-    loaderFile: "./lib/utils/cloudfrontLoader.jsx",
+    // loaderFile: "./lib/utils/cloudfrontLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",
@@ -31,7 +31,13 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "https://d3s2eyc2s4knf3.cloudfront.net",
+        hostname: "haspcms-discovery-suites.s3.ap-southeast-1.amazonaws.com",
+        port: "",
+        pathname: `/**`,
+      },
+      {
+        protocol: "https",
+        hostname: "d3s2eyc2s4knf3.cloudfront.net",
         port: "",
       },
       {
