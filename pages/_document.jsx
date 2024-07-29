@@ -69,7 +69,7 @@ export default function Document({ isNoIndex }) {
 Document.getInitialProps = async (ctx) => {
   const initialProps = await ctx.defaultGetInitialProps(ctx);
   const isNoIndex = ctx.req
-    ? ctx.req.headers.host.startsWith("new.discoveryhotels-resorts.com")
+    ? ctx?.req?.headers?.host?.startsWith("new.discoveryhotels-resorts.com")
     : false;
 
   return {
