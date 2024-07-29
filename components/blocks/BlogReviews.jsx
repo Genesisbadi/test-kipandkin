@@ -11,7 +11,7 @@ export default function BlogReviews({ block }) {
   const [nav2, setNav2] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [activeItem, setActiveItem] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);  
+  const [currentIndex, setCurrentIndex] = useState(0);
   let sliderRef1 = useRef(null);
   let sliderRef2 = useRef(null);
 
@@ -131,7 +131,7 @@ export default function BlogReviews({ block }) {
         </svg>
       </div>
     );
-  }; 
+  };
 
   var settings = {
     dots: false,
@@ -159,7 +159,6 @@ export default function BlogReviews({ block }) {
     arrows: false,
   };
 
-
   var popupSettings = {
     dots: false,
     infinite: true,
@@ -172,13 +171,13 @@ export default function BlogReviews({ block }) {
     arrows: true,
     nextArrow: <PopupNext />,
     prevArrow: <PopupPrev />,
-  }; 
+  };
 
   const readMore = (index) => {
     setCurrentIndex(index);
     setActiveItem(reviewItems[index]);
     setShowPopup(true);
-  }; 
+  };
   return (
     <section className="flex flex-wrap mb-[5px]">
       <SectionAccordion
@@ -254,8 +253,12 @@ export default function BlogReviews({ block }) {
           </div>
         </div>
       </SectionAccordion>
-      <SectionAccordion className="lg:max-w-[50%] w-full" title="Reviews">
-        <div className="bg-[#f5f5f5]">
+      <SectionAccordion
+        className="lg:max-w-[50%] w-full flex flex-col"
+        childrenClassname="h-full"
+        title="Reviews"
+      >
+        <div className="bg-[#f5f5f5] h-full">
           <Image
             src={block?.main?.reviews_image}
             width={900}
@@ -274,10 +277,10 @@ export default function BlogReviews({ block }) {
               <Slick className="" {...settings}>
                 {reviewItems.map((item, index) => {
                   const truncatedDescription = item.data.main.description
-                  .replace(/<[^>]*>/g, "")
-                  .slice(0, 150);
-                const shortDesc = truncatedDescription + "..."; 
-                  return(
+                    .replace(/<[^>]*>/g, "")
+                    .slice(0, 150);
+                  const shortDesc = truncatedDescription + "...";
+                  return (
                     <div className="px-[60px] " key={index}>
                       {item.data.main.description && (
                         <>
@@ -306,10 +309,10 @@ export default function BlogReviews({ block }) {
                                 __html: `${item.data.main.description}`,
                               }}
                             />
-                          )} 
+                          )}
                         </>
-                      )} 
-  
+                      )}
+
                       <div className="flex flex-wrap text-[14px]">
                         {item.data.main.name && (
                           <span>{item?.data?.main?.name},</span>
@@ -340,15 +343,13 @@ export default function BlogReviews({ block }) {
                         </div>
                       )}
                     </div>
-                  )
+                  );
                 })}
               </Slick>
             </div>
           )}
         </div>
       </SectionAccordion>
-
-
 
       {showPopup && (
         <div
