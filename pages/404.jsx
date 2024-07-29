@@ -15,8 +15,7 @@ export default function Custom404() {
         <title>Page not Found</title>
       </Head>
       <div
-        className={`bg-gray-100 flex p-[30px] lg:p-[50px] xl:p-[100px] bg-cover items-center text-white relative min-h-screen ${montserrat.className}`}
-        style={{ backgroundImage: "url('/images/404.webp')" }}
+        className={`bg-gray-100 flex p-[30px] lg:p-[50px] xl:p-[100px] bg-cover items-center text-white relative min-h-screen bg-[url('/images/404-mobile.webp')] md:bg-[url('/images/404.webp')] ${montserrat.className}`}
       >
         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-50 z-0" />
         <div className="max-w-[1140px] w-full mx-auto relative">
