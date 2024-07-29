@@ -2,6 +2,7 @@ import Head from "next/head";
 import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 import tenantMetatags from "@/lib/preBuildScripts/static/tenantMetatags.json";
 import { useEffect, useState } from "react";
+import excludedDomains from "@/lib/excludeDomains/excludeDomains";
 
 import getCloudfrontUrl from "@/lib/utils/cloudfrontLoader";
 
@@ -54,7 +55,10 @@ export default function Header({ meta, page }) {
 
   return (
     <Head>
-      {/* META FAVICON */}
+      {currentUrl &&
+        excludedDomains.some((domain) => currentUrl.includes(domain)) && (
+          <meta name="robots" content="noindex" />
+        )}
       {currentUrl && (
         <>
           <link rel="canonical" href={window.location.href} />
@@ -72,8 +76,6 @@ export default function Header({ meta, page }) {
       {/* META KEYWORDS */}
       <meta name="keywords" content={findMeta("keywords")} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      <meta name="robots" content="all" />
 
       {currentUrl && <meta property="og:url" content={window.location.href} />}
 

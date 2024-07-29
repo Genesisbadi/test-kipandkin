@@ -25,15 +25,15 @@ export default function MeetingsEvensDetails({ page }) {
   );
 
   const showLazy = globalState((state) => state.showLazy);
-  
+
   const { title } = page;
   const { description, venues, buttons, gallery } = page.data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
-  const [currentVenue, setCurrentVenue] = useState(venues[0]);
+  const [currentVenue, setCurrentVenue] = useState(venues?.[0]);
 
   useEffect(() => {
-    setCurrentVenue(venues[0]);
+    setCurrentVenue(venues?.[0]);
   }, [venues]);
 
   const getDefaultValue = () => {
@@ -45,19 +45,38 @@ export default function MeetingsEvensDetails({ page }) {
       <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <picture>
-          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.mobile || page.mediaHandler["main.image"]?.[0].original} media="(max-width: 414px)" />
-          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.laptop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 415px)" />
-          <source srcSet={page.mediaHandler["main.image"]?.[0].conversions.desktop || page.mediaHandler["main.image"]?.[0].original} media="(min-width: 1366px)" />
-          <Image 
+          <source
+            srcSet={
+              page.mediaHandler["main.image"]?.[0].conversions.mobile ||
+              page.mediaHandler["main.image"]?.[0].original
+            }
+            media="(max-width: 414px)"
+          />
+          <source
+            srcSet={
+              page.mediaHandler["main.image"]?.[0].conversions.laptop ||
+              page.mediaHandler["main.image"]?.[0].original
+            }
+            media="(min-width: 415px)"
+          />
+          <source
+            srcSet={
+              page.mediaHandler["main.image"]?.[0].conversions.desktop ||
+              page.mediaHandler["main.image"]?.[0].original
+            }
+            media="(min-width: 1366px)"
+          />
+          <Image
             src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
             srcSet={`${page.mediaHandler["main.image"]?.[0].conversions.mobile} 414w, ${page.mediaHandler["main.image"]?.[0].conversions.laptop} 1365w, ${page.mediaHandler["main.image"]?.[0].conversions.desktop} 1920w`}
             size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
-            alt={title} 
-            width={1920} 
-            height={1080} 
-            className="w-full h-full object-cover absolute top-0 left-0" 
-            priority={true} />
-        </picture> 
+            alt={title}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover absolute top-0 left-0"
+            priority={true}
+          />
+        </picture>
         {title && (
           <div
             className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  text-white z-[3]`}
@@ -67,7 +86,6 @@ export default function MeetingsEvensDetails({ page }) {
         )}
       </div>
 
-      
       {!showLazy ? (
         <>
           <div className="container py-[20px] sm:py-[30px]">
@@ -89,14 +107,12 @@ export default function MeetingsEvensDetails({ page }) {
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}
-            {venues.length > 0 && (
+            {venues?.length > 0 && (
               <>
                 <label
                   htmlFor="select-property"
                   className={`${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   } block text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
                 >
                   Select Property:
@@ -109,7 +125,9 @@ export default function MeetingsEvensDetails({ page }) {
                   name="select-property"
                   defaultValue={getDefaultValue()}
                   onChange={(e) => {
-                    const curVenue = venues.find((obj) => obj.title === e.value);
+                    const curVenue = venues.find(
+                      (obj) => obj.title === e.value
+                    );
                     setSelectedValue(e.value);
                     setCurrentVenue(curVenue);
                   }}
@@ -122,7 +140,7 @@ export default function MeetingsEvensDetails({ page }) {
                 />
               </>
             )}
-          </div> 
+          </div>
           {currentVenue && (
             <div className="container mt-[30px]">
               {currentVenue.image && (
