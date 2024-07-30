@@ -6,7 +6,15 @@ export default function Feature({ block }) {
   const SectionAccordion = dynamic(() =>
     import("@/components/partials/collapsibles/SectionAccordion")
   );
-  const { description, link, position, title, video_link, image } = block.main;
+  const {
+    description,
+    link,
+    position,
+    title,
+    video_link,
+    image,
+    button_label,
+  } = block.main;
   let videoUrl;
 
   if (video_link) {
@@ -19,7 +27,11 @@ export default function Feature({ block }) {
   }
   return (
     <SectionAccordion title={title} childrenClassname="pb-0">
-      <section className="flex flex-wrap md:mb-[5px]">
+      <section
+        className={`flex flex-wrap md:mb-[5px] ${
+          position == "right_content" ? "flex-row-reverse" : ""
+        }`}
+      >
         <div className="w-full flex items-center justify-center md:max-w-[50%] bg-secondary1">
           {video_link || image ? (
             <>
@@ -89,7 +101,7 @@ export default function Feature({ block }) {
               href={link}
               target={link.includes("http") ? "_blank" : "_self"}
             >
-              Discover More
+              {button_label ? button_label : "Discover More"}
             </Link>
           </div>
         </div>
