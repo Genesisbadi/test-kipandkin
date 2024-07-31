@@ -113,9 +113,7 @@ export default function RoomSuitePage({ page }) {
             <>
               <h2
                 className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : " "
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                 } text-[25px] uppercase text-center text-primary mb-[15px]`}
               >
                 Features
@@ -128,31 +126,32 @@ export default function RoomSuitePage({ page }) {
               </div>
             </>
           )}
+          {button_links?.length > 0 && (
+            <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
+              <div className="flex flex-wrap justify-center ">
+                {button_links?.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item?.button_link || item?.file || "#"}
+                    className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                      item?.variant === "filled"
+                        ? "text-white bg-primary"
+                        : "border-secondary"
+                    } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                  >
+                    {item?.button_label || ""}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
+
         <CarouselGallery
           images={gallery}
           title={"Gallery"}
           alt_title={title || "Thumbnail"}
         />
-        {button_links?.length > 0 && (
-          <div className="bg-[#f1f1f1] flex flex-col md:flex-row gap-x-3 w-full justify-center pb-10">
-            <div className="flex flex-wrap justify-center ">
-              {button_links?.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item?.button_link || item?.file || "#"}
-                  className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                    item?.variant === "filled"
-                      ? "text-white bg-primary"
-                      : "border-secondary"
-                  } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                >
-                  {item?.button_label || ""}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </article>
     </div>
   );
