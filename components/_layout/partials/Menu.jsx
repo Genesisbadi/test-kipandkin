@@ -134,8 +134,16 @@ export default function Menu({ ...props }) {
                 src={tenantDetails?.tenant_logo}
                 width={154}
                 height={50}
-                className={`h-full transition-[all] ease-[ease] duration-[300ms] object-contain w-full max-w-[112px] ${
-                  scrolled ? "md:max-w-[100px]" : "md:max-w-[154px]"
+                className={`h-full transition-[all] ease-[ease] duration-[300ms] object-contain w-full max-w-[112px]  ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 2
+                    ? scrolled
+                      ? "md:max-w-[100px]"
+                      : "md:max-w-[134px]"
+                    : process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? scrolled
+                      ? "md:max-w-[134px]"
+                      : "md:max-w-[154px]"
+                    : "max-w-[112px]"
                 }`}
                 priority={true}
                 alt={tenantDetails.name || "Logo"}
