@@ -90,12 +90,14 @@ export default function BlogPage({ page }) {
           </div>
         )}
 
-        <time
-          className="text-[#aaa] text-[14px] mt-[50px] block mb-[10px]"
-          dateTime={post_date}
-        >
-          {post_date}
-        </time>
+        {date && (
+          <time
+            className="text-[#aaa] text-[14px] mt-[50px] block mb-[10px]"
+            dateTime={post_date}
+          >
+            {post_date}
+          </time>
+        )}
 
         <span className="h-[1px] w-[50px] bg-[#aaa] block"></span>
         <div className="py-[60px] items-center text-[14px] flex mx-[-10px]">
