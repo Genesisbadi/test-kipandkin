@@ -146,7 +146,10 @@ export default function ModalImage1({ ...props }) {
                 className="bg-[length:50px_50px] bg-[url('/images/preloader.gif')] bg-[#000] rounded-[3px] bg-no-repeat bg-center "
               >
                 {images.map((image, index) => (
-                  <div className="max-h-[calc(100dvh-30px)] min-h-screen overflow-y-auto !flex items-center">
+                  <div
+                    key={index}
+                    className="max-h-[calc(100dvh-30px)] min-h-screen overflow-y-auto !flex items-center"
+                  >
                     <div key={index} className="w-full h-full ">
                       <Image
                         alt={title || "#"}
