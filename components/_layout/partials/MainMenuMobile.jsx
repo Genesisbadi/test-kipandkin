@@ -193,27 +193,48 @@ export default function MainMenuMobile({ ...props }) {
   return (
     <>
       <div
-        className={`remove-highlight select-none absolute left-0 flex items-center right-0 px-[15px] ${
+        className={`remove-highlight select-none absolute gap-x-[15px] left-0 flex items-center right-0 px-[15px] ${
           process.env.NEXT_PUBLIC_TEMPLATE == 1
             ? "justify-between"
             : "justify-end"
         }`}
       >
         <span
-          className={`min-w-[20px] w-[20px] select-none block cursor-pointer ${
+          className={`min-w-[30px] relative w-[30px] h-[18px] select-none block cursor-pointer ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "" : "order-2 px-[5px]"
           }`}
           onClick={openMenu}
         >
-          {Array.from({ length: 3 }, (_, index) => (
-            <span
-              key={index}
-              className="min-w-[20px] w-full block h-[3px] bg-primary mb-[3px] last-of-type:mb-0"
-            ></span>
-          ))}
+          {Array.from({ length: 3 }, (_, index) => {
+            let animClass;
+
+            if (isMenuToggled) {
+              if (index === 0) {
+                animClass = "top-[6px] rotate-[135deg]";
+              } else if (index === 1) {
+                animClass = "top-[8px] opacity-0 left-[-20px]";
+              } else {
+                animClass = "top-[6px] rotate-[-135deg]";
+              }
+            } else {
+              if (index === 0) {
+                animClass = "top-0";
+              } else if (index === 1) {
+                animClass = "left-0 top-[8px]";
+              } else {
+                animClass = "top-[16px]";
+              }
+            }
+            return (
+              <span
+                key={index}
+                className={`${animClass} transition-[.25s_ease-in-out] duration-[250ms] ease-in-out left-0 min-w-[30px] absolute rounded-[5px] w-full block h-[4px] bg-primary `}
+              />
+            );
+          })}
         </span>
-        <span className="flex items-center relative z-[10]">
-          {tenantInformation?.email && (
+        <span className="flex items-center gap-x-[10px] relative z-[10]">
+          {/* {tenantInformation?.email && (
             <span className="px-[5px]">
               <Link
                 className="flex items-center hover:opacity-[.5]"
@@ -223,7 +244,7 @@ export default function MainMenuMobile({ ...props }) {
                 <Email className="mr-[5px] !fill-primary" />
               </Link>
             </span>
-          )}
+          )} */}
           {tenantInformation?.phone && (
             <span className="px-[5px]">
               <Link
@@ -231,12 +252,20 @@ export default function MainMenuMobile({ ...props }) {
                 aria-label={`Call ${tenantInformation?.phone}`}
                 href={`tel:${tenantInformation?.phone}`}
               >
-                <Phone className="mr-[5px] !fill-primary" />
+                <Phone
+                  width={20}
+                  height={20}
+                  className="mr-[5px] !fill-primary"
+                />
               </Link>
             </span>
           )}
           <span className="cursor-pointer" onClick={bookingOpen}>
-            <Booking className="select-none cursor-pointer !fill-primary" />
+            <Booking
+              width={27}
+              height={27}
+              className="select-none cursor-pointer !fill-primary"
+            />
           </span>
         </span>
       </div>
@@ -276,7 +305,7 @@ export default function MainMenuMobile({ ...props }) {
                   {bookingLinks.map((item, index) => (
                     <div key={index}>
                       <Link
-                        href={item?.url}
+                        href={item?.url || "#"}
                         target={
                           item?.url?.includes("http") ? "_blank" : "_self"
                         }
