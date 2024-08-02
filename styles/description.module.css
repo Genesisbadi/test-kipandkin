@@ -26,6 +26,7 @@
   color: #555;
   margin-bottom: 15px;
   font-family: "Gotham", sans-serif !important;
+  background-color: unset !important;
 }
 .description span {
   font-family: "Gotham", sans-serif !important;
