@@ -29,6 +29,7 @@ export default function ModalImage1({ ...props }) {
             height={54}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 27 44"
+            className="drop-shadow-[0_4px_4px_rgba(0,0,0,1)]"
           >
             <path
               d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"
@@ -57,6 +58,7 @@ export default function ModalImage1({ ...props }) {
             height={54}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 19.349 30"
+            className="drop-shadow-[0_4px_4px_rgba(0,0,0,1)]"
           >
             <path
               id="_002-right-arrow"
@@ -138,20 +140,22 @@ export default function ModalImage1({ ...props }) {
               className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80"
               onClick={closedPopup}
             ></span>
-            <div className="w-full md:max-w-[1200px] px-[15px] relative">
+            <div className="w-full md:max-w-[1200px] p-[30px]  relative">
               <Slick
                 {...settings}
-                className="bg-[length:50px_50px] bg-[url('/images/preloader.gif')] bg-no-repeat bg-center"
+                className="bg-[length:50px_50px] bg-[url('/images/preloader.gif')] bg-[#000] rounded-[3px] bg-no-repeat bg-center "
               >
                 {images.map((image, index) => (
-                  <div key={index} className="w-full h-full">
-                    <Image
-                      alt={title || "#"}
-                      src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
-                      width={630}
-                      height={530}
-                      className="w-full h-[300px] sm:h-[450px] md:h-[700px] object-contain bg-[#000] rounded-[3px]"
-                    />
+                  <div className="max-h-[calc(100dvh-30px)] min-h-screen overflow-y-auto !flex items-center">
+                    <div key={index} className="w-full h-full ">
+                      <Image
+                        alt={title || "#"}
+                        src={image || "/images/Banner-Safe-Space-Desktop.jpg"}
+                        width={630}
+                        height={530}
+                        className="w-auto block mx-auto object-contain"
+                      />
+                    </div>
                   </div>
                 ))}
               </Slick>
