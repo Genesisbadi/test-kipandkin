@@ -159,21 +159,19 @@ export default function MeetingsEvensDetails({ page }) {
               />
               {currentVenue?.buttons?.length > 0 && (
                 <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
-                  <div className="flex flex-wrap justify-center ">
-                    {currentVenue?.buttons?.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item?.button_link}
-                        className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                          item.button_variant === "dark"
-                            ? "text-white bg-primary"
-                            : "border-secondary"
-                        } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                      >
-                        {item?.button_label}
-                      </Link>
-                    ))}
-                  </div>
+                  {currentVenue?.buttons?.map((item, index) => (
+                    <Link
+                      key={index}
+                      href={item?.button_link}
+                      className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                        item.button_variant === "dark"
+                          ? "text-white bg-primary"
+                          : "border-secondary"
+                      } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                    >
+                      {item?.button_label}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
