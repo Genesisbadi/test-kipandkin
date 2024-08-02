@@ -119,7 +119,7 @@ export default function Menu({ ...props }) {
           }`}
         >
           <div
-            className={`xl:pl-[25px] z-[1] w-full xl:w-auto xl:max-w-[100%] relative top-0 left-0  xl:right-auto h-full flex justify-center items-center ${
+            className={`xl:pl-[25px] z-[1] w-full max-w-[154px] mx-auto xl:mx-0 xl:w-auto xl:max-w-[100%] relative top-0 left-0  xl:right-auto h-full flex justify-center items-center ${
               process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "" : "pl-[15px]"
             }`}
           >
