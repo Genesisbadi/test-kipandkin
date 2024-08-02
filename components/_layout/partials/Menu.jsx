@@ -33,7 +33,7 @@ export default function Menu({ ...props }) {
 
   const handleScroll = () => {
     console.log("testtt");
-    if (window.scrollY > 0) {
+    if (window.scrollY > 100) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -119,7 +119,7 @@ export default function Menu({ ...props }) {
           }`}
         >
           <div
-            className={`xl:pl-[25px] z-[1] max-w-[154px] xl:max-w-[100%] relative top-0 left-0  xl:right-auto h-full flex justify-center items-center ${
+            className={`xl:pl-[25px] z-[1] w-full xl:w-auto xl:max-w-[100%] relative top-0 left-0  xl:right-auto h-full flex justify-center items-center ${
               process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "" : "pl-[15px]"
             }`}
           >
@@ -134,7 +134,7 @@ export default function Menu({ ...props }) {
                 src={tenantDetails?.tenant_logo}
                 width={154}
                 height={50}
-                className={`h-full transition-[all] ease-[ease] duration-[300ms] object-contain w-full max-w-[112px]  ${
+                className={`h-full w-full transition-[all] ease-[ease] duration-[300ms] object-contain w-full max-w-[112px]  ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 2
                     ? scrolled
                       ? "md:max-w-[100px]"
@@ -143,7 +143,7 @@ export default function Menu({ ...props }) {
                     ? scrolled
                       ? "md:max-w-[134px]"
                       : "md:max-w-[154px]"
-                    : "max-w-[112px]"
+                    : "md:max-w-[112px]"
                 }`}
                 priority={true}
                 alt={tenantDetails.name || "Logo"}
