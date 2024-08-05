@@ -118,19 +118,36 @@ export default function MeetingsEventsSuitesPage({ page }) {
 
   return (
     <>
-      <article className="bg-[#f1f1f1]"> 
-        <div className="container overflow-hidden">
+      <article className="bg-[#f1f1f1]">
+        <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">
+          <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
+          <picture>
+            <source srcSet={image} media="(max-width: 414px)" />
+            <source srcSet={image} media="(min-width: 415px)" />
+            <source srcSet={image} media="(min-width: 1366px)" />
+            <Image
+              src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+              srcSet={`${image} 414w, ${image} 1920w`}
+              size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
+              alt={title}
+              width={1920}
+              height={1080}
+              className="w-full h-full object-cover absolute top-0 left-0"
+              priority={true}
+            />
+          </picture>
           {title && (
-            <h2
-              className={`font-tenor text-primary text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px]`}
+            <div
+              className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  text-white z-[3]`}
             >
               {title}
-            </h2>
+            </div>
           )}
-          
+        </div>
+        <div className="container overflow-hidden mt-[20px]">
           {showLazy && (
             <>
-              {image && (
+              {/* {image && (
               // <ModalImage1
               //   className="w-full h-full object-cover mb-[20px]"
               //   title={title}
@@ -138,34 +155,35 @@ export default function MeetingsEventsSuitesPage({ page }) {
               //   image={image}
               // />
               <Image src={image} alt={title} width={1920} height={1080} className="w-full h-full object-cover mb-[20px]" />
-            )}
-            <div className="md:px-[40px]">
-              {description && (
-                <div
-                  className={`text-[14px] p-[10px] md:p-[15px] ${styles.description}`}
-                  dangerouslySetInnerHTML={{ __html: description }}
-                />
-              )}
-              <div className="flex flex-wrap justify-center pb-[30px] md:pb-[60px]">
-                {buttons.length > 0 && (
-                  <>
-                    {buttons?.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item?.button_link || item?.file}
-                        className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[10px] ${
-                          item.button_variant === "dark"
-                            ? "text-white bg-primary"
-                            : "border-secondary"
-                        } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
-                      >
-                        {item?.button_label}
-                      </Link>
-                    ))}
-                  </>
+            )} */}
+
+              <div className="md:px-[40px]">
+                {description && (
+                  <div
+                    className={`text-[14px] p-[10px] md:p-[15px] ${styles.description}`}
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
                 )}
+                <div className="flex flex-wrap justify-center pb-[30px] md:pb-[60px]">
+                  {buttons.length > 0 && (
+                    <>
+                      {buttons?.map((item, index) => (
+                        <Link
+                          key={index}
+                          href={item?.button_link || item?.file}
+                          className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[10px] ${
+                            item.button_variant === "dark"
+                              ? "text-white bg-primary"
+                              : "border-secondary"
+                          } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                        >
+                          {item?.button_label}
+                        </Link>
+                      ))}
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
             </>
           )}
         </div>
