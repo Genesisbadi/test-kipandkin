@@ -32,7 +32,6 @@ export default function Menu({ ...props }) {
   );
 
   const handleScroll = () => {
-    console.log("testtt");
     if (window.scrollY > 100) {
       setScrolled(true);
     } else {

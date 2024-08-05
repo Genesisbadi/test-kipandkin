@@ -236,11 +236,18 @@ export default function DiningPage({ page }) {
                           dining_offer_description,
                           dining_offer_image,
                           dining_offer,
+                          button_label,
                         } = item;
 
-                        const { description } =
-                          dining_offer.attributes.data?.main;
-                        const { title, route_url } = dining_offer.attributes;
+                        const description =
+                          dining_offer_description ||
+                          dining_offer?.attributes?.data?.main?.description;
+                        const title =
+                          dining_offer_title || dining_offer?.attributes?.title;
+                        const route_url =
+                          item?.dining_link ||
+                          dining_offer?.attributes?.route_url ||
+                          "#";
                         return (
                           <div
                             className="flex mb-[30px] flex-col md:flex-row w-full bg-white shadow-md"
@@ -249,7 +256,7 @@ export default function DiningPage({ page }) {
                             <div className="w-full md:max-w-[500px]">
                               <Link href={route_url || "#"}>
                                 <Image
-                                  alt={dining_offer_title || diningOfferTitle}
+                                  alt={title}
                                   src={
                                     dining_offer_image ||
                                     dining_offer?.attributes?.mediaHandler[
@@ -261,7 +268,7 @@ export default function DiningPage({ page }) {
                                   }
                                   width={628}
                                   height={280}
-                                  className="w-full h-[300px] object-cover"
+                                  className="w-full h-[300px] object-cover rounded-tl-sm rounded-bl-sm"
                                 />
                               </Link>
                             </div>
@@ -274,26 +281,23 @@ export default function DiningPage({ page }) {
                                       : " "
                                   }`}
                                 >
-                                  <Link href={route_url || "#"}>
-                                    {item.dining_offer_title || title}
-                                  </Link>
+                                  <Link href={route_url}>{title}</Link>
                                 </h3>
                                 <div className="w-full flex justify-center pt-[15px] pb-[10px]">
                                   <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
                                 </div>
                                 <div
                                   dangerouslySetInnerHTML={{
-                                    __html:
-                                      dining_offer_description || description,
+                                    __html: description,
                                   }}
                                   className="text-[14px] text-center leading-[25px] line-clamp-4 "
                                 />
                               </div>
                               <Link
-                                href={route_url || "#"}
+                                href={route_url}
                                 className={`w-full mt-5 py-[15px] px-[30px] 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
                               >
-                                View Offer
+                                {button_label ? button_label : "View Offer"}
                               </Link>
                             </div>
                           </div>
