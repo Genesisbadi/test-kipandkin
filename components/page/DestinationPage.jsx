@@ -12,6 +12,9 @@ export default function DestinationDetails({ page }) {
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
 
   const showLazy = globalState((state) => state.showLazy);
   const destinations = destinationEntriesData.destinationEntriesData;
@@ -206,7 +209,7 @@ export default function DestinationDetails({ page }) {
               >
                 {links?.map((item, index) => {
                   return (
-                    <Link
+                    <ButtonLink
                       key={index}
                       href={item?.button_url || "#"}
                       target={
@@ -219,7 +222,7 @@ export default function DestinationDetails({ page }) {
                       } text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
                     >
                       {item?.button_label}
-                    </Link>
+                    </ButtonLink>
                   );
                 })}
               </div>

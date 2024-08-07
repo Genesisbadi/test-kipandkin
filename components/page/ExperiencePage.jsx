@@ -19,6 +19,10 @@ export default function ExperiencePage({ page }) {
       (module) => module.default
     )
   );
+
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
   const { route_url, title } = page;
   const { button_items, description, gallery } = page?.data?.main;
   const router = useRouter();
@@ -101,7 +105,7 @@ export default function ExperiencePage({ page }) {
         <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mb-[30px]">
           <div className="flex flex-wrap justify-center ">
             {page?.data?.main?.button_items?.map((item, index) => (
-              <Link
+              <ButtonLink
                 key={index}
                 href={item?.button_link}
                 className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
@@ -111,7 +115,7 @@ export default function ExperiencePage({ page }) {
                 } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
               >
                 {item?.button_label}
-              </Link>
+              </ButtonLink>
             ))}
           </div>
         </div>

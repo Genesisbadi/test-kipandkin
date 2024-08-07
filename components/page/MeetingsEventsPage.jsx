@@ -32,6 +32,10 @@ export default function MeetingsEvensDetails({ page }) {
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues?.[0]);
 
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
+
   useEffect(() => {
     setCurrentVenue(venues?.[0]);
   }, [venues]);
@@ -160,7 +164,7 @@ export default function MeetingsEvensDetails({ page }) {
               {currentVenue?.buttons?.length > 0 && (
                 <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
                   {currentVenue?.buttons?.map((item, index) => (
-                    <Link
+                    <ButtonLink
                       key={index}
                       href={item?.button_link}
                       className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
@@ -170,7 +174,7 @@ export default function MeetingsEvensDetails({ page }) {
                       } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                     >
                       {item?.button_label}
-                    </Link>
+                    </ButtonLink>
                   ))}
                 </div>
               )}

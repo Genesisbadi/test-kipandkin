@@ -16,6 +16,10 @@ export default function MeetingsEventsSuitesPage({ page }) {
     import("react-slick").then((module) => module.default)
   );
 
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
+
   const showLazy = globalState((state) => state.showLazy);
   const { title, data } = page;
   const { image, description, buttons, images } = data.main;
@@ -168,7 +172,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   {buttons.length > 0 && (
                     <>
                       {buttons?.map((item, index) => (
-                        <Link
+                        <ButtonLink
                           key={index}
                           href={item?.button_link || item?.file}
                           className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[10px] ${
@@ -178,7 +182,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
                           } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                         >
                           {item?.button_label}
-                        </Link>
+                        </ButtonLink>
                       ))}
                     </>
                   )}
