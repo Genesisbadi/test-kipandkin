@@ -1,7 +1,12 @@
 import Link from "next/link";
 import styles from "@/styles/ButtonsRepeater.module.css";
+import dynamic from "next/dynamic";
 export default function ButtonsRepeater({ ...props }) {
   const { buttons, className } = props;
+
+  const ButtonLink = dynamic(() =>
+    import("./ButtonLink").then((module) => module.default)
+  );
   return (
     <div
       className={`${styles.buttonRepeater || ""} ${
@@ -21,7 +26,7 @@ export default function ButtonsRepeater({ ...props }) {
           )}
 
           <div className="text-center mt-[15px]">
-            <Link
+            <ButtonLink
               className={`uppercase inline-block text-[14px] text-center px-[30px] py-[15px] min-w-[130px] transition ${
                 item.variant === "filled"
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
@@ -36,7 +41,7 @@ export default function ButtonsRepeater({ ...props }) {
               }
             >
               {item.button_label || "Discover More"}
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       ))}

@@ -6,7 +6,6 @@ import diningEntriesData from "@/lib/preBuildScripts/static/dining.json";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 import styles from "@/styles/description.module.css";
-
 import dynamic from "next/dynamic";
 export default function DiningPage({ page }) {
   const CarouselGallery = dynamic(() =>
@@ -14,6 +13,10 @@ export default function DiningPage({ page }) {
       (module) => module.default
     )
   );
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
+
   const CustomSelect = dynamic(() =>
     import("../forms/CustomSelect").then((module) => module.default)
   );
@@ -177,7 +180,7 @@ export default function DiningPage({ page }) {
                     {button_links.map((item, index) => {
                       if (item?.button_link || item?.file) {
                         return (
-                          <Link
+                          <ButtonLink
                             key={index}
                             href={item?.button_link || item?.file || "#"}
                             target={
@@ -193,7 +196,24 @@ export default function DiningPage({ page }) {
                             } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
                           >
                             {item?.button_label}
-                          </Link>
+                          </ButtonLink>
+                          // <Link
+                          //   key={index}
+                          //   href={item?.button_link || item?.file || "#"}
+                          //   target={
+                          //     item?.button_link?.includes("https") ||
+                          //     item?.file?.includes("https")
+                          //       ? "_blank"
+                          //       : "_self"
+                          //   }
+                          //   className={`px-[30px] py-[15px] text-center tracking-[1px] text-[14px] ${
+                          //     item?.variant === "filled"
+                          //       ? "bg-primary text-white"
+                          //       : "border border-secondary text-secondary"
+                          //   } uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                          // >
+                          //   {item?.button_label}
+                          // </Link>
                         );
                       }
                     })}

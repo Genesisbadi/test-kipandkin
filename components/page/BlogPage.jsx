@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "@/styles/blog.module.css";
 import Link from "next/link";
 import blogEntries from "@/lib/preBuildScripts/static/blog.json";
+import dynamic from "next/dynamic";
 export default function BlogPage({ page }) {
   const { title, id, data, metaData, published_at, mediaHandler } = page;
 
@@ -20,6 +21,10 @@ export default function BlogPage({ page }) {
 
     return array[nextIndex];
   };
+
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
 
   const prevPost = getPrevOrNextObject(blogs, id, -1); // Get previous object
   const nextPost = getPrevOrNextObject(blogs, id, 1); // Get next object
@@ -68,7 +73,7 @@ export default function BlogPage({ page }) {
           <div className="flex mt-[30px] flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
             {data?.main?.button_links.map((item, index) => {
               return (
-                <Link
+                <ButtonLink
                   key={index}
                   href={item.btn_link || item?.file || "#"}
                   target={
@@ -84,7 +89,7 @@ export default function BlogPage({ page }) {
                   } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                 >
                   {item.btn_label || "Learn More"}
-                </Link>
+                </ButtonLink>
               );
             })}
           </div>

@@ -15,6 +15,9 @@ export default function OurCollectionPage({ page }) {
       (module) => module.default
     )
   );
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
+  );
 
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
@@ -155,7 +158,6 @@ export default function OurCollectionPage({ page }) {
       },
     ],
   };
-  
 
   return (
     <>
@@ -164,7 +166,14 @@ export default function OurCollectionPage({ page }) {
         <picture>
           <source srcSet={mobile_banner} media="(max-width: 414px)" />
           <source srcSet={inner_banner} media="(min-width: 415px)" />
-          <Image src={inner_banner} alt={title} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0" priority={true} />
+          <Image
+            src={inner_banner}
+            alt={title}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover absolute top-0 left-0"
+            priority={true}
+          />
         </picture>
         {title && (
           <div
@@ -175,149 +184,147 @@ export default function OurCollectionPage({ page }) {
         )}
       </section>
 
-      
-        <article>
-          <div className="w-full bg-[#f1f1f1]">
-            <div className="container px-5 2xl:px-0 py-[50px] ">
-              {!showLazy ? (
-                <>
-                  <div className="animate-pulse w-full max-w-[200px] h-[20px] mx-auto bg-[#ccc] mb-[20px]" /> 
-                  <div className="animate-pulse w-full h-[50px] bg-[#ccc] mb-[50px]" /> 
-                  <div className="animate-pulse w-full max-w-[400px] h-[30px] mx-auto bg-[#ccc] mb-[30px]" /> 
-                  <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" /> 
-                  <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" /> 
-                  <div className="animate-pulse w-full h-[20px] max-w-[80%] bg-[#ccc] mb-[20px]" /> 
-                  <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" /> 
-                  <div className="animate-pulse w-full h-[20px] max-w-[80%] bg-[#ccc] mb-[20px]" /> 
-                </>
-              ) : (
-                <>
-                  <div className="flex flex-col pb-[40px]">
-                    <span className="text-center text-sm pb-3">
-                      More from our collection
-                    </span>
-                    <label htmlFor="ourCollectionSelect" className="hidden">
-                      Our Collection
-                    </label> 
-                    <CustomSelect
-                      className="react-select"
-                      id="ourCollectionSelect"
-                      name="ourCollectionSelect"
-                      instanceId="ourCollectionSelect"
-                      isSearchable={false}
-                      // value={getDefaultValue()}
-                      defaultValue={getDefaultValue()}
-                      onChange={handleSelectChange}
-                      options={ourCollection
-                        ?.sort((a, b) => a?.order - b?.order)
-                        .map((d, index) => {
-                          return {
-                            label: d?.title,
-                            value: d?.route_url,
-                          };
-                        })}
-                    />
-                  </div>
+      <article>
+        <div className="w-full bg-[#f1f1f1]">
+          <div className="container px-5 2xl:px-0 py-[50px] ">
+            {!showLazy ? (
+              <>
+                <div className="animate-pulse w-full max-w-[200px] h-[20px] mx-auto bg-[#ccc] mb-[20px]" />
+                <div className="animate-pulse w-full h-[50px] bg-[#ccc] mb-[50px]" />
+                <div className="animate-pulse w-full max-w-[400px] h-[30px] mx-auto bg-[#ccc] mb-[30px]" />
+                <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" />
+                <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" />
+                <div className="animate-pulse w-full h-[20px] max-w-[80%] bg-[#ccc] mb-[20px]" />
+                <div className="animate-pulse w-full h-[20px] bg-[#ccc] mb-[10px]" />
+                <div className="animate-pulse w-full h-[20px] max-w-[80%] bg-[#ccc] mb-[20px]" />
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col pb-[40px]">
+                  <span className="text-center text-sm pb-3">
+                    More from our collection
+                  </span>
+                  <label htmlFor="ourCollectionSelect" className="hidden">
+                    Our Collection
+                  </label>
+                  <CustomSelect
+                    className="react-select"
+                    id="ourCollectionSelect"
+                    name="ourCollectionSelect"
+                    instanceId="ourCollectionSelect"
+                    isSearchable={false}
+                    // value={getDefaultValue()}
+                    defaultValue={getDefaultValue()}
+                    onChange={handleSelectChange}
+                    options={ourCollection
+                      ?.sort((a, b) => a?.order - b?.order)
+                      .map((d, index) => {
+                        return {
+                          label: d?.title,
+                          value: d?.route_url,
+                        };
+                      })}
+                  />
+                </div>
 
-                  <div className="flex flex-col py-5">
-                    {page?.data.contents?.content_title && (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: page?.data.contents?.content_title,
-                        }}
-                        className={`${
-                          process.env.NEXT_PUBLIC_TEMPLATE == 1
-                            ? "font-tenor"
-                            : " "
-                        } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
-                      />
-                    )}
-
+                <div className="flex flex-col py-5">
+                  {page?.data.contents?.content_title && (
                     <div
-                      dangerouslySetInnerHTML={{ __html: description }}
-                      className={`${styles.description} text-[14px] mb-[40px] leading-[25px]`}
+                      dangerouslySetInnerHTML={{
+                        __html: page?.data.contents?.content_title,
+                      }}
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : " "
+                      } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
                     />
+                  )}
+
+                  <div
+                    dangerouslySetInnerHTML={{ __html: description }}
+                    className={`${styles.description} text-[14px] mb-[40px] leading-[25px]`}
+                  />
+                </div>
+                {button_links && button_links.length > 0 && (
+                  <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
+                    {button_links.map((item, index) => {
+                      return (
+                        <ButtonLink
+                          key={index}
+                          href={item.btn_link || item?.file || "#"}
+                          target={
+                            item?.btn_link?.includes("http") ||
+                            item?.file?.includes("http")
+                              ? "_blank"
+                              : "_self"
+                          }
+                          className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
+                            item.variant === "filled"
+                              ? "text-white bg-primary"
+                              : "border-secondary"
+                          } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                        >
+                          {item.btn_label}
+                        </ButtonLink>
+                      );
+                    })}
                   </div>
-                  {button_links && button_links.length > 0 && (
-                    <div className="flex flex-col md:flex-row gap-x-3 gap-y-3 md:gap-y-0 w-full justify-center">
-                      {button_links.map((item, index) => {
+                )}
+              </>
+            )}
+          </div>
+        </div>
+
+        {showLazy && (
+          <>
+            {images && images?.length > 0 && (
+              <CarouselGallery
+                alt_title={page?.title || "Thumbnail"}
+                images={images}
+                title="Gallery"
+                className="bg-white"
+              />
+            )}
+
+            <div className="container px-5 2xl:px-0">
+              {award_images && award_images?.length > 0 && (
+                <div className="flex w-full justify-center pt-10 pb-[50px]">
+                  <div className="flex flex-col">
+                    <span
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : " "
+                      } text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]`}
+                    >
+                      Awards
+                    </span>
+                    <div className="flex flex-wrap lg:flex-nowrap gap-x-[50px] items-center gap-y-[50px] justify-center">
+                      {award_images?.map((item, index) => {
                         return (
-                          <Link
+                          <div
                             key={index}
-                            href={item.btn_link || item?.file || "#"}
-                            target={
-                              item?.btn_link?.includes("http") ||
-                              item?.file?.includes("http")
-                                ? "_blank"
-                                : "_self"
-                            }
-                            className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm ${
-                              item.variant === "filled"
-                                ? "text-white bg-primary"
-                                : "border-secondary"
-                            } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
+                            className="flex w-full max-w-[120px] justify-center"
                           >
-                            {item.btn_label}
-                          </Link>
+                            <Image
+                              alt={"awards"}
+                              src={item}
+                              width={160}
+                              height={194}
+                              className="max-w-[120px] w-full h-full"
+                            />
+                          </div>
                         );
                       })}
                     </div>
-                  )}
-                </>
+                  </div>
+                </div>
               )}
             </div>
-          </div>
-          
-          
-          {showLazy && (
-            <>
-              {images && images?.length > 0 && (
-                <CarouselGallery
-                  alt_title={page?.title || "Thumbnail"}
-                  images={images}
-                  title="Gallery"
-                  className="bg-white"
-                />
-              )}
-
-              <div className="container px-5 2xl:px-0">
-                {award_images && award_images?.length > 0 && (
-                  <div className="flex w-full justify-center pt-10 pb-[50px]">
-                    <div className="flex flex-col">
-                      <span
-                        className={`${
-                          process.env.NEXT_PUBLIC_TEMPLATE == 1
-                            ? "font-tenor"
-                            : " "
-                        } text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]`}
-                      >
-                        Awards
-                      </span>
-                      <div className="flex flex-wrap lg:flex-nowrap gap-x-[50px] items-center gap-y-[50px] justify-center">
-                        {award_images?.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className="flex w-full max-w-[120px] justify-center"
-                            >
-                              <Image
-                                alt={"awards"}
-                                src={item}
-                                width={160}
-                                height={194}
-                                className="max-w-[120px] w-full h-full"
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </article>
+          </>
+        )}
+      </article>
     </>
   );
 }

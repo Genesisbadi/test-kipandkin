@@ -3,9 +3,7 @@ import roomsSuitesEntriesData from "@/lib/preBuildScripts/static/rooms-suites.js
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-
 import Link from "next/link";
-
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 import dynamic from "next/dynamic";
@@ -17,6 +15,10 @@ export default function RoomSuitePage({ page }) {
   );
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
+  );
+
+  const ButtonLink = dynamic(() =>
+    import("../partials/buttons/ButtonLink").then((module) => module.default)
   );
 
   const { mediaHandler, title, route_url } = page;
@@ -130,7 +132,7 @@ export default function RoomSuitePage({ page }) {
             <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
               <div className="flex flex-wrap justify-center ">
                 {button_links?.map((item, index) => (
-                  <Link
+                  <ButtonLink
                     key={index}
                     href={item?.button_link || item?.file || "#"}
                     className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
@@ -140,7 +142,7 @@ export default function RoomSuitePage({ page }) {
                     } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                   >
                     {item?.button_label || ""}
-                  </Link>
+                  </ButtonLink>
                 ))}
               </div>
             </div>
