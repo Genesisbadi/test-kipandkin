@@ -5,7 +5,6 @@ import Link from "next/link";
 import Jsona from "jsona";
 import { getMediaConvertions } from "@/lib/services/propService";
 import CONTENTAPI from "@/lib/api/content/request";
-const MICROSITE = process.env.NEXT_PUBLIC_MICROSITE_ID || "";
 
 const dataFormatter = new Jsona();
 
