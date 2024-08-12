@@ -7,17 +7,17 @@ import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 
-const StickyShareButtons = dynamic(
-  () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
-  {
-    ssr: false, // This line ensures that the component is only loaded on the client side.
-  }
-);
-
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
+
+  const StickyShareButtons = dynamic(
+    () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
+    {
+      ssr: false, // This line ensures that the component is only loaded on the client side.
+    }
+  );
 
   const [currentUrl, setCurrentUrl] = useState("");
 
