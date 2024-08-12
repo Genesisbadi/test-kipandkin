@@ -9,7 +9,7 @@
 .description h2,
 .description h3,
 .description h4 {
-  font-size: 22px;
+  font-size: 20px;
   color: var(--primary);
   margin-bottom: 20px;
   letter-spacing: 1px;
