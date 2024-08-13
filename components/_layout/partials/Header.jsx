@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import excludedDomains from "@/lib/excludeDomains/excludeDomains";
 
 import getCloudfrontUrl from "@/lib/utils/cloudfrontLoader";
+import AppMeta from "./AppMeta";
 
 export default function Header({ meta, page }) {
   const [currentUrl, setCurrentUrl] = useState();
@@ -54,68 +55,80 @@ export default function Header({ meta, page }) {
   }, []);
 
   return (
-    <Head>
-      {currentUrl &&
-        excludedDomains.some((domain) => currentUrl.includes(domain)) && (
-          <meta name="robots" content="noindex" />
+    <>
+      <Head>
+        {currentUrl &&
+          excludedDomains.some((domain) => currentUrl.includes(domain)) && (
+            <meta name="robots" content="noindex" />
+          )}
+
+        {currentUrl && (
+          <>
+            <link rel="canonical" href={window.location.href} />
+            <link
+              rel="alternate"
+              hreflang="en-ph"
+              href={window.location.href}
+            />
+          </>
         )}
-      {currentUrl && (
-        <>
-          <link rel="canonical" href={window.location.href} />
-          <link rel="alternate" hreflang="en-ph" href={window.location.href} />
-        </>
-      )}
 
-      <link rel="icon" href={favicon} />
+        <link rel="icon" href={favicon} />
 
-      {/* META TITLE */}
-      <title>{findMeta("title")}</title>
-      <meta name="og:title" content={findMeta("title")} />
-      <meta name="twitter:title" content={findMeta("title")} />
+        {/* META TITLE */}
+        <title>{findMeta("title")}</title>
+        <meta name="og:title" content={findMeta("title")} />
+        <meta name="twitter:title" content={findMeta("title")} />
 
-      {/* META KEYWORDS */}
-      <meta name="keywords" content={findMeta("keywords")} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* META KEYWORDS */}
+        <meta name="keywords" content={findMeta("keywords")} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      {currentUrl && <meta property="og:url" content={window.location.href} />}
+        {currentUrl && (
+          <meta property="og:url" content={window.location.href} />
+        )}
 
-      {/* META AUTHOR */}
-      <meta name="author" content={findMeta("author")} />
-      <meta
-        name="site_name"
-        property="og:site_name"
-        content={findMeta("author")}
-      />
-      <meta name="twitter:site" content={findMeta("author")} />
-      <meta name="twitter:creator" content={findMeta("author")} />
+        {/* META AUTHOR */}
+        <meta name="author" content={findMeta("author")} />
+        <meta
+          name="site_name"
+          property="og:site_name"
+          content={findMeta("author")}
+        />
+        <meta name="twitter:site" content={findMeta("author")} />
+        <meta name="twitter:creator" content={findMeta("author")} />
 
-      {/* META DESCRIPTION */}
-      <meta
-        name="description"
-        property="og:description"
-        content={findMeta("description")}
-      />
-      <meta name="description" content={findMeta("description")} />
-      <meta name="twitter:description" content={findMeta("description")} />
+        {/* META DESCRIPTION */}
+        <meta
+          name="description"
+          property="og:description"
+          content={findMeta("description")}
+        />
+        <meta name="description" content={findMeta("description")} />
+        <meta name="twitter:description" content={findMeta("description")} />
 
-      {/* META IMAGE */}
-      <meta
-        name="secure_url"
-        property="og:image:secure_url"
-        content={metaImg}
-      />
-      <meta name="twitter:image" content={metaImg} />
-      <meta name="image" property="og:image" content={metaImg} />
-      <meta name="og:image" property="og:image" content={metaImg} />
+        {/* META IMAGE */}
+        <meta
+          name="secure_url"
+          property="og:image:secure_url"
+          content={metaImg}
+        />
+        <meta name="twitter:image" content={metaImg} />
+        <meta name="image" property="og:image" content={metaImg} />
+        <meta name="og:image" property="og:image" content={metaImg} />
 
-      {/* META TYPES */}
-      <meta name="type" property="og:image:type" content={imageType()} />
-      <meta name="twitter:card" content="summary_large_image" />
+        {/* META TYPES */}
+        <meta name="type" property="og:image:type" content={imageType()} />
+        <meta name="twitter:card" content="summary_large_image" />
 
-      <meta property="og:type" content={findMeta("page_type")} />
+        <meta property="og:type" content={findMeta("page_type")} />
 
-      {/* META DOMAIN */}
-      <meta name="twitter:domain" content={findMeta("url")} />
-    </Head>
+        {/* META DOMAIN */}
+        <meta name="twitter:domain" content={findMeta("url")} />
+
+        {/* APP META */}
+      </Head>
+      <AppMeta tenantDetails={tenantDetailsMain} />
+    </>
   );
 }
