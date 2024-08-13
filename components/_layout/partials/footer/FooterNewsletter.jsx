@@ -153,7 +153,7 @@ export default function FooterNewsletter() {
                 <span>
                   <Link
                     className="text-primary hover:underline"
-                    href={tenantDetails?.data?.main?.privacy_link || "#"}
+                    href={tenantDetails?.privacy_link || "#"}
                     target="_blank"
                   >
                     Privacy Policy
