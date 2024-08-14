@@ -8,11 +8,16 @@ import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import ButtonsRepeater from "../partials/buttons/ButtonsRepeater";
 export default function MeetingsEvensDetails({ page }) {
   const router = useRouter();
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
+
+  const ButtonsRepeater = dynamic(() =>
+    import("../partials/buttons/ButtonsRepeater").then(
       (module) => module.default
     )
   );
@@ -189,7 +194,7 @@ export default function MeetingsEvensDetails({ page }) {
             />
           )}
 
-          {buttons && (
+          {buttons && showLazy && (
             <div className="container">
               <ButtonsRepeater className="pb-[50px]" buttons={buttons} />
             </div>
