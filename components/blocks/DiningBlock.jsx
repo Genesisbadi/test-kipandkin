@@ -76,7 +76,7 @@ export default function DiningBlock({ block }) {
     <section className="bg-[#F1F1F1]">
       <div className="container">
         <div className="text-[#555] text-[14px] text-center leading-[21px] tracking-[1px] pb-[10px] mb-[10px]">
-          Select a category
+          Select your destination
         </div>
         <CustomSelect
           isSearchable={false}
