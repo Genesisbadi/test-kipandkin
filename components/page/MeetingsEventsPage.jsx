@@ -15,6 +15,12 @@ export default function MeetingsEvensDetails({ page }) {
       (module) => module.default
     )
   );
+
+  const ButtonsRepeater = dynamic(() =>
+    import("../partials/buttons/ButtonsRepeater").then(
+      (module) => module.default
+    )
+  );
   const ModalImage = dynamic(() =>
     import("@/components/partials/Modals/ModalImage").then(
       (module) => module.default
@@ -188,7 +194,13 @@ export default function MeetingsEvensDetails({ page }) {
             />
           )}
 
-          {buttons?.length > 0 && (
+          {buttons && showLazy && (
+            <div className="container">
+              <ButtonsRepeater className="pb-[50px]" buttons={buttons} />
+            </div>
+          )}
+
+          {/* {buttons?.length > 0 && (
             <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center pb-[30px]">
               <div className="flex flex-wrap justify-center ">
                 {buttons?.map((item, index) => (
@@ -206,7 +218,7 @@ export default function MeetingsEvensDetails({ page }) {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
 
           {gallery && gallery.length > 0 && (
             <CarouselGallery alt_title={"Thumbnail"} images={gallery} />
