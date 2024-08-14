@@ -43,12 +43,15 @@ export default function AppMeta({ tenantDetails }) {
       <link rel="apple-touch-icon" sizes="512x512" href={AppleTouchIcon} />
       <link rel="apple-touch-icon" sizes="384x384" href={Icon384} />
       <link rel="apple-touch-icon" sizes="256x256" href={Icon256} />
+
       <link rel="apple-touch-icon" sizes="192x192" href={Icon192} />
       <link rel="icon" type="image/png" href={AppleTouchIcon} />
       <link rel="icon" type="image/png" sizes="512x512" href={AppleTouchIcon} />
       <link rel="icon" type="image/png" sizes="384x384" href={Icon384} />
       <link rel="icon" type="image/png" sizes="256x256" href={Icon256} />
       <link rel="icon" type="image/png" sizes="192x192" href={Icon192} />
+      <link rel="shortcut icon" href={AppleTouchIcon} />
+      <link rel="mask-icon" href={AppleTouchIcon} color={themeColor} />
       <meta name="msapplication-TileImage" content={AppleTouchIcon} />
     </Head>
   );

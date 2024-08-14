@@ -3,6 +3,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="manifest" href="/manifest.json" />
         <link
           rel="preload"
           as="font"
@@ -10,7 +11,6 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
-
         <link
           rel="preload"
           as="font"
@@ -18,7 +18,6 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
-
         <style
           dangerouslySetInnerHTML={{
             __html: `
