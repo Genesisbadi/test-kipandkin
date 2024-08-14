@@ -28,7 +28,7 @@ export default function ButtonsRepeater({ ...props }) {
           <div className="text-center mt-[15px]">
             <ButtonLink
               className={`uppercase inline-block text-[14px] text-center px-[30px] py-[15px] min-w-[130px] transition ${
-                item.variant === "filled"
+                item.variant === "filled" || item.button_variant === "dark"
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
                   : "border border-secondary text-secondary hover:bg-secondary hover:text-white"
               }`}
@@ -40,7 +40,7 @@ export default function ButtonsRepeater({ ...props }) {
                   : "_self"
               }
             >
-              {item.button_label || "Discover More"}
+              {item?.button_label || "Discover More"}
             </ButtonLink>
           </div>
         </div>
