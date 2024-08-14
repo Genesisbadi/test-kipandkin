@@ -67,39 +67,42 @@ const InstallButton = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed text-[14px] rounded-sm overflow-hidden pt-[40px] pb-[30px] pl-[30px] pr-[48px] right-[15px] z-[2000] max-w-[550px] bottom-[30px] bg-[#fff] bg-opacity-95 shadow-[0_3px_5px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.14),0_1px_18px_0_rgba(0,0,0,0.12)]">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-[30px] h-[30px] text-white bg-primary rounded-full p-1 absolute top-3 right-2 cursor-pointer"
-            onClick={() => setIsClosed(true)}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
+        <div className="fixed flex justify-center left-0 sm:left-auto bottom-0 right-0 p-[15px]">
+          <div className="relative text-[14px] w-full rounded-sm overflow-hidden p-[45px_15px_15px] sm:pt-[40px] sm:pb-[30px] sm:pl-[30px] sm:pr-[48px] z-[2000] max-w-[550px] bg-[#fff] bg-opacity-95 shadow-[0_3px_5px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.14),0_1px_18px_0_rgba(0,0,0,0.12)]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-[30px] h-[30px] text-white bg-primary rounded-full p-1 absolute top-3 right-2 cursor-pointer"
+              onClick={() => setIsVisible(false)}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
 
-          <p>
-            Would you like to install Discovery Hospitality to your home screen?
-          </p>
-          <div className="flex gap-[15px] items-center justify-end font-bold">
-            <button
-              className="min-w-[100px] hover:opacity-70 py-[8px] px-[13px] min-h-[50px] flex items-center justify-center text-gray border border-[2px] border-gray rounded-md uppercase"
-              onClick={handleCancelClick}
-            >
-              Cancel
-            </button>
-            <button
-              className="min-w-[100px] hover:opacity-70 py-[8px] px-[13px] min-h-[50px] flex items-center justify-center bg-primary text-white rounded-md uppercase"
-              onClick={handleInstallClick}
-            >
-              Install App
-            </button>
+            <p className="text-[12px] sm:text-[16px]">
+              Would you like to install Discovery Hospitality to your home
+              screen?
+            </p>
+            <div className="flex flex-col-reverse sm:flex-row flex-wrap text-[10px] sm:text-[14px] gap-[5px] sm:gap-[15px] items-center justify-end font-bold">
+              <button
+                className="sm:min-w-[100px] hover:opacity-70 py-[8px] w-full sm:w-auto px-[13px] min-h-[20px] sm:min-h-[50px] flex items-center justify-center text-gray border border-[2px] border-gray rounded-md uppercase"
+                onClick={handleCancelClick}
+              >
+                Cancel
+              </button>
+              <button
+                className="sm:min-w-[100px] hover:opacity-70 py-[8px] w-full sm:w-auto px-[13px] min-h-[20px] sm:min-h-[50px] flex items-center justify-center bg-primary text-white rounded-md uppercase"
+                onClick={handleInstallClick}
+              >
+                Install App
+              </button>
+            </div>
           </div>
         </div>
       )}
