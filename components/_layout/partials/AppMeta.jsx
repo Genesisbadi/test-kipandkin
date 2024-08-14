@@ -11,7 +11,7 @@ export default function AppMeta({ tenantDetails }) {
 
   const micrositeConfig = {
     1: {
-      applicationName: "discovery_hospitality",
+      applicationName: "Discovery Hospitality",
       iconPrefix: "dh",
       themeColor: "#68192F",
     },
