@@ -33,13 +33,16 @@ export default function Selection({ block }) {
             <div className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[300px] mb-[20px]" />
             <div className="animate-pulse bg-[#ccc] h-[10px] w-full mb-[10px]" />
             <div className="animate-pulse bg-[#ccc] h-[10px] w-full max-w-[80%] mb-[30px]" />
-            <div className="animate-pulse bg-[#ccc] h-[30px] w-full max-w-[150px] mb-[20px]" /> 
-            <div className="animate-pulse bg-[#ccc] h-[50px] w-full mb-[20px]" /> 
+            <div className="animate-pulse bg-[#ccc] h-[30px] w-full max-w-[150px] mb-[20px]" />
+            <div className="animate-pulse bg-[#ccc] h-[50px] w-full mb-[20px]" />
             <div className="animate-pulse bg-[#ccc] h-[10px] w-full max-w-[90%] mb-[10px]" />
             <div className="animate-pulse bg-[#ccc] h-[10px] w-full max-w-[50%] mb-[40px]" />
             <div className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[100px] mb-[20px]" />
             {Array.from({ length: 8 }, (_, index) => (
-              <div className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[300px] mb-[20px]" key={index} />
+              <div
+                className="animate-pulse bg-[#ccc] h-[20px] w-full max-w-[300px] mb-[20px]"
+                key={index}
+              />
             ))}
           </>
         ) : (
@@ -48,9 +51,7 @@ export default function Selection({ block }) {
               {title && (
                 <h2
                   className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
                   {title}
@@ -67,9 +68,7 @@ export default function Selection({ block }) {
               <>
                 <div
                   className={`text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px] tracking-[1px] ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
                   {selection_label}:
@@ -103,7 +102,7 @@ export default function Selection({ block }) {
                 __html: currentSelection.description,
               }}
             />
-            {buttons.length > 0 && (
+            {buttons?.length > 0 && (
               <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center my-[30px]">
                 <div className="flex flex-wrap justify-center ">
                   {buttons.map((item, index) => (
@@ -124,8 +123,6 @@ export default function Selection({ block }) {
             )}
           </>
         )}
-
-        
       </div>
     </section>
   );
