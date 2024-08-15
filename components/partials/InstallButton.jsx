@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { parseCookies } from "nookies";
 import nookies from "nookies";
-
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain";
 const InstallButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +67,7 @@ const InstallButton = () => {
   return (
     <>
       {isVisible && (
-        <div className="fixed flex justify-center left-0 sm:left-auto bottom-0 right-0 p-[15px]">
+        <div className="fixed z-[3000] flex justify-center left-0 sm:left-auto bottom-0 right-0 p-[15px]">
           <div className="relative text-[14px] w-full rounded-sm overflow-hidden p-[45px_15px_15px] sm:pt-[40px] sm:pb-[30px] sm:pl-[30px] sm:pr-[48px] z-[2000] max-w-[550px] bg-[#fff] bg-opacity-95 shadow-[0_3px_5px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.14),0_1px_18px_0_rgba(0,0,0,0.12)]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,8 +86,8 @@ const InstallButton = () => {
             </svg>
 
             <p className="text-[12px] sm:text-[16px]">
-              Would you like to install Discovery Hospitality to your home
-              screen?
+              Would you like to install {tenantDetailsMain?.app_name} to your
+              home screen?
             </p>
             <div className="flex flex-col-reverse sm:flex-row flex-wrap text-[10px] sm:text-[14px] gap-[5px] sm:gap-[15px] items-center justify-end font-bold">
               <button
