@@ -47,27 +47,35 @@ export default function Selection({ block }) {
           </>
         ) : (
           <>
-            <div className="my-[15px]">
-              {title && (
-                <h2
-                  className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-                  }`}
-                >
-                  {title}
-                </h2>
-              )}
-              {description && (
-                <div
-                  className={`${styles.description} mb-[20px]`}
-                  dangerouslySetInnerHTML={{ __html: description }}
-                ></div>
-              )}
-            </div>
+            {title ||
+              (description && (
+                <div className="my-[15px]">
+                  {title && (
+                    <h2
+                      className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : " "
+                      }`}
+                    >
+                      {title}
+                    </h2>
+                  )}
+                  {description && (
+                    <div
+                      className={`${styles.description} mb-[20px]`}
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
+                  )}
+                </div>
+              ))}
+
             {selections.length > 0 && (
               <>
                 <div
-                  className={`text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px] tracking-[1px] ${
+                  className={`${
+                    title || description ? "mt-[30px]" : ""
+                  } text-primary text-[20px] tracking-[1px] mb-[10px] tracking-[1px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
@@ -102,10 +110,10 @@ export default function Selection({ block }) {
                 __html: currentSelection.description,
               }}
             />
-            {buttons?.length > 0 && (
+            {buttons && buttons?.length > 0 && (
               <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center my-[30px]">
                 <div className="flex flex-wrap justify-center ">
-                  {buttons.map((item, index) => (
+                  {buttons?.map((item, index) => (
                     <Link
                       key={index}
                       href={item?.button_link || "#"}
