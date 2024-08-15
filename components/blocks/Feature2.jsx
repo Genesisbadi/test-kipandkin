@@ -25,7 +25,7 @@ export default function Block({ block }) {
             />
           </div>
           <div className="w-full md:max-w-[50%] px-[30px] py-[30px]">
-            <h2 className="font-tenor mb-[30px] text-[23px] text-primary drop-shadow-md">
+            <h2 className="font-tenor mb-[30px] text-[23px] text-primary">
               {title}
             </h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />
@@ -33,7 +33,7 @@ export default function Block({ block }) {
             {link && (
               <Link
                 href={link}
-                className="bg-primary hover:opacity-70 uppercase text-[14px] shadow-lg text-white py-[10px] rounded-[5px] min-w-[150px] text-center mt-3 px-[15px] inline-block"
+                className="bg-primary hover:opacity-70 uppercase text-[14px] text-white py-[10px] min-w-[150px] text-center mt-3 px-[15px] inline-block"
               >
                 {button_label ? button_label : "Discovery More"}
               </Link>
