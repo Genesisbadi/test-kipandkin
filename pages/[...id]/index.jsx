@@ -57,6 +57,10 @@ const ExperiencePage = dynamic(() =>
   )
 );
 
+const TestPage = dynamic(() =>
+  import("../../components/page/TestPage").then((module) => module.default)
+);
+
 export default function DynamicPage({ page, blocks }) {
   const pageTitle = page.metaData.title || page.name;
   const titleElement = (
@@ -77,6 +81,9 @@ export default function DynamicPage({ page, blocks }) {
   let ComponentToRender;
 
   switch (page?.content?.id) {
+    case "test-content-type":
+      ComponentToRender = TestPage;
+      break;
     case "destinations":
       ComponentToRender = DestinationPage;
       break;

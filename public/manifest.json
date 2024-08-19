@@ -4,7 +4,7 @@
   "theme_color": "#68192F",
   "background_color": "#68192F",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "scope": "/",
   "start_url": "/",
   "icons": [
@@ -29,5 +29,40 @@
       "type": "image/png"
     }
   ],
-  "splash_pages": null
+  "screenshots": [
+    {
+      "src": "/screenshots/dh-narrow-1.jpg",
+      "type": "image/jpg",
+      "sizes": "602x593",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/dh-wide-1.jpg",
+      "type": "image/jpg",
+      "sizes": "1897x987",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/dh-wide-2.jpg",
+      "type": "image/jpg",
+      "sizes": "1897x987",
+      "form_factor": "wide"
+    }
+  ],
+  "share_target": {
+    "action": "/?utm_medium=PWA&utm_source=share-target&share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "file",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+  "description": "Install the App for the best web experience with Discovery Hospitality.",
+  "lang": "en",
+  "categories": ["hospitality", "hotels", "resorts", "travel", "adventure"]
 }

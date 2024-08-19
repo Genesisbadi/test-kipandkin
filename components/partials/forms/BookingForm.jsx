@@ -224,7 +224,7 @@ export default function BookingForm({ ...props }) {
             {!isMobile ? (
               <div className="flex justify-end text-[14px] h-full">
                 <div
-                  className={`tracking-[3px] py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
+                  className={`py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
                 >
                   Quick book
                 </div>

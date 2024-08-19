@@ -14,7 +14,11 @@ export default function GridFloatBookDirect({ block }) {
               title="Why Book Direct?"
               childrenClassname="pb-[15px] md:pb-0 px-[15px] md:px-0"
             >
-              <h2 className="hidden md:block text-primary text-[22px] mb-[20px] font-tenor">
+              <h2
+                className={`hidden md:block text-primary text-[22px] mb-[20px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
+                }`}
+              >
                 Why Book Direct?
               </h2>
               <div className="pl-[15px]">

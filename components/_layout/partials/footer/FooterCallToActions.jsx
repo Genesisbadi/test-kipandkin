@@ -1,25 +1,27 @@
-
 import globalState from "@/lib/store/globalState";
 
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import tenantDetailsCallToActions from "@/lib/preBuildScripts/static/tenantDetailsCallToActions.json";
 export default function CallToActions() {
-  const router = useRouter(); 
- 
+  const router = useRouter();
+
   const showLazy = globalState((state) => state.showLazy);
 
-  if(!showLazy) {
-    return(
+  if (!showLazy) {
+    return (
       <>
         <div className="py-[30px] border-y-[3px] border-primary">
           <div className="container">
             <div className="w-full max-w-[350px] bg-[#ccc] h-[30px] mb-[30px]" />
-            <div className="flex flex-wrap">  
+            <div className="flex flex-wrap">
               {Array.from({ length: 2 }, (_, index) => (
                 <div key={index} className="w-full flex flex-wrap items-center">
                   {Array.from({ length: 3 }, (_, index) => (
-                    <div key={index} className="w-full flex gap-x-[15px] md:max-w-[33.33%] mb-[15px]">
+                    <div
+                      key={index}
+                      className="w-full flex gap-x-[15px] md:max-w-[33.33%] mb-[15px]"
+                    >
                       <div className="bg-[#ccc] rounded-full min-w-[80px] min-h-[80px]" />
                       <div className="w-full flex flex-col justify-center">
                         <div className="w-full bg-[#ccc] max-w-[70%] h-[10px] mb-[10px]" />
@@ -33,7 +35,7 @@ export default function CallToActions() {
           </div>
         </div>
       </>
-    )
+    );
   }
   const Image = dynamic(() =>
     import("next/image").then((module) => module.default)
@@ -46,9 +48,9 @@ export default function CallToActions() {
         <section className="text-primary py-[30px] border-y-[3px] border-primary">
           <div className="container">
             <h2
-              className={`tracking-[1px] text-primary text-[22px] mb-[30px] mb-[15px] ${
+              className={`text-primary text-[22px] mb-[30px] mb-[15px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor"
+                  ? "font-tenor tracking-[1px]"
                   : " "
               }`}
             >
