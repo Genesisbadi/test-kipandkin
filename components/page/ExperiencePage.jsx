@@ -61,15 +61,15 @@ export default function ExperiencePage({ page }) {
         className=""
         title={page.title}
         image_desktop={
-          page?.mediaHandler["main.banner"]?.[0]?.conversions?.desktop
+          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.desktop
         }
         image_laptop={
-          page?.mediaHandler["main.banner"]?.[0]?.conversions?.laptop
+          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.laptop
         }
         image_mobile={
-          page?.mediaHandler["main.banner"]?.[0]?.conversions?.mobile
+          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.mobile
         }
-        image_original={page?.mediaHandler["main.banner"]?.[0]?.original}
+        image_original={page?.mediaHandler?.["main.banner"]?.[0]?.original}
       />
 
       <div className="flex text-[14px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
