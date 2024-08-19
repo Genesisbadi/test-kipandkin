@@ -72,7 +72,6 @@ export default function DestinationDetails({ block, page }) {
         )}
       </section>
 
-
       {showLazy && (
         <article>
           <div className="container py-[50px]">
@@ -102,7 +101,7 @@ export default function DestinationDetails({ block, page }) {
             />
           </div>
           <div className="py-5">
-            {feature.map((item, index) => {
+            {feature?.map((item, index) => {
               const isOdd = index % 2 !== 0;
               return (
                 <div

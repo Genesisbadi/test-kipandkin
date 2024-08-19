@@ -28,9 +28,9 @@ export default function Feature({ block }) {
   return (
     <SectionAccordion title={title} childrenClassname="pb-0">
       <section
-        className={`flex flex-wrap md:mb-[5px] ${
-          position == "right_content" ? "flex-row-reverse" : ""
-        }`}
+        className={`flex flex-wrap ${
+          process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "md:mb-[5px]" : ""
+        } ${position == "right_content" ? "flex-row-reverse" : ""}`}
       >
         <div className="w-full flex items-center justify-center md:max-w-[50%] bg-secondary1">
           {video_link || image ? (

@@ -156,7 +156,7 @@ export default function DestinationDetails({ page }) {
               />
             </div>
             <div className="py-5">
-              {feature.map((item, index) => {
+              {feature?.map((item, index) => {
                 const isOdd = index % 2 !== 0;
                 return (
                   <div

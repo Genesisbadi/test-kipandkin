@@ -40,7 +40,6 @@ const InstallButton = () => {
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
       deferredPrompt.userChoice.then((choiceResult) => {
-        console.log("choiceResult.outcome", choiceResult.outcome);
         if (choiceResult.outcome === "accepted") {
           console.log("User accepted the install prompt");
         } else {
