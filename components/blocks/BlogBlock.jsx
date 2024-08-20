@@ -235,7 +235,7 @@ export default function BlogBlock({ block }) {
                           {item?.attributes?.data?.main?.description && (
                             <>
                               <div>
-                                <span className="text-[14px] mt-[15px]]">
+                                <span className="text-[14px] mt-[15px]">
                                   <div
                                     dangerouslySetInnerHTML={{
                                       __html: truncateHTML(

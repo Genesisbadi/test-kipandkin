@@ -79,9 +79,11 @@ export default function RoomSuitePage({ page }) {
       <article>
         <div className="container py-[50px]">
           <div className="flex flex-wrap px-[15px] justify-center items-center pb-[40px]">
-            <span className="text-center px-[15px] mb-[10px] xs:mb-0">
-              Check out other rooms
-            </span>
+            {process.env.NEXT_PUBLIC_TEMPLATE !== "2" && (
+              <span className="text-center px-[15px] mb-[10px] xs:mb-0">
+                Check out other rooms
+              </span>
+            )}
             <div className="px-[15px]">
               <CustomSelect
                 className={`max-w-[350px] react-select w-full cursor-pointer ${
@@ -93,12 +95,13 @@ export default function RoomSuitePage({ page }) {
                 defaultValue={getDefaultValue()}
                 onChange={handleSelectChange}
                 isSearchable={false}
-                options={roomsSuitesEntriesData?.map((item, index) => {
-                  return {
+                options={roomsSuitesEntriesData
+                  ?.map((item) => ({
                     label: item?.title,
                     value: item?.route_url,
-                  };
-                })}
+                    order: item?.order,
+                  }))
+                  .sort((a, b) => (a.order || 0) - (b.order || 0))}
               />
             </div>
           </div>
@@ -116,13 +119,19 @@ export default function RoomSuitePage({ page }) {
               <h2
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-                } text-[25px] uppercase text-center text-primary mb-[15px]`}
+                } text-[25px] uppercase  text-primary mb-[15px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 2
+                    ? "text-left pl-[15px]"
+                    : "text-center"
+                }`}
               >
                 Features
               </h2>
               <div className={`mb-[50px] ${styles.description}`}>
                 <div
-                  className="text-[14px]"
+                  className={`text-[14px] ${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 2 ? styles.col2 : ""
+                  }`}
                   dangerouslySetInnerHTML={{ __html: features }}
                 />
               </div>
