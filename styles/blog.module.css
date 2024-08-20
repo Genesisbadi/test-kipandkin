@@ -27,6 +27,7 @@
 }
 .description span {
   color: #555 !important;
+  background-color: transparent;
 }
 
 .description :has(h1, h2, h3) * {
