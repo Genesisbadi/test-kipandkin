@@ -136,7 +136,9 @@ export default function MeetingsEventsSuitesPage({ page }) {
               alt={title}
               width={1920}
               height={1080}
-              className="w-full h-full object-cover absolute top-0 left-0"
+              className={`w-full h-full object-cover absolute top-0 left-0  ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "object-top" : ""
+              }`}
               priority={true}
             />
           </picture>

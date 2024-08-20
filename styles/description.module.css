@@ -15,6 +15,10 @@
   letter-spacing: 1px;
   font-family: "Tenor" !important;
 }
+.description .col2 ul {
+  @apply md:columns-2
+  columns-1;
+}
 .description ul,
 .description ol {
   margin-top: 0;

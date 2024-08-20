@@ -15,8 +15,10 @@ export default function GridFloatBookDirect({ block }) {
               childrenClassname="pb-[15px] md:pb-0 px-[15px] md:px-0"
             >
               <h2
-                className={`hidden md:block text-primary text-[22px] mb-[20px] ${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
+                className={`hidden md:block text-[22px] mb-[20px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 2
+                    ? "text-primary"
+                    : "font-tenor"
                 }`}
               >
                 Why Book Direct?
@@ -88,7 +90,11 @@ export default function GridFloatBookDirect({ block }) {
                         />
                         <div className="text-center mt-[15px] relative">
                           <Link
-                            className="text-[14px] uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition hover:text-primary1 hover:bg-white"
+                            className={`text-[14px] uppercase inline-block border border-[#fff] py-[15px] px-[30px] transition  ${
+                              process.env.NEXT_PUBLIC_TEMPLATE == 2
+                                ? "hover:bg-primary hover:border-primary"
+                                : "hover:text-primary1 hover:bg-white"
+                            }`}
                             href={item?.link}
                           >
                             Discover More

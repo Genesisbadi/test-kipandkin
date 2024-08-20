@@ -219,12 +219,16 @@ export default function BookingForm({ ...props }) {
           <div
             className={`${
               isFloat ? "mb-[-50px]" : ""
-            } booking-form relative z-[22] backdrop-blur-[2px] w-full z-[1] bg-[#fff] bg-opacity-50 xl:bg-opacity-70 border-t-[1px] border-[#fff] select-none`}
+            } booking-form relative z-[22] backdrop-blur-[2px] w-full bg-[#fff] bg-opacity-50 xl:bg-opacity-70 border-t-[1px] border-[#fff] select-none`}
           >
             {!isMobile ? (
               <div className="flex justify-end text-[14px] h-full">
                 <div
-                  className={`py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
+                  className={`${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 2
+                      ? ""
+                      : "tracking-[3px]"
+                  } py-[10px] pr-[15px] border-r-[1px] border-[#a7a7a7] text-[16px] uppercase`}
                 >
                   Quick book
                 </div>

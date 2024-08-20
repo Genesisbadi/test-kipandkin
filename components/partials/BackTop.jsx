@@ -31,8 +31,10 @@ const BackTop = () => {
     <div className={styles.backTop}>
       <button
         className={`flex items-center justify-center !p-0 md:!p-[10px_15px] w-[40px] h-[40px] md:w-[50px] md:h-[50px] hover:opacity-[.9] ${
-          isVisible ? styles.visible : styles.invisible
-        }`}
+          process.env.NEXT_PUBLIC_TEMPLATE == 2
+            ? "bg-primary border-white border-solid border-[1px]"
+            : "bg-[#a79378]"
+        } ${isVisible ? styles.visible : styles.invisible}`}
         onClick={scrollToTop}
       >
         <svg

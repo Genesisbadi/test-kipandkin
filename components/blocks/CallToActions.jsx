@@ -28,10 +28,18 @@ export default function CallToActions({ block }) {
             <div className="h-[34px] animate-pulse bg-[#ccc] w-[250px] hidden md:block mx-auto mb-[30px]" />
           )}
           {items?.length > 0 && (
-            <div className="flex flex-wrap mx-[-15px]">
+            <div
+              className={`flex flex-wrap mx-[-15px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 2
+                  ? "gap-y-[40px] lg:pl-[calc(100%-1100px)]"
+                  : ""
+              }`}
+            >
               {items?.map((item, index) => (
                 <div
-                  className="w-full px-[15px] mb-[40px] md:max-w-[33.33%] relative"
+                  className={`w-full px-[15px] md:max-w-[33.33%] relative ${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "" : "mb-[40px]"
+                  }`}
                   key={index}
                 >
                   <div className="flex items-center group hover:text-primary text-[#999] text-[18px] relative">

@@ -50,7 +50,13 @@ export default function BlogPage({ page }) {
         </h2>
         {mediaHandler?.main?.image ||
           (page?.data?.main?.featured_image && (
-            <figure>
+            <figure
+              className={`${
+                process.env.NEXT_PUBLIC_TEMPLATE == 2
+                  ? "max-w-[800px] mx-auto"
+                  : ""
+              }`}
+            >
               <Image
                 className="mb-[30px]"
                 src={

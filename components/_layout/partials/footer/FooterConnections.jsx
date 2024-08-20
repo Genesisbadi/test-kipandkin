@@ -79,12 +79,13 @@ export default function FooterConnections() {
     <>
       {connections.connection_items && (
         <>
-          {process.env.NEXT_PUBLIC_TEMPLATE == 1 ? (
+          {process.env.NEXT_PUBLIC_TEMPLATE == 1 ||
+          process.env.NEXT_PUBLIC_TEMPLATE == 2 ? (
             <div className="connections order-1 md:order-[-2]">
               {connections?.connection_items?.map((item, index) => (
                 <div
                   key={index}
-                  className={`border-b border-b-[1px] border-[#666] flex flex-wrap items-center pb-[20px] mb-[30px] `}
+                  className={`border-b-[1px] border-[#666] flex flex-wrap items-center pb-[20px] mb-[30px] `}
                 >
                   {item?.title && (
                     <h2
@@ -116,7 +117,11 @@ export default function FooterConnections() {
                               width={322}
                               height={160}
                               alt="Logo"
-                              className="w-auto md:max-w-[100px] h-[60px] object-contain"
+                              className={`w-auto object-contain ${
+                                process.env.NEXT_PUBLIC_TEMPLATE == 2
+                                  ? "md:max-w-[150px] h-full md:h-[100px]"
+                                  : "md:max-w-[100px] h-[60px]"
+                              }`}
                             />
                           </Link>
                         </span>
@@ -131,7 +136,7 @@ export default function FooterConnections() {
               {connections?.connection_items?.map((item, index) => (
                 <div
                   key={index}
-                  className="border-b border-b-[1px] pb-[30px] border-[#666] mb-[30px]"
+                  className="border-b-[1px] pb-[30px] border-[#666] mb-[30px]"
                 >
                   {item?.title && (
                     <h2
