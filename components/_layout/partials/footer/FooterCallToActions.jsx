@@ -45,13 +45,19 @@ export default function CallToActions() {
   return (
     <>
       {router.asPath !== "/" && (
-        <section className="text-primary py-[30px] border-y-[3px] border-primary">
+        <section
+          className={`text-primary py-[30px] ${
+            process.env.NEXT_PUBLIC_TEMPLATE == 2
+              ? ""
+              : "border-y-[3px] border-primary"
+          }`}
+        >
           <div className="container">
             <h2
-              className={`text-primary text-[22px] mb-[30px] mb-[15px] ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor tracking-[1px]"
-                  : " "
+              className={`text-primary text-[22px] mb-[30px] ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+              } ${
+                process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "" : "tracking-[1px]"
               }`}
             >
               {`${block_title}` || "Why Book Direct?"}

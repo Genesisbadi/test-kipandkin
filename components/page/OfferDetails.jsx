@@ -264,7 +264,7 @@ export default function OfferDetails({ page }) {
                     onClick={accordion}
                   >
                     <h2 className="text-primary font-bold text-[20px] font-tenor">
-                      Terms & Condition
+                      Terms & Conditions
                     </h2>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

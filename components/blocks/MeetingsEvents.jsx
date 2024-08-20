@@ -67,6 +67,21 @@ export default function MeetingsEvents({ block }) {
               {events && events.data.length > 0 ? (
                 <div className="flex flex-wrap justify-center mx-[-15px] pt-[30px]">
                   {events.data.map((item, index) => {
+                    const capitalizeTitle = (title) => {
+                      return title
+                        ?.split(" ")
+                        .map(
+                          (word) =>
+                            word.charAt(0).toUpperCase() +
+                            word.slice(1).toLowerCase()
+                        )
+                        .join(" ");
+                    };
+
+                    const formattedTitle =
+                      process.env.NEXT_PUBLIC_TEMPLATE == 2
+                        ? capitalizeTitle(item?.attributes?.title)
+                        : capitalizeTitle(item?.attributes?.title);
                     return (
                       <div
                         key={index}
@@ -74,14 +89,9 @@ export default function MeetingsEvents({ block }) {
                       >
                         <div className="w-full bg-white p-[20px] z-10">
                           <h3 className="text-primary text-[20px]">
-                            {item?.attributes?.title
-                              ?.split(" ")
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() +
-                                  word.slice(1).toLowerCase()
-                              )
-                              .join(" ")}
+                            {formattedTitle.length > 25
+                              ? formattedTitle.slice(0, 25) + "..."
+                              : formattedTitle}
                           </h3>
                         </div>
                         <div className="relative flex min-h-[250px] sm:min-h-[300px] flex-col items-center justify-end mb-[30px]">
