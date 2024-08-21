@@ -22,7 +22,7 @@ export default function RoomSuitePage({ page }) {
   );
 
   const { mediaHandler, title, route_url } = page;
-  const { button_links, description, features, gallery, image } =
+  const { button_links, description, features, gallery, image, main_features } =
     page.data.main;
 
   const router = useRouter();
@@ -54,6 +54,7 @@ export default function RoomSuitePage({ page }) {
       value: page.route_url,
     };
   };
+
   return (
     <div>
       <section className="page-banner relative flex items-center justify-center min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] w-full bg-[#f1f1f1]">
@@ -114,6 +115,73 @@ export default function RoomSuitePage({ page }) {
               className="text-[14px] leading-[25px] mb-[50px]"
             />
           )}
+        </div>
+        <CarouselGallery
+          images={gallery}
+          title={"Gallery"}
+          alt_title={title || "Thumbnail"}
+        />
+        <div className="container py-[50px]">
+          {main_features && main_features?.length > 0 && (
+            <>
+              {main_features?.map((item, index) => (
+                <div key={index} className="mb-[30px]">
+                  {item?.title && (
+                    <h2
+                      className={`${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 1
+                          ? "font-tenor"
+                          : " "
+                      } text-[25px] uppercase  text-primary mb-[15px] ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 2
+                          ? "text-left"
+                          : "text-center"
+                      }`}
+                    >
+                      {item?.title}
+                    </h2>
+                  )}
+                  {item?.features_information &&
+                    item?.features_information.length > 0 && (
+                      <div
+                        className={`grid ${
+                          item?.layout === "2_column"
+                            ? "sm:grid-cols-2"
+                            : "grid-cols-1"
+                        }`}
+                      >
+                        {item?.features_information?.map(
+                          (itemInformation, indexIndex) => (
+                            <div
+                              key={indexIndex}
+                              className="flex items-center gap-x-[10px] mb-[15px]"
+                            >
+                              {!item?.hide_icons && (
+                                <Image
+                                  src={
+                                    itemInformation?.icon?.attributes?.data
+                                      ?.main?.icon
+                                  }
+                                  height={15}
+                                  width={15}
+                                  alt="icon"
+                                />
+                              )}
+                              {item?.hide_icons && (
+                                <span className="flex w-[6px] h-[6px] bg-secondary rounded-full"></span>
+                              )}
+                              <div className="text-[14px] leading-[21px]">
+                                {itemInformation?.information}
+                              </div>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    )}
+                </div>
+              ))}
+            </>
+          )}
           {features && (
             <>
               <h2
@@ -158,11 +226,11 @@ export default function RoomSuitePage({ page }) {
           )}
         </div>
 
-        <CarouselGallery
+        {/* <CarouselGallery
           images={gallery}
           title={"Gallery"}
           alt_title={title || "Thumbnail"}
-        />
+        /> */}
       </article>
     </div>
   );

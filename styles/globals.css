@@ -472,3 +472,49 @@ p {
 .CookieDeclarationType {
   display: none !important;
 }
+
+.fancybox__toolbar {
+  padding: 16px;
+}
+
+.fancybox__toolbar,
+.fancybox__nav {
+  --f-button-border-radius: 50%;
+  --f-button-bg: rgb(91 78 76 / 64%);
+  --f-button-hover-bg: rgb(91 78 76 / 74%);
+  --f-button-active-bg: rgb(91 78 76 / 84%);
+}
+
+.fancybox__nav {
+  --f-button-svg-width: 22px;
+  --f-button-svg-height: 22px;
+}
+
+.fancybox__thumbs.is-classic {
+  --f-thumb-width: 48px;
+  --f-thumb-height: 48px;
+  --f-thumb-gap: 16px;
+
+  --f-thumb-border-radius: 6px;
+  --f-thumb-outline: 0;
+}
+.fancybox__caption {
+  @apply text-center
+    !max-w-[1080px]
+    !px-[20px];
+}
+.fancybox__caption h2 {
+  @apply md:text-[25px]
+    text-[20px]
+    mb-[10px];
+}
+
+.fancybox__caption h3 {
+  @apply text-[23px]
+  mb-[10px];
+}
+
+.fancybox__caption p {
+  @apply sm:line-clamp-none
+  line-clamp-3;
+}
