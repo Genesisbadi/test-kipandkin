@@ -4,6 +4,12 @@ import { formSubmit, isError, RenderCaptcha } from "@/lib/services/formService";
 import formStore from "@/lib/store/formStore";
 import globalState from "@/lib/store/globalState";
 import { shallow } from "zustand/shallow";
+import dynamic from "next/dynamic";
+const FormGenericNotification = dynamic(() =>
+  import("../notifications/FormGenericNotification").then(
+    (module) => module.default
+  )
+);
 export default function DefaultForm({ form }) {
   const formData = formStore((state) => state);
   const captcha = globalState((state) => state.captcha);
@@ -126,6 +132,10 @@ export default function DefaultForm({ form }) {
                 )}
               </div>
             </form>
+
+            {formData?.formSuccessInfo && !formData.submitLoading && (
+              <FormGenericNotification />
+            )}
           </Fragment>
         );
       })}
