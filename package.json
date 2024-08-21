@@ -46,6 +46,7 @@
     "sharethis-reactjs": "^1.6.0",
     "sharp": "^0.31.3",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.9",
     "swr": "^2.0.0",
     "util": "^0.12.5",
     "zustand": "^4.3.6"

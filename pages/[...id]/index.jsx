@@ -2,6 +2,8 @@
 import Header from "@/layout/partials/Header";
 import { paths, props } from "@/lib/props/page";
 import dynamic from "next/dynamic";
+
+import persistentStore from "@/lib/store/persistentStore";
 export const getStaticPaths = paths;
 export const getStaticProps = props;
 
@@ -61,8 +63,22 @@ const TestPage = dynamic(() =>
   import("../../components/page/TestPage").then((module) => module.default)
 );
 
+const ProtectedRoute = dynamic(() =>
+  import("../../components/partials/ProtectedRoute").then(
+    (module) => module.default
+  )
+);
+
+import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
+import { useEffect, useState } from "react";
+
 export default function DynamicPage({ page, blocks }) {
   const pageTitle = page.metaData.title || page.name;
+  const statePassword = persistentStore((state) => state.password);
+  const [loaded, setLoaded] = useState(false);
+
+  const tenantPassword = tenantDetailsMain?.protect_password;
+
   const titleElement = (
     <h1 hidden className="hidden opacity-0 invisible">
       {page.metaData.title || page.name}
@@ -77,6 +93,9 @@ export default function DynamicPage({ page, blocks }) {
       )}
     </>
   );
+  useEffect(() => {
+    setLoaded(true);
+  });
 
   let ComponentToRender;
 
@@ -118,6 +137,15 @@ export default function DynamicPage({ page, blocks }) {
       ComponentToRender = ParentBlock;
       break;
   }
+
+  if (
+    loaded &&
+    page?.visibility == "authenticated" &&
+    statePassword != tenantPassword
+  ) {
+    return <ProtectedRoute tenantPassword={tenantPassword} />;
+  }
+
   return (
     <>
       {titleElement}

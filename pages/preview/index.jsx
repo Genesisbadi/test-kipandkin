@@ -157,6 +157,7 @@ export default function DynamicPage() {
         break;
       default:
         return <ParentBlock page={page} blocks={blocks} />;
+        break;
     }
   };
 

@@ -1,6 +1,7 @@
 import styles from "@/styles/description.module.css";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import CarouselAccordion from "./CarouselAccordion";
 export default function AccordionItem({ ...props }) {
   const { item, index, bg_white } = props;
   const [isOpen, setIsOpen] = useState(false);
@@ -66,6 +67,10 @@ export default function AccordionItem({ ...props }) {
                 className={`${styles.description}`}
                 dangerouslySetInnerHTML={{ __html: item.description }}
               />
+
+              {item?.gallery && item?.gallery?.length > 0 && (
+                <CarouselAccordion gallery={item.gallery} />
+              )}
               {item?.button_links && item?.button_links.length > 0 && (
                 <div className="flex justify-center flex-wrap mt-[30px]">
                   {item.button_links.map((item, index) => (
