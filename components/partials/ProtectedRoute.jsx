@@ -29,12 +29,12 @@ export default function ProtectedRoute({ statePassword, tenantPassword }) {
             name="new-password"
             id="new-password"
             autoComplete="new-password"
-            className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] pr-[100px]"
+            className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] pr-[80px]"
             placeholder="Enter the password to proceed."
           />
           <button
             type="submit"
-            className="absolute max-w-[100px] w-full top-0 right-0 bg-primary py-[10px] text-[#FFFFFF] min-h-[45px] text-[15px] flex justify-center items-center min-w-[95px] px-[15px] uppercase"
+            className="absolute w-full max-w-[70px] w-full top-0 right-0 bg-primary py-[10px] text-[#FFFFFF] min-h-[45px] text-[15px] flex justify-center items-center px-[15px] uppercase"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export default function ProtectedRoute({ statePassword, tenantPassword }) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-6"
+              className="w-[20px] h-[20px]"
             >
               <path
                 strokeLinecap="round"
