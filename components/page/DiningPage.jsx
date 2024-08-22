@@ -268,6 +268,8 @@ export default function DiningPage({ page }) {
                           item?.dining_link ||
                           dining_offer?.attributes?.route_url ||
                           "#";
+
+                        console.log("dining_offer", dining_offer);
                         return (
                           <div
                             className="flex mb-[30px] flex-col md:flex-row w-full bg-white shadow-md"
@@ -281,10 +283,12 @@ export default function DiningPage({ page }) {
                                     dining_offer_image ||
                                     dining_offer?.attributes?.mediaHandler[
                                       "main.image"
-                                    ][0].conversions.desktop ||
+                                    ]?.[0].conversions.desktop ||
                                     dining_offer?.attributes?.mediaHandler[
                                       "main.image"
-                                    ][0].original
+                                    ]?.[0].original ||
+                                    dining_offer?.attributes?.data?.main
+                                      ?.featured_image
                                   }
                                   width={628}
                                   height={280}
