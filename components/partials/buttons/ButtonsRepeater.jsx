@@ -16,7 +16,7 @@ export default function ButtonsRepeater({ ...props }) {
       {buttons?.map((item, index) => (
         <div
           key={index}
-          className="item w-full flex flex-col justify-center px-[40px] md:max-w-[33.33%]"
+          className="item w-full flex flex-col justify-center px-[40px] md:max-w-[47.33%]"
         >
           {item?.description && (
             <div

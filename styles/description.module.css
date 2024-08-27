@@ -90,3 +90,11 @@
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+.descriptionExperience p a {
+  color: var(--primary);
+}
+
+.descriptionExperience p a:hover {
+  text-decoration: underline;
+}
