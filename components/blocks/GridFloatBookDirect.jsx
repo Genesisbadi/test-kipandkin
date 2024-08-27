@@ -61,11 +61,7 @@ export default function GridFloatBookDirect({ block }) {
                     childrenClassname="px-[15px] md:px-0 pb-[15px] md:pb-0"
                   >
                     <h2
-                      className={`hidden md:block text-center text-primary mb-[20px] leading-[33px] ${
-                        item?.title.length > 20
-                          ? "text-[16px] lg:text-[15px] xl:text-[16px]"
-                          : "text-[22px]"
-                      } ${
+                      className={`hidden md:block text-center mb-[20px] leading-[33px] text-[22px] ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
