@@ -87,7 +87,7 @@ export default function DiningPage({ page }) {
       {showLazy && (
         <article>
           <div className="container py-[50px]">
-            {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
+            {/* {process.env.NEXT_PUBLIC_TEMPLATE == 2 && (
               <div className="flex text-[14px] mb-[30px] flex-wrap justify-center items-center pb-[30px] border-b-[1px] border-b-[#ccc]">
                 <div className="w-full md:max-w-[400px]">
                   <CustomSelect
@@ -107,7 +107,7 @@ export default function DiningPage({ page }) {
                   />
                 </div>
               </div>
-            )}
+            )} */}
             <div className="flex flex-col md:flex-row w-full sm:gap-x-[70px] lg:gap-x-100">
               <div className="flex flex-col w-full md:w-3/4">
                 <div className="flex flex-col pb-[20px]">
@@ -268,8 +268,6 @@ export default function DiningPage({ page }) {
                           item?.dining_link ||
                           dining_offer?.attributes?.route_url ||
                           "#";
-
-                        console.log("dining_offer", dining_offer);
                         return (
                           <div
                             className="flex mb-[30px] flex-col md:flex-row w-full bg-white shadow-md"
@@ -278,7 +276,7 @@ export default function DiningPage({ page }) {
                             <div className="w-full md:max-w-[500px]">
                               <Link href={route_url || "#"}>
                                 <Image
-                                  alt={title}
+                                  alt={title || "image"}
                                   src={
                                     dining_offer_image ||
                                     dining_offer?.attributes?.mediaHandler[

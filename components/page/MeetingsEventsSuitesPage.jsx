@@ -5,6 +5,7 @@ import styles from "@/styles/description.module.css";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Quote from "../icons/Quote";
 export default function MeetingsEventsSuitesPage({ page }) {
   const ModalImage1 = dynamic(() =>
     import("@/components/partials/Modals/ModalImage1").then(
@@ -22,7 +23,8 @@ export default function MeetingsEventsSuitesPage({ page }) {
 
   const showLazy = globalState((state) => state.showLazy);
   const { title, data } = page;
-  const { image, description, buttons, images } = data.main;
+  const { image, description, buttons, images, gallery_title, testimonials } =
+    data.main;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -120,6 +122,21 @@ export default function MeetingsEventsSuitesPage({ page }) {
     ],
   };
 
+  const testimonialsSettings = {
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    speed: 1000,
+    arrows: false,
+    adaptiveHeight: true,
+    appendDots: (dots) => <ul>{dots}</ul>,
+    customPaging: (i) => <div className="ft-slick__dots--custom"></div>,
+  };
+
   return (
     <>
       <article className="bg-[#f1f1f1]">
@@ -190,6 +207,30 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   )}
                 </div>
               </div>
+              {testimonials && testimonials.length > 0 && (
+                <div className={`pt-[40px] pb-[80px] slickdots relative`}>
+                  <div className="w-[60px] absolute left-0 top-[20px] text-[#DDDDDD]">
+                    <Quote />
+                  </div>
+                  <Slick {...testimonialsSettings}>
+                    {testimonials?.map((item, index) => (
+                      <div
+                        key={index}
+                        className="relative flex flex-col mb-[100px] text-center"
+                      >
+                        <div
+                          className="italic text-[16px] relative z-[10] font-[500] 
+              "
+                          dangerouslySetInnerHTML={{ __html: item?.quote }}
+                        ></div>
+                        <div className="font-bold text-[20px] mt-[10px] italic">
+                          {"-" + item?.author}
+                        </div>
+                      </div>
+                    ))}
+                  </Slick>
+                </div>
+              )}
             </>
           )}
         </div>
@@ -198,8 +239,14 @@ export default function MeetingsEventsSuitesPage({ page }) {
             <>
               {images.length > 0 && (
                 <>
-                  <h2 className="font-tenor text-primary text-[25px] text-center tracking-[1px] mb-[20px]">
-                    GALLERY
+                  <h2
+                    className={` text-[25px] text-center tracking-[1px] mb-[20px] ${
+                      process.env.NEXT_PUBLIC_TEMPLATE == 2
+                        ? "text-primary"
+                        : "font-tenor"
+                    }`}
+                  >
+                    {gallery_title || "GALLERY"}
                   </h2>
                   <div
                     className={`${

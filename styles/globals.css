@@ -518,3 +518,49 @@ p {
   @apply sm:line-clamp-none
   line-clamp-3;
 }
+
+/* Dots */
+
+.slickdots .slick-list {
+  @apply pb-[90px];
+}
+.slickdots .slick-dots {
+  @apply flex
+    justify-center
+    gap-x-[20px]
+    p-0
+    m-0
+    absolute
+    left-0
+    right-0
+    bottom-[50px];
+}
+
+.slickdots .slick-dots li {
+  @apply w-[10px] h-[10px] rounded-full bg-[#DDDDDD] flex cursor-pointer
+  transition-transform duration-300 ease-in;
+}
+
+.slickdots .slick-dots .slick-active {
+  @apply bg-[var(--primary)]
+ scale-[1.2]
+  transition-transform duration-300 ease-in;
+}
+
+.slickdots .slick-dots .ft-slick__dots--custom {
+  @apply flex w-full h-full;
+}
+
+/* Counter Number */
+
+.custom-counter {
+  counter-reset: section;
+}
+
+.custom-counter-number {
+  counter-increment: section;
+}
+
+.custom-counter .custom-counter-number::before {
+  content: counters(section, "") "";
+}
