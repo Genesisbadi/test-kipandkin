@@ -40,11 +40,7 @@ export default function Block({ block }) {
             {link && (
               <Link
                 href={link}
-                className={`bg-primary hover:opacity-70 uppercase text-[14px] text-white py-[10px] min-w-[150px] text-center mt-3 px-[15px] inline-block ${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 2
-                    ? ""
-                    : "rounded-[5px] shadow-lg"
-                }`}
+                className={`inline-block mt-[15px] px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm text-white bg-primary border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
               >
                 {button_label ? button_label : "Discovery More"}
               </Link>
