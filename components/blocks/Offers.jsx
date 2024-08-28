@@ -253,7 +253,7 @@ export default function Block({ block }) {
                                 href={item.attributes.route_url || "#"}
                                 className="absolute bottom-[28px] border-[1px] border-white text-white hover:bg-white transition hover:text-secondary uppercase p-[15px] z-20"
                               >
-                                More Details
+                                View Offer
                               </Link>
                             )}
                           </div>
