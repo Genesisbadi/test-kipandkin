@@ -47,7 +47,7 @@ export default function DiningBlock({ block }) {
       try {
         const res = await BaseApi.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/dining/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&includes=blueprintData,mediaHandler&filter[taxonomies][dining-location-category]=${selectedLoc.value}&sort=-published_at`
+            `/api/contents/dining/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&includes=blueprintData,mediaHandler&filter[taxonomies][dining-location-category]=${selectedLoc.value}&sort=title`
         );
         setRestaurants(res.data.data);
         setIsLoading(false);
