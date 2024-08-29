@@ -216,12 +216,12 @@ export default function DestinationDetails({ page }) {
                         item?.button_url?.includes("http") ? "_blank" : "_self"
                       }
                       className={`px-3 2sm:px-5 py-5 text-center text-xs 2sm:text-sm mb-[30px] md:my-[50px] ${
-                        !item.button_label || !links
-                          ? "border-none"
-                          : "border border-secondary"
-                      } text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
+                        item.button_variant === "filled"
+                          ? "text-white bg-primary"
+                          : "border-secondary"
+                      } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300`}
                     >
-                      {item?.button_label}
+                      {item?.button_label || "Discover"}
                     </ButtonLink>
                   );
                 })}
