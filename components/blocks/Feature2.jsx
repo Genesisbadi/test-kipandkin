@@ -36,7 +36,6 @@ export default function Block({ block }) {
               {title}
             </h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />
-
             {link && (
               <Link
                 href={link}

@@ -123,7 +123,7 @@ export default function Selection({ block }) {
                           : "border-secondary"
                       } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
                     >
-                      {item?.button_label || "#"}
+                      {item?.button_label || "Read More"}
                     </Link>
                   ))}
                 </div>
