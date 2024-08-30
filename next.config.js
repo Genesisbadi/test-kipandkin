@@ -19,9 +19,9 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    // loader: "custom",
+    loader: "custom",
     // loaderFile: "./components/partials/ImageLoader.jsx",
-    // loaderFile: "./lib/utils/cloudfrontLoader.jsx",
+    loaderFile: "./lib/utils/cloudfrontLoader.jsx",
     remotePatterns: [
       {
         protocol: "https",
