@@ -529,7 +529,8 @@ p {
   @apply !opacity-100;
 }
 
-.is-opening .fancybox-spinner {
+.is-opening .fancybox-spinner,
+.is-compact .fancybox-spinner {
   @apply opacity-0;
 }
 .slickdots .slick-list {
