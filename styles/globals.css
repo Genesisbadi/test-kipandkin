@@ -519,6 +519,13 @@ p {
   line-clamp-3;
 }
 
+.is-loading .fancybox__content,
+.fancybox__slide.is-loading {
+  @apply !opacity-100;
+}
+.is-loading .fancybox-spinner {
+  @apply opacity-0;
+}
 /* Dots */
 
 .slickdots .slick-list {

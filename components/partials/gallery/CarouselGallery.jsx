@@ -1,6 +1,7 @@
 import Slick from "react-slick";
 import Image from "next/image";
 import ModalImage1 from "../Modals/ModalImage1";
+import FancyPhotos from "../popups/FancyPhotos";
 export default function CarouselGallery({ ...props }) {
   const { images, alt_title, title, className } = props;
 
@@ -102,35 +103,38 @@ export default function CarouselGallery({ ...props }) {
             {title && (
               <span
                 className={`${
-                  process.env.NEXT_PUBLIC_TEMPLATE == 1
-                    ? "font-tenor"
-                    : " "
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                 } tracking-[1px] text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[30px]`}
               >
                 {title || "Gallery"}
               </span>
             )}
-
-            <Slick
-              {...settings}
-              className={`carousel-gallery ${
-                images.length < 3 ? "not-slider" : ""
-              }`}
-            >
-              {images?.map((item, index) => {
-                return (
-                  <div key={index} className="flex cursor-pointer">
-                    <ModalImage1
-                      content={index}
-                      images={images}
-                      title={alt_title}
-                      image={item}
-                      className="w-full h-[250px] sm:h-[300px] lg:h-[420px] object-cover"
-                    />
-                  </div>
-                );
-              })}
-            </Slick>
+            <FancyPhotos fancyId={`gallery-collection`}>
+              <Slick
+                {...settings}
+                className={`carousel-gallery ${
+                  images.length < 3 ? "not-slider" : ""
+                }`}
+              >
+                {images?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex cursor-pointer"
+                      data-fancybox={`gallery-collection`}
+                      href={item}
+                    >
+                      <Image
+                        height={420}
+                        width={420}
+                        src={item}
+                        className="w-full h-[250px] sm:h-[300px] lg:h-[420px] object-cover"
+                      />
+                    </div>
+                  );
+                })}
+              </Slick>
+            </FancyPhotos>
           </div>
         </div>
       )}
