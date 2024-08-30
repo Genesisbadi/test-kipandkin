@@ -128,6 +128,7 @@ export default function CarouselGallery({ ...props }) {
                         height={420}
                         width={420}
                         src={item}
+                        alt="Hello"
                         className="w-full h-[250px] sm:h-[300px] lg:h-[420px] object-cover"
                       />
                     </div>

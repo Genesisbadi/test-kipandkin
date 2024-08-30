@@ -1,26 +1,21 @@
-import { Fancybox } from "@fancyapps/ui";
+import React, { useEffect } from "react";
+
+import { Fancybox as NativeFancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
+function Fancybox(props) {
+  const delegate = props.delegate || "[data-fancybox]";
 
-// fancyId is a unique identifier for the fancybox instance
-export default function FancyPhotos({ fancyId, children, ...props }) {
-  Fancybox.bind(`[data-fancybox="${fancyId}"]`, {
-    dragToClose: false,
-    Toolbar: {
-      display: {
-        right: ["close", "thumbs", "fullscreen"],
-        middle: [],
-        left: [],
-      },
-    },
+  useEffect(() => {
+    const opts = props.options || {};
 
-    Images: {
-      zoom: false,
-    },
+    NativeFancybox.bind(delegate, opts);
 
-    Thumbs: {
-      type: "classic",
-    },
-  });
+    return () => {
+      NativeFancybox.destroy();
+    };
+  }, []);
 
-  return <div>{children}</div>;
+  return <>{props.children}</>;
 }
+
+export default Fancybox;
