@@ -473,7 +473,7 @@ p {
   display: none !important;
 }
 
-.fancybox__toolbar {
+/* .fancybox__toolbar {
   padding: 16px;
 }
 
@@ -498,6 +498,10 @@ p {
   --f-thumb-border-radius: 6px;
   --f-thumb-outline: 0;
 }
+ */
+
+/* Dots */
+
 .fancybox__caption {
   @apply text-center
     !max-w-[1080px]
@@ -519,8 +523,16 @@ p {
   line-clamp-3;
 }
 
-/* Dots */
+.is-opening .fancybox__content,
+.is-compact .fancybox__content,
+.fancybox__slide.is-loading {
+  @apply !opacity-100;
+}
 
+.is-opening .fancybox-spinner,
+.is-compact .fancybox-spinner {
+  @apply opacity-0;
+}
 .slickdots .slick-list {
   @apply pb-[90px];
 }
