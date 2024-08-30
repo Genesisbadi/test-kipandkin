@@ -524,6 +524,7 @@ p {
 }
 
 .is-opening .fancybox__content,
+.is-compact .fancybox__content,
 .fancybox__slide.is-loading {
   @apply !opacity-100;
 }
