@@ -54,11 +54,11 @@ export default function OfferDetails({ page }) {
   const { description, image, venues } = data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
-  const [currentVenue, setCurrentVenue] = useState(venues[0]);
+  const [currentVenue, setCurrentVenue] = useState(venues?.[0]);
   const [accordionOpen, setAccordionOpen] = useState(false);
 
   useEffect(() => {
-    setCurrentVenue(venues[0]);
+    setCurrentVenue(venues?.[0]);
     setCurrentUrl(window.location.href);
   }, [venues]);
 
@@ -185,7 +185,7 @@ export default function OfferDetails({ page }) {
             )}
 
             <>
-              {venues.length > 0 && (
+              {venues?.length > 0 && (
                 <>
                   {process.env.NEXT_PUBLIC_TEMPLATE == 1 && (
                     <div
