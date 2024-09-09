@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
-
-export default function CarouselGallery({ block }) {
+import FancyPhotos from "@/components/partials/popups/FancyPhotos";
+export default function CarouselGallery({ blockId, block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
   );
@@ -146,7 +146,6 @@ export default function CarouselGallery({ block }) {
 
   return (
     <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
-
       {!showLazy ? (
         <>
           <div className="mb-[30px] mt-[40px]">
@@ -183,28 +182,33 @@ export default function CarouselGallery({ block }) {
           >
             {imagesLength > 0 && (
               <div className="flex flex-col w-full slick-gallery">
-                <Slick className="carousel-gallery" {...settings}>
-                  {images.map((item, index) => (
-                    <Fragment key={index}>
-                      <ModalImage1
+                <FancyPhotos>
+                  <Slick className="carousel-gallery" {...settings}>
+                    {images.map((item, index) => (
+                      <div
                         key={index}
-                        className={`${
-                          variation.length === 0
-                            ? "h-[260px]"
-                            : "h-[330px] lg:h-[420px]"
-                        } `}
-                        title={title}
-                        content={index}
-                        image={item}
-                        images={images || []}
-                      />
-                    </Fragment>
-                  ))}
-                </Slick>
+                        className="flex cursor-pointer"
+                        data-fancybox={`${blockId}`}
+                        href={item}
+                      >
+                        <Image
+                          height={420}
+                          width={420}
+                          src={item}
+                          className={`w-full object-cover ${
+                            variation.length === 0
+                              ? "h-[260px]"
+                              : "h-[330px] lg:h-[420px]"
+                          } `}
+                        />
+                      </div>
+                    ))}
+                  </Slick>
+                </FancyPhotos>
               </div>
             )}
           </div>
-          
+
           {button_link && (
             <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center mt-[30px] mb-[60px]">
               <div className="flex flex-wrap justify-center ">
