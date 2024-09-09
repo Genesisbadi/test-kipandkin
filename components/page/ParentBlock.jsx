@@ -47,6 +47,7 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
         return (
           <Component
             key={block?.key + block?.order?.toString()}
+            blockId={block?.key + block?.order?.toString()}
             block={block?.data}
             page={page}
             index={block?.order}
@@ -62,6 +63,7 @@ export default function ParentBlock({ page, blocks = [], initialBlocks = 2 }) {
             return (
               <Component
                 key={block?.key + block?.order?.toString()}
+                blockId={block?.key + block?.order?.toString()}
                 block={block?.data}
                 page={page}
                 index={block?.order}
