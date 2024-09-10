@@ -26,6 +26,7 @@ export default function ExperiencePage({ page }) {
   );
   const { route_url, title } = page;
   const { button_items, description, gallery, body_layout } = page?.data?.main;
+
   const router = useRouter();
 
   const [selectedValue, setSelectedValue] = useState(route_url);
@@ -271,6 +272,101 @@ export default function ExperiencePage({ page }) {
           className=""
         />
       )}
+      {page?.data?.featured_offers?.items &&
+        page?.data?.featured_offers?.items.length > 0 && (
+          <div
+            className={`w-full bg-[#f1f1f1] lg:pb-[20px] ${
+              gallery.length === 0 ? "pt-[20px] lg:pt-[50px]" : ""
+            }`}
+          >
+            <div className="container pb-[20px] !max-w-[980px] mx-auto">
+              <div className="flex flex-col w-full">
+                <h2
+                  className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  }`}
+                >
+                  Dining Offer
+                </h2>
+                {page?.data?.featured_offers.items.map((item, index) => {
+                  const description =
+                    item.description ||
+                    item?.select_offer?.attributes?.data?.main?.description;
+                  const title =
+                    item.title || item?.select_offer?.attributes?.title;
+                  const route_url =
+                    item?.link ||
+                    item?.select_offer?.attributes?.route_url ||
+                    "#";
+
+                  const image =
+                    page?.mediaHandler[
+                      `featured_offers.items.${index}.image`
+                    ][0]?.conversions?.thumbnail ||
+                    page?.mediaHandler[
+                      `featured_offers.items.${index}.image`
+                    ][0]?.original ||
+                    null;
+
+                  const button_label = item?.button_label || "View Offer";
+                  return (
+                    <div
+                      className="flex mb-[30px] flex-col md:flex-row w-full bg-white shadow-md"
+                      key={index}
+                    >
+                      {image && (
+                        <div className="w-full md:max-w-[500px]">
+                          <Link href={route_url || "#"}>
+                            <Image
+                              alt={title || "image"}
+                              src={image}
+                              width={628}
+                              height={280}
+                              className="w-full h-[300px] object-cover rounded-tl-sm rounded-bl-sm"
+                            />
+                          </Link>
+                        </div>
+                      )}
+
+                      <div
+                        className={`flex flex-col justify-between w-full ${
+                          image ? "md:w-1/2" : ""
+                        } p-5`}
+                      >
+                        <div className="flex flex-col flex-grow justify-center">
+                          <h3
+                            className={`text-primary text-[20px] text-center ${
+                              process.env.NEXT_PUBLIC_TEMPLATE == 1
+                                ? "font-tenor"
+                                : " "
+                            }`}
+                          >
+                            <Link href={route_url}>{title}</Link>
+                          </h3>
+                          <div className="w-full flex justify-center pt-[15px] pb-[10px]">
+                            <span className="border- border-[#aaa] h-[2px] block bg-[#aaa] tracking-[1px] w-[22px]" />
+                          </div>
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: description,
+                            }}
+                            className="text-[14px] text-center leading-[25px] line-clamp-4 "
+                          />
+                        </div>
+                        <Link
+                          href={route_url}
+                          className={`w-full mt-5 py-[15px] px-[30px] 2sm:w-auto text-center text-[14px] border border-secondary text-secondary hover:bg-secondary hover:text-white uppercase`}
+                        >
+                          {button_label}
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
     </>
   );
 }
