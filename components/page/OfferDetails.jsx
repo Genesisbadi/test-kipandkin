@@ -239,6 +239,14 @@ export default function OfferDetails({ page }) {
               >
                 {currentVenue && (
                   <>
+                    {currentVenue?.image && (
+                      <Image
+                        src={currentVenue?.image}
+                        width={1200}
+                        height={450}
+                        className="w-full h-auto"
+                      />
+                    )}
                     {currentVenue?.description && (
                       <VenueDescription
                         className={`bg-white shadow-md px-[40px] py-[30px] mb-[50px]`}
