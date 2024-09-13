@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 import offersCategoryTaxonomies from "@/lib/preBuildScripts/static/offers-category.json";
 import dynamic from "next/dynamic";
 import filteredOffersCategory from "@/lib/services/filteredOffersCategory";
-import Router from "next/router";
 import NProgress from "nprogress";
+import BaseApi from "@/lib/api/_base.api";
 export default function Block({ block }) {
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
@@ -25,13 +25,19 @@ export default function Block({ block }) {
   offersCategories.unshift(all);
 
   const router = useRouter();
+
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   const [initialCategory, setInitialCategory] = useState();
 
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState({
+    label: "All",
+    value: "",
+  });
+
+  const [findInitial, setFindInitial] = useState(offersCategories[0]);
 
   const handleCategoryChange = (selectedOption) => {
     NProgress.start();
@@ -52,48 +58,42 @@ export default function Block({ block }) {
       });
   };
 
+  const getOffers = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await BaseApi.get(
+        `${
+          process.env.NEXT_PUBLIC_TENANT_API
+        }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
+          selectedCategory?.value || ""
+        }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
+      );
+      setOffers(response?.data);
+      setLoading(false);
+      NProgress.done();
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      NProgress.done();
+      setLoading(false);
+    }
+  }, [currentPage, selectedCategory, router]); // Add selectedCategory here as a dependency
+
   useEffect(() => {
-    let findInitial = null;
-
-    findInitial = offersCategories[0];
-
     if (router?.query?.category) {
-      findInitial = offersCategories.find(
+      const foundCategory = offersCategories.find(
         (item) => item.id === router.query.category
       );
+      setSelectedCategory({
+        label: foundCategory?.name,
+        value: foundCategory?.id,
+      });
+    } else {
+      setSelectedCategory({ label: "All", value: "" });
     }
-    setInitialCategory(findInitial);
-
-    setSelectedCategory({
-      label: findInitial?.name,
-      value: findInitial?.id,
-    });
-
-    const getOffers = async () => {
-      setLoading(true);
-
-      try {
-        const response = await axios.get(
-          `${
-            process.env.NEXT_PUBLIC_TENANT_API
-          }/api/contents/offers/entries?page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][offers-category]=${
-            selectedCategory?.value || ""
-          }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
-        );
-        setOffers(response.data);
-        if (response.status === 200) {
-          setLoading(false);
-          NProgress.done();
-        }
-      } catch (error) {
-        console.error("Error fetching articles:", error);
-        NProgress.done();
-        setLoading(false);
-      }
-    };
-
-    getOffers();
-  }, [currentPage, router]);
+    if (router.isReady) {
+      getOffers();
+    }
+  }, [currentPage, router, findInitial]);
 
   const getDefaultValue = () => ({
     label: selectedCategory?.label,
@@ -134,7 +134,7 @@ export default function Block({ block }) {
 
         <div className="offers">
           {loading ? (
-            <div className="flex flex-wrap">
+            <div className="flex mx-[-15px] flex-wrap">
               {Array.from({ length: 3 }, (_, index) => (
                 <div
                   key={index}
@@ -153,7 +153,7 @@ export default function Block({ block }) {
             </div>
           ) : (
             <div>
-              {offers && offers.data.length > 0 ? (
+              {offers && offers?.data?.length > 0 ? (
                 <div className="flex flex-wrap py-[30px] gap-y-[30px] mx-[-15px]">
                   {offers.data.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
