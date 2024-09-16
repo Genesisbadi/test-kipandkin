@@ -251,7 +251,7 @@ export default function ExperiencePage({ page }) {
                   key={index}
                   href={item?.button_link}
                   className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
-                    item.button_variant === "dark"
+                    item.button_variant === "filled"
                       ? "text-white bg-primary"
                       : "border-secondary"
                   } border text-secondary uppercase hover:bg-secondary hover:text-white transition-all duration-300 `}
