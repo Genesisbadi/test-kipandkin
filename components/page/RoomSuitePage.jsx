@@ -187,9 +187,9 @@ export default function RoomSuitePage({ page }) {
               <h2
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-                } text-[25px] uppercase  text-primary mb-[15px] ${
+                } text-[25px] uppercase text-primary mb-[15px] ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 2
-                    ? "text-left pl-[15px]"
+                    ? "text-left"
                     : "text-center"
                 }`}
               >
