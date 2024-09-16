@@ -9,49 +9,52 @@ import { useRouter } from "next/router";
 
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
+import styles from "@/styles/description.module.css";
+
+const VenueDescription = dynamic(() =>
+  import("../nodes/meetings-events/VenueDescription").then(
+    (module) => module.default
+  )
+);
+
+const ButtonsRepeater = dynamic(() =>
+  import("../partials/buttons/ButtonsRepeater").then((module) => module.default)
+);
+
+const CarouselGallery = dynamic(() =>
+  import("../partials/gallery/CarouselGallery").then((module) => module.default)
+);
+const CarouselGalleryMedia = dynamic(() =>
+  import("../partials/gallery/CarouselGalleryMedia").then(
+    (module) => module.default
+  )
+);
+
+const CustomSelect = dynamic(() =>
+  import("@/components/forms/CustomSelect").then((module) => module.default)
+);
+
+const Slider = dynamic(() =>
+  import("react-slick").then((module) => module.default)
+);
+const StickyShareButtons = dynamic(
+  () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
+  {
+    ssr: false, // This line ensures that the component is only loaded on the client side.
+  }
+);
+
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
-
-  const StickyShareButtons = dynamic(
-    () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
-    {
-      ssr: false, // This line ensures that the component is only loaded on the client side.
-    }
-  );
 
   const [currentUrl, setCurrentUrl] = useState("");
 
   const router = useRouter();
 
-  const VenueDescription = dynamic(() =>
-    import("../nodes/meetings-events/VenueDescription").then(
-      (module) => module.default
-    )
-  );
-
-  const ButtonsRepeater = dynamic(() =>
-    import("../partials/buttons/ButtonsRepeater").then(
-      (module) => module.default
-    )
-  );
-
-  const CarouselGallery = dynamic(() =>
-    import("../partials/gallery/CarouselGallery").then(
-      (module) => module.default
-    )
-  );
-
-  const CustomSelect = dynamic(() =>
-    import("@/components/forms/CustomSelect").then((module) => module.default)
-  );
-
-  const Slider = dynamic(() =>
-    import("react-slick").then((module) => module.default)
-  );
-
   const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
-  const { description, image, venues } = data.main;
+
+  const { description, image, venues, buttons, gallery } = data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues?.[0]);
@@ -179,7 +182,11 @@ export default function OfferDetails({ page }) {
             )}
             {description && (
               <div
-                className="text-[14px] pb-[30px]"
+                className={`text-[14px] pb-[30px] ${
+                  process.env.NEXT_PUBLIC_TEMPLATE != 1 && !venues
+                    ? "bg-white shadow-md px-[40px] py-[30px] mb-[50px]"
+                    : ""
+                } ${styles?.description}`}
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}
@@ -225,6 +232,20 @@ export default function OfferDetails({ page }) {
           </>
         )}
       </div>
+
+      {buttons && buttons.length > 0 && (
+        <div className="container pb-[50px] mx-auto">
+          <ButtonsRepeater buttons={buttons} />
+        </div>
+      )}
+
+      {gallery && gallery.length > 0 && (
+        <CarouselGalleryMedia
+          className="py-0"
+          gallery={gallery}
+          mediaHandler={mediaHandler}
+        />
+      )}
 
       {showLazy && (
         <>
