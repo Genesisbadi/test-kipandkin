@@ -24,7 +24,12 @@ export default function OurCollectionPage({ page }) {
   );
 
   const showLazy = globalState((state) => state.showLazy);
-  const ourCollection = ourCollectionEntriesData.ourCollectionEntriesData;
+
+  let ourCollection =
+    ourCollectionEntriesData?.ourCollectionEntriesData?.filter(
+      (item) => item?.data?.contents.hide_dropdown !== true
+    ) || [];
+
   const { title } = page;
   const {
     subtitle,
