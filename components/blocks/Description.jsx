@@ -9,18 +9,19 @@ export default function Description({ block }) {
     return Math.floor(Math.random() * (1200 - 100 + 1)) + 100;
   };
 
-
   return (
-    <section className="bg-[#f1f1f1] pt-[10px] sm:pt-[30px] pb-[35px]">
+    <section className="bg-[#f1f1f1] pt-[10px] sm:pt-[30px] pb-[30px]">
       {!showLazy ? (
         <div className="container">
           {Array.from({ length: 20 }, (_, index) => (
             <div
-            key={index}
-            className="bg-[#ccc] animate-pulse w-full h-[20px] mb-[20px]"
-            style={{ maxWidth: `${getRandomWidth()}px`, marginBottom: '10px' }}
-          >
-          </div> 
+              key={index}
+              className="bg-[#ccc] animate-pulse w-full h-[20px] mb-[20px]"
+              style={{
+                maxWidth: `${getRandomWidth()}px`,
+                marginBottom: "10px",
+              }}
+            ></div>
           ))}
         </div>
       ) : (
@@ -28,7 +29,7 @@ export default function Description({ block }) {
           className={`${styles.description} container`}
           dangerouslySetInnerHTML={{ __html: description }}
         />
-      )} 
+      )}
     </section>
   );
 }

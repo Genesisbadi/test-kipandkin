@@ -32,6 +32,9 @@
   font-family: "Gotham", sans-serif !important;
   background-color: unset !important;
 }
+.description p:last-of-type {
+  margin-bottom: 0;
+}
 .description span {
   font-family: "Gotham", sans-serif !important;
 }
