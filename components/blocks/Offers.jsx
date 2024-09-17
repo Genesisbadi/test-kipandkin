@@ -15,7 +15,10 @@ export default function Block({ block }) {
 
   const { title, description } = block.main;
 
-  const offersCategories = filteredOffersCategory();
+  let offersCategories = filteredOffersCategory();
+  offersCategories = offersCategories.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   const all = {
     value: "",
