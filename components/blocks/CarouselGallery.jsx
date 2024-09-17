@@ -177,7 +177,7 @@ export default function CarouselGallery({ blockId, block }) {
           )}
           <div
             className={`${
-              variation.length === 0 ? "container pb-[50px]" : ""
+              variation.length === 0 ? "container" : ""
             } flex w-full`}
           >
             {imagesLength > 0 && (
