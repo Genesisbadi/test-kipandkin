@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "@/styles/description.module.css";
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
+import ButtonsRepeater from "../partials/buttons/ButtonsRepeater";
 export default function Selection({ block }) {
   const CustomSelect = dynamic(() =>
     import("../forms/CustomSelect").then((module) => module.default)
@@ -69,7 +70,6 @@ export default function Selection({ block }) {
                   )}
                 </div>
               ))}
-
             {selections.length > 0 && (
               <>
                 <div
@@ -110,6 +110,11 @@ export default function Selection({ block }) {
                 __html: currentSelection.description,
               }}
             />
+
+            {currentSelection?.buttons && (
+              <ButtonsRepeater buttons={currentSelection?.buttons} />
+            )}
+
             {buttons && buttons?.length > 0 && (
               <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center my-[30px]">
                 <div className="flex flex-wrap justify-center ">
