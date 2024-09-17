@@ -25,10 +25,16 @@ export default function OurCollectionPage({ page }) {
 
   const showLazy = globalState((state) => state.showLazy);
 
-  let ourCollection =
-    ourCollectionEntriesData?.ourCollectionEntriesData?.filter(
-      (item) => item?.data?.contents.hide_dropdown !== true
-    ) || [];
+  let ourCollection = [];
+
+  if (page?.data?.contents?.filtered_dropdown) {
+    ourCollection =
+      ourCollectionEntriesData?.ourCollectionEntriesData?.filter(
+        (item) => item?.data?.contents.hide_dropdown !== true
+      ) || [];
+  } else {
+    ourCollection = ourCollectionEntriesData?.ourCollectionEntriesData;
+  }
 
   const { title } = page;
   const {
