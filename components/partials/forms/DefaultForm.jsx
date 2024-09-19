@@ -65,13 +65,15 @@ export default function DefaultForm({ form }) {
                 })
               }
             >
-              <div className="text-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="text-sm">
                 {fields.map((field) => (
                   <Fragment key={field?.state_name}>
                     <FormField
                       {...field}
                       className={findClass(field?.state_name)}
-                      wrapperclassname={findWrapperClass(field?.state_name)}
+                      wrapperclassname={
+                        "mb-[15px] " + findWrapperClass(field?.state_name)
+                      }
                       error={isError(
                         errors,
                         section?.state_name,
