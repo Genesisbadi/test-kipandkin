@@ -36,7 +36,7 @@ export default function Radio(props) {
             htmlFor={`${state_name}-${i}`}
             className={`text-[14px] cursor-pointer pl-[5px]`}
           >
-            {option.label.replace('site_name', tenantDetails?.site_name)}
+            {option.label.replace("site_name", tenantDetails?.site_name)}
           </label>
         </div>
       ))}
