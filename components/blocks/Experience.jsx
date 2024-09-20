@@ -41,7 +41,7 @@ export default function Experience({ block }) {
       try {
         const res = await BaseApi.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/experiences/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&includes=blueprintData,mediaHandler&filter[taxonomies][experience-category]=${selectedExp.value}`
+            `/api/contents/experiences/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&sort=${block?.main?.sort_by}&includes=blueprintData,mediaHandler&filter[taxonomies][experience-category]=${selectedExp.value}`
         );
         setExperience(res.data.data);
         setIsLoading(false);
@@ -66,7 +66,6 @@ export default function Experience({ block }) {
       value: item?.id,
     })),
   ];
-
 
   return (
     <section className="bg-[#F1F1F1]">
