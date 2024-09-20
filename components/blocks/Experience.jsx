@@ -38,10 +38,17 @@ export default function Experience({ block }) {
       if (selectedExp === undefined) {
         selectedExp = selectedExperience;
       }
+      console.log("block?.main?.sort_by", block?.main?.sort_by);
       try {
         const res = await BaseApi.get(
           process.env.NEXT_PUBLIC_TENANT_API +
-            `/api/contents/experiences/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&sort=${block?.main?.sort_by}&includes=blueprintData,mediaHandler&filter[taxonomies][experience-category]=${selectedExp.value}`
+            `/api/contents/experiences/entries?filter[sites.id]=${
+              process.env.NEXT_PUBLIC_MICROSITE_ID
+            }&sort=${
+              block?.main?.sort_by || "order"
+            }&includes=blueprintData,mediaHandler&filter[taxonomies][experience-category]=${
+              selectedExp.value
+            }`
         );
         setExperience(res.data.data);
         setIsLoading(false);
