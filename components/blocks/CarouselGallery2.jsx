@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import globalState from "@/lib/store/globalState";
+import FancyPhotos from "@/components/partials/popups/FancyPhotos";
 
-export default function CarouselGallery2({ block }) {
+export default function CarouselGallery2({ blockId, block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
   );
@@ -14,40 +15,6 @@ export default function CarouselGallery2({ block }) {
   const { title, carousel_gallery } = block?.main;
 
   const showLazy = globalState((state) => state.showLazy);
-
-  Fancybox.bind('[data-fancybox="gallery"]', {
-    dragToClose: false,
-
-    Toolbar: {
-      display: {
-        right: ["close", "thumbs", "fullscreen"],
-        middle: [],
-        left: [],
-      },
-    },
-
-    Images: {
-      zoom: false,
-    },
-
-    Thumbs: {
-      type: "classic",
-    },
-
-    Carousel: {
-      transition: false,
-      friction: 0,
-    },
-
-    on: {
-      "Carousel.ready Carousel.change": (fancybox) => {
-        fancybox.container.style.setProperty(
-          "--bg-image",
-          `url("${fancybox.getSlide().thumbSrc}")`
-        );
-      },
-    },
-  });
 
   const imagesLength = carousel_gallery?.length ?? 0;
   let imagesDisplay = imagesLength < 3 ? 2 : 3;
@@ -173,7 +140,7 @@ export default function CarouselGallery2({ block }) {
         <>
           {title && (
             <h2
-              className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
+              className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] mb-[20px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
               }`}
             >
@@ -182,27 +149,36 @@ export default function CarouselGallery2({ block }) {
           )}
           {imagesLength > 0 && (
             <div className={`flex flex-col w-full carousel-gallery`}>
-              <Slick {...settings}>
-                {carousel_gallery?.map((item, index) => (
-                  <div key={index} className="h-[330px] lg:h-[420px]">
+              <FancyPhotos>
+                <Slick {...settings}>
+                  {carousel_gallery?.map((item, index) => (
                     <div
-                      href={item?.image}
-                      data-fancybox="gallery"
-                      data-src={item?.image}
-                      data-caption={item?.caption}
-                      className="h-full"
+                      key={index}
+                      className="h-[330px] lg:h-[420px] relative cursor-pointer group overflow-hidden"
                     >
-                      <Image
-                        src={item?.image}
-                        height={524}
-                        width={420}
-                        alt={item?.caption || "thumbnail"}
-                        className="w-full h-full object-cover"
-                      />
+                      <div
+                        href={item?.image}
+                        data-fancybox={`${blockId}`}
+                        data-src={item?.image}
+                        data-caption={item?.caption}
+                        className="h-full"
+                      >
+                        <Image
+                          src={item?.image}
+                          height={524}
+                          width={420}
+                          alt={item?.caption || "thumbnail"}
+                          className="w-full h-full object-cover group-hover:scale-[1.2] transition duration-500"
+                        />
+                        <div
+                          class="absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-black p-[50px] pb-[20px] duration-700 transition-all uppercase text-center font-brandon text-white text-[18px] tracking-[1.44px] leading-[25px] duration-500 transition-all "
+                          dangerouslySetInnerHTML={{ __html: item?.caption }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </Slick>
+                  ))}
+                </Slick>
+              </FancyPhotos>
             </div>
           )}
         </>
