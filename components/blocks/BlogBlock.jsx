@@ -224,7 +224,7 @@ export default function BlogBlock({ block }) {
                             <Link href={item?.attributes?.route_url || "#"}>
                               <Image
                                 src={item.attributes.data.main.featured_image}
-                                className="w-full mb-[15px] bg-[#ccc]"
+                                className="w-full mb-[15px] bg-[#ccc] max-h-[300px] object-cover"
                                 width={500}
                                 height={200}
                                 alt={item?.attributes?.title}
