@@ -6,6 +6,8 @@ import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Quote from "../icons/Quote";
+import Fancybox from "../partials/popups/FancyPhotos";
+import CarouselGallery from "../partials/gallery/CarouselGallery";
 export default function MeetingsEventsSuitesPage({ page }) {
   const ModalImage1 = dynamic(() =>
     import("@/components/partials/Modals/ModalImage1").then(
@@ -82,7 +84,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
 
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: images.length < 3 ? 2 : 3,
     slidesToScroll: 1,
@@ -248,28 +250,11 @@ export default function MeetingsEventsSuitesPage({ page }) {
                   >
                     {gallery_title || "GALLERY"}
                   </h2>
-                  <div
-                    className={`${
-                      images.length > 2 ? "" : "container"
-                    } flex flex-col w-full slick-gallery`}
-                  >
-                    <Slick {...settings} className="h-[330px] lg:h-[530px]">
-                      {images?.map((item, index) => (
-                        <Fragment key={index}>
-                          <div className="flex">
-                            <ModalImage1
-                              key={index}
-                              className="w-full h-[330px] lg:h-[530px] object-cover"
-                              title={title || "#"}
-                              content={index}
-                              image={item || ""}
-                              images={images}
-                            />
-                          </div>
-                        </Fragment>
-                      ))}
-                    </Slick>
-                  </div>
+                  <CarouselGallery
+                    // className="w-full h-[330px] lg:h-[530px] object-cover"
+                    images={images}
+                    className="!py-0"
+                  />
                 </>
               )}
             </>
