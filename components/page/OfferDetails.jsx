@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 
 import styles from "@/styles/description.module.css";
+import AccordionsOffer from "../partials/collapsibles/AccordionsOffer";
 
 const VenueDescription = dynamic(() =>
   import("../nodes/meetings-events/VenueDescription").then(
@@ -54,7 +55,8 @@ export default function OfferDetails({ page }) {
   const showLazy = globalState((state) => state.showLazy);
   const { title, id, data, metaData, published_at, mediaHandler } = page;
 
-  const { description, image, venues, buttons, gallery } = data.main;
+  const { description, image, venues, buttons, gallery, accordions } =
+    data.main;
 
   const [selectedValue, setSelectedValue] = useState(0);
   const [currentVenue, setCurrentVenue] = useState(venues?.[0]);
@@ -323,6 +325,9 @@ export default function OfferDetails({ page }) {
                     </div>
                   )}
                 </div>
+              )}
+              {accordions && accordions.length > 0 && (
+                <AccordionsOffer accordions={accordions} />
               )}
 
               {currentVenue?.gallery && (
