@@ -289,7 +289,7 @@ export default function OfferDetails({ page }) {
               {page?.data?.main?.terms_condition && (
                 <div className="py-[15px] container">
                   <div
-                    className={`accordion-header select-none flex justify-between cursor-pointer items-center py-[15px] px-[15px] border-b-[1px] border-[#ccc] border-t-[1px] border-[#ccc] ${
+                    className={`accordion-header select-none flex justify-between cursor-pointer items-center py-[15px] px-[8px] border-b-[1px] border-[#ccc] border-t-[1px] border-[#ccc] ${
                       accordionOpen ? "bg-white" : ""
                     }`}
                     onClick={accordion}
@@ -297,7 +297,7 @@ export default function OfferDetails({ page }) {
                     <h2 className="text-primary font-bold text-[20px] font-tenor">
                       Terms & Conditions
                     </h2>
-                    <svg
+                    {/* <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -312,6 +312,18 @@ export default function OfferDetails({ page }) {
                         strokeLinejoin="round"
                         d="m19.5 8.25-7.5 7.5-7.5-7.5"
                       />
+                    </svg> */}
+                    <svg
+                      height="20"
+                      width="20"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                      focusable="false"
+                      className={`w-5 h-5 transition ${
+                        accordionOpen ? "rotate-180" : "rotate-0"
+                      } `}
+                    >
+                      <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
                     </svg>
                   </div>
 
