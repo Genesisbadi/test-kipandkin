@@ -235,20 +235,6 @@ export default function OfferDetails({ page }) {
         )}
       </div>
 
-      {buttons && buttons.length > 0 && (
-        <div className="container pb-[50px] mx-auto">
-          <ButtonsRepeater buttons={buttons} />
-        </div>
-      )}
-
-      {gallery && gallery.length > 0 && (
-        <CarouselGalleryMedia
-          className="py-0"
-          gallery={gallery}
-          mediaHandler={mediaHandler}
-        />
-      )}
-
       {showLazy && (
         <>
           {currentVenue && (
@@ -351,6 +337,20 @@ export default function OfferDetails({ page }) {
             </>
           )}
         </>
+      )}
+
+      {buttons && buttons.length > 0 && (
+        <div className="container pb-[50px] mx-auto">
+          <ButtonsRepeater buttons={buttons} />
+        </div>
+      )}
+
+      {gallery && gallery.length > 0 && (
+        <CarouselGalleryMedia
+          className="py-0"
+          gallery={gallery}
+          mediaHandler={mediaHandler}
+        />
       )}
 
       {currentUrl && showLazy && (
