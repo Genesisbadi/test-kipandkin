@@ -75,17 +75,21 @@ export default function DiningBlock({ block }) {
   return (
     <section className="bg-[#F1F1F1]">
       <div className="container">
-        <div className="text-[#555] text-[14px] text-center leading-[21px] tracking-[1px] pb-[10px] mb-[10px]">
-          Select your destination
-        </div>
-        <CustomSelect
-          isSearchable={false}
-          className="react-select z-30 mx-auto"
-          onChange={handleCategoryChange}
-          placeholder={"Select Category"}
-          options={options}
-          defaultValue={selectedLocation}
-        />
+        {process.env.NEXT_PUBLIC_TEMPLATE == 1 && (
+          <>
+            <div className="text-[#555] text-[14px] text-center leading-[21px] tracking-[1px] pb-[10px] mb-[10px]">
+              Select your destination
+            </div>
+            <CustomSelect
+              isSearchable={false}
+              className="react-select z-30 mx-auto"
+              onChange={handleCategoryChange}
+              placeholder={"Select Category"}
+              options={options}
+              defaultValue={selectedLocation}
+            />
+          </>
+        )}
         <div className="flex flex-wrap mx-[-15px] py-[30px]">
           {!showLazy || isLoading ? (
             <>
