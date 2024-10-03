@@ -186,7 +186,13 @@ export default function Block({ block }) {
                         key={index}
                         className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%]  px-[15px] flex flex-col justify-between"
                       >
-                        <div className="bg-secondary h-full relative flex flex-col">
+                        <div
+                          className={`${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 1
+                              ? "bg-secondary"
+                              : "bg-[#9F9F9F]"
+                          } h-full relative flex flex-col`}
+                        >
                           {item?.attributes?.data?.main?.members_badge && (
                             // <div className="absolute top-[-20px] right-[30px] flex justify-end mb-[-15px] text-[14px]">
                             //   <div className="max-w-[150px] relative">
@@ -235,7 +241,13 @@ export default function Block({ block }) {
                                 }}
                               />
                             )}
-                            <div className="absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] bg-secondary rotate-45 z-10" />
+                            <div
+                              className={`absolute bottom-[-6px] right-[30px] w-[15px] h-[15px] ${
+                                process.env.NEXT_PUBLIC_TEMPLATE == 1
+                                  ? "bg-secondary"
+                                  : "bg-[#9F9F9F]"
+                              } rotate-45 z-10`}
+                            />
                           </div>
                           <div className="relative flex flex-col items-center justify-end">
                             <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
