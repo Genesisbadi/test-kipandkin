@@ -73,7 +73,7 @@ export default function Block({ block }) {
       );
 
       const offersData = response?.data?.data.filter((item) => {
-           !item?.attributes?.data?.main?.hide_list;
+        return !item?.attributes?.data?.main?.hide_list;
       });
 
       setOffers(offersData);
