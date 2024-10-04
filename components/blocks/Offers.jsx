@@ -71,7 +71,12 @@ export default function Block({ block }) {
           selectedCategory?.value || ""
         }&filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}`
       );
-      setOffers(response?.data);
+
+      const offersData = response?.data?.data.filter((item) => {
+           !item?.attributes?.data?.main?.hide_list;
+      });
+
+      setOffers(offersData);
       setLoading(false);
       NProgress.done();
     } catch (error) {
@@ -156,9 +161,9 @@ export default function Block({ block }) {
             </div>
           ) : (
             <div>
-              {offers && offers?.data?.length > 0 ? (
+              {offers && offers?.length > 0 ? (
                 <div className="flex flex-wrap py-[30px] gap-y-[30px] mx-[-15px]">
-                  {offers.data.map((item, index) => {
+                  {offers.map((item, index) => {
                     const date = new Date(item?.attributes?.published_at);
                     const options = {
                       year: "numeric",
