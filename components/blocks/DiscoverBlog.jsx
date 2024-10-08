@@ -77,7 +77,7 @@ export default function DiscoverBlog({ block }) {
 
   var settings = {
     dots: false,
-    infinite: true,
+    infinite: blogEntries.length > 1 ? true : false,
     speed: 500,
     autoplay: false,
     slidesToShow: 1,
@@ -141,12 +141,12 @@ export default function DiscoverBlog({ block }) {
         <SectionAccordion
           className="w-full relative px-[3px] md:max-w-[50%]"
           title="Discovery Blog"
-          childrenClassname="md:h-full flex flex-col overflow-hidden"
+          childrenClassname="md:h-full flex flex-col overflow-hidden md:!flex"
         >
           {blogEntries && blogEntries.length > 0 && (
             <>
               <Slick
-                className="carousel-gallery grow slide-fill "
+                className="carousel-gallery !grow slide-fill "
                 {...settings}
               >
                 {blogEntries.map((item, index) => {
