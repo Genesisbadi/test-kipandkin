@@ -181,9 +181,7 @@ export default function AdvocaciesReviews({ block }) {
               <div className="px-[20px] md:px-[50px] lg:px-[60px] flex flex-col grow py-[30px] text-[#654E43]">
                 <h2
                   className={`mb-[25px] text-[25px] hidden md:block ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
                   {title}
@@ -217,12 +215,10 @@ export default function AdvocaciesReviews({ block }) {
               className="w-full h-[250px] md:h-[330px] object-cover"
             />
             {reviewItems && reviewItems.length > 0 && (
-              <div className="bg-[#f5f5f5] px-[50px] lg:px-[60px] py-[30px] text-[#654E43] grow">
+              <div className="bg-[#f5f5f5] px-[50px] lg:px-[60px] py-[30px] text-[#654E43] grow h-full">
                 <h2
                   className={`mb-[25px] hidden md:block text-[25px] ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
                   Reviews
@@ -230,7 +226,6 @@ export default function AdvocaciesReviews({ block }) {
 
                 <Slick className="carousel-gallery" {...settings}>
                   {reviewItems.map((item, index) => {
-                    // Truncate description, strip HTML tags, and append "Hello"
                     const truncatedDescription = item.data.main.description
                       .replace(/<[^>]*>/g, "")
                       .slice(0, 150);
