@@ -4,7 +4,7 @@ export default function FormGenericNotification() {
     <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
         <h2 className="text-2xl font-bold mb-4">Success!</h2>
-        <p>{`Your inquiry has been received. We'll get back to you shortly.`}</p>
+        <p>{`We have received your inquiry. We'll get back to you shortly.`}</p>
         <button
           onClick={(e) => {
             formStore.setState({ formSuccessInfo: false });
