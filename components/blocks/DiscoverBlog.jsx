@@ -127,7 +127,7 @@ export default function DiscoverBlog({ block }) {
 
           <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap md:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
             <span className="w-full font-tenor md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
-              Discover our Locations
+              {title || "Discover Our Location"}
             </span>
             <Link
               href={link}
