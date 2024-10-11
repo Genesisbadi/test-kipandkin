@@ -3,9 +3,7 @@ import { useState } from "react";
 import globalState from "@/lib/store/globalState";
 export default function SectionAccordion({ children, ...props }) {
   const showLazy = globalState((state) => state.showLazy);
-  const [isCollapsed, setIsCollapsed] = useState(
-    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? false : true
-  );
+  const [isCollapsed, setIsCollapsed] = useState(false); // process.env.NEXT_PUBLIC_TEMPLATE == 1 ? false : true
   const { title, className, childrenClassname } = props;
   const ArrowDown = dynamic(() => import("@/components/icons/ArrowDown"));
 
@@ -21,9 +19,7 @@ export default function SectionAccordion({ children, ...props }) {
           {title && (
             <div
               className={`${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "font-tenor"
-                  : " "
+                process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
               } text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]`}
               onClick={handleCollapse}
             >
