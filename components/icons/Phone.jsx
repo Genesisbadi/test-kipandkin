@@ -4,8 +4,8 @@ export default function Phone({ ...props }) {
     <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
+        width={width || "14"}
+        height={height || "14"}
         viewBox="0 0 14 14"
         className={`${className || ""}`}
       >
