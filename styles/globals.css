@@ -576,3 +576,19 @@ p {
 .custom-counter .custom-counter-number::before {
   content: counters(section, "") "";
 }
+
+.st-2 .juicer-feed.modern .j-text {
+  @apply text-[#fff] bg-[#1f1f1f];
+}
+.st-2 .juicer-feed.modern .j-text a {
+  @apply text-[#fff];
+}
+
+.st-2 .juicer-feed.modern .j-poster {
+  @apply bg-[#000] bg-opacity-60;
+}
+.st-2 .juicer-feed.modern .j-poster a,
+.st-2 .juicer-feed.modern .j-poster h3,
+.st-2 .juicer-feed.modern .j-poster .j-date {
+  @apply !text-[#fff];
+}
