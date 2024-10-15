@@ -12,7 +12,7 @@ export default function ButtonLink({ href, target, className, children }) {
 
   const imageExtensions = ["jpg", "jpeg", "png", "bmp", "webp"];
 
-  const fileExtension = utilService.getFileExtension(href).toLowerCase();
+  const fileExtension = utilService.getFileExtension(href)?.toLowerCase();
   let fileType = "link";
 
   if (fileExtension === "pdf") {
@@ -49,9 +49,15 @@ export default function ButtonLink({ href, target, className, children }) {
   }
 
   return (
-    <Link href={href} className={className} target={target}>
-      {children}
-    </Link>
+    <>
+      {href && (
+        <>
+          <Link href={href} className={className} target={target}>
+            {children}
+          </Link>
+        </>
+      )}
+    </>
   );
 }
 
