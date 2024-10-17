@@ -66,7 +66,7 @@ export default function OfferDetails({ page }) {
   }, [venues]);
 
   const getDefaultValue = () => {
-    return { label: currentVenue.title, value: currentVenue.title };
+    return { label: currentVenue?.title, value: currentVenue?.title };
   };
 
   const handleCategoryChange = (selectedOption) => {
