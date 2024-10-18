@@ -579,14 +579,14 @@ p {
 
 .st-2 .juicer-feed.modern .j-text,
 .juicer-feed.modern .j-message {
-  @apply !text-[#fff] bg-[#1f1f1f];
+  @apply !text-[#fff] bg-[#1f1f1f] !hidden;
 }
 .st-2 .juicer-feed.modern .j-text a {
   @apply text-[#fff];
 }
 
 .st-2 .juicer-feed.modern .j-poster {
-  @apply bg-[#000] bg-opacity-60 absolute top-0 left-0 w-full z-[1];
+  @apply bg-[#000] bg-opacity-60 absolute bottom-0 left-0 w-full z-[1];
 }
 
 .st-2 .juicer-feed.modern .j-message a {
