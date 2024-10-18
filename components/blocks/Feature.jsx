@@ -91,19 +91,22 @@ export default function Feature({ block }) {
             }   text-[14px] mb-[15px] leading-[21px]`}
             dangerouslySetInnerHTML={{ __html: description }}
           />
-          <div>
-            <Link
-              className={`text-[14px] uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1
-                  ? "hover:bg-[#d4bebe] text-[#d4bebe] border-[#d4bebe]"
-                  : "hover:bg-white text-white border-white"
-              }`}
-              href={link}
-              target={link.includes("http") ? "_blank" : "_self"}
-            >
-              {button_label ? button_label : "Discover More"}
-            </Link>
-          </div>
+
+          {link && (
+            <div>
+              <Link
+                className={`text-[14px] uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary  ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "hover:bg-[#d4bebe] text-[#d4bebe] border-[#d4bebe]"
+                    : "hover:bg-white text-white border-white"
+                }`}
+                href={link}
+                target={link.includes("http") ? "_blank" : "_self"}
+              >
+                {button_label ? button_label : "Discover More"}
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </SectionAccordion>
