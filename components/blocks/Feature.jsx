@@ -101,7 +101,7 @@ export default function Feature({ block }) {
                     : "hover:bg-white text-white border-white"
                 }`}
                 href={link}
-                target={link.includes("http") ? "_blank" : "_self"}
+                target={link?.includes("http") ? "_blank" : "_self"}
               >
                 {button_label ? button_label : "Discover More"}
               </Link>
