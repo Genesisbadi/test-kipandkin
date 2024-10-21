@@ -19,6 +19,7 @@ export default function BlogBlock({ block }) {
   const [selectedCategory, setSelectedCategory] = useState(
     router.query.category || ""
   );
+
   const [articles, setArticles] = useState([{}]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -122,12 +123,12 @@ export default function BlogBlock({ block }) {
         if (router.query.category) {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort=-published_at`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort=${block?.main?.sort_by}`
           );
         } else {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort=-published_at`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort=${block?.main?.sort_by}`
           );
         }
         setArticles(res.data);
@@ -159,13 +160,7 @@ export default function BlogBlock({ block }) {
 
     getArticles(currentPage);
     truncateHTML();
-  }, [
-    currentPage,
-    router,
-    selectedCategory,
-    articles.length,
-    filterByCategory,
-  ]);
+  }, [currentPage, router, selectedCategory, articles.length, filterByCategory, block?.main?.sort_by]);
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
@@ -224,7 +219,7 @@ export default function BlogBlock({ block }) {
                             <Link href={item?.attributes?.route_url || "#"}>
                               <Image
                                 src={item.attributes.data.main.featured_image}
-                                className="w-full mb-[15px] bg-[#ccc] max-h-[300px] object-cover"
+                                className="w-full mb-[15px] bg-[#ccc] max-h-[350px] object-cover"
                                 width={500}
                                 height={200}
                                 alt={item?.attributes?.title}
