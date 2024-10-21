@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "predev": "node lib/preBuildScripts/preBuildDev.js && node lib/services/headers.js",
-    "prebuild": "node lib/preBuildScripts/preBuildDev.js",
+    "prebuild": "node lib/preBuildScripts/preBuildDev.js && node lib/services/headers.js",
     "postbuild": "next-sitemap",
     "build": "next build",
     "export": "next export",
