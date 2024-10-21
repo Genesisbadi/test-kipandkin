@@ -89,7 +89,7 @@ export default function RoomSuitePage({ page }) {
             )}
             <div className="px-[15px]">
               {process.env.NEXT_PUBLIC_TEMPLATE == "2" && (
-                <span className="text-[16px] tracking-[1px] mb-[15px] block">
+                <span className="text-[16px] text-center tracking-[1px] mb-[15px] block">
                   Select Room Type
                 </span>
               )}
