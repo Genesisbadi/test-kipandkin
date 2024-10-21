@@ -123,12 +123,12 @@ export default function BlogBlock({ block }) {
         if (router.query.category) {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort=${block?.main?.sort_by}`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort_by=${block?.main?.sort_by}`
           );
         } else {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort=${block?.main?.sort_by}`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort_by=${block?.main?.sort_by}`
           );
         }
         setArticles(res.data);
@@ -160,7 +160,14 @@ export default function BlogBlock({ block }) {
 
     getArticles(currentPage);
     truncateHTML();
-  }, [currentPage, router, selectedCategory, articles.length, filterByCategory, block?.main?.sort_by]);
+  }, [
+    currentPage,
+    router,
+    selectedCategory,
+    articles.length,
+    filterByCategory,
+    block?.main?.sort_by,
+  ]);
 
   return (
     <section className="py-[30px] bg-[#F1F1F1]">
