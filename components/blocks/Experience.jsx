@@ -161,7 +161,7 @@ export default function Experience({ block }) {
                               href={item?.attributes?.route_url}
                               className="absolute bottom-[28px] bg-primary border-[1px] border-primary text-white hover:bg-secondary hover:border-secondary transition uppercase px-[30px] py-[20px] z-20"
                             >
-                              Read More
+                              View
                             </Link>
                           </div>
                         </div>
