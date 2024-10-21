@@ -9,10 +9,15 @@ export default function PressRelease({ block }) {
           {releases.map((item, index) => {
             return (
               <div key={index} className="mb-[15px]">
-                <h2 className="text-[20px] text-[#343a40]">{item.title}</h2>
+                <h2 className="text-[23px] text-[#343a40] font-bold">
+                  {item.title}
+                </h2>
                 <div className="flex flex-col w-auto pt-2">
                   {item.pdf_file.map((pdf, index) => (
                     <div key={index}>
+                      {pdf?.title && (
+                        <h3 className="text-[18px] font-[600]">{pdf?.title}</h3>
+                      )}
                       <Link
                         href={pdf.file}
                         target="_blank"

@@ -6,6 +6,8 @@ import dynamic from "next/dynamic";
 export default function BlogPage({ page }) {
   const { title, id, data, metaData, published_at, mediaHandler } = page;
 
+  const { gallery_images } = page?.data?.main;
+
   const blogs = blogEntries.blogsEntriesData;
 
   const getPrevOrNextObject = (array, id, direction) => {
@@ -21,6 +23,12 @@ export default function BlogPage({ page }) {
 
     return array[nextIndex];
   };
+
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
 
   const ButtonLink = dynamic(() =>
     import("../partials/buttons/ButtonLink").then((module) => module.default)
@@ -100,7 +108,15 @@ export default function BlogPage({ page }) {
             })}
           </div>
         )}
-
+      </div>
+      {gallery_images && gallery_images?.length > 0 && (
+        <CarouselGallery
+          alt_title={page?.title || "Thumbnail"}
+          images={gallery_images}
+          title="Gallery"
+        />
+      )}
+      <div className="container overflow-hidden">
         {date && (
           <time
             className="text-[#aaa] text-[14px] mt-[50px] block mb-[10px]"

@@ -195,6 +195,7 @@ export default function CarouselGallery({ blockId, block }) {
                           height={420}
                           width={420}
                           src={item}
+                          alt="Carousel Image"
                           className={`w-full object-cover ${
                             variation.length === 0
                               ? "h-[260px]"
