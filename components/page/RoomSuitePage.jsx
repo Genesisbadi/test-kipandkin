@@ -79,13 +79,20 @@ export default function RoomSuitePage({ page }) {
 
       <article>
         <div className="container py-[50px]">
-          <div className="flex flex-wrap px-[15px] justify-center items-center pb-[40px]">
+          <div
+            className={`flex flex-wrap px-[15px] justify-center items-center pb-[40px]`}
+          >
             {process.env.NEXT_PUBLIC_TEMPLATE !== "2" && (
               <span className="text-center px-[15px] mb-[10px] xs:mb-0">
                 Check out other rooms
               </span>
             )}
             <div className="px-[15px]">
+              {process.env.NEXT_PUBLIC_TEMPLATE == "2" && (
+                <span className="text-[16px] tracking-[1px] mb-[15px] block">
+                  Select Room Type
+                </span>
+              )}
               <CustomSelect
                 className={`max-w-[350px] react-select w-full cursor-pointer ${
                   process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "min-w-[350px]" : ""
