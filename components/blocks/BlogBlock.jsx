@@ -123,12 +123,16 @@ export default function BlogBlock({ block }) {
         if (router.query.category) {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${router.query.category}&sort_by=${block?.main?.sort_by}`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&filter[taxonomies][blog-category]=${
+              router.query.category
+            }&sort=${block?.main?.sort || "-published_at"}`
           );
         } else {
           res = await CONTENTAPI.getContents(
             "blog",
-            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort_by=${block?.main?.sort_by}`
+            `?page[size]=3&page[number]=${currentPage}&includes=blueprintData,mediaHandler&sort=${
+              block?.main?.sort_by || "-published_at"
+            }`
           );
         }
         setArticles(res.data);
