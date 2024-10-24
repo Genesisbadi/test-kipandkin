@@ -257,7 +257,7 @@ export default function BlogBlock({ block }) {
                             </>
                           )}
 
-                          {post_date && (
+                          {item?.attributes?.published_at && (
                             <time
                               className="text-[#aaa] text-[14px] mt-[20px] block mb-[10px]"
                               dateTime={post_date}

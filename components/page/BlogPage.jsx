@@ -117,7 +117,7 @@ export default function BlogPage({ page }) {
         />
       )}
       <div className="container overflow-hidden">
-        {date && (
+        {published_at && (
           <time
             className="text-[#aaa] text-[14px] mt-[50px] block mb-[10px]"
             dateTime={post_date}
