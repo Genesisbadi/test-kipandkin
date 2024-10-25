@@ -28,10 +28,21 @@ export default function AppMeta({ tenantDetails }) {
   const Icon256 = iconPrefix ? iconPath(iconPrefix, 256) : "";
   const Icon384 = iconPrefix ? iconPath(iconPrefix, 384) : "";
 
+  const containsDev =
+    getDomainUrl().includes("pages.dev") ||
+    getDomainUrl().includes("localhost");
+
   return (
     <Head>
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content={themeColor} />
+
+      {containsDev && (
+        <meta
+          name="robots"
+          content="noindex, nofollow, noarchive, nosnippet, noodp, noydir"
+        />
+      )}
       <meta
         name="apple-mobile-web-app-title"
         content={

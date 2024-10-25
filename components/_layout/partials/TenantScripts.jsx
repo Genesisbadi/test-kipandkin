@@ -40,8 +40,12 @@ export default function TenantScripts() {
   }, [tags]);
 
   useEffect(() => {
+    const containsDev =
+      window.location.origin.includes("pages.dev") ||
+      window.location.origin.includes("localhost");
+
     loadScriptData();
-    if (showLazy) {
+    if (showLazy && !containsDev) {
       const existingScripts = Array.from(document.scripts).map((script) => ({
         src: script.src,
         content: script.innerText,
