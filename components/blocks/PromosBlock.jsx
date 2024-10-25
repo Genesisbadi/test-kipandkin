@@ -36,9 +36,9 @@ export default function PromosBlock({ block }) {
         {isLoading ? (
           <>
             {Array.from({ length: 2 }, (_, index) => (
-              <div key={index} className="mb-[30px] flex">
-                <div className="h-[300px] max-w-[50%] w-full bg-gray-300 animate-pulse "></div>
-                <div className="bg-white p-[30px] max-w-[60%] w-full relative">
+              <div key={index} className="mb-[30px] flex flex-wrap">
+                <div className="h-[300px] md:max-w-[50%] w-full bg-gray-300 animate-pulse "></div>
+                <div className="bg-white p-[30px] md:max-w-[60%] w-full relative">
                   <div className="h-[15px] bg-gray-300 animate-pulse mb-[50px] max-w-[200px]"></div>
                   <div className="h-[50px] bg-gray-300 animate-pulse w-full max-w-[calc(200px-30px)] absolute bottom-0 right-0"></div>
                 </div>
@@ -50,19 +50,22 @@ export default function PromosBlock({ block }) {
             {offers.length > 0 ? (
               <>
                 {offers.map((item, index) => (
-                  <div key={index} className="mb-[30px] flex">
-                    <div className="w-full max-w-[50%]">
+                  <div
+                    key={index}
+                    className="mb-[30px] flex flex-wrap md:flex-nowrap"
+                  >
+                    <div className="w-full md:max-w-[50%]">
                       <Link href={`/offers?category=${category.id}`}>
                         <Image
                           src={item?.attributes?.data?.main?.featured_image}
                           width={400}
                           height={200}
-                          className="h-full object-cover w-full"
+                          className="h-full object-cover w-full bg-[#f5f5f5]"
                           alt={item?.attributes?.title}
                         />
                       </Link>
                     </div>
-                    <div className="bg-white pt-[30px] px-[30px] pb-[60px] relative max-w-[60%] w-full">
+                    <div className="bg-white pt-[30px] px-[30px] pb-[60px] relative md:max-w-[60%] w-full">
                       <h3 className="text-[20px] text-primary mb-[10px]">
                         {item?.attributes?.title}
                       </h3>
@@ -79,7 +82,7 @@ export default function PromosBlock({ block }) {
                       )}
                       <Link
                         href={item?.attributes?.route_url}
-                        className="text-white bg-primary hover:bg-secondary3 px-[30px] py-[15px] absolute bottom-0 right-0 text-[14px]"
+                        className="text-white bg-primary hover:bg-secondary3 px-[30px] py-[15px] w-full text-center md:max-w-[200px] absolute bottom-0 right-0 text-[14px]"
                       >
                         View Offer
                       </Link>
@@ -96,7 +99,7 @@ export default function PromosBlock({ block }) {
         <div className="text-center mt-[30px]">
           <Link
             href={`/offers?category=${category.id}`}
-            className="text-white inline-block uppercase bg-primary hover:bg-secondary3 px-[30px] py-[15px]"
+            className="inline-block uppercase border border-primary text-primary md:text-white md:bg-primary hover:bg-secondary3 px-[30px] py-[15px]"
           >
             {`View All ${title.toLowerCase().replace("promos", "Offers")}`}
           </Link>
