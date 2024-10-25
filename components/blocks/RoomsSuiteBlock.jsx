@@ -10,16 +10,20 @@ export default function RoomsSuiteBlock({ block }) {
               key={index}
               className="w-full md:max-w-[50%] min-h-[400px] relative text-white flex items-center justify-center"
             >
-              <Image
-                src={
-                  item?.mediaHandler["main.image"][0]?.conversions?.laptop ||
-                  item?.mediaHandler["main.image"][0]?.original
-                }
-                width={500}
-                height={400}
-                alt={item?.title}
-                className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
-              />
+              {item?.mediaHandler?.["main.image"]?.[0]?.original && (
+                <Image
+                  src={
+                    item?.mediaHandler?.["main.image"]?.[0]?.conversions
+                      ?.laptop ||
+                    item?.mediaHandler?.["main.image"]?.[0]?.original
+                  }
+                  width={500}
+                  height={400}
+                  alt={item?.title}
+                  className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+                />
+              )}
+
               <span className="bg-[#000] opacity-[.25] absolute top-0 left-0 w-full h-full"></span>
               <div className="relative z-[2] text-center">
                 <h2 className="font-bold text-[20px]">{item?.title}</h2>
