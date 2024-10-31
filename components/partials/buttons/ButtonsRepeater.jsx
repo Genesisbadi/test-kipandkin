@@ -16,7 +16,7 @@ export default function ButtonsRepeater({ ...props }) {
       {buttons?.map((item, index) => (
         <div
           key={index}
-          className="item w-full flex flex-col justify-center px-[40px] md:max-w-[47.33%]"
+          className="item w-full flex flex-col justify-center md:px-[40px] md:max-w-[47.33%]"
         >
           {item?.description && (
             <div
@@ -27,7 +27,7 @@ export default function ButtonsRepeater({ ...props }) {
 
           <div className="text-center mt-[15px]">
             <ButtonLink
-              className={`uppercase inline-block text-[14px] text-center px-[30px] py-[15px] min-w-[130px] transition ${
+              className={`uppercase inline-block text-[14px] text-center px-[30px] py-[15px] w-full md:w-auto min-w-[130px] transition ${
                 item.variant === "filled" || item.button_variant === "dark"
                   ? "bg-primary text-white hover:bg-secondary hover:text-white"
                   : "border border-secondary text-secondary hover:bg-secondary hover:text-white"

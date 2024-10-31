@@ -4,7 +4,7 @@
 }
 .buttonRepeater em {
   background-color: unset !important;
-} 
+}
 .buttonRepeater * {
   font-family: "Gotham", sans-serif !important;
 }
@@ -13,11 +13,10 @@
     border-right: 1px solid #ccc;
   }
 }
- 
+
 @media (max-width: 767px) {
   .buttonRepeater > div:not(:last-of-type) {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 30px;
-    margin-bottom: 30px;
+    border-bottom: 0;
+    padding-bottom: 0;
   }
 }
