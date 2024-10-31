@@ -167,13 +167,14 @@ export default function MeetingsEvensDetails({ page }) {
                   __html: currentVenue?.description,
                 }}
               />
+
               {currentVenue?.buttons?.length > 0 && (
                 <div className="flex flex-col md:flex-row gap-x-3 w-full justify-center">
                   {currentVenue?.buttons?.map((item, index) => (
                     <ButtonLink
                       key={index}
                       href={item?.button_link}
-                      className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[15px] ${
+                      className={`px-[30px] py-[20px] text-center text-xs 2sm:text-sm m-[10px] md:m-[15px] ${
                         item.button_variant === "dark"
                           ? "text-white bg-primary"
                           : "border-secondary"
