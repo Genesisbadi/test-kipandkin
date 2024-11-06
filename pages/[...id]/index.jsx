@@ -73,7 +73,7 @@ import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain.js
 import { useEffect, useState } from "react";
 
 export default function DynamicPage({ page, blocks }) {
-  const pageTitle = page.metaData.title || page.name;
+  const pageTitle = page?.metaData?.title || page?.name || "";
   const statePassword = persistentStore((state) => state.password);
   const [loaded, setLoaded] = useState(false);
 
@@ -81,14 +81,14 @@ export default function DynamicPage({ page, blocks }) {
 
   const titleElement = (
     <h1 hidden className="hidden opacity-0 invisible">
-      {page.metaData.title || page.name}
+      {page?.metaData?.title || page?.name || ""}
     </h1>
   );
   const descriptionElement = (
     <>
       {page?.metaData?.description && (
         <p hidden className="hidden opacity-0 invisible">
-          {page?.metaData?.description}
+          {page?.metaData?.description || ""}
         </p>
       )}
     </>
