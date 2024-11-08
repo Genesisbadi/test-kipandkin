@@ -55,6 +55,9 @@ export default function NewsletterPopupForm({ form }) {
 
   return (
     <div className="border p-6 bg-white z-[105] rounded-lg w-[900px]   max-h-[90vh] overflow-y-auto">
+      <div className="text-[24px] pb-[10px] mb-[30px] border-b text-primary font-bold ">
+        Newsletter
+      </div>
       {sections.map((section) => {
         const fields = section?.fields || [];
         return (
@@ -151,11 +154,12 @@ export default function NewsletterPopupForm({ form }) {
                   )}
 
                   <button
-                    onClick={() =>
+                    onClick={() => {
                       NewsLetterFormStore.setState({
                         isModalShow: false,
-                      })
-                    }
+                      });
+                      document.body.style.overflow = "unset";
+                    }}
                     className={` text-gray-600 text-[15px] flex justify-center items-center w-[95px] h-[40px] font-[600] border border-[#691A31]`}
                   >
                     Cancel
