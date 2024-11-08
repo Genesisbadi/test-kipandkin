@@ -28,7 +28,7 @@ const BackTop = () => {
   };
 
   return (
-    <div className={styles.backTop}>
+    <div className={`${styles.backTop} back-to-top`}>
       <button
         className={`flex items-center justify-center !p-0 md:!p-[10px_15px] w-[40px] h-[40px] md:w-[50px] md:h-[50px] hover:opacity-[.9] ${
           process.env.NEXT_PUBLIC_TEMPLATE == 2
