@@ -15,14 +15,16 @@ export default function NewsletterPopup() {
   return (
     <>
       {isModalShow && (
-        <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-[101]">
+        <div className="fixed p-[15px] md:p-[30px] top-0 left-0 w-full h-screen flex items-center justify-center z-[101]">
           <span
             className="fixed top-0 left-0 h-screen w-full bg-black opacity-[.3] z-[101]"
-            onClick={() =>
+            onClick={() => {
               NewsLetterFormStore.setState({
                 isModalShow: false,
-              })
-            }
+              });
+
+              document.body.style.overflow = "unset";
+            }}
           ></span>
           <NewsletterPopupForm form={newsletterFormData} className="z-[110]" />
         </div>
