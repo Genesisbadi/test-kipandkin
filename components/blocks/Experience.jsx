@@ -38,7 +38,6 @@ export default function Experience({ block }) {
       if (selectedExp === undefined) {
         selectedExp = selectedExperience;
       }
-      console.log("block?.main?.sort_by", block?.main?.sort_by);
       try {
         const res = await BaseApi.get(
           process.env.NEXT_PUBLIC_TENANT_API +
