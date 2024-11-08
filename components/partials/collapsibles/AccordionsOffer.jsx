@@ -5,10 +5,7 @@ export default function AccordionsOffer({ accordions }) {
   const [activeTab, setActiveTab] = useState(accordions[0]);
   const [selectedValue, setSelectedValue] = useState(null);
 
-  console.log("activeTab", activeTab);
-
   const getDefaultValue = () => {
-    console.log("hello", activeTab);
     return {
       label: activeTab?.title,
       value: activeTab?.title,

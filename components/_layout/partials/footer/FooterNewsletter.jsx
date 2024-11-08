@@ -1,17 +1,26 @@
 import Link from "next/link";
 import FORMAPI from "@/lib/api/forms/request";
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
-
-import { useState } from "react";
+import NewsLetterFormStore from "@/lib/store/NewsLetterFormStore";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import NewsletterPopup from "@/components/partials/popups/NewsletterPopup";
+
+import formStore from "@/lib/store/formStore";
+
 export default function FooterNewsletter() {
-  const SectionAccordion = dynamic(() =>
-    import("@/components/partials/collapsibles/SectionAccordion")
-  );
+  const formSuccessInfo = formStore((state) => state.formSuccessInfo);
+
+  const isModalShow = NewsLetterFormStore((state) => state.isModalShow);
 
   const [errors, setErrors] = useState({});
   const [isSending, setIsSending] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const SectionAccordion = dynamic(() =>
+    import("@/components/partials/collapsibles/SectionAccordion")
+  );
+
   const payload = {
     main: {},
   };
@@ -43,24 +52,30 @@ export default function FooterNewsletter() {
 
     if (agree && !errors.email) {
       setIsSending(true);
-      await FORMAPI.submitForm("newsletter-form", payload)
-        .then((res) => {
-          if (res.status == 200 || res.status == 201) {
-            setShowSuccessModal(true);
-            setIsSending(false);
-            e.target.reset();
-          }
-        })
-        .catch((err) => {
-          setIsSending(false);
-          alert("There was an error. Please try again later.");
-        });
+      NewsLetterFormStore.setState({ isModalShow: true, email: email });
+      setIsSending(false);
+
+      const backTop = document?.querySelector(".back-to-top");
+      backTop.style.display = "none";
     }
   };
+
+  useEffect(() => {
+    if (formSuccessInfo) {
+      const backTop = document?.querySelector(".back-to-top");
+      if (backTop) {
+        backTop.style.display = "block";
+      }
+      document.body.style.overflow = "unset";
+      NewsLetterFormStore.setState({ isModalShow: false });
+      setShowSuccessModal(true);
+    }
+  }, [formSuccessInfo]);
 
   return (
     <SectionAccordion title="Stay Updated">
       <section className="footer-newsletter md:py-[40px]">
+        {isModalShow && <NewsletterPopup />}
         <h2
           className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
