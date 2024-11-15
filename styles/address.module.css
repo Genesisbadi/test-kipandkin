@@ -1,5 +1,6 @@
 .body a {
   color: var(--primary);
+  word-break: break-word;
 }
 .body p:not(:last-of-type) {
   margin-bottom: 15px;
