@@ -192,7 +192,7 @@ export default function AdvocaciesReviews({ block }) {
                 />
                 <div className="mt-[15px]">
                   <Link
-                    className="uppercase text-[14px] inline-block text-center border border-[#654E43] min-w-[170px] py-[15px] px-[30px] transition hover:text-white hover:bg-[#654E43]"
+                    className="uppercase text-[14px] inline-block text-center border border-[#654E43] min-w-[170px] py-[15px] px-[30px] transition hover:text-white hover:bg-secondary"
                     href={link}
                   >
                     Discover More
