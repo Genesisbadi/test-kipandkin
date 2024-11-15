@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  --primary: #691a31;
+  --primary: #3f395f;
   --primary1: #85764d;
-  --secondary: #654e43;
+  --secondary: #231f20;
   --secondary1: #c5baa6;
   --secondary2: #d4bebe;
-  --secondary3: #99656a;
+  --secondary3: #231f20;
   --dropdownBorder: #ebbbc9;
 }
 
