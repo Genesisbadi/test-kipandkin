@@ -188,7 +188,7 @@ export default function DiscoverBlog({ block }) {
               Explore Now
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
             <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
