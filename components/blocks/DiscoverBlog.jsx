@@ -20,8 +20,8 @@ export default function DiscoverBlog({ block }) {
     const currentSlideTitle = document.querySelector(".current-slide-title");
 
     if (currentSlideTitle) {
-      currentSlideTitle.innerHTML = blogEntries?.[0].title;
-      setCurrentLink(blogEntries?.[0].route_url);
+      currentSlideTitle.innerHTML = blogEntries?.[0]?.title;
+      setCurrentLink(blogEntries?.[0]?.route_url);
     }
   }, [blogEntries]);
 
@@ -156,7 +156,7 @@ export default function DiscoverBlog({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Link href={item.route_url}>
+                      <Link href={item.route_url || "#"}>
                         {featured_image && (
                           <Image
                             src={featured_image}
@@ -182,14 +182,14 @@ export default function DiscoverBlog({ block }) {
           <div className="block md:hidden bg-secondary text-white text-center p-[20px]">
             <div className="current-slide-title font-tenor text-[20px] mb-[12px]"></div>
             <Link
-              href={currentLink}
+              href={currentLink || "#"}
               className="current-slide-readmore inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
             >
               Explore Now
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto block text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
             <Link
