@@ -7,26 +7,28 @@ export default function FooterReviews() {
   const showLazy = globalState((state) => state.showLazy);
   const router = useRouter();
 
-  if(!showLazy) {
+  if (!showLazy) {
     return (
       <div className="container pt-[40px]">
         <div className="px-[70px]">
-            <div className="animate-pulse w-full max-w-[200px] h-[20px] mx-auto bg-[#ccc] mb-[40px]" />
-            <div className="animate-pulse w-full max-w-[50%] h-[20px] bg-[#ccc] mb-[20px]" />
-            <div className="animate-pulse w-full h-[10px] bg-[#ccc] mb-[10px]" />
-            <div className="animate-pulse w-full h-[10px] bg-[#ccc] mb-[10px]" />
-            <div className="animate-pulse w-full h-[10px] max-w-[50%] bg-[#ccc] mb-[20px]" />
-            <div className="animate-pulse w-full h-[10px] max-w-[90%] bg-[#ccc] mb-[10px]" />
-            <div className="animate-pulse w-full h-[10px] max-w-[70%] bg-[#ccc] mb-[10px]" />
-            <div className="animate-pulse w-full h-[10px] max-w-[50%] bg-[#ccc] mb-[10px]" />
-          </div>
+          <div className="animate-pulse w-full max-w-[200px] h-[20px] mx-auto bg-[#ccc] mb-[40px]" />
+          <div className="animate-pulse w-full max-w-[50%] h-[20px] bg-[#ccc] mb-[20px]" />
+          <div className="animate-pulse w-full h-[10px] bg-[#ccc] mb-[10px]" />
+          <div className="animate-pulse w-full h-[10px] bg-[#ccc] mb-[10px]" />
+          <div className="animate-pulse w-full h-[10px] max-w-[50%] bg-[#ccc] mb-[20px]" />
+          <div className="animate-pulse w-full h-[10px] max-w-[90%] bg-[#ccc] mb-[10px]" />
+          <div className="animate-pulse w-full h-[10px] max-w-[70%] bg-[#ccc] mb-[10px]" />
+          <div className="animate-pulse w-full h-[10px] max-w-[50%] bg-[#ccc] mb-[10px]" />
+        </div>
       </div>
-    )
-  }else {
-    import("slick-carousel/slick/slick.css"); 
+    );
+  } else {
+    import("slick-carousel/slick/slick.css");
   }
 
-  const Slick = dynamic(() => import("react-slick").then((module) => module.default));
+  const Slick = dynamic(() =>
+    import("react-slick").then((module) => module.default)
+  );
   const Star = dynamic(() =>
     import("@/components/icons/Star").then((module) => module.default)
   );
@@ -106,9 +108,7 @@ export default function FooterReviews() {
               <div className="container">
                 <h2
                   className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
-                    process.env.NEXT_PUBLIC_TEMPLATE == 1
-                      ? "font-tenor"
-                      : " "
+                    process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                   }`}
                 >
                   Reviews
@@ -166,8 +166,6 @@ export default function FooterReviews() {
                     </Slick>
                   </>
                 )}
-                  
-                
               </div>
             </section>
           )}

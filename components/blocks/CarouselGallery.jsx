@@ -24,7 +24,8 @@ export default function CarouselGallery({ blockId, block }) {
     )
   );
 
-  const { title, images, button_link, variation } = block.main;
+  const { title, images, button_link, variation, collection_carousel_gallery } =
+    block.main;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -145,7 +146,15 @@ export default function CarouselGallery({ blockId, block }) {
   };
 
   return (
-    <section className={`${variation.length === 0 ? "bg-[#f1f1f1]" : ""}`}>
+    <section
+      className={`${
+        variation.length === 0
+          ? "bg-[#f1f1f1]"
+          : collection_carousel_gallery
+          ? "py-10"
+          : ""
+      }`}
+    >
       {!showLazy ? (
         <>
           <div className="mb-[30px] mt-[40px]">
@@ -168,9 +177,13 @@ export default function CarouselGallery({ blockId, block }) {
         <>
           {title && (
             <h2
-              className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] pt-[20px] md:pt-[40px] mb-[20px] ${
+              className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] uppercase ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-              }`}
+              } ${
+                collection_carousel_gallery
+                  ? "pb-[30px] "
+                  : "pt-[20px] md:pt-[40px] mb-[20px]"
+              } `}
             >
               {title}
             </h2>
