@@ -117,24 +117,67 @@ const OurCollectionSelection = ({ block, mediaHandler }) => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              {collections.map((collection, index) => (
-                <Link
-                  href={selectionlinks[index]}
-                  key={index}
-                  disabled={selectedCollection === collection}
-                  className={`p-2 hover:bg-[#f1f1f1] w-full text-left react-select inline-block ${
-                    selectedCollection === collection ? "opacity-[.3]" : ""
-                  }`}
-                  onClick={() => handleSelect(collection)}
-                  onMouseEnter={() => handleHover(index)}
-                  style={{
-                    backgroundColor:
-                      lastHoveredIndex === index ? "#f1f1f1" : "",
-                  }}
-                >
-                  {collection}
-                </Link>
-              ))}
+              {collections.map((collection, index) => {
+                if (
+                  collection !==
+                  ourCollectionSelections.items[
+                    ourCollectionSelections.items.length - 1
+                  ].link.attributes.name
+                ) {
+                  return (
+                    <Link
+                      href={selectionlinks[index]}
+                      key={index}
+                      disabled={selectedCollection === collection}
+                      className={`p-2 hover:bg-[#f1f1f1] w-full text-left react-select inline-block ${
+                        selectedCollection === collection ? "opacity-[.3]" : ""
+                      }`}
+                      onClick={() => handleSelect(collection)}
+                      onMouseEnter={() => handleHover(index)}
+                      style={{
+                        backgroundColor:
+                          lastHoveredIndex === index ? "#f1f1f1" : "",
+                      }}
+                    >
+                      {collection}{" "}
+                    </Link>
+                  );
+                }
+                return (
+                  <>
+                    {ourCollectionSelections.items[
+                      ourCollectionSelections.items.length - 1
+                    ].link.attributes.route_url !== currentPath && (
+                      <Link
+                        href={
+                          ourCollectionSelections.items[
+                            ourCollectionSelections.items.length - 1
+                          ].link.attributes.route_url
+                        }
+                        key={index}
+                        disabled={selectedCollection === collection}
+                        className={`p-2 hover:bg-[#f1f1f1] w-full text-left react-select inline-block ${
+                          selectedCollection === collection
+                            ? "opacity-[.3]"
+                            : ""
+                        }`}
+                        onClick={() => handleSelect(collection)}
+                        onMouseEnter={() => handleHover(index)}
+                        style={{
+                          backgroundColor:
+                            lastHoveredIndex === index ? "#f1f1f1" : "",
+                        }}
+                      >
+                        {
+                          ourCollectionSelections.items[
+                            ourCollectionSelections.items.length - 1
+                          ].link.attributes.name
+                        }
+                      </Link>
+                    )}
+                  </>
+                );
+              })}
             </div>
           )}
         </div>
