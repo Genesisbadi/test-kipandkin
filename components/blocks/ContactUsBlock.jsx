@@ -12,21 +12,27 @@ export default function ContactUsBlock({ block }) {
     <section className="bg-[#F1F1F1] pt-[10px] pb-[50px]">
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
-          <div className="w-full mb-[15px] md:mb-0 md:max-w-[50%] px-[15px]">
-            <div className="bg-white shadow-md p-[30px] sticky top-[85px] min-h-[657px]">
-              {description && (
-                <div
-                  className="text-[14px] mb-[20px]"
-                  dangerouslySetInnerHTML={{ __html: description }}
-                />
-              )}
-              <ContactForm form={form} />
+          {form && (
+            <div className="w-full mb-[15px] md:mb-0 md:max-w-[50%] px-[15px]">
+              <div className="bg-white shadow-md p-[30px] sticky top-[85px] min-h-[657px]">
+                {description && (
+                  <div
+                    className="text-[14px] mb-[20px]"
+                    dangerouslySetInnerHTML={{ __html: description }}
+                  />
+                )}
+                <ContactForm form={form} />
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="w-full md:max-w-[50%] px-[15px]">
+          <div className={`w-full px-[15px] ${form ? "md:max-w-[50%]" : ""}`}>
             {offices && offices.length > 0 && (
-              <div className="offices">
+              <div
+                className={`offices ${
+                  !form ? "grid grid-cols-1 md:grid-cols-2 gap-x-[15px]" : ""
+                }`}
+              >
                 {offices.map((item, index) => (
                   <div key={index} className="mb-[15px]">
                     {item?.map && (
@@ -37,7 +43,7 @@ export default function ContactUsBlock({ block }) {
                         height={200}
                       />
                     )}
-                    <div className="bg-white text-[14px] shadow-md py-[15px] px-[30px]">
+                    <div className="bg-white text-[14px] shadow-md py-[15px] px-[30px] h-full">
                       <h2 className="text-primary text-[18px] mb-[15px]">
                         {item?.title}
                       </h2>
