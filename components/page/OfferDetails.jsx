@@ -95,6 +95,7 @@ export default function OfferDetails({ page }) {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 2000,
+    adaptiveHeight: true,
     pauseOnHover: true,
     appendDots: (dots) => (
       <div
