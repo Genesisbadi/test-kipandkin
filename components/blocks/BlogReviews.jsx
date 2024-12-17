@@ -198,13 +198,15 @@ export default function BlogReviews({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Image
-                        src={featured_image}
-                        width={900}
-                        height={500}
-                        alt="Title"
-                        className="h-[220px] object-cover w-full"
-                      />
+                      {featured_image && (
+                        <Image
+                          src={featured_image}
+                          width={900}
+                          height={500}
+                          alt="Title"
+                          className="h-[220px] object-cover w-full"
+                        />
+                      )}
                     </div>
                   );
                 })}
