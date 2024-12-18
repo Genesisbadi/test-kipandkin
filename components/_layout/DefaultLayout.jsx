@@ -1,5 +1,9 @@
 import dynamic from "next/dynamic";
 import globalState from "@/lib/store/globalState";
+const FormGenericNotification = dynamic(() =>
+  import("../partials/notifications/FormGenericNotification")
+);
+
 const NextTopLoader = dynamic(() =>
   import("nextjs-toploader").then((module) => module.default)
 );
@@ -59,6 +63,7 @@ export default function DefaultLayout(props) {
         />
       )}
 
+      {showLazy && <FormGenericNotification />}
       {showLazy && <InstallButton />}
 
       {showLazy && <BackTop />}

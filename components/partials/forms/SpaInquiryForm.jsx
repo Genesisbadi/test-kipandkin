@@ -15,11 +15,6 @@ export default function SpaInquiryForm({ form }) {
   );
   const sections = form?.fields?.blueprint?.schema?.sections || [];
   const [errors, setErrors] = useState([]);
-  const FormGenericNotification = dynamic(() =>
-    import("../notifications/FormGenericNotification").then(
-      (module) => module.default
-    )
-  );
   const findClass = (field) => {
     switch (field) {
       case "name":
@@ -57,9 +52,9 @@ export default function SpaInquiryForm({ form }) {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    if (formData?.formSuccessInfo) {
-      setFormSuccessInfo(true);
-    }
+    // if (formData?.formSuccessInfo) {
+    //   setFormSuccessInfo(true);
+    // }
   }, [formData?.formSuccessInfo]);
   return (
     <>
@@ -149,10 +144,6 @@ export default function SpaInquiryForm({ form }) {
                 )}
               </div>
             </form>
-
-            {formData?.formSuccessInfo && !formData.submitLoading && (
-              <FormGenericNotification />
-            )}
           </Fragment>
         );
       })}

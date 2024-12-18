@@ -184,24 +184,6 @@ export default function FooterNewsletter() {
             </div>
           </form>
         </div>
-
-        {/* Success Modal */}
-        {showSuccessModal && (
-          <div className="fixed inset-0 p-[15px] flex items-center justify-center z-[9999] bg-[#000] bg-opacity-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg animate-wobble">
-              <h2 className="text-2xl font-bold mb-4">Success!</h2>
-              <p>You have been subscribed successfully.</p>
-              <button
-                onClick={() => {
-                  setShowSuccessModal(false);
-                }}
-                className="min-w-[150px] mt-[30px] inline-block py-[8px] px-[20px] bg-primary text-[#fff] rounded-[30px] text-[14px] font-bold"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
       </section>
     </SectionAccordion>
   );
