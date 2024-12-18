@@ -38,7 +38,10 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      {showLazy && <FooterJuicer />}
+      {showLazy &&
+        (tenantDetailsMain?.juicer_id || tenantDetailsMain?.social_embed) && (
+          <FooterJuicer />
+        )}
       <FooterCallToActions />
       <FooterReviews />
 
@@ -58,8 +61,7 @@ export default function Footer() {
                   </p>
                 </div>
 
-                {(tenantDetailsMain?.juicer_id ||
-                  tenantDetailsMain?.social_embed) && <FooterSocial />}
+                {showLazy && <FooterSocial />}
               </div>
             </div>
           </div>
