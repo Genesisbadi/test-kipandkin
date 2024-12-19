@@ -11,18 +11,16 @@ export default function DiscoverBlog({ block }) {
     import("react-slick").then((module) => module.default)
   );
 
-  const { title, description, link, image } = block.main;
+  const { title, description, button_label, link, blog_button_label, image } =
+    block.main;
 
   const [currentLink, setCurrentLink] = useState("");
   const blogEntries = discoverBlogEntriesData.discoverBlogEntriesData;
 
   useEffect(() => {
     const currentSlideTitle = document.querySelector(".current-slide-title");
-
-    if (currentSlideTitle) {
-      currentSlideTitle.innerHTML = blogEntries?.[0]?.title;
-      setCurrentLink(blogEntries?.[0]?.route_url);
-    }
+    currentSlideTitle.innerHTML = blogEntries[0].title;
+    setCurrentLink(blogEntries[0].route_url);
   }, [blogEntries]);
 
   const NextArrow = (props) => {
@@ -136,7 +134,7 @@ export default function DiscoverBlog({ block }) {
               href={link}
               className="inline-block text-[12px] lg:text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
             >
-              Explore Now
+              {button_label ? button_label : "Explore Now"}
             </Link>
           </div>
         </SectionAccordion>
@@ -156,17 +154,14 @@ export default function DiscoverBlog({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Link href={item.route_url || "#"}>
-                        {featured_image && (
-                          <Image
-                            src={featured_image}
-                            width={500}
-                            height={300}
-                            alt={item.title}
-                            className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
-                          />
-                        )}
-
+                      <Link href={item.route_url}>
+                        <Image
+                          src={featured_image}
+                          width={500}
+                          height={300}
+                          alt={item.title}
+                          className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
+                        />
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
                         <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
@@ -182,21 +177,21 @@ export default function DiscoverBlog({ block }) {
           <div className="block md:hidden bg-secondary text-white text-center p-[20px]">
             <div className="current-slide-title font-tenor text-[20px] mb-[12px]"></div>
             <Link
-              href={currentLink || "#"}
+              href={currentLink}
               className="current-slide-readmore inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
             >
-              Explore Now
+              {blog_button_label ? blog_button_label : "Explore Now"}
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto block text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
             <Link
               href="/blog"
               className="inline-block text-[12px] lg:text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-secondary hover:bg-white"
             >
-              Explore Now
+              {blog_button_label ? blog_button_label : "Explore Now"}
             </Link>
           </div>
         </SectionAccordion>
