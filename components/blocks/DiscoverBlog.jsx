@@ -19,8 +19,8 @@ export default function DiscoverBlog({ block }) {
 
   useEffect(() => {
     const currentSlideTitle = document.querySelector(".current-slide-title");
-    currentSlideTitle.innerHTML = blogEntries[0].title;
-    setCurrentLink(blogEntries[0].route_url);
+    currentSlideTitle.innerHTML = blogEntries?.[0]?.title;
+    setCurrentLink(blogEntries?.[0]?.route_url);
   }, [blogEntries]);
 
   const NextArrow = (props) => {
@@ -154,7 +154,7 @@ export default function DiscoverBlog({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Link href={item.route_url}>
+                      <Link href={item?.route_url || "#"}>
                         <Image
                           src={featured_image}
                           width={500}
@@ -183,8 +183,8 @@ export default function DiscoverBlog({ block }) {
               {blog_button_label ? blog_button_label : "Explore Now"}
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto block text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="hidden md:flex mt-[5px] justify-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
             <Link
