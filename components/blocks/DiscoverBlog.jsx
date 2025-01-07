@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { useState, useEffect, useRef, React } from "react";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
 import SectionAccordion from "../partials/collapsibles/SectionAccordion";
+import { getMediaConvertions } from "@/lib/services/propService";
 export default function DiscoverBlog({ block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
@@ -152,16 +153,27 @@ export default function DiscoverBlog({ block }) {
               >
                 {blogEntries.map((item, index) => {
                   const { featured_image, description, title } = item.data.main;
+
+                  const mediaHandler = getMediaConvertions(item?.blueprintData);
+
                   return (
                     <div key={index} className="relative">
                       <Link href={item?.route_url || "#"}>
-                        <Image
-                          src={featured_image}
-                          width={500}
-                          height={300}
-                          alt={item.title}
-                          className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
-                        />
+                        {featured_image && (
+                          <Image
+                            src={
+                              featured_image ||
+                              mediaHandler["main.image"]?.[0]?.conversions
+                                ?.blog_show ||
+                              mediaHandler["main.image"]?.[0]?.original
+                            }
+                            width={500}
+                            height={300}
+                            alt={item.title}
+                            className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
+                          />
+                        )}
+
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
                         <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
