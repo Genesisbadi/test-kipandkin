@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { useState, useEffect, useRef, React } from "react";
 import discoverBlogEntriesData from "@/lib/preBuildScripts/static/discover-blog-entries.json";
 import SectionAccordion from "../partials/collapsibles/SectionAccordion";
+import { getMediaConvertions } from "@/lib/services/propService";
 export default function DiscoverBlog({ block }) {
   const Slick = dynamic(() =>
     import("react-slick").then((module) => module.default)
@@ -19,8 +20,8 @@ export default function DiscoverBlog({ block }) {
 
   useEffect(() => {
     const currentSlideTitle = document.querySelector(".current-slide-title");
-    currentSlideTitle.innerHTML = blogEntries[0].title;
-    setCurrentLink(blogEntries[0].route_url);
+    currentSlideTitle.innerHTML = blogEntries?.[0]?.title;
+    setCurrentLink(blogEntries?.[0]?.route_url);
   }, [blogEntries]);
 
   const NextArrow = (props) => {
@@ -152,16 +153,30 @@ export default function DiscoverBlog({ block }) {
               >
                 {blogEntries.map((item, index) => {
                   const { featured_image, description, title } = item.data.main;
+
+                  const mediaHandler = getMediaConvertions(item?.blueprintData);
+
                   return (
                     <div key={index} className="relative">
-                      <Link href={item.route_url}>
-                        <Image
-                          src={featured_image}
-                          width={500}
-                          height={300}
-                          alt={item.title}
-                          className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
-                        />
+                      <Link href={item?.route_url || "#"}>
+                        {featured_image ||
+                          mediaHandler["main.image"]?.[0]?.conversions
+                            ?.blog_show ||
+                          (mediaHandler["main.image"]?.[0]?.original && (
+                            <Image
+                              src={
+                                featured_image ||
+                                mediaHandler["main.image"]?.[0]?.conversions
+                                  ?.blog_show ||
+                                mediaHandler["main.image"]?.[0]?.original
+                              }
+                              width={500}
+                              height={300}
+                              alt={item.title}
+                              className="absolute top-0 left-0 w-full h-full object-cover z-[1]"
+                            />
+                          ))}
+
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
                         <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
@@ -183,8 +198,8 @@ export default function DiscoverBlog({ block }) {
               {blog_button_label ? blog_button_label : "Explore Now"}
             </Link>
           </div>
-          <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto block text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="hidden md:flex mt-[5px] justify-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
               Discovery Blog
             </span>
             <Link
