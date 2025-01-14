@@ -32,7 +32,9 @@ export default function Feature({ block }) {
           process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "md:mb-[5px]" : ""
         } ${position == "right_content" ? "flex-row-reverse" : ""}`}
       >
-        <div className="w-full flex items-center justify-center md:max-w-[50%] bg-secondary1">
+        <div
+          className={`w-full flex items-center justify-center md:max-w-[50%] bg-secondary1`}
+        >
           {video_link || image ? (
             <>
               {!video_link && image && (
@@ -64,14 +66,18 @@ export default function Feature({ block }) {
           )}
         </div>
         <div
-          className={`bg-primary py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%]`}
+          className={`${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 5
+              ? "bg-[#202020]"
+              : "bg-primary"
+          } py-[20px] lg:py-[30px] flex flex-col justify-center px-[20px] md:px-[30px] lg:px-[60px] w-full md:max-w-[50%]`}
         >
           <h2
-            className={`${
+            className={`text-[20px] mb-[10px] ${
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "text-[#c5baa6]"
                 : "text-white"
-            } text-[20px] mb-[10px]`}
+            }`}
           >
             {title}
           </h2>
