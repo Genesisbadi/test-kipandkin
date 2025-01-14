@@ -83,6 +83,7 @@ export default function Date(props) {
       options={{
         enableTime: false,
         dateFormat: "Y-m-d",
+        minDate: "today",
       }}
       onChange={(selectedDates) => {
         const date = selectedDates[0];
