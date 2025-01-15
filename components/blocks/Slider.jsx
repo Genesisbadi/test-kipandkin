@@ -130,7 +130,7 @@ export default function Slider({ block, mediaHandler }) {
         breakpoint: 1024,
         settings: {
           arrows: false,
-          dots: true,
+          dots: showLazy ? false : true,
           adaptiveHeight: true,
         },
       },
