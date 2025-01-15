@@ -193,7 +193,7 @@ export default function MainMenuMobile({ ...props }) {
   return (
     <>
       <div
-        className={`remove-highlight select-none absolute gap-x-[15px] left-0 flex items-center right-0 px-[15px] ${
+        className={`min-h-[31px] remove-highlight select-none absolute gap-x-[15px] left-0 flex items-center right-0 px-[15px] ${
           process.env.NEXT_PUBLIC_TEMPLATE == 1
             ? "justify-between"
             : "justify-end"
