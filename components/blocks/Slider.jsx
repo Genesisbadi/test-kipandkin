@@ -138,7 +138,7 @@ export default function Slider({ block, mediaHandler }) {
   };
 
   return (
-    <div className="block-slider slider relative">
+    <div className="block-slider slider relative min-h-[389px]">
       {slider_items && slider_items.length > 0 && (
         <Slick {...settings}>
           {slider_items?.map((item, index) => {
