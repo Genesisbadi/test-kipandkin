@@ -157,7 +157,7 @@ export default function DiscoverBlog({ block }) {
                   const mediaHandler = getMediaConvertions(item?.blueprintData);
 
                   return (
-                    <div key={index} className="relative">
+                    <div key={index} className="relative bg-primary">
                       <Link href={item?.route_url || "#"}>
                         {featured_image ||
                         mediaHandler["main.image"]?.[0]?.conversions
