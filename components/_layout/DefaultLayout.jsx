@@ -7,7 +7,6 @@ const FormGenericNotification = dynamic(() =>
 const NextTopLoader = dynamic(() =>
   import("nextjs-toploader").then((module) => module.default)
 );
-
 export default function DefaultLayout(props) {
   const { page, blocks } = props;
   const showLazy = globalState((state) => state.showLazy);
@@ -26,7 +25,7 @@ export default function DefaultLayout(props) {
 
   const CookieBot = dynamic(() => import("../partials/consent/CookieBot"));
   const InstallButton = dynamic(() => import("../partials/InstallButton"));
-
+  const ShareThis = dynamic(() => import("../partials/sharer/ShareThis"));
   return (
     <>
       <Menu page={page} blocks={blocks} />
@@ -46,6 +45,7 @@ export default function DefaultLayout(props) {
 
       {showLazy && <CookieBot />}
 
+      {showLazy && <ShareThis page={page} />}
       {showLazy && (
         <NextTopLoader
           color="#691A31"
