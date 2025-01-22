@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { parseCookies } from "nookies";
 import nookies from "nookies";
 import tenantDetailsMain from "@/lib/preBuildScripts/static/tenantDetailsMain";
+
 const InstallButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
+  const [isUpdateAvailable, setIsUpdateAvailable] = useState(false);
 
   useEffect(() => {
     const cookies = parseCookies();
@@ -16,13 +18,25 @@ const InstallButton = () => {
     }
 
     const handleBeforeInstallPrompt = (e) => {
-      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
-      // Stash the event so it can be triggered later.
       setDeferredPrompt(e);
-      // Update UI to notify the user they can install the PWA
       setIsVisible(true);
     };
+
+    const handleServiceWorkerUpdate = (registration) => {
+      if (registration.waiting) {
+        setIsUpdateAvailable(true);
+      }
+    };
+
+    // Register service worker and listen for updates
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.ready.then((registration) => {
+        registration.addEventListener("updatefound", () => {
+          handleServiceWorkerUpdate(registration);
+        });
+      });
+    }
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
@@ -36,16 +50,13 @@ const InstallButton = () => {
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
-      // Show the install prompt
       deferredPrompt.prompt();
-      // Wait for the user to respond to the prompt
       deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === "accepted") {
           console.log("User accepted the install prompt");
         } else {
           console.log("User dismissed the install prompt");
         }
-        // Clear the deferred prompt
         setDeferredPrompt(null);
         setIsVisible(false);
       });
@@ -53,13 +64,26 @@ const InstallButton = () => {
   };
 
   const handleCancelClick = () => {
-    // Set a cookie to hide the prompt for 1 day
     nookies.set(null, "hide_pwa_prompt", "1", { maxAge: 86400, path: "/" });
-    // Hide the prompt
     setIsVisible(false);
   };
 
-  if (!isVisible) {
+  const handleUpdateClick = () => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistration().then((registration) => {
+        if (registration?.waiting) {
+          registration.waiting.postMessage({ type: "SKIP_WAITING" });
+          registration.waiting.addEventListener("statechange", (event) => {
+            if (event.target.state === "activated") {
+              window.location.reload();
+            }
+          });
+        }
+      });
+    }
+  };
+
+  if (!isVisible && !isUpdateAvailable) {
     return null;
   }
 
@@ -100,6 +124,25 @@ const InstallButton = () => {
                 onClick={handleInstallClick}
               >
                 Install App
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isUpdateAvailable && (
+        <div className="fixed z-[3000] flex justify-center left-0 sm:left-auto bottom-0 right-0 p-[15px]">
+          <div className="relative text-[14px] w-full rounded-sm overflow-hidden p-[45px_15px_15px] sm:pt-[40px] sm:pb-[30px] sm:pl-[30px] sm:pr-[48px] z-[2000] max-w-[550px] bg-[#fff] bg-opacity-95 shadow-[0_3px_5px_-1px_rgba(0,0,0,0.2),0_6px_10px_0_rgba(0,0,0,0.14),0_1px_18px_0_rgba(0,0,0,0.12)]">
+            <p className="text-[12px] sm:text-[16px]">
+              A new version of {tenantDetailsMain?.app_name} is available. Would
+              you like to update?
+            </p>
+            <div className="flex flex-col-reverse sm:flex-row flex-wrap text-[10px] sm:text-[14px] gap-[5px] sm:gap-[15px] items-center justify-end font-bold">
+              <button
+                className="sm:min-w-[100px] hover:opacity-70 py-[8px] w-full sm:w-auto px-[13px] min-h-[20px] sm:min-h-[50px] flex items-center justify-center bg-primary text-white rounded-md uppercase"
+                onClick={handleUpdateClick}
+              >
+                Update App
               </button>
             </div>
           </div>
