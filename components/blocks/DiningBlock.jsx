@@ -96,9 +96,9 @@ export default function DiningBlock({ block }) {
               {Array.from({ length: 6 }, (_, index) => (
                 <div
                   key={index}
-                  className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
+                  className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px] flex flex-col"
                 >
-                  <div className="w-full flex flex-col bg-white pb-0 p-[20px] z-10 min-h-[400px] mb-[30px]">
+                  <div className="w-full h-full flex flex-col bg-white pb-0 p-[20px] z-10 min-h-[400px] mb-[30px]">
                     <div className="">
                       <div className="animate-pulse h-[25px] bg-[#ccc]" />
                     </div>
@@ -117,7 +117,7 @@ export default function DiningBlock({ block }) {
                     restaurants?.map((item, index) => (
                       <div
                         key={index}
-                        className="relative w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
+                        className="relative flex flex-col w-full sm:max-w-[50%] lg:max-w-[33.33%] px-[15px]"
                       >
                         <div className="w-full bg-white p-[20px] z-10">
                           <h3 className="text-primary text-[20px] truncate mb-[10px]">
@@ -131,12 +131,12 @@ export default function DiningBlock({ block }) {
                               .join(" ")}
                           </h3>
                         </div>
-                        <div className="relative flex flex-col items-center justify-end mb-[30px]">
+                        <div className="relative flex flex-col items-center justify-end mb-[30px] grow">
                           <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.25] z-[1]"></span>
 
                           <Image
                             src={item?.attributes?.data?.main?.banner_desktop}
-                            className="w-full min-h-[300px] object-cover"
+                            className="w-full h-full min-h-[300px] object-cover"
                             width={500}
                             height={200}
                             alt={item?.attributes?.title}
