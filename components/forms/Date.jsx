@@ -38,7 +38,7 @@ const CustomInput = ({ inputRef, ...props }) => {
 };
 
 export default function Date(props) {
-  const { state_name } = props;
+  const { state_name, min, max } = props;
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -83,7 +83,8 @@ export default function Date(props) {
       options={{
         enableTime: false,
         dateFormat: "Y-m-d",
-        minDate: "today",
+        minDate: min || "today",
+        maxDate: max || null,
       }}
       onChange={(selectedDates) => {
         const date = selectedDates[0];
