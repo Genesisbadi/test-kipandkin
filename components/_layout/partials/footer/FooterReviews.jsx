@@ -132,42 +132,42 @@ export default function FooterReviews() {
                         </SwiperSlide>
                       ))}
                       <div className="mt-[24px] w-full bottom-0">
-                        <div className="left-[50%] translate-x-[50%]">
-                          <div className="custom-pagination" />
+                        <div className="left-[50%] translate-x-[50%] text-red-500">
+                          <div className="custom-pagination " />
                         </div>
                       </div>
                     </Swiper>
 
-                    <div className="swiper-button-next absolute top-[50%] right-[15px] z-[20] hidden lg:block">
+                    <div className="!text-[#333] swiper-button-next absolute top-[50%] right-[15px] z-[20] hidden lg:block">
                       <svg
-                        width="40"
-                        height="40"
-                        x="0"
-                        y="0"
-                        viewBox="0 0 490 490"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
                       >
-                        <g>
-                          <path
-                            d="m96.536 490 306.483-245.004L96.536 0l-9.555 11.962 291.515 233.034L86.981 478.038z"
-                            fill="#333"
-                          ></path>
-                        </g>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 19.5 8.25 12l7.5-7.5"
+                        />
                       </svg>
                     </div>
-                    <div className="swiper-button-prev absolute top-[50%] z-[20] rotate-[180deg] hidden lg:block">
+                    <div className="!text-[#333] swiper-button-prev absolute top-[50%] z-[20] hidden lg:block">
                       <svg
-                        width="40"
-                        height="40"
-                        x="0"
-                        y="0"
-                        viewBox="0 0 490 490"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
                       >
-                        <g>
-                          <path
-                            d="m96.536 490 306.483-245.004L96.536 0l-9.555 11.962 291.515 233.034L86.981 478.038z"
-                            fill="#333"
-                          ></path>
-                        </g>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
                       </svg>
                     </div>
                   </>
