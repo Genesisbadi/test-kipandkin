@@ -18,7 +18,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[42%] md:top-[36%] translate-y-[-50%] right-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
+        } absolute top-[28%] md:top-[22%] translate-y-[-50%] right-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
@@ -49,7 +49,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[42%] md:top-[36%] translate-y-[-50%] left-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
+        } absolute top-[28%] md:top-[22%] translate-y-[-50%] left-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
