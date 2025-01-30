@@ -218,7 +218,7 @@ export default function AdvocaciesReviews({ block }) {
               width={900}
               height={500}
               alt={title || "Thumbnail"}
-              className="w-full h-[250px] md:h-[330px] object-cover"
+              className="w-full h-[250px] md:min-h-[330px] object-cover"
             />
             {reviewItems && reviewItems.length > 0 && (
               <div className="bg-[#f5f5f5] px-[50px] lg:px-[60px] py-[30px] text-[#654E43] grow h-full">

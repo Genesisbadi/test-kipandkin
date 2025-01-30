@@ -3,6 +3,11 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import globalState from "@/lib/store/globalState";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
+
 export default function FooterReviews() {
   const showLazy = globalState((state) => state.showLazy);
   const router = useRouter();
@@ -22,90 +27,19 @@ export default function FooterReviews() {
         </div>
       </div>
     );
-  } else {
-    import("slick-carousel/slick/slick.css");
   }
 
-  const Slick = dynamic(() =>
-    import("react-slick").then((module) => module.default)
-  );
   const Star = dynamic(() =>
     import("@/components/icons/Star").then((module) => module.default)
   );
-
-  const NextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } hover:opacity-[.5] absolute top-[50%] translate-y-[-50%] right-[15px] z-[20] cursor-pointer`}
-        onClick={onClick}
-      >
-        <svg width="40" height="40" x="0" y="0" viewBox="0 0 490 490">
-          <g>
-            <path
-              d="m96.536 490 306.483-245.004L96.536 0l-9.555 11.962 291.515 233.034L86.981 478.038z"
-              fill="#333"
-            ></path>
-          </g>
-        </svg>
-      </div>
-    );
-  };
-  const PrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${
-          className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } hover:opacity-[.5] absolute top-[50%] translate-y-[-50%] left-[15px] z-[20] cursor-pointer`}
-        onClick={onClick}
-      >
-        <svg version="1.1" width="40" height="40" viewBox="0 0 490 490">
-          <g>
-            <path
-              d="M401.166 478.097 113.178 245.004 401.166 11.903 391.536 0 88.834 245.004 391.536 490z"
-              fill="#333"
-              opacity="1"
-            ></path>
-          </g>
-        </svg>
-      </div>
-    );
-  };
-
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplaySpeed: 5000,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    adaptiveHeight: true,
-    pauseOnHover: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          arrows: false,
-          dots: true,
-        },
-      },
-    ],
-  };
 
   return (
     <>
       {reviewsData && reviewsData.length > 0 && (
         <>
           {router.asPath !== "/" && (
-            <section className="pt-[40px] footer-reviews">
-              <div className="container">
+            <section className="pt-[40px] pb-[12px] footer-reviews">
+              <div className="container relative ">
                 <h2
                   className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
@@ -115,9 +49,42 @@ export default function FooterReviews() {
                 </h2>
                 {reviewsData && (
                   <>
-                    <Slick className="lg:px-[70px] text-[14px]" {...settings}>
+                    <Swiper
+                      modules={[Pagination, Navigation, Autoplay]}
+                      pagination={{
+                        dynamicBullets: true,
+                        clickable: true,
+                        el: ".custom-pagination",
+                      }}
+                      navigation={{
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                      }}
+                      loop={true}
+                      speed={500}
+                      autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: false,
+                      }}
+                      slidesPerView={1}
+                      slidesPerGroup={1}
+                      autoHeight={true}
+                      onSwiper={(swiper) => {
+                        const swiperContainer = swiper.el;
+                        swiperContainer.addEventListener("mouseenter", () => {
+                          swiper.autoplay.stop();
+                        });
+                        swiperContainer.addEventListener("mouseleave", () => {
+                          swiper.autoplay.start();
+                        });
+                      }}
+                      className="lg:px-[70px] text-[14px] relative "
+                    >
                       {reviewsData.map((item, index) => (
-                        <div key={index}>
+                        <SwiperSlide
+                          key={index}
+                          className="relative lg:px-[60px]"
+                        >
                           <h3 className="font-bold text-[14px] uppercase mb-[15px]">
                             {item.title}
                           </h3>
@@ -126,7 +93,7 @@ export default function FooterReviews() {
                             <div
                               className="text-justify"
                               dangerouslySetInnerHTML={{
-                                __html: item.data.main.description,
+                                __html: item.data.main.description || "",
                               }}
                             />
                           )}
@@ -139,17 +106,18 @@ export default function FooterReviews() {
                             <span>
                               <Link
                                 className="text-primary ml-[5px] underline font-bold"
-                                href="/tripadvisor-reviews"
+                                href={item.data.main.link || "/default-link"}
                                 target="_blank"
                               >
                                 {item.data.main.link_label || "View Review"}
                               </Link>
                             </span>
                           </div>
+
                           {item.data.main.stars && (
                             <div className="flex mt-[30px]">
                               {Array.from(
-                                { length: parseInt(item.data.main.stars) },
+                                { length: parseInt(item.data.main.stars) || 0 },
                                 (_, index) => (
                                   <Star
                                     width={20}
@@ -161,9 +129,47 @@ export default function FooterReviews() {
                               )}
                             </div>
                           )}
-                        </div>
+                        </SwiperSlide>
                       ))}
-                    </Slick>
+                      <div className="mt-[24px] w-full bottom-0">
+                        <div className="left-[50%] translate-x-[50%] text-red-500">
+                          <div className="custom-pagination " />
+                        </div>
+                      </div>
+                    </Swiper>
+
+                    <div className="!text-[#333] swiper-button-next absolute top-[50%] right-[15px] z-[20] hidden lg:block">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 19.5 8.25 12l7.5-7.5"
+                        />
+                      </svg>
+                    </div>
+                    <div className="!text-[#333] swiper-button-prev absolute top-[50%] z-[20] hidden lg:block">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                        />
+                      </svg>
+                    </div>
                   </>
                 )}
               </div>

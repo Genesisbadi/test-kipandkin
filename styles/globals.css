@@ -604,3 +604,7 @@ p {
 /* .eapps-instagram-feed#eapps-instagram-feed-1 > a {
   @apply !hidden !h-[0] !w-[0] !indent-[-9999px] !opacity-0 !invisible !overflow-hidden ml-[-1000%];
 } */
+
+.swiper-pagination-bullet-active {
+  @apply !bg-primary;
+}
