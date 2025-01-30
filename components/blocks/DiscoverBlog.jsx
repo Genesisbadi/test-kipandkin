@@ -117,7 +117,7 @@ export default function DiscoverBlog({ block }) {
                 className="object-contain h-full md:h-[480px]"
               />
             </div>
-            <div className="relative md:absolute w-full top-0 right-0 flex justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[55%] flex flex-col py-[30px] px-[30px] w-full">
+            <div className="relative md:absolute top-0 right-0  justify-center h-full max-w-[100%] sm:max-w-[70%] md:max-w-[100%] lg:max-w-[70%] xl:max-w-[55%] flex flex-col py-[30px] px-[30px] w-full">
               {description && (
                 <div
                   className=" text-[14px] text-[#654E43]"
@@ -127,8 +127,8 @@ export default function DiscoverBlog({ block }) {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap md:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full font-tenor md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span className="w-full font-tenor md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] md:text-[clamp(16px,2vw,25px)] text-[20px]">
               {title || "Discover Our Location"}
             </span>
             <Link
@@ -178,7 +178,7 @@ export default function DiscoverBlog({ block }) {
                         ) : null}
 
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
+                        <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] justify-center items-center text-white">
                           <h3 className="!leading-[37px] ">{item.title}</h3>
                         </div>
                         <div className="pb-[75%] min-h-[100px] block md:hidden" />
@@ -199,7 +199,7 @@ export default function DiscoverBlog({ block }) {
             </Link>
           </div>
           <div className="hidden md:flex mt-[5px] justify-center flex-wrap 2sm:flex-nowrap 2sm:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] md:text-[clamp(16px,2vw,25px)] text-[20px]">
               Discovery Blog
             </span>
             <Link
