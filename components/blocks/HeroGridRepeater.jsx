@@ -82,7 +82,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
     slidesToShow: 3,
     slidesToScroll: 3,
     cssEase: "linear",
-    arrows: true,
+    arrows: items?.length > 3 ? true : false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
