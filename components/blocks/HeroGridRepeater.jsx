@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 
 export default function HeroGridRepeater({ block, mediaHandler }) {
-  const { items } = block.main;
+  const { items, style } = block.main;
   const SectionAccordion = dynamic(() =>
     import("@/components/partials/collapsibles/SectionAccordion")
   );
@@ -18,24 +18,24 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[45%] md:top-[50%] translate-y-[-50%] right-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
+        } absolute top-[42%] md:top-[36%] translate-y-[-50%] right-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="55"
+            width="30"
+            height="50"
             viewBox="0 0 19.349 30"
-            className="w-[25px] h-[45px] md:w-[35px] md:h-[55px]"
+            className="w-[20px] h-[30px] md:w-[30px] md:h-[50px]"
           >
             <path
               id="_002-right-arrow"
               data-name="002-right-arrow"
               d="M87.566,30,106.33,15,87.566,0l-.585.732L104.829,15,86.981,29.268Z"
               transform="translate(-86.981)"
-              fill="#000"
-              stroke="#000"
+              fill="#fff"
+              stroke="#fff"
               strokeWidth="2"
             />
           </svg>
@@ -49,24 +49,24 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
       <div
         className={`${className} ${
           className.includes("slick-disabled") ? "opacity-[.5]" : ""
-        } absolute top-[45%] md:top-[50%] translate-y-[-50%] left-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
+        } absolute top-[42%] md:top-[36%] translate-y-[-50%] left-0 px-[10px] lg:px-5 z-[20] cursor-pointer`}
         onClick={onClick}
       >
         <div className="flex items-center h-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="55"
+            width="30"
+            height="50"
             viewBox="0 0 19.349 30"
-            className="w-[25px] h-[45px] md:w-[35px] md:h-[55px]"
+            className="w-[20px] h-[40px] md:w-[30px] md:h-[50px]"
           >
             <path
               id="_002-right-arrow"
               data-name="002-right-arrow"
               d="M105.745,30,86.981,15,105.745,0l.585.732L88.482,15,106.33,29.268Z"
               transform="translate(-86.981)"
-              fill="#000"
-              stroke="#000"
+              fill="#fff"
+              stroke="#fff"
               strokeWidth="2"
             />
           </svg>
@@ -113,7 +113,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
   return (
     <section className="overflow-hidden md:mb-[5px]">
-      {parseInt(process.env.NEXT_PUBLIC_MICROSITE_ID, 10) === 6 ? (
+      {style?.length !== 0 ? (
         <div className="flex flex-col w-full ">
           <Slick {...settings}>
             {items.map((item, index) => (
