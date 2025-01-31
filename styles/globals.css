@@ -608,3 +608,11 @@ p {
 .swiper-pagination-bullet-active {
   @apply !bg-primary;
 }
+
+#swiper-button-next {
+  @apply hidden lg:block;
+}
+
+#swiper-button-prev {
+  @apply hidden lg:block;
+}

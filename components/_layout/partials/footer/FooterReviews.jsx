@@ -6,6 +6,8 @@ import globalState from "@/lib/store/globalState";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 export default function FooterReviews() {
@@ -136,40 +138,15 @@ export default function FooterReviews() {
                           <div className="custom-pagination " />
                         </div>
                       </div>
+                      <div
+                        className="!text-[#333] swiper-button-next absolute top-[50%] right-[15px] z-[20]"
+                        id="swiper-button-next"
+                      ></div>
+                      <div
+                        className="!text-[#333] swiper-button-prev absolute top-[50%] z-[20]"
+                        id="swiper-button-prev"
+                      ></div>
                     </Swiper>
-
-                    <div className="!text-[#333] swiper-button-next absolute top-[50%] right-[15px] z-[20] hidden lg:block">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15.75 19.5 8.25 12l7.5-7.5"
-                        />
-                      </svg>
-                    </div>
-                    <div className="!text-[#333] swiper-button-prev absolute top-[50%] z-[20] hidden lg:block">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                        />
-                      </svg>
-                    </div>
                   </>
                 )}
               </div>
