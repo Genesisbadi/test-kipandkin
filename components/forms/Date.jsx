@@ -30,7 +30,7 @@ const CustomInput = ({ inputRef, ...props }) => {
   return (
     <input
       {...props}
-      className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px] w-[100%]"
+      className="border-[1px] border-[#ddd] w-full px-[10px] py-[5px] min-h-[45px]"
       ref={inputRef}
       value={formStore.getState()[props?.state_name]}
     />
@@ -38,7 +38,7 @@ const CustomInput = ({ inputRef, ...props }) => {
 };
 
 export default function Date(props) {
-  const { state_name } = props;
+  const { state_name, min, max } = props;
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -83,6 +83,8 @@ export default function Date(props) {
       options={{
         enableTime: false,
         dateFormat: "Y-m-d",
+        minDate: min || "today",
+        maxDate: max || null,
       }}
       onChange={(selectedDates) => {
         const date = selectedDates[0];

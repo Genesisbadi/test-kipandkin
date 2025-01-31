@@ -93,7 +93,7 @@ export default function GridFloatBookDirect({ block }) {
                             }`}
                             href={item?.link}
                           >
-                            Discover More
+                            {item?.button_label || "Discover More"}
                           </Link>
                         </div>
                       </div>

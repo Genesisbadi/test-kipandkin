@@ -45,9 +45,9 @@ export default function GuestFeedbackForm({ form }) {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    if (formData?.formSuccessInfo) {
-      setFormSuccessInfo(true);
-    }
+    // if (formData?.formSuccessInfo) {
+    //   setFormSuccessInfo(true);
+    // }
   }, [formData?.formSuccessInfo]);
   return (
     <>
@@ -132,10 +132,6 @@ export default function GuestFeedbackForm({ form }) {
                 )}
               </div>
             </form>
-
-            {formData?.formSuccessInfo && !formData.submitLoading && (
-              <FormGenericNotification />
-            )}
           </Fragment>
         );
       })}

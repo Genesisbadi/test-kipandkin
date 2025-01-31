@@ -169,9 +169,6 @@ export default function ProposalForm({ form }) {
                 </div>
               </div>
             )}  */}
-            {formData?.formSuccessInfo && !formData.submitLoading && (
-              <FormGenericNotification />
-            )}
           </Fragment>
         );
       })}

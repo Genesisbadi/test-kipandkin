@@ -3,7 +3,7 @@ const dataFormatter = new Jsona();
 import PAGEAPI from "@/lib/api/pages/request";
 import CONTENTAPI from "@/lib/api/content/request";
 import { sortBlocks } from "@/lib/services/globalService";
-import { iterateBlock } from "@/lib/services/propService";
+import { iterateBlock, iteratePage } from "@/lib/services/propService";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ParentBlock from "@/components/page/ParentBlock";
@@ -84,20 +84,22 @@ export default function DynamicPage() {
       expires,
       signature,
       onSuccess: async (res) => {
-        const pageHandler = dataFormatter.deserialize(res.data);
+        const page = dataFormatter.deserialize(res.data);
+
         const blocksHandler =
-          pageHandler?.blockContents?.map((e) => {
+          page?.blockContents?.map((e) => {
             return {
               key: e?.block?.component || null,
               order: e?.order || null,
               data: e?.data || null,
+              blueprintData: e?.blueprintData || null,
             };
           }) || [];
-        const sortedBlocks = sortBlocks(blocksHandler);
-        setBlocks(await iterateBlock(sortedBlocks, dataFormatter));
-        delete pageHandler.relationshipNames;
-        delete pageHandler.blockContents;
-        setPage(pageHandler);
+
+        const blocks = sortBlocks(blocksHandler);
+
+        setBlocks(await iterateBlock(blocks));
+        setPage(await iteratePage(page));
       },
       onError: () => {
         setError(true);

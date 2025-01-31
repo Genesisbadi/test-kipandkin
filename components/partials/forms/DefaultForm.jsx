@@ -134,10 +134,6 @@ export default function DefaultForm({ form }) {
                 )}
               </div>
             </form>
-
-            {formData?.formSuccessInfo && !formData.submitLoading && (
-              <FormGenericNotification />
-            )}
           </Fragment>
         );
       })}

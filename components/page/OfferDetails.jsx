@@ -37,12 +37,6 @@ const CustomSelect = dynamic(() =>
 const Slider = dynamic(() =>
   import("react-slick").then((module) => module.default)
 );
-const StickyShareButtons = dynamic(
-  () => import("sharethis-reactjs").then((mod) => mod.StickyShareButtons),
-  {
-    ssr: false, // This line ensures that the component is only loaded on the client side.
-  }
-);
 
 export default function OfferDetails({ page }) {
   const offersCategories = filteredOffersCategory();
@@ -95,6 +89,7 @@ export default function OfferDetails({ page }) {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 2000,
+    adaptiveHeight: true,
     pauseOnHover: true,
     appendDots: (dots) => (
       <div
@@ -375,44 +370,6 @@ export default function OfferDetails({ page }) {
           className="py-0"
           gallery={gallery}
           mediaHandler={mediaHandler}
-        />
-      )}
-
-      {currentUrl && showLazy && (
-        <StickyShareButtons
-          className="!z-[100]"
-          config={{
-            alignment: "left", // alignment of buttons (left, right)
-            color: "social", // set the color of buttons (social, white)
-            enabled: true, // show/hide buttons (true, false)
-            font_size: 16, // font size for the buttons
-            hide_desktop: false, // hide buttons on desktop (true, false)
-            labels: "counts", // button labels (cta, counts, null)
-            language: "en", // which language to use (see LANGUAGES)
-            min_count: 0, // hide react counts less than min_count (INTEGER)
-            networks: [
-              // which networks to include (see SHARING NETWORKS)
-              "linkedin",
-              "facebook",
-              "twitter",
-              "email",
-            ],
-            padding: 12, // padding within buttons (INTEGER)
-            radius: 4, // the corner radius on each button (INTEGER)
-            show_total: true, // show/hide the total share count (true, false)
-            show_mobile: true, // show/hide the buttons on mobile (true, false)
-            show_toggle: true, // show/hide the toggle buttons (true, false)
-            size: 48, // the size of each button (INTEGER)
-            top: 160, // offset in pixels from the top of the page
-            min_count: 1, // (threshold for total share count to be displayed)
-            url: currentUrl, // (defaults to current url)
-            image: page?.data?.main?.images?.[0], // (defaults to og:image or twitter:image)
-            description: page?.data?.main?.description, // (defaults to og:description or twitter:description)
-            title: page?.title, // (defaults to og:title or twitter:title)
-            message: `New Offer Deal from ${tenantDetails?.site_name}`, // (only for email sharing)
-            subject: "New Offer Deal" + page?.title, // (only for email sharing)
-            // username: 'custom twitter handle' // (only for twitter sharing)
-          }}
         />
       )}
     </article>

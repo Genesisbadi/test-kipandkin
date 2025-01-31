@@ -17,8 +17,14 @@ export default function AdvocaciesReviews({ block }) {
     import("../icons/Star").then((module) => module.default)
   );
 
-  const { image_advocacy, image_reviews, title, description, link } =
-    block.main;
+  const {
+    image_advocacy,
+    image_reviews,
+    title,
+    description,
+    button_label,
+    link,
+  } = block.main;
 
   const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -195,7 +201,7 @@ export default function AdvocaciesReviews({ block }) {
                     className="uppercase text-[14px] inline-block text-center border border-[#654E43] min-w-[170px] py-[15px] px-[30px] transition hover:text-white hover:bg-secondary"
                     href={link}
                   >
-                    Discover More
+                    {button_label || "Discover More"}
                   </Link>
                 </div>
               </div>
@@ -212,7 +218,7 @@ export default function AdvocaciesReviews({ block }) {
               width={900}
               height={500}
               alt={title || "Thumbnail"}
-              className="w-full h-[250px] md:h-[330px] object-cover"
+              className="w-full h-[250px] md:min-h-[330px] object-cover"
             />
             {reviewItems && reviewItems.length > 0 && (
               <div className="bg-[#f5f5f5] px-[50px] lg:px-[60px] py-[30px] text-[#654E43] grow h-full">

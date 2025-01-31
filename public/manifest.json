@@ -1,8 +1,8 @@
 {
   "name": "Discovery Hospitality",
-  "short_name": "discovery_hospitality",
-  "theme_color": "#68192F",
-  "background_color": "#68192F",
+  "short_name": "Discovery Hospitality",
+  "theme_color": "#691B33",
+  "background_color": "#691B33",
   "display": "standalone",
   "orientation": "any",
   "scope": "/",

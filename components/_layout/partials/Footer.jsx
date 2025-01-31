@@ -35,9 +35,13 @@ export default function Footer() {
   const FooterCallToActions = dynamic(() =>
     import("@/components/_layout/partials/footer/FooterCallToActions")
   );
+
   return (
     <footer className="footer">
-      {showLazy && <FooterJuicer />}
+      {showLazy &&
+        (tenantDetailsMain?.juicer_id || tenantDetailsMain?.social_embed) && (
+          <FooterJuicer />
+        )}
       <FooterCallToActions />
       <FooterReviews />
 
@@ -56,7 +60,8 @@ export default function Footer() {
                     {tenantDetailsMain.site_name}. All rights reserved
                   </p>
                 </div>
-                <FooterSocial />
+
+                {showLazy && <FooterSocial />}
               </div>
             </div>
           </div>

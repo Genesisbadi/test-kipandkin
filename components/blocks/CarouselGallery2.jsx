@@ -12,7 +12,7 @@ export default function CarouselGallery2({ blockId, block }) {
     import("react-slick").then((module) => module.default)
   );
 
-  const { title, carousel_gallery } = block?.main;
+  const { title, carousel_gallery, background } = block?.main;
 
   const showLazy = globalState((state) => state.showLazy);
 
@@ -121,7 +121,9 @@ export default function CarouselGallery2({ blockId, block }) {
   };
 
   return (
-    <section className="py-[40px]">
+    <section
+      className={`py-[40px] ${background === "gray" ? "bg-[#F1F1F1]" : ""}`}
+    >
       {!showLazy ? (
         <>
           <div className="mb-[30px] mt-[40px]">

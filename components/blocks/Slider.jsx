@@ -130,7 +130,7 @@ export default function Slider({ block, mediaHandler }) {
         breakpoint: 1024,
         settings: {
           arrows: false,
-          dots: true,
+          dots: showLazy ? false : true,
           adaptiveHeight: true,
         },
       },
@@ -173,10 +173,24 @@ export default function Slider({ block, mediaHandler }) {
                   />
                 </picture>
 
-                <div className="leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] 3xl:h-[812px] md:px-[100px] lg:px-[150px] w-full flex flex-col justify-center items-center text-white relative z-[3]">
+                <div
+                  className={`leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col ${
+                    item?.position === "bottom left"
+                      ? "justify-end items-start"
+                      : item?.position === "center"
+                      ? "justify-center items-center"
+                      : "justify-center items-center"
+                  } text-white relative z-[3]`}
+                >
                   {item?.title && (
                     <div
-                      className={`text-center leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor mb-[30px] md:mb-[30px]`}
+                      className={`${
+                        item?.position === "bottom left"
+                          ? "text-start"
+                          : item?.position === "center"
+                          ? "text-center"
+                          : "text-center"
+                      } leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor mb-[30px] md:mb-[30px]`}
                     >
                       {item?.title}
                     </div>
@@ -190,7 +204,7 @@ export default function Slider({ block, mediaHandler }) {
 
                   {item?.url && (
                     <Link
-                      className="text-[14px] text-center uppercase border px-[30px] py-[10px] inline-block border-[1px] border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
+                      className="text-[14px] text-center uppercase border px-[30px] py-[10px] inline-block border-[#fff] hover:text-primary hover:bg-[#fff] transition-all duration-300 ease-in-out "
                       href={item?.url}
                       prefetch={false}
                     >

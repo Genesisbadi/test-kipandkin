@@ -198,13 +198,15 @@ export default function BlogReviews({ block }) {
                   const { featured_image, description, title } = item.data.main;
                   return (
                     <div key={index} className="relative">
-                      <Image
-                        src={featured_image}
-                        width={900}
-                        height={500}
-                        alt="Title"
-                        className="h-[220px] object-cover w-full"
-                      />
+                      {featured_image && (
+                        <Image
+                          src={featured_image}
+                          width={900}
+                          height={500}
+                          alt="Title"
+                          className="h-[220px] object-cover w-full"
+                        />
+                      )}
                     </div>
                   );
                 })}
@@ -233,13 +235,13 @@ export default function BlogReviews({ block }) {
                         key={index}
                         className="relative flex flex-col px-[60px] "
                       >
-                        <Link href={item.route_url} className="">
-                          <div className="mx-auto font-bold text-[20px] md:text-[25px] min-h-[150px] relative lg:min-h-[100%]  z-[2] relative text-secondary">
+                        <Link href={item?.route_url || "#"} className="">
+                          <div className="mx-auto font-bold text-[20px] md:text-[25px] min-h-[150px] lg:min-h-[100%]  z-[2] relative text-secondary">
                             <h3>{item.title}</h3>
                           </div>
                         </Link>
                         <Link
-                          href={item.route_url}
+                          href={item?.route_url || "#"}
                           className="mt-[15px] uppercase inline-block text-center  min-w-[200px] border py-[15px] px-[30px] transition hover:text-primary text-secondary hover:border-secondary hover:bg-secondary hover:text-white border-secondary"
                         >
                           Explore More
