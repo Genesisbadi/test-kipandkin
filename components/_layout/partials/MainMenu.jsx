@@ -18,7 +18,7 @@ export default function MainMenu({ parentNodes, ...props }) {
           parent.label.toLowerCase() === "reservations"
             ? "right-[0]"
             : "left-[0]"
-        } dropdown-menu absolute z-[1] w-full min-w-[150px] max-w-[150px] pt-[10px] top-[calc(100%-20px)] transition opacity-[0] invisible`}
+        } dropdown-menu absolute z-[1] w-full max-w-[150px] pt-[10px] top-[calc(100%-20px)] transition opacity-[0] invisible`}
       >
         <div
           className={`w-full  transition translate-y-[10px] relative ${
