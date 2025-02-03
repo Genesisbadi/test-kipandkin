@@ -21,18 +21,11 @@ export default function Block({ block }) {
               alt="Title"
               width={600}
               height={600}
-              className={`min-h-[350px] object-cover
-               ${process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "" : "rounded-lg"} 
-                `}
+              className={`min-h-[350px] object-cover`}
             />
           </div>
           <div className="w-full md:max-w-[50%] px-[30px] py-[30px]">
-            <h2
-              className={`font-tenor mb-[30px] text-[23px] text-primary  ${
-                process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "" : "drop-shadow-md"
-              } 
-                `}
-            >
+            <h2 className={`font-tenor mb-[30px] text-[23px] text-primary`}>
               {title}
             </h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />

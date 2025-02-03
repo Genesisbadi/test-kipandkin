@@ -50,8 +50,12 @@ export default function Menu({ ...props }) {
     <>
       <header
         id="header"
-        className={`sticky top-0 z-[100] bg-white shadow-[0_2px_2px_-2px_rgba(0,0,0,.15)] min-h-[61px] flex flex-col justify-center items-end ${
-          process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "xl:pr-[15px]" : ""
+        className={`sticky top-0 z-[100] shadow-[0_2px_2px_-2px_rgba(0,0,0,.15)] min-h-[61px] flex flex-col justify-center items-end ${
+          process.env.NEXT_PUBLIC_TEMPLATE == 2
+            ? "xl:pr-[15px]"
+            : process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+            ? "bg-[#413A60]"
+            : "bg-white"
         }`}
       >
         {!isMobile && (
@@ -130,7 +134,11 @@ export default function Menu({ ...props }) {
               prefetch={false}
               href="/"
               className={`h-full block ${
-                process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "py-[5px]" : ""
+                process.env.NEXT_PUBLIC_TEMPLATE != 1
+                  ? "py-[5px]"
+                  : process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "bg-white p-1"
+                  : ""
               }`}
             >
               <Image

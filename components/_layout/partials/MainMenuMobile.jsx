@@ -228,7 +228,11 @@ export default function MainMenuMobile({ ...props }) {
             return (
               <span
                 key={index}
-                className={`${animClass} transition-[.25s_ease-in-out] duration-[250ms] ease-in-out left-0 min-w-[30px] absolute rounded-[5px] w-full block h-[4px] bg-primary `}
+                className={`${animClass} transition-[.25s_ease-in-out] duration-[250ms] ease-in-out left-0 min-w-[30px] absolute rounded-[5px] w-full block h-[4px] ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                    ? "bg-white"
+                    : "bg-primary"
+                } `}
               />
             );
           })}
@@ -264,7 +268,11 @@ export default function MainMenuMobile({ ...props }) {
             <Booking
               width={27}
               height={27}
-              className="select-none cursor-pointer !fill-primary"
+              className={`select-none cursor-pointer ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "fill-white"
+                  : "fill-primary"
+              }`}
             />
           </span>
         </span>
