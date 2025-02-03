@@ -194,11 +194,19 @@ export default function MainMenu({ parentNodes, ...props }) {
                   <>
                     <span
                       id={`nav-link-${item?.id}`}
-                      className="nav-link relative flex items-center uppercase text-primary cursor-default"
+                      className={`nav-link relative flex items-center uppercase ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "text-white"
+                          : "text-primary"
+                      } cursor-default`}
                     >
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-2px] border-primary relative"
+                        className={`ml-[5px] top-[-2px] ${
+                          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                            ? "border-white"
+                            : "border-primary"
+                        } relative`}
                         width={7}
                         height={7}
                         item={item}
