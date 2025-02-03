@@ -55,7 +55,7 @@ export default function Footer() {
               <FooterMenu />
               <div className="footer-bottom flex flex-col md:flex-row flex-wrap justify-center md:justify-between items-center">
                 <div className="copy-right text-center md:text-left order-1 md:order-[-2]">
-                  <p className="text-[12px] uppercase">
+                  <p className="text-[12px] uppercase m-0">
                     &copy; {new Date().getFullYear()}{" "}
                     {tenantDetailsMain.site_name}. All rights reserved
                   </p>
