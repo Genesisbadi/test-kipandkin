@@ -42,7 +42,7 @@ export default function Feature({ block }) {
               <div>
                 <Link
                   href={link}
-                  className="font-bold gap-x-[5px] border border-white rounded-[8px] hover:bg-[#fff] hover:bg-opacity-50 transition inline-flex items-center py-[10px] px-[20px] mt-[20px] text-white"
+                  className="font-bold gap-x-[5px] border border-white hover:bg-[#fff] hover:bg-opacity-50 transition inline-flex items-center py-[10px] px-[20px] mt-[20px] text-white"
                 >
                   {button_label ? button_label : "Discovery More"}
                   <svg
