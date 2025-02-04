@@ -160,9 +160,9 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                             ? " hover:bg-primary hover:border-primary"
                             : " hover:bg-secondary"
                         }`}
-                        href={item.link || "#"}
+                        href={item?.link || "#"}
                         target={
-                          item.link.includes("http:") ? "_blank" : "_self"
+                          item?.link?.includes("http:") ? "_blank" : "_self"
                         }
                       >
                         {item?.button_label
@@ -211,7 +211,6 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                     dangerouslySetInnerHTML={{ __html: item.description }}
                   />
                 )}
-
                 {item?.link && (
                   <div className="text-center">
                     <Link
@@ -221,7 +220,9 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                           : " hover:bg-secondary"
                       }`}
                       href={item?.link || "#"}
-                      target={item?.link.includes("http:") ? "_blank" : "_self"}
+                      target={
+                        item?.link?.includes("http:") ? "_blank" : "_self"
+                      }
                     >
                       {item?.button_label
                         ? item?.button_label

@@ -188,7 +188,7 @@ export default function OurCollectionPage({ page }) {
         </picture>
         {title && (
           <div
-            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  px-5 text-center text-white  z-[3] leading-[50px]`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white  z-[3] leading-[50px]`}
           >
             {title}
           </div>

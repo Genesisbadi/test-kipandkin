@@ -44,7 +44,7 @@ export default function Block({ page, block, mediaHandler }) {
 
       {title && (
         <div
-          className={`relative px-[15px] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px] text-center text-white relative z-[3] ${
+          className={`relative px-[15px] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] lg:text-[42px] text-center text-white relative z-[3] ${
             title ? "" : "hidden"
           }`}
         >

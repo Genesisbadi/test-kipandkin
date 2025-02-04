@@ -163,7 +163,7 @@ export default function MeetingsEventsSuitesPage({ page }) {
           </picture>
           {title && (
             <div
-              className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[35px] md:text-[42px]  text-white z-[3]`}
+              className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  text-white z-[3]`}
             >
               {title}
             </div>
