@@ -503,10 +503,16 @@ export default function BookingForm({ ...props }) {
                         }));
                         setGuestChildren({ min: 0, value: 0 });
                         setGuestAdult({ min: 1, value: 1 });
-                        window.open(
-                          bookingUrl +
-                            `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${scheduleDateMobile?.end}&arrive=${scheduleDateMobile?.start}`
-                        );
+                        if (process.env.NEXT_PUBLIC_MICROSITE_ID == 4) {
+                          window.open(
+                            "https://bookings.discoverycoron.com/book/dates-of-stay"
+                          );
+                        } else {
+                          window.open(
+                            bookingUrl +
+                              `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${scheduleDateMobile?.end}&arrive=${scheduleDateMobile?.start}`
+                          );
+                        }
                       }}
                     >
                       Check Availability

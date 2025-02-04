@@ -164,7 +164,9 @@ export default function Menu({ ...props }) {
           </div>
 
           <Menu
-            className={isMobile ? "block xl:hidden" : "hidden xl:flex"}
+            className={`header-menu ${
+              isMobile ? "block xl:hidden" : "hidden xl:flex"
+            }`}
             parentNodes={parentNodes}
             nodes={nodes}
           />

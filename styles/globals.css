@@ -195,6 +195,9 @@ hr {
   #header .dropdown-menu .dropdown-menu .caret {
     display: none;
   }
+  .header-menu > .item:not(:last-of-type) > div > .dropdown-menu {
+    @apply min-w-[150px];
+  }
 }
 
 .prev {
