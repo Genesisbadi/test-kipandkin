@@ -160,9 +160,9 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                             ? " hover:bg-primary hover:border-primary"
                             : " hover:bg-secondary"
                         }`}
-                        href={item.link || "#"}
+                        href={item?.link || "#"}
                         target={
-                          item.link.includes("http:") ? "_blank" : "_self"
+                          item?.link?.includes("http:") ? "_blank" : "_self"
                         }
                       >
                         {item?.button_label
@@ -211,19 +211,25 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                     dangerouslySetInnerHTML={{ __html: item.description }}
                   />
                 )}
-                <div className="text-center">
-                  <Link
-                    className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
-                      process.env.NEXT_PUBLIC_TEMPLATE == 2
-                        ? " hover:bg-primary hover:border-primary"
-                        : " hover:bg-secondary"
-                    }`}
-                    href={item.link || "#"}
-                    target={item.link.includes("http:") ? "_blank" : "_self"}
-                  >
-                    {item?.button_label ? item?.button_label : "Discover More"}
-                  </Link>
-                </div>
+                {item?.link && (
+                  <div className="text-center">
+                    <Link
+                      className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
+                        process.env.NEXT_PUBLIC_TEMPLATE == 2
+                          ? " hover:bg-primary hover:border-primary"
+                          : " hover:bg-secondary"
+                      }`}
+                      href={item?.link || "#"}
+                      target={
+                        item?.link?.includes("http:") ? "_blank" : "_self"
+                      }
+                    >
+                      {item?.button_label
+                        ? item?.button_label
+                        : "Discover More"}
+                    </Link>
+                  </div>
+                )}
               </div>
             </SectionAccordion>
           ))}
