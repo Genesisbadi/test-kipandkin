@@ -64,7 +64,8 @@ export default function FooterDestinations({}) {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow:
+      destinationsEntries.length < 6 ? destinationsEntries.length : 6,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -74,20 +75,23 @@ export default function FooterDestinations({}) {
         breakpoint: 1199,
         arrows: true,
         settings: {
-          slidesToShow: 4,
+          slidesToShow:
+            destinationsEntries.length < 6 ? destinationsEntries.length : 4,
         },
       },
       {
         breakpoint: 991,
         arrows: true,
         settings: {
-          slidesToShow: 3,
+          slidesToShow:
+            destinationsEntries.length < 6 ? destinationsEntries.length : 3,
         },
       },
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 2,
+          slidesToShow:
+            destinationsEntries.length < 6 ? destinationsEntries.length : 2,
         },
       },
       {
