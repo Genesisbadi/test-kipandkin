@@ -36,7 +36,7 @@ export default function OurCollection({ block, mediaHandler }) {
                       }
                       className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] border border-white py-[20px] px-[30px] text-secondary lg:text-white bg-[#fff] bg-opacity-80 lg:bg-transparent hover:bg-[#fff] hover:text-secondary uppercase`}
                     >
-                      More Details
+                      {item?.button_label || "More Details"}
                     </Link>
                   )}
                 </div>
