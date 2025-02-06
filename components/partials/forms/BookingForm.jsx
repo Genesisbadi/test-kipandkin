@@ -167,7 +167,7 @@ export default function BookingForm({ ...props }) {
     } else {
       window.open(
         bookingUrl +
-          `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${departureDate}&arrive=${arrivalDate}`
+          `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${departureDate}&arrive=${arrivalDate}&chain=10237`
       );
     }
   };
@@ -510,7 +510,7 @@ export default function BookingForm({ ...props }) {
                         } else {
                           window.open(
                             bookingUrl +
-                              `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${scheduleDateMobile?.end}&arrive=${scheduleDateMobile?.start}`
+                              `?hotel=${booking_id}&child=${guestChildren.value}&adult=${guestAdult.value}&depart=${scheduleDateMobile?.end}&arrive=${scheduleDateMobile?.start}&chain=10237`
                           );
                         }
                       }}
