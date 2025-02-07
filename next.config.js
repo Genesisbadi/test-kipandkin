@@ -32,6 +32,10 @@ const withPWA = require("next-pwa")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  compiler: {
+    // Remove console logs only in production
+    removeConsole: process.env.NODE_ENV !== "development",
+  },
   images: {
     loader: "custom",
     loaderFile: "./lib/utils/cloudfrontLoader.jsx",
