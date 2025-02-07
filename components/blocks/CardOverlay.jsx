@@ -24,9 +24,10 @@ export default function Feature({ block }) {
       childrenClassname="pb-0 bg-[#F1F1F1] text-white"
     >
       <section className={`container card-overlay py-[30px]`}>
-        <div className="relative rounded-[10px]  shadow-md overflow-hidden">
+        <div className="relative shadow-md overflow-hidden">
           <Image
             src={image}
+            alt={title}
             width={900}
             height={500}
             className="absolute top-0 left-0 w-full h-full object-cover"
@@ -34,7 +35,7 @@ export default function Feature({ block }) {
           <div className="relative flex flex-col min-h-[350px] bg-[#000] p-[30px] bg-opacity-70">
             <h2 className=" text-[35px] font-tenor">{title}</h2>
             <div
-              className="text-shadow-md grow text-[15px] leading-[28px] mt-[20px]"
+              className="text-shadow-md grow text-[15px] leading-[28px] mt-[20px] line-clamp-6"
               dangerouslySetInnerHTML={{ __html: description }}
             />
 
@@ -45,20 +46,6 @@ export default function Feature({ block }) {
                   className="font-bold gap-x-[5px] border border-white hover:bg-[#fff] hover:bg-opacity-50 transition inline-flex items-center py-[10px] px-[20px] mt-[20px] text-white"
                 >
                   {button_label ? button_label : "Discovery More"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                    />
-                  </svg>
                 </Link>
               </div>
             )}

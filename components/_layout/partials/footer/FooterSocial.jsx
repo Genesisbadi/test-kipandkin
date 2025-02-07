@@ -48,14 +48,22 @@ export default function FooterSocial() {
                   href={item.link}
                   title={messages[item.platform] || "Follow Us"}
                   target="_blank"
-                  className="hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[46px] min-h-[46px] w-[46px] h-[46px] p-[5px]"
+                  className={`hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[46px] min-h-[46px] w-[46px] h-[46px] p-[5px] ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "border-[#3F395F]"
+                      : "border-[#cfcfcf]"
+                  }`}
                 >
                   {item.platform === "facebook" && (
                     <Facebook
                       width={24}
                       title="Like us on Facebook."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "instagram" && (
@@ -63,7 +71,11 @@ export default function FooterSocial() {
                       width={24}
                       title="Follow Us on Instagram."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "youtube" && (
@@ -71,7 +83,11 @@ export default function FooterSocial() {
                       width={24}
                       title="Subscribe to our youtube channel."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "tripadvisor" && (
@@ -79,7 +95,11 @@ export default function FooterSocial() {
                       width={24}
                       title="See our Trip Advisor reviews"
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "linkedin" && (
@@ -87,7 +107,11 @@ export default function FooterSocial() {
                       width={24}
                       title="Follow Us on LinkedIn."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "tiktok" && (
@@ -95,7 +119,11 @@ export default function FooterSocial() {
                       width={24}
                       title="Follow Us on Tiktok."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "twitter" && (
@@ -103,7 +131,11 @@ export default function FooterSocial() {
                       width={24}
                       title="Follow Us on Twitter."
                       height={24}
-                      color="#cfcfcf"
+                      color={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                 </Link>

@@ -93,7 +93,11 @@ export default function FooterConnections() {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
-                      } uppercase text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px]`}
+                      } uppercase text-[18px] w-full lg:w-auto lg:min-w-[180px] mb-[15px] lg:mb-0 lg:mr-[20px] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "!text-[#D41367]"
+                          : ""
+                      }`}
                     >
                       {item?.title}
                     </h2>
