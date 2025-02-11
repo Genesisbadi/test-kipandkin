@@ -188,6 +188,10 @@ export default function AdvocaciesReviews({ block }) {
                 <h2
                   className={`mb-[25px] text-[25px] hidden md:block ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : ""
                   }`}
                 >
                   {title}
@@ -225,6 +229,10 @@ export default function AdvocaciesReviews({ block }) {
                 <h2
                   className={`mb-[25px] hidden md:block text-[25px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : ""
                   }`}
                 >
                   Reviews

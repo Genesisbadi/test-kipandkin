@@ -104,6 +104,8 @@ export default function CarouselGalleryMedia({ ...props }) {
               <span
                 className={`${
                   process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                } ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
                 } tracking-[1px] text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[30px]`}
               >
                 {title || "Gallery"}

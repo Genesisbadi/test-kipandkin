@@ -180,6 +180,8 @@ export default function CarouselGallery({ blockId, block }) {
               className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] uppercase ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
               } ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""
+              } ${
                 collection_carousel_gallery
                   ? "pb-[30px] "
                   : "pt-[20px] md:pt-[40px] mb-[20px]"

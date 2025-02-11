@@ -35,6 +35,9 @@ body {
 .font-tenor {
   font-family: "Tenor", sans-serif;
 }
+.font-effra {
+  font-family: "Effra", sans-serif;
+}
 .carousel-gallery *,
 .block-slider .slick-slider {
   line-height: 0;

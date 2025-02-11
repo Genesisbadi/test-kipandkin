@@ -19,6 +19,8 @@ export default function GridFloatBookDirect({ block }) {
                   process.env.NEXT_PUBLIC_TEMPLATE == 2
                     ? "text-primary"
                     : "font-tenor"
+                } ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""
                 }`}
               >
                 Why Book Direct?
@@ -65,6 +67,10 @@ export default function GridFloatBookDirect({ block }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
+                      } ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : ""
                       }`}
                     >
                       {item?.title}

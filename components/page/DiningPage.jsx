@@ -78,7 +78,11 @@ export default function DiningPage({ page }) {
         </picture>
         {title && (
           <h2
-            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  text-white z-[3]`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                ? "font-effra"
+                : "font-tenor"
+            } text-[30px] sm:text-[35px] md:text-[42px]  text-white z-[3]`}
           >
             {title}
           </h2>
@@ -118,6 +122,10 @@ export default function DiningPage({ page }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
+                      } ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : " "
                       }`}
                     />
                   )}
@@ -132,7 +140,13 @@ export default function DiningPage({ page }) {
                 </div>
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[20px] font-tenor">
+                    <span
+                      className={`text-[25px] text-primary uppercase leading-[25px] pb-[20px] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : "font-tenor"
+                      }`}
+                    >
                       Awards / Recognitions
                     </span>
                     <div className="flex flex-wrap gap-x-10">
@@ -245,6 +259,10 @@ export default function DiningPage({ page }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
+                      } ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : " "
                       }`}
                     >
                       Dining Offer
@@ -309,6 +327,10 @@ export default function DiningPage({ page }) {
                                   className={`text-primary text-[20px] text-center ${
                                     process.env.NEXT_PUBLIC_TEMPLATE == 1
                                       ? "font-tenor"
+                                      : " "
+                                  } ${
+                                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                      ? "font-effra"
                                       : " "
                                   }`}
                                 >

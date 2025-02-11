@@ -188,7 +188,11 @@ export default function OurCollectionPage({ page }) {
         </picture>
         {title && (
           <div
-            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white  z-[3] leading-[50px]`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%]  ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                ? "font-effra"
+                : "font-tenor"
+            } text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white  z-[3] leading-[50px]`}
           >
             {title}
           </div>
@@ -248,6 +252,10 @@ export default function OurCollectionPage({ page }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
                           : " "
+                      }  ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : " "
                       } text-primary text-[22px] leading-[25px] text-center pb-[30px]`}
                     />
                   )}
@@ -306,6 +314,10 @@ export default function OurCollectionPage({ page }) {
                       className={`${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
+                          : " "
+                      }  ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
                           : " "
                       } text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]`}
                     >

@@ -52,7 +52,7 @@ export default function BlogPage({ page }) {
         <h2
           className={`text-primary text-[20px] md:text-[25px] tracking-[1px] text-center py-[30px] border-b-[1px] border-[#ccc] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-          }`}
+          } ${process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "}`}
         >
           {title}
         </h2>

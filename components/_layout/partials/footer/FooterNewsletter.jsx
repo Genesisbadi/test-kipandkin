@@ -79,7 +79,7 @@ export default function FooterNewsletter() {
         <h2
           className={`hidden md:block text-center text-primary tracking-[1px] text-[25px] mb-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-          }`}
+          } ${process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""}`}
         >
           Stay Updated
         </h2>

@@ -23,7 +23,7 @@ export default function Awards({ block }) {
                 : collection_award
                 ? "font-tenor text-[25px] text-primary px-5 2xl:px-0 text-center uppercase leading-[25px] pb-[40px]"
                 : "border-b border-[#ccc] mb-[30px]"
-            }`}
+            } ${process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""}`}
           >
             {title}
           </h2>

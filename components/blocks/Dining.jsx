@@ -39,7 +39,11 @@ export default function Dining({ block, page }) {
         <div className="container overflow-hidden">
           {title && (
             <h2
-              className={`text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc] font-tenor`}
+              className={`text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] border-b-[1px] border-[#ccc] ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              }`}
             >
               {title}
             </h2>
