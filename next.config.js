@@ -1,7 +1,6 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-const withPurgeCss = require("next-purgecss");
 const runtimeCaching = require("next-pwa/cache");
 
 // Add custom runtime caching to exclude specific URLs
@@ -67,4 +66,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPWA(withPurgeCss(nextConfig));
+module.exports = withPWA(nextConfig);
