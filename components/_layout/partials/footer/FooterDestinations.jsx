@@ -118,28 +118,50 @@ export default function FooterDestinations({}) {
               {"Exciting Destinations"}
             </h2>
             <Slick {...settings}>
-              {destinationsEntries?.map((item, index) => (
-                <div key={index}>
-                  <Link
-                    href={item?.data?.main?.link || "#"}
-                    className="flex justify-center bg-[#333] items-center min-h-[208px] relative"
-                    target="_blank"
-                  >
-                    <Image
-                      src={
-                        item?.data?.main?.image || `/static/destination1.jpg`
-                      }
-                      width={350}
-                      height={350}
-                      alt={item?.title}
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                    />
-                    <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
-                      {item?.title}
-                    </h3>
-                  </Link>
-                </div>
-              ))}
+              {destinationsEntries?.map((item, index) => {
+                const link = item?.data?.main?.link;
+                return (
+                  <div key={index}>
+                    {link ? (
+                      <Link
+                        href={link}
+                        className="flex justify-center bg-[#333] items-center min-h-[208px] relative"
+                        target="_blank"
+                      >
+                        <Image
+                          src={
+                            item?.data?.main?.image ||
+                            `/static/destination1.jpg`
+                          }
+                          width={350}
+                          height={350}
+                          alt={item?.title}
+                          className="absolute top-0 left-0 w-full h-full object-cover"
+                        />
+                        <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
+                          {item?.title}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <div className="flex justify-center bg-[#333] items-center min-h-[208px] relative cursor-default">
+                        <Image
+                          src={
+                            item?.data?.main?.image ||
+                            `/static/destination1.jpg`
+                          }
+                          width={350}
+                          height={350}
+                          alt={item?.title}
+                          className="absolute top-0 left-0 w-full h-full object-cover"
+                        />
+                        <h3 className="relative uppercase font-bold leading-[2px] text-[18px]">
+                          {item?.title}
+                        </h3>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </Slick>
           </section>
         </SectionAccordion>
