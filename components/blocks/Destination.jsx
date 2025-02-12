@@ -37,9 +37,7 @@ export default function OurCollection({ block, mediaHandler }) {
                       className={`w-full h-full tracking-[1px] 2sm:w-auto text-center text-[14px] py-[20px] px-[30px] text-secondary lg:text-white bg-[#fff] bg-opacity-80 hover:bg-[#fff] hover:text-secondary uppercase ${
                         item?.variant === "filled"
                           ? "bg-primary hover:bg-secondary hover:text-white"
-                          : item?.variant === "outlined"
-                          ? "bg-transparent border border-white"
-                          : ""
+                          : "bg-transparent border border-white"
                       }`}
                     >
                       {item?.button_label || "More Details"}
