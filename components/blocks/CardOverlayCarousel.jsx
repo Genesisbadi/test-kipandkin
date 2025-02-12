@@ -61,7 +61,15 @@ export default function Feature({ block }) {
                       className="absolute top-0 left-0 w-full h-full object-cover"
                     />
                     <div className="relative flex flex-col h-full bg-[#000] p-[30px] bg-opacity-70">
-                      <h2 className="text-[35px] font-tenor">{item?.title}</h2>
+                      <h2
+                        className={`text-[35px] ${
+                          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                            ? "font-effra"
+                            : "font-tenor"
+                        }`}
+                      >
+                        {item?.title}
+                      </h2>
                       <div
                         className="text-shadow-md grow text-[15px] leading-[28px] mt-[20px] overflow-hidden text-ellipsis"
                         dangerouslySetInnerHTML={{ __html: item?.description }}

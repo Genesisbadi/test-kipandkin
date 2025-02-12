@@ -71,7 +71,11 @@ export default function RoomSuitePage({ page }) {
           priority={true}
         />
         <div
-          className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white z-[3] leading-[50px]`}
+          className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+              ? "font-effra"
+              : "font-tenor"
+          } text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white z-[3] leading-[50px]`}
         >
           {title}
         </div>
@@ -143,6 +147,10 @@ export default function RoomSuitePage({ page }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 2
                           ? "text-left"
                           : "text-center"
+                      }  ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : " "
                       }`}
                     >
                       {item?.title}
@@ -198,6 +206,8 @@ export default function RoomSuitePage({ page }) {
                   process.env.NEXT_PUBLIC_TEMPLATE == 2
                     ? "text-left"
                     : "text-center"
+                }  ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
                 }`}
               >
                 Features

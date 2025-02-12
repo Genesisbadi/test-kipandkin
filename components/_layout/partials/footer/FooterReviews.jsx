@@ -45,6 +45,10 @@ export default function FooterReviews() {
                 <h2
                   className={`text-center text-primary text-[25px] mb-[30px] tracking-[1px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : ""
                   }`}
                 >
                   Reviews

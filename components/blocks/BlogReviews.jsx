@@ -215,7 +215,11 @@ export default function BlogReviews({ block }) {
           )}
           <div className="py-[20px]">
             <h2
-              className={`hidden md:block pb-[20px] text-[25px] pb-[20px] px-[60px] text-secondary font-tenor`}
+              className={`hidden md:block pb-[20px] text-[25px] px-[60px] text-secondary ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              }`}
             >
               Discovery Blog
             </h2>
@@ -271,7 +275,11 @@ export default function BlogReviews({ block }) {
           {reviewItems && reviewItems.length > 0 && (
             <div className="py-[20px] text-secondary grow">
               <h2
-                className={`hidden md:block px-[60px] text-[25px] pb-[20px] text-secondary font-tenor`}
+                className={`hidden md:block px-[60px] text-[25px] pb-[20px] text-secondary ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                    ? "font-effra"
+                    : "font-tenor"
+                }`}
               >
                 Reviews
               </h2>

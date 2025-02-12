@@ -20,6 +20,8 @@ export default function SectionAccordion({ children, ...props }) {
             <div
               className={`${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+              } ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
               } text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]`}
               onClick={handleCollapse}
             >

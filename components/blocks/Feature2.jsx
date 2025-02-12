@@ -25,7 +25,13 @@ export default function Block({ block }) {
             />
           </div>
           <div className="w-full md:max-w-[50%] px-[30px] py-[30px]">
-            <h2 className={`font-tenor mb-[30px] text-[23px] text-primary`}>
+            <h2
+              className={`${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              } mb-[30px] text-[23px] text-primary`}
+            >
               {title}
             </h2>
             <div dangerouslySetInnerHTML={{ __html: description }} />

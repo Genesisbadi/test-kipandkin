@@ -18,7 +18,11 @@ export default function AccordionItem({ ...props }) {
     <>
       <div key={index} className="accordion-item mb-[30px]">
         <div
-          className="bg-secondary text-white p-[15px] cursor-pointer font-tenor text-[20px] relative select-none"
+          className={`bg-secondary text-white p-[15px] cursor-pointer ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+              ? "font-effra"
+              : "font-tenor"
+          } text-[20px] relative select-none`}
           onClick={toggleAccordion}
         >
           {item.title}

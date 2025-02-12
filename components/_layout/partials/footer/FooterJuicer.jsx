@@ -40,7 +40,13 @@ export default function FooterJuicer() {
               ) : (
                 juicer_id && (
                   <>
-                    <h2 className="font-tenor text-center hidden md:block text-primary text-[25px] mb-[30px]">
+                    <h2
+                      className={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : "font-tenor"
+                      } text-center hidden md:block text-primary text-[25px] mb-[30px]`}
+                    >
                       {`Let's Get Social!`}
                     </h2>
                     <link
