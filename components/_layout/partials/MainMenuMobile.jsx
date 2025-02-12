@@ -349,9 +349,19 @@ export default function MainMenuMobile({ ...props }) {
           <>
             <div
               id="header-mobile"
-              className="fixed max-h-[100vh] overflow-hidden transition pt-0 p-[15px] bg-[#F1F1F1] max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0"
+              className={`fixed max-h-[100vh] overflow-hidden transition pt-0 p-[15px]  ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "!bg-[#413A60]"
+                  : "bg-[#F1F1F1]"
+              } max-w-[calc(100%-50px)] sm:max-w-[420px] z-[999] w-full h-full left-0 top-0`}
             >
-              <div className="sticky flex mb-[30px] items-center justify-between top-0 py-[15px] bg-[#F1F1F1] z-[1]">
+              <div
+                className={`sticky flex mb-[30px] items-center justify-between top-0 py-[15px] ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                    ? "!bg-[#413A60]"
+                    : "bg-[#F1F1F1]"
+                } z-[1]`}
+              >
                 <Image
                   src={tenantInformation?.tenant_logo}
                   width={200}
@@ -365,7 +375,11 @@ export default function MainMenuMobile({ ...props }) {
                   onClick={closeMenu}
                 >
                   <svg
-                    className="w-[30px] h-[30px] fill-primary"
+                    className={`w-[30px] h-[30px] ${
+                      process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                        ? "!fill-[#F1F1F1]"
+                        : "fill-primary"
+                    }`}
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -416,6 +430,11 @@ export default function MainMenuMobile({ ...props }) {
                                   });
                               }
                             }}
+                            className={`${
+                              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                ? "!text-[#F1F1F1]"
+                                : ""
+                            }`}
                           >
                             {item.label}
                           </span>
@@ -434,8 +453,20 @@ export default function MainMenuMobile({ ...props }) {
                                 child.classList.add("current");
                               }}
                             >
-                              <div className="border-[#555] w-[1px] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-main-black group-hover:border-main-red" />
-                              <div className="border-[#555] w-[1px] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red" />
+                              <div
+                                className={`${
+                                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                    ? "!border-[#F1F1F1]"
+                                    : "border-[#555]"
+                                } w-[1px] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-main-black group-hover:border-main-red`}
+                              />
+                              <div
+                                className={`${
+                                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                    ? "!border-[#F1F1F1]"
+                                    : "border-[#555]"
+                                } w-[1px] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red`}
+                              />
                             </div>
                           )}
                         </div>
