@@ -1,7 +1,6 @@
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-
 const runtimeCaching = require("next-pwa/cache");
 
 // Add custom runtime caching to exclude specific URLs
@@ -32,6 +31,10 @@ const withPWA = require("next-pwa")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  compiler: {
+    // Remove console logs only in production
+    removeConsole: process.env.NODE_ENV !== "development",
+  },
   images: {
     loader: "custom",
     loaderFile: "./lib/utils/cloudfrontLoader.jsx",

@@ -181,7 +181,13 @@ export default function DiningDetails({ block, page }) {
                 </div>
                 {award_images && award_images.length > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-[25px] text-primary uppercase leading-[25px] pb-[40px] font-tenor">
+                    <span
+                      className={`text-[25px] text-primary uppercase leading-[25px] pb-[40px] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : "font-tenor"
+                      }`}
+                    >
                       Awards / Recognitions
                     </span>
                     <div className="flex gap-x-10">

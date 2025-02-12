@@ -53,9 +53,13 @@ export default function Selection({ block }) {
                 <div className="my-[15px]">
                   {title && (
                     <h2
-                      className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] tracking-[1px] ${
+                      className={`text-primary text-[18px] font-bold tracking-[1px] mb-[20px] ${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
+                          : " "
+                      } ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
                           : " "
                       }`}
                     >
@@ -75,8 +79,12 @@ export default function Selection({ block }) {
                 <div
                   className={`${
                     title || description ? "mt-[30px]" : ""
-                  } text-primary text-[20px] tracking-[1px] mb-[10px] tracking-[1px] ${
+                  } text-primary text-[20px] tracking-[1px] mb-[10px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : " "
                   }`}
                 >
                   {selection_label}:

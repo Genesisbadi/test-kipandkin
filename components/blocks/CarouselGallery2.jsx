@@ -144,6 +144,8 @@ export default function CarouselGallery2({ blockId, block }) {
             <h2
               className={`text-primary text-[25px] text-center tracking-[1px] px-[20px] mb-[20px] ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+              } ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""
               }`}
             >
               {title}

@@ -8,7 +8,7 @@ export default function Title({ block }) {
             !remove_underline ? "border-b border-[#ccc] pb-[30px]" : ""
           }  w-full flex text-center justify-center pt-[10px] text-[25px] text-primary ${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-          }`}
+          } ${process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "}`}
         >
           {title}
         </h3>

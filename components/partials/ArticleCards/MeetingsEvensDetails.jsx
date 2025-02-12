@@ -163,7 +163,13 @@ export default function MeetingsEvensDetails({ block, page }) {
             className="w-full h-full  object-cover absolute top-0 left-0"
           />
           {title && (
-            <div className={`relative text-[42px] px-[15px] font-tenor`}>
+            <div
+              className={`relative text-[42px] px-[15px] ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              }`}
+            >
               {title}
             </div>
           )}

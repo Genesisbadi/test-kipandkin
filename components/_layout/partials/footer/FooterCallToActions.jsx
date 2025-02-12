@@ -58,6 +58,8 @@ export default function CallToActions() {
                 process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
               } ${
                 process.env.NEXT_PUBLIC_TEMPLATE == 2 ? "" : "tracking-[1px]"
+              }${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""
               }`}
             >
               {`${block_title}` || "Why Book Direct?"}
@@ -84,6 +86,10 @@ export default function CallToActions() {
                           process.env.NEXT_PUBLIC_TEMPLATE == 1
                             ? "font-tenor"
                             : " "
+                        }${
+                          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                            ? "font-effra"
+                            : ""
                         }`}
                       >
                         {item?.title}

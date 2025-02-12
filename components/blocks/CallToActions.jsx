@@ -19,7 +19,13 @@ export default function CallToActions({ block }) {
           {showLazy ? (
             <>
               {block_title && (
-                <h2 className="font-tenor text-center text-primary hidden md:block text-[22px] mb-[30px]">
+                <h2
+                  className={`${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : "font-tenor"
+                  } text-center text-primary hidden md:block text-[22px] mb-[30px]`}
+                >
                   {block_title}
                 </h2>
               )}

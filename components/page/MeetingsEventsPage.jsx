@@ -89,7 +89,11 @@ export default function MeetingsEvensDetails({ page }) {
         </picture>
         {title && (
           <div
-            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] font-tenor text-[30px] sm:text-[35px] md:text-[42px]  text-white z-[3]`}
+            className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                ? "font-effra"
+                : "font-tenor"
+            } text-[30px] sm:text-[35px] md:text-[42px]  text-white z-[3]`}
           >
             {title}
           </div>
@@ -123,6 +127,10 @@ export default function MeetingsEvensDetails({ page }) {
                   htmlFor="select-property"
                   className={`${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : " "
                   } block text-primary text-[20px] tracking-[1px] mt-[30px] mb-[10px]`}
                 >
                   Select Property:

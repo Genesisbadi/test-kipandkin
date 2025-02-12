@@ -115,6 +115,8 @@ export default function Block({ block }) {
           <h2
             className={`${
               process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+            } ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""
             } text-primary text-[25px] tracking-[1px] text-center uppercase py-[30px] mb-[30px]`}
           >
             {title}
@@ -226,7 +228,13 @@ export default function Block({ block }) {
                             </>
                           )}
                           <div className="relative w-full min-h-[160px] flex-grow p-[20px] z-10">
-                            <h3 className="text-[#f5f5f5] text-[20px]  mb-[10px] font-tenor">
+                            <h3
+                              className={`text-[#f5f5f5] text-[20px]  mb-[10px] ${
+                                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                  ? "font-effra"
+                                  : "font-tenor"
+                              }`}
+                            >
                               <Link href={item.attributes.route_url}>
                                 {item?.attributes?.title
                                   ?.split(" ")

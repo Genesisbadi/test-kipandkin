@@ -65,7 +65,11 @@ export default function DestinationDetails({ block, page }) {
         />
         {title && (
           <h2
-            className={`font-tenor text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white relative z-[3] leading-[50px]`}
+            className={`${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                ? "font-effra"
+                : "font-tenor"
+            } text-[30px] sm:text-[35px] md:text-[42px]  px-5 text-center text-white relative z-[3] leading-[50px]`}
           >
             {title}
           </h2>

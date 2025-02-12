@@ -284,6 +284,10 @@ export default function ExperiencePage({ page }) {
                 <h2
                   className={`text-primary text-[25px] uppercase text-center pb-[30px] ${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : " "
                   }`}
                 >
                   Dining Offer
@@ -338,6 +342,10 @@ export default function ExperiencePage({ page }) {
                             className={`text-primary text-[20px] text-center ${
                               process.env.NEXT_PUBLIC_TEMPLATE == 1
                                 ? "font-tenor"
+                                : " "
+                            } ${
+                              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                                ? "font-effra"
                                 : " "
                             }`}
                           >

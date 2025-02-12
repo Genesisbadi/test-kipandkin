@@ -16,7 +16,13 @@ export default function ProtectedRoute({ statePassword, tenantPassword }) {
   return (
     <div className="py-[50px] min-h-[70vh] flex items-center">
       <div className="container">
-        <div className="pb-[30px]  w-full flex text-center justify-center pt-[10px] text-[25px] text-primary font-tenor">
+        <div
+          className={`pb-[30px]  w-full flex text-center justify-center pt-[10px] text-[25px] text-primary ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+              ? "font-effra"
+              : "font-tenor"
+          }`}
+        >
           Password Protected
         </div>
         <form

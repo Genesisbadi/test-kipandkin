@@ -112,7 +112,13 @@ export default function OfferDetails({ page }) {
       </div>
     ),
     customPaging: (i) => (
-      <div className="text-[14px] font-tenor text-primary font-bold cursor-pointer indent-[-9999px] rounded-full w-[10px] h-[10px] bg-white">
+      <div
+        className={`text-[14px] ${
+          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+            ? "font-effra"
+            : "font-tenor"
+        } text-primary font-bold cursor-pointer indent-[-9999px] rounded-full w-[10px] h-[10px] bg-white`}
+      >
         {i + 1}
       </div>
     ),
@@ -124,6 +130,8 @@ export default function OfferDetails({ page }) {
         <h2
           className={`${
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+          } ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
           } text-primary text-[25px] tracking-[1px] text-center pt-[35px] pb-[25px] border-b-[1px] border-[#ccc] mb-[20px]`}
         >
           {title}
@@ -195,6 +203,10 @@ export default function OfferDetails({ page }) {
                       className={`${
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "font-tenor"
+                          : " "
+                      } ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
                           : " "
                       } text-primary text-[20px] tracking-[1px] mb-[10px]`}
                     >
@@ -275,7 +287,13 @@ export default function OfferDetails({ page }) {
                     }`}
                     onClick={accordion}
                   >
-                    <h2 className="text-primary font-bold text-[20px] font-tenor">
+                    <h2
+                      className={`text-primary font-bold text-[20px] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : "font-tenor"
+                      }`}
+                    >
                       Terms and Conditions
                     </h2>
                     <svg
@@ -333,7 +351,13 @@ export default function OfferDetails({ page }) {
             }`}
             onClick={accordion}
           >
-            <h2 className="text-primary font-bold text-[20px] font-tenor">
+            <h2
+              className={`text-primary font-bold text-[20px] ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              }`}
+            >
               Terms and Conditions
             </h2>
             <svg

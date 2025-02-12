@@ -190,7 +190,11 @@ export default function Slider({ block, mediaHandler }) {
                           : item?.position === "center"
                           ? "text-center"
                           : "text-center"
-                      } leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] font-tenor ${
+                      } leading-[49px] text-[30px] sm:text-[35px] lg:text-[42px] text-white relative z-[3] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "font-effra"
+                          : "font-tenor"
+                      } ${
                         item?.description || item?.url
                           ? "mb-[15px] md:mb-[30px]"
                           : ""

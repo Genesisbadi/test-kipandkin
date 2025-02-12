@@ -126,8 +126,14 @@ export default function DiscoverBlog2({ block }) {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap md:justify-between items-center px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full font-tenor md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+          <div className="flex flex-col md:flex-row mt-[5px] justify-center md:justify-between items-center flex-wrap md:flex-nowrap px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
+            <span
+              className={`w-full ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              } md:w-auto block text-center mb-[20px] md:mb-0 pr-[15px] text-[20px] lg:text-[25px]`}
+            >
               {title || "Discover Our Location"}
             </span>
             <Link
@@ -167,7 +173,13 @@ export default function DiscoverBlog2({ block }) {
                         )}
 
                         <span className="absolute top-0 left-0 w-full h-full bg-[#000] opacity-[.5] z-[1]"></span>
-                        <div className="w-full max-w-[540px] hidden md:flex mx-auto px-[50px] font-tenor text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] relative justify-center items-center text-white">
+                        <div
+                          className={`w-full max-w-[540px] hidden md:flex mx-auto px-[50px] ${
+                            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                              ? "font-effra"
+                              : "font-tenor"
+                          } text-center text-[20px] md:text-[25px] min-h-[150px] relative z-[2] justify-center items-center text-white`}
+                        >
                           <h3 className="!leading-[37px] ">
                             {item.attributes.title}
                           </h3>
@@ -181,7 +193,13 @@ export default function DiscoverBlog2({ block }) {
             </>
           )}
           <div className="block md:hidden bg-secondary text-white text-center p-[20px]">
-            <div className="current-slide-title font-tenor text-[20px] mb-[12px]"></div>
+            <div
+              className={`current-slide-title ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              } text-[20px] mb-[12px]`}
+            ></div>
             <Link
               href={currentLink || "#"}
               className="current-slide-readmore inline-block text-[14px] tracking-[1px] uppercase border border-[#fff] py-[15px] px-[30px] transition hover:text-primary hover:bg-white"
@@ -190,7 +208,13 @@ export default function DiscoverBlog2({ block }) {
             </Link>
           </div>
           <div className="hidden md:flex mt-[5px] justify-center items-center flex-wrap 2sm:flex-nowrap 2sm:justify-between px-[10px] lg:px-[30px] py-[15px] bg-secondary text-white">
-            <span className="w-full hidden md:block font-tenor 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]">
+            <span
+              className={`w-full hidden md:block ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "font-effra"
+                  : "font-tenor"
+              } 2sm:w-auto text-center mb-[20px] 2sm:mb-0 pr-[15px] text-[20px] lg:text-[25px]`}
+            >
               Discovery Blog
             </span>
             <Link

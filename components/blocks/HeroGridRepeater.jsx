@@ -140,6 +140,10 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                   <h2
                     className={`${
                       process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
+                    } ${
+                      process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                        ? "font-effra"
+                        : ""
                     } hidden md:block text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
                   >
                     {item.title}
@@ -202,6 +206,10 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                 <h2
                   className={`${
                     process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : ""
+                  } ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                      ? "font-effra"
+                      : ""
                   } hidden md:block text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
                 >
                   {item.title}
