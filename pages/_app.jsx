@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import ShowLazy from "@/lib/services/showLazy";
 import Header from "@/layout/partials/Header";
+import styles from "@/styles/description.module.css";
 
 export default function App({ Component, pageProps }) {
   const TenantScripts = dynamic(() =>
@@ -24,6 +25,13 @@ export default function App({ Component, pageProps }) {
       document.body.style.fontFamily = `"Effra", sans-serif`;
     } else {
       document.body.style.fontFamily = `"Gotham", sans-serif`;
+    }
+
+    document.body.classList.remove(styles.microsite7, styles.micrositeDefault);
+    if (micrositeId == 7) {
+      document.body.classList.add(styles.microsite7);
+    } else {
+      document.body.classList.add(styles.micrositeDefault);
     }
   }, []);
 
