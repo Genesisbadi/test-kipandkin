@@ -104,7 +104,7 @@ export default function FooterDestinations({}) {
   };
   return (
     <>
-      {destinationsEntries && (
+      {destinationsEntries.length > 0 && (
         <SectionAccordion
           title="Exciting Destinations"
           childrenClassname="pb-0"
