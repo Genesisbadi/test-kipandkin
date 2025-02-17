@@ -44,7 +44,7 @@ export default function CallToActions() {
 
   return (
     <>
-      {router.asPath !== "/" && (
+      {router.asPath !== "/" && process.env.NEXT_PUBLIC_MICROSITE_ID != 7 && (
         <section
           className={`text-primary py-[30px] ${
             process.env.NEXT_PUBLIC_TEMPLATE == 2
