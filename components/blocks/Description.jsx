@@ -1,9 +1,30 @@
+import { useEffect } from "react";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
 
 export default function Description({ block }) {
   const { description } = block.main;
   const showLazy = globalState((state) => state.showLazy);
+
+  useEffect(() => {
+    const micrositeId = process.env.NEXT_PUBLIC_MICROSITE_ID;
+
+    document.body.classList.remove(styles.microsite7, styles.micrositeDefault);
+
+    if (micrositeId == 7) {
+      document.body.classList.add(styles.microsite7);
+    } else {
+      document.body.classList.add(styles.micrositeDefault);
+    }
+
+    return () => {
+      document.body.classList.remove(
+        styles.microsite7,
+        styles.micrositeDefault
+      );
+    };
+  }, []);
+
   const getRandomWidth = () => {
     // Generate a random width between 100px and 300px
     return Math.floor(Math.random() * (1200 - 100 + 1)) + 100;
