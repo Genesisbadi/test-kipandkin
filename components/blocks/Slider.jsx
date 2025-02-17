@@ -123,6 +123,7 @@ export default function Slider({ block, mediaHandler }) {
 
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: slider_items.length > 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
