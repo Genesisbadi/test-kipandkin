@@ -72,8 +72,16 @@ export default function FooterNewsletter() {
     }
   }, [formSuccessInfo]);
 
+  let title = "";
+
+  if (process.env.NEXT_PUBLIC_MICROSITE_ID == 7) {
+    title = "Catch the Vibe";
+  } else {
+    title = "Stay Updated";
+  }
+
   return (
-    <SectionAccordion title="Stay Updated">
+    <SectionAccordion title={title}>
       <section className="footer-newsletter md:py-[40px]">
         {isModalShow && <NewsletterPopup />}
         <h2
@@ -81,7 +89,7 @@ export default function FooterNewsletter() {
             process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
           } ${process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : ""}`}
         >
-          Stay Updated
+          {title}
         </h2>
 
         <div className="container md:!max-w-[550px]">

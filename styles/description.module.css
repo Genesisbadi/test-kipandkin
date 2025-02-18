@@ -15,6 +15,12 @@
   letter-spacing: 1px;
   font-family: "Tenor" !important;
 }
+.microsite7 .description h1,
+.microsite7 .description h2,
+.microsite7 .description h3,
+.microsite7 .description h4 {
+  font-family: "Effra", sans-serif !important;
+}
 .description .col2 ul {
   @apply md:columns-2
   columns-1;
@@ -32,11 +38,17 @@
   font-family: "Gotham", sans-serif !important;
   background-color: unset !important;
 }
+.microsite7 .description p {
+  font-family: "Effra", sans-serif !important;
+}
 .description p:last-of-type {
   margin-bottom: 0;
 }
 .description span {
   font-family: "Gotham", sans-serif !important;
+}
+.microsite7 .description span {
+  font-family: "Effra", sans-serif !important;
 }
 .description strong {
   margin-bottom: 20px;
