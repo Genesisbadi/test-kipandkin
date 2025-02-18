@@ -134,7 +134,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                 <div
                   className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary ${
-                    item?.description ? "min-h-[395px]" : ""
+                    item?.description ? "min-h-[295px]" : ""
                   }`}
                 >
                   <h2
@@ -151,7 +151,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                   {item?.description && (
                     <div
-                      className={`text-[14px] mb-[30px] grow leading-[21px]`}
+                      className={`text-[14px] mb-[30px] grow leading-[21px] line-clamp-2`}
                       dangerouslySetInnerHTML={{
                         __html: item.description,
                       }}
