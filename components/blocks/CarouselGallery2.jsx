@@ -122,7 +122,9 @@ export default function CarouselGallery2({ blockId, block }) {
 
   return (
     <section
-      className={`py-[40px] ${background === "gray" ? "bg-[#F1F1F1]" : ""}`}
+      className={`py-[40px] ${background === "gray" ? "bg-[#F1F1F1]" : ""} ${
+        background === "white" ? "bg-white" : ""
+      }`}
     >
       {!showLazy ? (
         <>
@@ -177,6 +179,8 @@ export default function CarouselGallery2({ blockId, block }) {
                         <div
                           class={`absolute bottom-0 left-0 right-0 bg-gradient-to-b from-transparent to-black p-[50px] pb-[20px] duration-700 transition-all ${
                             item?.uppercase === "uppercase" ? "uppercase" : ""
+                          } ${
+                            item?.uppercase === "lowercase" ? "lowercase" : ""
                           } text-center font-brandon text-white text-[18px] tracking-[1.44px] leading-[25px] duration-500 transition-all`}
                           dangerouslySetInnerHTML={{ __html: item?.caption }}
                         />
