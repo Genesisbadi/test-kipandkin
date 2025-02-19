@@ -50,10 +50,10 @@ export default function Footer() {
           <FooterNewsletter />
           <FooterDestinations />
           <div
-            className={`footer-content text-white pt-[30px] pb-[76px] md:pb-[60px] ${
+            className={`footer-content pt-[30px] pb-[76px] md:pb-[60px] ${
               process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                ? "!bg-white"
-                : "bg-[#555555]"
+                ? "!bg-white !text-[#3F395F]"
+                : "bg-[#555555] text-white"
             }`}
           >
             <div className="container">
