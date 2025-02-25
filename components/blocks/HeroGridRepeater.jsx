@@ -134,8 +134,12 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                 <div
                   className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary ${
-                    item?.description ? "min-h-[295px]" : ""
-                  }`}
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 6
+                      ? item?.description
+                        ? "min-h-[130px]"
+                        : ""
+                      : ""
+                  } ${item?.description ? "min-h-[295px]" : ""}`}
                 >
                   <h2
                     className={`${
@@ -151,7 +155,13 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                   {item?.description && (
                     <div
-                      className={`text-[14px] mb-[30px] grow leading-[21px] line-clamp-2`}
+                      className={`text-[14px] mb-[30px] grow leading-[21px]  ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 6
+                          ? item?.description
+                            ? "line-clamp-1"
+                            : ""
+                          : "line-clamp-2"
+                      }`}
                       dangerouslySetInnerHTML={{
                         __html: item.description,
                       }}
