@@ -138,8 +138,8 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                       ? item?.description
                         ? "min-h-[130px]"
                         : ""
-                      : ""
-                  } ${item?.description ? "min-h-[295px]" : ""}`}
+                      : "min-h-[295px]"
+                  }`}
                 >
                   <h2
                     className={`${
