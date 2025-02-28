@@ -136,7 +136,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                   className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary ${
                     process.env.NEXT_PUBLIC_MICROSITE_ID == 6
                       ? item?.description
-                        ? "min-h-[130px]"
+                        ? "min-h-[220px] 2xl:min-h-[130px]"
                         : ""
                       : "min-h-[295px]"
                   }`}
