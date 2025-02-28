@@ -5,7 +5,7 @@ export default function Block({ block }) {
     block.main;
   return (
     <section
-      className={`p-[50px] border-b-[2px] border-[rgba(145,145,145,0.2)] ${
+      className={`p-[15px] md:p-[30px] lg:p-[50px] border-b-[2px] border-[rgba(145,145,145,0.2)] ${
         bg_color == "white" ? "bg-white" : "bg-[#F1F1F1]"
       }`}
     >
