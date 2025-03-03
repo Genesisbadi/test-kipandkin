@@ -159,7 +159,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                   {item?.description && (
                     <div
-                      className={`text-[14px] mb-[30px] grow leading-[21px]  ${
+                      className={`text-[14px] grow leading-[21px]  ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 6
                           ? item?.description
                             ? "line-clamp-1 mb-[20px]"
