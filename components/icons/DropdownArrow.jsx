@@ -10,6 +10,10 @@ export default function DropdownArrow({ item, ...props }) {
             process.env.NEXT_PUBLIC_TEMPLATE == 1
               ? "border-white"
               : "border-primary"
+          } ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+              ? "border-white"
+              : "border-primary"
           }`}
         ></span>
       )}
