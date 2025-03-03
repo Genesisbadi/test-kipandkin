@@ -136,7 +136,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                   className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary ${
                     process.env.NEXT_PUBLIC_MICROSITE_ID == 6
                       ? item?.description
-                        ? "min-h-[220px] 2xl:min-h-[130px]"
+                        ? "min-h-[195px] xl:min-h-[180px] xxl:min-h-[130px]"
                         : ""
                       : "min-h-[295px]"
                   }`}
@@ -148,7 +148,11 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                       process.env.NEXT_PUBLIC_MICROSITE_ID == 7
                         ? "font-effra"
                         : ""
-                    } hidden md:block text-center mb-[30px] text-[18px] sm:text-[20px] lg:text-[25px]`}
+                    } ${
+                      process.env.NEXT_PUBLIC_MICROSITE_ID == 6
+                        ? "mb-[20px]"
+                        : "mb-[30px]"
+                    } hidden md:block text-center text-[18px] sm:text-[20px] lg:text-[25px]`}
                   >
                     {item.title}
                   </h2>
@@ -158,9 +162,9 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                       className={`text-[14px] mb-[30px] grow leading-[21px]  ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 6
                           ? item?.description
-                            ? "line-clamp-1"
+                            ? "line-clamp-1 mb-[20px]"
                             : ""
-                          : "line-clamp-2"
+                          : "line-clamp-2 mb-[30px]"
                       }`}
                       dangerouslySetInnerHTML={{
                         __html: item.description,
