@@ -11,7 +11,11 @@ export default function Introduction({ block }) {
                   process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
                 } ${
                   process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
-                } flex w-full border-b border-[#c5baa6] leading-[30px] tracking-[2px] mb-[30px] justify-center text-[#c5baa6] text-[20px] pb-[30px] text-center`}
+                } ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "text-[#c5baa6] border-[#c5baa6]"
+                    : "text-white border-white"
+                } flex w-full border-b leading-[30px] tracking-[2px] mb-[30px] justify-center  text-[20px] pb-[30px] text-center`}
               >
                 {title}
               </div>
