@@ -163,7 +163,14 @@ export default function BookingForm({ ...props }) {
     setSelectionRange({ key: "selection" });
 
     if (process.env.NEXT_PUBLIC_MICROSITE_ID == 4) {
-      window.open("https://bookings.discoverycoron.com/book/dates-of-stay");
+      window.open(
+        `https://bookings.discoverycoron.com/book/dates-of-stay?DateIn=${arrivalDate.replace(
+          "-",
+          "/"
+        )}&DateOut=${departureDate.replace("-", "/")}&Adults=${
+          guestAdult.value
+        }&Children=${guestChildren.value}`
+      );
     } else {
       window.open(
         bookingUrl +
@@ -505,7 +512,15 @@ export default function BookingForm({ ...props }) {
                         setGuestAdult({ min: 1, value: 1 });
                         if (process.env.NEXT_PUBLIC_MICROSITE_ID == 4) {
                           window.open(
-                            "https://bookings.discoverycoron.com/book/dates-of-stay"
+                            `https://bookings.discoverycoron.com/book/dates-of-stay?DateIn=${arrivalDate.replace(
+                              "-",
+                              "/"
+                            )}&DateOut=${departureDate.replace(
+                              "-",
+                              "/"
+                            )}&Adults=${guestAdult.value}&Children=${
+                              guestChildren.value
+                            }`
                           );
                         } else {
                           window.open(
