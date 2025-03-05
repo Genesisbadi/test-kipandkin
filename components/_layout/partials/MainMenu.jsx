@@ -222,7 +222,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
                           ? "text-white"
                           : "text-primary hover:text-[#000]"
-                      } relative flex flex-wrap items-center uppercase hover:text-[#000] ${
+                      } relative flex flex-wrap items-center uppercase ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
                       }`}
                       href={item?.url || "#"}
