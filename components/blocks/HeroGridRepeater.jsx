@@ -123,15 +123,27 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                 title={item.title}
                 className="flex flex-col md:flex-1 w-full px-[3px]"
               >
-                <Image
-                  src={item?.image_file}
-                  width={500}
-                  height={500}
-                  alt={item.title}
-                  title={item.title}
-                  className="w-full h-[300px] object-cover"
-                />
-
+                {item?.link ? (
+                  <Link href={item?.link || "#"}>
+                    <Image
+                      src={item?.image_file}
+                      width={500}
+                      height={500}
+                      alt={item.title}
+                      title={item.title}
+                      className="w-full h-[300px] object-cover"
+                    />
+                  </Link>
+                ) : (
+                  <Image
+                    src={item?.image_file}
+                    width={500}
+                    height={500}
+                    alt={item.title}
+                    title={item.title}
+                    className="w-full h-[300px] object-cover"
+                  />
+                )}
                 <div
                   className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary ${
                     process.env.NEXT_PUBLIC_MICROSITE_ID == 6
@@ -174,21 +186,43 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                   {item?.link && (
                     <div className="text-center">
-                      <Link
-                        className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
-                          process.env.NEXT_PUBLIC_TEMPLATE == 2
-                            ? " hover:bg-primary hover:border-primary"
-                            : " hover:bg-secondary"
-                        }`}
-                        href={item?.link || "#"}
-                        target={
-                          item?.link?.includes("http:") ? "_blank" : "_self"
-                        }
-                      >
-                        {item?.button_label
-                          ? item?.button_label
-                          : "Discover More"}
-                      </Link>
+                      {process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? (
+                        <>
+                          {item?.button_label && (
+                            <Link
+                              className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
+                                process.env.NEXT_PUBLIC_TEMPLATE == 2
+                                  ? " hover:bg-primary hover:border-primary"
+                                  : " hover:bg-secondary"
+                              }`}
+                              href={item?.link || "#"}
+                              target={
+                                item?.link?.includes("http:")
+                                  ? "_blank"
+                                  : "_self"
+                              }
+                            >
+                              {item?.button_label}
+                            </Link>
+                          )}
+                        </>
+                      ) : (
+                        <Link
+                          className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
+                            process.env.NEXT_PUBLIC_TEMPLATE == 2
+                              ? " hover:bg-primary hover:border-primary"
+                              : " hover:bg-secondary"
+                          }`}
+                          href={item?.link || "#"}
+                          target={
+                            item?.link?.includes("http:") ? "_blank" : "_self"
+                          }
+                        >
+                          {item?.button_label
+                            ? item?.button_label
+                            : "Discover More"}
+                        </Link>
+                      )}
                     </div>
                   )}
                 </div>
@@ -205,15 +239,27 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
               title={item.title}
               className="flex flex-col md:max-w-[33.33%] w-full px-[3px]"
             >
-              <Image
-                src={item?.image_file}
-                width={500}
-                height={500}
-                alt={item.title}
-                title={item.title}
-                className="w-full h-[300px] object-cover"
-              />
-
+              {item?.link ? (
+                <Link href={item?.link || "#"}>
+                  <Image
+                    src={item?.image_file}
+                    width={500}
+                    height={500}
+                    alt={item.title}
+                    title={item.title}
+                    className="w-full h-[300px] object-cover"
+                  />
+                </Link>
+              ) : (
+                <Image
+                  src={item?.image_file}
+                  width={500}
+                  height={500}
+                  alt={item.title}
+                  title={item.title}
+                  className="w-full h-[300px] object-cover"
+                />
+              )}
               <div
                 className={`px-[20px] lg:px-[60px] flex flex-col grow py-[30px] text-secondary`}
               >
@@ -237,21 +283,41 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
                 )}
                 {item?.link && (
                   <div className="text-center">
-                    <Link
-                      className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
-                        process.env.NEXT_PUBLIC_TEMPLATE == 2
-                          ? " hover:bg-primary hover:border-primary"
-                          : " hover:bg-secondary"
-                      }`}
-                      href={item?.link || "#"}
-                      target={
-                        item?.link?.includes("http:") ? "_blank" : "_self"
-                      }
-                    >
-                      {item?.button_label
-                        ? item?.button_label
-                        : "Discover More"}
-                    </Link>
+                    {process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? (
+                      <>
+                        {item?.button_label && (
+                          <Link
+                            className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
+                              process.env.NEXT_PUBLIC_TEMPLATE == 2
+                                ? " hover:bg-primary hover:border-primary"
+                                : " hover:bg-secondary"
+                            }`}
+                            href={item?.link || "#"}
+                            target={
+                              item?.link?.includes("http:") ? "_blank" : "_self"
+                            }
+                          >
+                            {item?.button_label}
+                          </Link>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        className={`border-secondary hover:text-white text-[14px] uppercase inline-block border py-[15px] px-[30px] transition ${
+                          process.env.NEXT_PUBLIC_TEMPLATE == 2
+                            ? " hover:bg-primary hover:border-primary"
+                            : " hover:bg-secondary"
+                        }`}
+                        href={item?.link || "#"}
+                        target={
+                          item?.link?.includes("http:") ? "_blank" : "_self"
+                        }
+                      >
+                        {item?.button_label
+                          ? item?.button_label
+                          : "Discover More"}
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
