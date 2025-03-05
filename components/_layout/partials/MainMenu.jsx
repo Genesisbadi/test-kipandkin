@@ -218,7 +218,11 @@ export default function MainMenu({ parentNodes, ...props }) {
                     <Link
                       prefetch={false}
                       id={`nav-link-${item?.id}`}
-                      className={`nav-link text-primary relative flex flex-wrap items-center uppercase hover:text-[#000] ${
+                      className={`nav-link ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "text-white"
+                          : "text-primary hover:text-[#000]"
+                      } relative flex flex-wrap items-center uppercase hover:text-[#000] ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
                       }`}
                       href={item?.url || "#"}
