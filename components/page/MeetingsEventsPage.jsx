@@ -8,7 +8,8 @@ import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-export default function MeetingsEvensDetails({ page }) {
+import { getMediaConvertions } from "@/lib/services/propService";
+export default function MeetingsEvensDetails({ page, mediaHandler }) {
   const router = useRouter();
   const CarouselGallery = dynamic(() =>
     import("../partials/gallery/CarouselGallery").then(
@@ -50,43 +51,49 @@ export default function MeetingsEvensDetails({ page }) {
     let defaultVenue = currentVenue?.title || title;
     return { label: defaultVenue, value: defaultVenue };
   };
+
+  console.log("eeeeeee", mediaHandler);
   return (
     <article className="bg-[#f1f1f1]">
       <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
-        <picture>
-          <source
-            srcSet={
-              page.mediaHandler["main.image"]?.[0].conversions.mobile ||
-              page.mediaHandler["main.image"]?.[0].original
-            }
-            media="(max-width: 414px)"
-          />
-          <source
-            srcSet={
-              page.mediaHandler["main.image"]?.[0].conversions.laptop ||
-              page.mediaHandler["main.image"]?.[0].original
-            }
-            media="(min-width: 415px)"
-          />
-          <source
-            srcSet={
-              page.mediaHandler["main.image"]?.[0].conversions.desktop ||
-              page.mediaHandler["main.image"]?.[0].original
-            }
-            media="(min-width: 1366px)"
-          />
-          <Image
-            src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
-            srcSet={`${page.mediaHandler["main.image"]?.[0].conversions.mobile} 414w, ${page.mediaHandler["main.image"]?.[0].conversions.laptop} 1365w, ${page.mediaHandler["main.image"]?.[0].conversions.desktop} 1920w`}
-            size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
-            alt={title}
-            width={1920}
-            height={1080}
-            className="w-full h-full object-cover absolute top-0 left-0"
-            priority={true}
-          />
-        </picture>
+
+        {mediaHandler["main.image"]?.[0] && (
+          <picture>
+            <source
+              srcSet={
+                mediaHandler["main.image"]?.[0]?.conversions?.mobile ||
+                mediaHandler["main.image"]?.[0]?.original
+              }
+              media="(max-width: 414px)"
+            />
+            <source
+              srcSet={
+                mediaHandler["main.image"]?.[0]?.conversions?.laptop ||
+                mediaHandler["main.image"]?.[0].original
+              }
+              media="(min-width: 415px)"
+            />
+            <source
+              srcSet={
+                mediaHandler["main.image"]?.[0]?.conversions?.desktop ||
+                mediaHandler["main.image"]?.[0].original
+              }
+              media="(min-width: 1366px)"
+            />
+            <Image
+              src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+              srcSet={`${mediaHandler["main.image"]?.[0]?.conversions?.mobile} 414w, ${mediaHandler["main.image"]?.[0]?.conversions?.laptop} 1365w, ${mediaHandler["main.image"]?.[0]?.conversions?.desktop} 1920w`}
+              size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
+              alt={title}
+              width={1920}
+              height={1080}
+              className="w-full h-full object-cover absolute top-0 left-0"
+              priority={true}
+            />
+          </picture>
+        )}
+
         {title && (
           <div
             className={`relative sm:absolute sm:top-[50%] sm:translate-y-[-50%] ${
