@@ -8,7 +8,7 @@ import Link from "next/link";
 import NProgress from "nprogress";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
-export default function DestinationDetails({ page }) {
+export default function DestinationDetails({ page, mediaHandler }) {
   const CustomSelect = dynamic(() =>
     import("@/components/forms/CustomSelect").then((module) => module.default)
   );
@@ -57,19 +57,17 @@ export default function DestinationDetails({ page }) {
         <span className="absolute h-full w-full top-0 left-0 bg-[#000] opacity-[.3] z-[1]"></span>
         <picture>
           <source
-            srcSet={page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile}
+            srcSet={mediaHandler["main.banner"]?.[0]?.conversions?.mobile}
             media="(max-width: 414px)"
           />
           <source
-            srcSet={
-              page.mediaHandler?.[`main.banner`]?.[0]?.conversions.desktop
-            }
+            srcSet={mediaHandler["main.banner"]?.[0]?.conversions?.desktop}
             media="(min-width: 415px)"
           />
           <Image
             src={
-              page.mediaHandler?.[`main.banner`]?.[0]?.conversions.mobile ||
-              page.mediaHandler?.[`main.banner`]?.[0]?.original
+              mediaHandler["main.banner"]?.[0]?.conversions?.mobile ||
+              mediaHandler["main.banner"]?.[0]?.original
             }
             alt={title}
             width={1920}

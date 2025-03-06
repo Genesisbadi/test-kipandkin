@@ -6,7 +6,7 @@ import styles from "@/styles/description.module.css";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
-export default function ExperiencePage({ page }) {
+export default function ExperiencePage({ page, mediaHandler }) {
   const CustomSelect = dynamic(() =>
     import("../forms/CustomSelect").then((module) => module.default)
   );
@@ -109,19 +109,48 @@ export default function ExperiencePage({ page }) {
 
   return (
     <>
+      {/* {mediaHandler["main.image"]?.[0] && (
+        <picture>
+          <source
+            srcSet={
+              mediaHandler["main.image"]?.[0]?.conversions?.mobile ||
+              mediaHandler["main.image"]?.[0]?.original
+            }
+            media="(max-width: 414px)"
+          />
+          <source
+            srcSet={
+              mediaHandler["main.image"]?.[0]?.conversions?.laptop ||
+              mediaHandler["main.image"]?.[0].original
+            }
+            media="(min-width: 415px)"
+          />
+          <source
+            srcSet={
+              mediaHandler["main.image"]?.[0]?.conversions?.desktop ||
+              mediaHandler["main.image"]?.[0].original
+            }
+            media="(min-width: 1366px)"
+          />
+          <Image
+            src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="}
+            srcSet={`${mediaHandler["main.image"]?.[0]?.conversions?.mobile} 414w, ${mediaHandler["main.image"]?.[0]?.conversions?.laptop} 1365w, ${mediaHandler["main.image"]?.[0]?.conversions?.desktop} 1920w`}
+            size="(max-width: 414px) 414px, (min-width: 415px) 1365px, (min-width: 1366px) 1920px"
+            alt={title}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover absolute top-0 left-0"
+            priority={true}
+          />
+        </picture>
+      )} */}
       <CollectionBanner
         className=""
         title={page.title}
-        image_desktop={
-          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.desktop
-        }
-        image_laptop={
-          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.laptop
-        }
-        image_mobile={
-          page?.mediaHandler?.["main.banner"]?.[0]?.conversions?.mobile
-        }
-        image_original={page?.mediaHandler?.["main.banner"]?.[0]?.original}
+        image_desktop={mediaHandler["main.image"]?.[0]?.conversions?.desktop}
+        image_laptop={mediaHandler["main.image"]?.[0]?.conversions?.laptop}
+        image_mobile={mediaHandler["main.image"]?.[0]?.conversions?.mobile}
+        image_original={mediaHandler["main.image"]?.[0]?.original}
       />
       <div className="container">
         <div className="flex text-[14px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">

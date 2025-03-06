@@ -76,6 +76,7 @@ export default function DynamicPage() {
     signature = null,
     contents = null,
   } = params;
+
   PAGEAPI.getFindPagesSwr(
     slug,
     `?include=blockContents.block,metaData&expires=${expires}&signature=${signature}`,
@@ -114,10 +115,9 @@ export default function DynamicPage() {
       expires,
       signature,
       onSuccess: async (res) => {
-        const pageHandler = dataFormatter.deserialize(res.data);
-        delete pageHandler.relationshipNames;
-        delete pageHandler.blockContents;
-        setPage(pageHandler);
+        const page = dataFormatter.deserialize(res.data);
+
+        setPage(await iteratePage(page));
       },
       onError: () => {
         setError(true);
@@ -128,34 +128,45 @@ export default function DynamicPage() {
   const Renderer = ({ page, blocks }) => {
     switch (page?.content?.id) {
       case "destinations":
-        return <DestinationPage page={page} />;
+        return (
+          <DestinationPage page={page} mediaHandler={page?.mediaHandler} />
+        );
         break;
       case "our-collection":
-        return <OurCollectionPage page={page} />;
+        return (
+          <OurCollectionPage page={page} mediaHandler={page?.mediaHandler} />
+        );
         break;
       case "meetings-events-article":
-        return <MeetingsEventsPage page={page} />;
+        return (
+          <MeetingsEventsPage page={page} mediaHandler={page?.mediaHandler} />
+        );
         break;
       case "meetings-events-suites":
-        return <MeetingsEventsSuitesPage page={page} />;
+        return (
+          <MeetingsEventsSuitesPage
+            page={page}
+            mediaHandler={page?.mediaHandler}
+          />
+        );
         break;
       case "dining":
-        return <DiningPage page={page} />;
+        return <DiningPage page={page} mediaHandler={page?.mediaHandler} />;
         break;
       case "blog":
-        return <BlogPage page={page} />;
+        return <BlogPage page={page} mediaHandler={page?.mediaHandler} />;
         break;
       case "offers":
-        return <OfferDetails page={page} />;
+        return <OfferDetails page={page} mediaHandler={page?.mediaHandler} />;
         break;
       case "roomssuites":
-        return <RoomSuitePage page={page} />;
+        return <RoomSuitePage page={page} mediaHandler={page?.mediaHandler} />;
         break;
       case "frequently-asked-questions":
-        return <FaqsPage page={page} />;
+        return <FaqsPage page={page} mediaHandler={page?.mediaHandler} />;
         break;
       case "experiences":
-        return <ExperiencePage page={page} />;
+        return <ExperiencePage page={page} mediaHandler={page?.mediaHandler} />;
         break;
       default:
         return <ParentBlock page={page} blocks={blocks} />;
@@ -166,7 +177,11 @@ export default function DynamicPage() {
   return (
     <>
       {page || blocks ? (
-        <Renderer page={page} blocks={blocks} />
+        <Renderer
+          page={page}
+          blocks={blocks}
+          mediaHandler={page?.mediaHandler}
+        />
       ) : (
         <>
           {error ? (
