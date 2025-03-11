@@ -168,23 +168,25 @@ export default function DestinationDetails({ page, mediaHandler }) {
                     }`}
                   >
                     <div className="w-full md:w-1/2">
-                      <Image
-                        src={
-                          page.mediaHandler[`main.items.${index}.image`][0]
-                            .conversions?.image ||
-                          page.mediaHandler[`main.items.${index}.image`][0]
-                            .original
-                        }
-                        alt={item?.title || "Thubmanil"}
-                        height={1000}
-                        width={1000}
-                        quality={100}
-                        className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
-                      />
+                      {mediaHandler[`main.items.${index}.image`]?.[0] && (
+                        <Image
+                          src={
+                            mediaHandler[`main.items.${index}.image`]?.[0]
+                              ?.conversions?.image ||
+                            mediaHandler[`main.items.${index}.image`]?.[0]
+                              ?.original
+                          }
+                          alt={item?.title || "Thubmanil"}
+                          height={1000}
+                          width={1000}
+                          quality={100}
+                          className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
+                        />
+                      )}
                     </div>
 
                     <div className="flex w-full md:w-1/2 bg-primary items-center">
-                      <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-0">
+                      <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-[30px]">
                         {item?.title && (
                           <span className="text-secondary1 text-[20px] tracking-[2px]">
                             {item?.title}
