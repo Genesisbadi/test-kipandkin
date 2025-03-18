@@ -150,7 +150,11 @@ export default function DynamicPage({ page, blocks }) {
     <>
       {titleElement}
       {descriptionElement}
-      <ComponentToRender page={page} blocks={blocks} />
+      <ComponentToRender
+        page={page}
+        blocks={blocks}
+        mediaHandler={page?.mediaHandler}
+      />
     </>
   );
 }

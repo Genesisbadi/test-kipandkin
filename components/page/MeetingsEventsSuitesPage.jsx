@@ -8,7 +8,7 @@ import Image from "next/image";
 import Quote from "../icons/Quote";
 import Fancybox from "../partials/popups/FancyPhotos";
 import CarouselGallery from "../partials/gallery/CarouselGallery";
-export default function MeetingsEventsSuitesPage({ page }) {
+export default function MeetingsEventsSuitesPage({ page, mediaHandler }) {
   const ModalImage1 = dynamic(() =>
     import("@/components/partials/Modals/ModalImage1").then(
       (module) => module.default
