@@ -78,6 +78,23 @@ body {
     border: 2px solid #ccc;
   }
 
+  .swiper-carousel-center .swiper-slide {
+    display: flex;
+    height: auto;
+  }
+  
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .section-accordion {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   /* .react-select {
     text-transform: uppercase;
   } */
