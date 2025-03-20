@@ -38,6 +38,9 @@ body {
 .font-effra {
   font-family: "Effra", sans-serif;
 }
+.font-circular {
+  font-family: "Circular", sans-serif;
+}
 .carousel-gallery *,
 .block-slider .slick-slider {
   line-height: 0;
