@@ -132,6 +132,14 @@ export default function Document() {
             font-style: normal;
             font-display: swap;
           }
+
+          @font-face {
+            font-family: 'Circular';
+            src: url('/fonts/CircularXXTT-Regular.ttf') format('ttf');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+          } 
           `,
           }}
         />

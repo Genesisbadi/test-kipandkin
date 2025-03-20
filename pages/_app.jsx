@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
 
     const micrositeId = process.env.NEXT_PUBLIC_MICROSITE_ID;
     if (micrositeId == 7) {
-      document.body.style.fontFamily = `"Effra", sans-serif`;
+      document.body.style.fontFamily = `"Circular", sans-serif`;
     } else {
       document.body.style.fontFamily = `"Gotham", sans-serif`;
     }

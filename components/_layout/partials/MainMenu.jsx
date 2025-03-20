@@ -220,9 +220,9 @@ export default function MainMenu({ parentNodes, ...props }) {
                       id={`nav-link-${item?.id}`}
                       className={`nav-link ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                          ? "text-white"
+                          ? "text-white hover:text-[#05A6D0]"
                           : "text-primary hover:text-[#000]"
-                      } relative flex flex-wrap items-center uppercase hover:text-[#000] ${
+                      } relative flex flex-wrap items-center uppercase ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
                       }`}
                       href={item?.url || "#"}
