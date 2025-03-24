@@ -42,7 +42,11 @@ export default function Feature({ block }) {
                   src={image}
                   height={500}
                   width={900}
-                  className="w-full h-full object-cover min-h-[450px] md:min-h-[550px]"
+                  className={`w-full h-full object-cover min-h-[450px] md:min-h-[550px] ${
+                    process.env.NEXT_PUBLIC_MICROSITE_ID == 6
+                      ? "max-h-[760px]"
+                      : " "
+                  }`}
                   alt={title}
                   title={title}
                 />

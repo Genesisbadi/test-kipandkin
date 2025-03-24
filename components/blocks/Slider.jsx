@@ -117,7 +117,7 @@ export default function Slider({ block, mediaHandler }) {
 
   var settings = {
     dots: false,
-    infinite: false,
+    infinite: process.env.NEXT_PUBLIC_MICROSITE_ID == 6 ? true : false,
     fade: true,
     speed: 500,
 
