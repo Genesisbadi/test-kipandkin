@@ -2,7 +2,11 @@ export default function Introduction({ block }) {
   const { description, title } = block.main;
   return (
     <>
-      <section className="w-full flex justify-center bg-primary pt-[40px] pb-[80px] px-[15px]">
+      <section
+        className={`w-full flex justify-center bg-primary ${
+          process.env.NEXT_PUBLIC_MICROSITE_ID == 6 ? "pt-[80px]" : "pt-[40px]"
+        } pb-[80px] px-[15px]`}
+      >
         <div className="w-full max-w-[957px] ">
           {title && (
             <div className="flex flex-col items-center w-full">
