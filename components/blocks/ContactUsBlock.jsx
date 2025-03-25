@@ -9,7 +9,11 @@ export default function ContactUsBlock({ block }) {
   );
   const { description, offices, form } = block.main;
   return (
-    <section className="bg-[#F1F1F1] pt-[10px] pb-[50px]">
+    <section
+      className={`bg-[#F1F1F1] ${
+        process.env.NEXT_PUBLIC_MICROSITE_ID == 6 ? "pt-[50px]" : "pt-[10px]"
+      } pb-[50px]`}
+    >
       <div className="container">
         <div className="flex flex-wrap mx-[-15px]">
           {form && (
