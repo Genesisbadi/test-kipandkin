@@ -122,6 +122,11 @@ export default function MainMenu({ parentNodes, ...props }) {
             item.label.toLowerCase() !== "reservations"
               ? "px-[10px] xxl:px-[11px]"
               : ""
+          } ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 8 &&
+            item.label.toLowerCase() === "reservations"
+              ? "px-[10px] xxl:px-[11px]"
+              : ""
           } ${item.children ? "dropdown relative" : ""} `}
           key={index}
         >
