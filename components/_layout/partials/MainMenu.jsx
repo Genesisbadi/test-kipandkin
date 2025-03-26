@@ -61,7 +61,15 @@ export default function MainMenu({ parentNodes, ...props }) {
                 key={index}
               >
                 {item?.url?.includes("nolink") ? (
-                  <>{item.label}</>
+                  <div
+                    className={`${
+                      process.env.NEXT_PUBLIC_MICROSITE_ID == 8
+                        ? "!text-primary hover:!bg-[#e4e3e3] cursor-pointer py-[10px] px-[10px]"
+                        : ""
+                    }`}
+                  >
+                    {item.label}
+                  </div>
                 ) : (
                   <>
                     <Link
@@ -112,6 +120,11 @@ export default function MainMenu({ parentNodes, ...props }) {
           id={`menu-item-${item?.id}`}
           className={`item relative text-[14px] ${
             item.label.toLowerCase() !== "reservations"
+              ? "px-[10px] xxl:px-[11px]"
+              : ""
+          } ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 8 &&
+            item.label.toLowerCase() === "reservations"
               ? "px-[10px] xxl:px-[11px]"
               : ""
           } ${item.children ? "dropdown relative" : ""} `}
