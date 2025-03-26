@@ -18,16 +18,20 @@ export default function SectionAccordion({ children, ...props }) {
         <>
           {title && (
             <div
-              className={`${
-                process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
-              } ${
-                process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
-              } text-primary flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]`}
               onClick={handleCollapse}
+              className="flex justify-between items-center md:hidden py-[20px] bg-white px-[15px]"
             >
-              {title}
+              <div
+                className={`${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1 ? "font-tenor" : " "
+                } ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "font-effra" : " "
+                } text-primary line-clamp-1 `}
+              >
+                {title}
+              </div>
               <span className={`${!isCollapsed ? "rotate-180" : ""}`}>
-                <ArrowDown className="fill-primary" />
+                <ArrowDown className="fill-primary text-primary" />
               </span>
             </div>
           )}

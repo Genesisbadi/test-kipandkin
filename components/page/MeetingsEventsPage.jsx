@@ -52,7 +52,6 @@ export default function MeetingsEvensDetails({ page, mediaHandler }) {
     return { label: defaultVenue, value: defaultVenue };
   };
 
-  console.log("eeeeeee", mediaHandler);
   return (
     <article className="bg-[#f1f1f1]">
       <div className="relative min-h-[560px] sm:min-h-full sm:pb-[42.2916666667%] text-white flex text-center items-center justify-center">

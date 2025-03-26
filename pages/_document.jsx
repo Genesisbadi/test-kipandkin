@@ -144,7 +144,9 @@ export default function Document() {
           }}
         />
       </Head>
-      <body className={`text-[#555555] st-${process.env.NEXT_PUBLIC_TEMPLATE}`}>
+      <body
+        className={`text-[#555555] st-${process.env.NEXT_PUBLIC_TEMPLATE} site-id-${process.env.NEXT_PUBLIC_MICROSITE_ID}`}
+      >
         <Main />
         <NextScript />
       </body>
