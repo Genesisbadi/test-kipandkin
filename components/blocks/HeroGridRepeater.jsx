@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/virtual";
 import { Virtual } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import body from "@/styles/body.module.css";
 
 export default function HeroGridRepeater({ block, mediaHandler }) {
   const { items, style } = block.main;
@@ -84,7 +85,11 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                     {item?.description && (
                       <div
-                        className="text-[14px] grow leading-[21px] flex-1 mb-[30px]"
+                        className={`text-[14px] grow leading-[21px] flex-1 mb-[30px] ${
+                          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                            ? body.kipkin
+                            : ""
+                        }`}
                         dangerouslySetInnerHTML={{
                           __html: item.description,
                         }}
@@ -247,7 +252,11 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
 
                 {item.description && (
                   <div
-                    className={`text-[14px] mb-[30px] grow leading-[21px]`}
+                    className={`text-[14px] mb-[30px] grow leading-[21px] ${
+                      process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                        ? body.kipkin
+                        : ""
+                    }`}
                     dangerouslySetInnerHTML={{ __html: item.description }}
                   />
                 )}
