@@ -18,14 +18,30 @@ export default function Document() {
           type="font/woff"
           crossOrigin="anonymous"
         />
+        {process.env.NEXT_PUBLIC_MICROSITE_ID == 7 && (
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/Circular.woff"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+        )}
         <style
           dangerouslySetInnerHTML={{
             __html: `
           @font-face {
+              font-family: "Circular";
+              src: url('/fonts/Circular.woff') format('woff2');
+              font-weight: 400;
+              font-style: normal; 
+              font-display: swap; 
+          } 
+          @font-face {
             font-family: "Tenor";
             font-weight: 400;
             src: url("/fonts/TenorSans-Regular.woff");
-            font-display: swap;
+            font-display: swap; 
           }
           @font-face {
             font-display: swap; 
@@ -77,13 +93,7 @@ export default function Document() {
             font-display: swap;
           }
 
-          @font-face {
-            font-family: "Circular", sans-serif;
-            src: url('/fonts/CircularXXTT-Regular.woff') format('woff2');
-            font-weight: 400;
-            font-style: normal; 
-            font-display: swap; 
-          }
+          
           @font-face {
             font-family: 'Effra';
             src: url('/fonts/EffraMedium-Regular.woff2') format('woff2');
@@ -137,16 +147,8 @@ export default function Document() {
             src: url('/fonts/Effra-Regular.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
-            font-display: swap;
+            font-display: swap; 
           }
-
-          @font-face {
-            font-family: 'Circular';
-            src: url('/fonts/CircularXXTT-Regular.ttf') format('ttf');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-          } 
           `,
           }}
         />
