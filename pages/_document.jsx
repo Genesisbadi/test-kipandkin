@@ -78,6 +78,13 @@ export default function Document() {
           }
 
           @font-face {
+            font-family: "Circular", sans-serif;
+            src: url('/fonts/CircularXXTT-Regular.woff') format('woff2');
+            font-weight: 400;
+            font-style: normal; 
+            font-display: swap; 
+          }
+          @font-face {
             font-family: 'Effra';
             src: url('/fonts/EffraMedium-Regular.woff2') format('woff2');
             font-weight: 500;
