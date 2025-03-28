@@ -1,5 +1,4 @@
 import body from "@/styles/body.module.css";
-
 export default function Introduction({ block }) {
   const { description, title } = block.main;
   return (
@@ -34,11 +33,9 @@ export default function Introduction({ block }) {
               process.env.NEXT_PUBLIC_TEMPLATE == 1
                 ? "text-[#d4bebe]"
                 : "text-white"
-            } text-[14px] leading-[25px] max-w-[957px] ${
-              process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                ? body.kipkin
-                : styles.description
-            }`}
+            } ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? body.kipkin : ""
+            } text-[14px] leading-[25px] max-w-[957px]`}
           />
         </div>
       </section>

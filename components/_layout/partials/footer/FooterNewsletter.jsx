@@ -98,7 +98,7 @@ export default function FooterNewsletter() {
 
         <div className="container md:!max-w-[550px]">
           {process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? (
-            <p className="text-[#555] md:text-center">
+            <p className="text-[#555] md:text-center font-circular">
               Pop your email below to get in on the action—unlock early access,
               exclusive perks, and all the buzz-worthy updates.
             </p>
