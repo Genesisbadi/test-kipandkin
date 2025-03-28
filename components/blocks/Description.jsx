@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import globalState from "@/lib/store/globalState";
 import styles from "@/styles/description.module.css";
-import kipkin from "@/styles/body.module.css";
+import body from "@/styles/body.module.css";
 export default function Description({ block }) {
   const { description } = block.main;
   const showLazy = globalState((state) => state.showLazy);
@@ -49,7 +49,7 @@ export default function Description({ block }) {
         <div
           className={`${
             process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-              ? kipkin
+              ? body.kipkin
               : styles.description
           } container`}
           dangerouslySetInnerHTML={{ __html: description }}
