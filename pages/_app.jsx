@@ -18,14 +18,6 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     globalState.setState({ ready: true });
-
-    const micrositeId = process.env.NEXT_PUBLIC_MICROSITE_ID;
-    document.body.style.fontFamily = `"Circular", sans-serif`;
-    // if (micrositeId == 7) {
-    //   document.body.style.fontFamily = `"Circular", sans-serif`;
-    // } else {
-    //   document.body.style.fontFamily = `"Gotham", sans-serif`;
-    // }
   }, []);
 
   return (
