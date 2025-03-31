@@ -6,6 +6,8 @@ export default function Introduction({ block }) {
       <section
         className={`w-full flex justify-center bg-primary ${
           process.env.NEXT_PUBLIC_MICROSITE_ID == 6 ? "pt-[80px]" : "pt-[40px]"
+        } ${
+          process.env.NEXT_PUBLIC_MICROSITE_ID == 8 ? "pt-[80px]" : "pt-[40px]"
         } pb-[80px] px-[15px]`}
       >
         <div className="w-full max-w-[957px] ">
