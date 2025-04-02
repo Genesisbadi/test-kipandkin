@@ -264,7 +264,12 @@ export default function MainMenuMobile({ ...props }) {
               </Link>
             </span>
           )}
-          <span className="cursor-pointer" onClick={bookingOpen}>
+          <span
+            className={`cursor-pointer ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "hidden" : ""
+            }`}
+            onClick={bookingOpen}
+          >
             <Booking
               width={27}
               height={27}
