@@ -25,8 +25,16 @@ export default function ButtonsBlock({ block }) {
                 }
                 className={`uppercase inline-block w-full sm:w-auto h-full text-[14px] text-center px-[30px] py-[15px] min-w-[130px] transition ${
                   item.variant === "filled"
-                    ? "bg-primary text-white hover:bg-secondary hover:text-white"
-                    : "border border-secondary text-secondary hover:bg-secondary hover:text-white"
+                    ? `bg-primary text-white hover:bg-secondary hover:text-white ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "hover:bg-[#d51a69]"
+                          : ""
+                      }`
+                    : `border border-secondary text-secondary hover:bg-secondary hover:text-white ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "hover:bg-[#d51a69] hover:border-[#d51a69]"
+                          : ""
+                      }`
                 }`}
               >
                 {item.button_label || "Discover More"}

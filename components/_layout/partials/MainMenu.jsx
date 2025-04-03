@@ -90,7 +90,11 @@ export default function MainMenu({ parentNodes, ...props }) {
                         process.env.NEXT_PUBLIC_TEMPLATE == 1
                           ? "text-primary hover:text-[#fff] hover:bg-secondary3"
                           : "hover:!bg-[#e4e3e3] hover:!text-primary"
-                      }  text-primary transition block py-[10px] px-[10px]`}
+                      }  text-primary transition block py-[10px] px-[10px] ${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "hover:text-[#d51a69]"
+                          : ""
+                      }`}
                       href={item?.url}
                       target={item?.target}
                     >
@@ -233,7 +237,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                       id={`nav-link-${item?.id}`}
                       className={`nav-link ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                          ? "text-white hover:text-[#05A6D0]"
+                          ? "text-white group hover:text-[#d51a69]"
                           : "text-primary hover:text-[#000]"
                       } relative flex flex-wrap items-center uppercase ${
                         item?.url?.includes(router.query["id"]) ? "active" : ""
@@ -243,7 +247,11 @@ export default function MainMenu({ parentNodes, ...props }) {
                     >
                       {item.label}
                       <DropdownArrow
-                        className="ml-[5px] top-[-2px] border-primary relative"
+                        className={`ml-[5px] top-[-2px] border-primary relative ${
+                          process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                            ? "group-hover:border-[#d51a69]"
+                            : ""
+                        }`}
                         width={7}
                         height={7}
                         item={item}
