@@ -9,8 +9,13 @@ export default function DiningBlock({ block }) {
   const showLazy = globalState((state) => state.showLazy);
   const [isLoading, setIsLoading] = useState(true);
   const [locations, setLocations] = useState([]);
+  const [categories, setCategories] = useState([]);
   const router = useRouter();
   const [selectedLocation, setSelectedLocation] = useState({
+    label: "All",
+    value: "",
+  });
+  const [selectedCategories, setSelectedCategories] = useState({
     label: "All",
     value: "",
   });
@@ -25,7 +30,13 @@ export default function DiningBlock({ block }) {
       await import("@/lib/preBuildScripts/static/dining-locations.json")
     ).default;
 
+    const restaurantCategories = (
+      await import("@/lib/preBuildScripts/static/restaurant-category.json")
+    ).default;
+
     setLocations(categories.taxonomyTerms);
+
+    setCategories(restaurantCategories.taxonomyTerms);
   }, []);
 
   const handleCategoryChange = (selectedOption) => {
@@ -34,7 +45,12 @@ export default function DiningBlock({ block }) {
       label: selectedOption.label,
       value: selectedOption.value,
     });
+    setSelectedCategories({
+      label: selectedOption.label,
+      value: selectedOption.value,
+    });
     fetchRestaurants(selectedOption);
+    fetchRestaurantsCategory(selectedOption);
   };
 
   const fetchRestaurants = useCallback(
@@ -59,14 +75,45 @@ export default function DiningBlock({ block }) {
     },
     [selectedLocation]
   );
+  const fetchRestaurantsCategory = useCallback(
+    async (selectedCat) => {
+      setIsLoading(true);
+
+      if (selectedCat === undefined) {
+        selectedCat = selectedCategories;
+      }
+      try {
+        const res = await BaseApi.get(
+          process.env.NEXT_PUBLIC_TENANT_API +
+            `/api/contents/dining/entries?filter[sites.id]=${process.env.NEXT_PUBLIC_MICROSITE_ID}&includes=blueprintData,mediaHandler&filter[taxonomies][restaurant-category]=${selectedCat.value}&sort=title`
+        );
+        setRestaurants(res.data.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching restaurants", error);
+        setRestaurants([]);
+        setIsLoading(false);
+      }
+    },
+    [selectedCategories]
+  );
   useEffect(() => {
     loadCategories();
     fetchRestaurants();
+    fetchRestaurantsCategory();
   }, [loadCategories]);
 
   const options = [
     { label: "All", value: "" },
     ...locations?.map((item, index) => ({
+      label: item?.name,
+      value: item?.id,
+    })),
+  ];
+
+  const restaurantOptions = [
+    { label: "All", value: "" },
+    ...categories?.map((item, index) => ({
       label: item?.name,
       value: item?.id,
     })),
@@ -90,6 +137,21 @@ export default function DiningBlock({ block }) {
             />
           </>
         )}
+        {process.env.NEXT_PUBLIC_MICROSITE_ID == 8 && (
+          <>
+            <div className="text-[#555] text-[14px] text-center leading-[21px] tracking-[1px] pb-[10px] mb-[10px]">
+              Select category
+            </div>
+            <CustomSelect
+              isSearchable={false}
+              className="react-select z-30 mx-auto"
+              onChange={handleCategoryChange}
+              placeholder={"Select Category"}
+              options={restaurantOptions}
+              defaultValue={selectedCategories}
+            />
+          </>
+        )}  
         <div className="flex flex-wrap mx-[-15px] py-[30px]">
           {!showLazy || isLoading ? (
             <>

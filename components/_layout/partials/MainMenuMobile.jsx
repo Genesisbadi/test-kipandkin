@@ -102,7 +102,11 @@ export default function MainMenuMobile({ ...props }) {
         id={`child-${id}`}
       >
         <div
-          className="flex cursor-pointer text-primary select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]"
+          className={`flex cursor-pointer text-primary ${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+              ? "!text-[#F1F1F1] hover:!text-[#d51a69]"
+              : ""
+          } select-none justify-between text-[18px] [&:not(:last-of-type)]:border-b-[1px] [&:not(:last-of-type)]:border-[#ccc] pb-[15px] [&:not(:last-of-type)]:mb-[15px]`}
           id={id}
           onClick={() => {
             const parentObjects = findParentAndSiblings(parentNodes, item.id);
@@ -160,6 +164,11 @@ export default function MainMenuMobile({ ...props }) {
                     });
                 }
               }}
+              className={`${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                  ? "!text-[#F1F1F1] hover:!text-[#d51a69]"
+                  : ""
+              } cursor-pointer`}
             >
               {item.label}
             </span>
@@ -264,7 +273,12 @@ export default function MainMenuMobile({ ...props }) {
               </Link>
             </span>
           )}
-          <span className="cursor-pointer" onClick={bookingOpen}>
+          <span
+            className={`cursor-pointer ${
+              process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "hidden" : ""
+            }`}
+            onClick={bookingOpen}
+          >
             <Booking
               width={27}
               height={27}
@@ -432,7 +446,7 @@ export default function MainMenuMobile({ ...props }) {
                             }}
                             className={`${
                               process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                                ? "!text-[#F1F1F1]"
+                                ? "!text-[#F1F1F1] hover:!text-[#d51a69]"
                                 : ""
                             }`}
                           >
@@ -440,7 +454,7 @@ export default function MainMenuMobile({ ...props }) {
                           </span>
                           {item?.children && item?.children.length > 0 && (
                             <div
-                              className="flex flex-col justify-center items-center relative w-[15px] h-[17px]"
+                              className="flex flex-col justify-center items-center relative w-[15px] h-[17px] group"
                               onClick={() => {
                                 const topLevel =
                                   document.querySelector(".current");
@@ -456,14 +470,14 @@ export default function MainMenuMobile({ ...props }) {
                               <div
                                 className={`${
                                   process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                                    ? "!border-[#F1F1F1]"
+                                    ? "!border-[#F1F1F1] group-hover:!border-[#d51a69]"
                                     : "border-[#555]"
                                 } w-[1px] h-[50%] skew-x-[45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-main-black group-hover:border-main-red`}
                               />
                               <div
                                 className={`${
                                   process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                                    ? "!border-[#F1F1F1]"
+                                    ? "!border-[#F1F1F1] group-hover:!border-[#d51a69]"
                                     : "border-[#555]"
                                 } w-[1px] h-[50%] skew-x-[-45deg] skew-y-[0deg] border-solid border-l-[1.8px] border-b-[1.8px] border-main-black group-hover:border-main-red`}
                               />

@@ -11,10 +11,10 @@ export default function FooterMenu() {
             {nodes.map((item, index) => (
               <div className="w-full uppercase mb-[20px]" key={index}>
                 <Link
-                  className={`text-[14px] inline-block hover:opacity-[.6] ${
+                  className={`text-[14px] inline-block ${
                     process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                      ? "!text-[#3F395F]"
-                      : "text-[#cfcfcf]"
+                      ? "!text-[#3F395F] hover:!text-[#d51a69]"
+                      : "text-[#cfcfcf] hover:opacity-[.6]"
                   }`}
                   href={item?.attributes?.url}
                 >
