@@ -15,6 +15,7 @@ export default function Feature({ block }) {
     video_link,
     image,
     button_label,
+    bg_color,
   } = block.main;
   let videoUrl;
 
@@ -71,6 +72,9 @@ export default function Feature({ block }) {
           )}
         </div>
         <div
+          style={{
+            backgroundColor: bg_color,
+          }}
           className={`${
             process.env.NEXT_PUBLIC_MICROSITE_ID == 5
               ? "bg-[#202020]"

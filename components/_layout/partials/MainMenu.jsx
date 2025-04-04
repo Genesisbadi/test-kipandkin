@@ -92,7 +92,7 @@ export default function MainMenu({ parentNodes, ...props }) {
                           : "hover:!bg-[#e4e3e3] hover:!text-primary"
                       }  text-primary transition block py-[10px] px-[10px] ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                          ? "hover:text-[#d51a69]"
+                          ? "hover:!text-[#d51a69]"
                           : ""
                       }`}
                       href={item?.url}
