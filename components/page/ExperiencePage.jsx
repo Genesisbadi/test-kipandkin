@@ -147,10 +147,10 @@ export default function ExperiencePage({ page, mediaHandler }) {
       <CollectionBanner
         className=""
         title={page.title}
-        image_desktop={mediaHandler["main.image"]?.[0]?.conversions?.desktop}
-        image_laptop={mediaHandler["main.image"]?.[0]?.conversions?.laptop}
-        image_mobile={mediaHandler["main.image"]?.[0]?.conversions?.mobile}
-        image_original={mediaHandler["main.image"]?.[0]?.original}
+        image_desktop={mediaHandler["main.banner"]?.[0]?.conversions?.desktop}
+        image_laptop={mediaHandler["main.banner"]?.[0]?.conversions?.laptop}
+        image_mobile={mediaHandler["main.banner"]?.[0]?.conversions?.mobile}
+        image_original={mediaHandler["main.banner"]?.[0]?.original}
       />
       <div className="container">
         <div className="flex text-[14px] flex-wrap px-[15px] justify-center items-center py-[30px] border-b-[1px] border-b-[#ccc] container">
