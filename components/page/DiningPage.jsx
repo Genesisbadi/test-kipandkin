@@ -112,6 +112,27 @@ export default function DiningPage({ page }) {
                 </div>
               </div>
             )} */}
+            {process.env.NEXT_PUBLIC_MICROSITE_ID == 8 && (
+              <div className="flex text-[14px] mb-[30px] flex-wrap justify-center items-center pb-[30px] border-b-[1px] border-b-[#ccc]">
+                <div className="w-full md:max-w-[400px]">
+                  <CustomSelect
+                    className="react-select w-full cursor-pointer"
+                    id="dining-select"
+                    instanceId="dining-select"
+                    isSearchable={false}
+                    value={getDefaultValue()}
+                    defaultValue={getDefaultValue()}
+                    onChange={handleSelectChange}
+                    options={diningEntriesData?.map((item, index) => {
+                      return {
+                        label: item?.title,
+                        value: item?.route_url,
+                      };
+                    })}
+                  />
+                </div>
+              </div>
+            )}
             <div className="flex flex-col md:flex-row w-full sm:gap-x-[70px] lg:gap-x-100">
               <div className="flex flex-col w-full md:w-3/4">
                 <div className="flex flex-col pb-[20px]">
