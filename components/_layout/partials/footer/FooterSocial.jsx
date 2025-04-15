@@ -48,10 +48,10 @@ export default function FooterSocial() {
                   href={item.link}
                   title={messages[item.platform] || "Follow Us"}
                   target="_blank"
-                  className={`hover:opacity-[.5] transition border border-[1px] flex items-center justify-center border-[#cfcfcf] rounded-full min-w-[46px] min-h-[46px] w-[46px] h-[46px] p-[5px] ${
+                  className={`transition border-[1px] flex items-center justify-center rounded-full min-w-[46px] min-h-[46px] w-[46px] h-[46px] p-[5px] ${
                     process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                      ? "border-[#3F395F]"
-                      : "border-[#cfcfcf]"
+                      ? "border-[#3F395F] hover:border-[#d51a69]"
+                      : "border-[#cfcfcf] hover:opacity-[.5]"
                   }`}
                 >
                   {item.platform === "facebook" && (
@@ -62,6 +62,11 @@ export default function FooterSocial() {
                       color={`${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
                           ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
+                      hoverColor={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#d51a69"
                           : "#cfcfcf"
                       }`}
                     />
@@ -76,6 +81,11 @@ export default function FooterSocial() {
                           ? "#3F395F"
                           : "#cfcfcf"
                       }`}
+                      hoverColor={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#d51a69"
+                          : "#cfcfcf"
+                      }`}
                     />
                   )}
                   {item.platform === "youtube" && (
@@ -86,6 +96,11 @@ export default function FooterSocial() {
                       color={`${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
                           ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
+                      hoverColor={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#d51a69"
                           : "#cfcfcf"
                       }`}
                     />
@@ -122,6 +137,11 @@ export default function FooterSocial() {
                       color={`${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
                           ? "#3F395F"
+                          : "#cfcfcf"
+                      }`}
+                      hoverColor={`${
+                        process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                          ? "#d51a69"
                           : "#cfcfcf"
                       }`}
                     />
