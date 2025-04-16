@@ -45,11 +45,15 @@ export default function DiningBlock({ block }) {
       label: selectedOption.label,
       value: selectedOption.value,
     });
+    fetchRestaurants(selectedOption);
+  };
+
+  const handleCategorySelect = (selectedOption) => {
+    setIsLoading(true);
     setSelectedCategories({
       label: selectedOption.label,
       value: selectedOption.value,
     });
-    fetchRestaurants(selectedOption);
     fetchRestaurantsCategory(selectedOption);
   };
 
@@ -145,13 +149,13 @@ export default function DiningBlock({ block }) {
             <CustomSelect
               isSearchable={false}
               className="react-select z-30 mx-auto"
-              onChange={handleCategoryChange}
+              onChange={handleCategorySelect}
               placeholder={"Select Category"}
               options={restaurantOptions}
               defaultValue={selectedCategories}
             />
           </>
-        )}  
+        )}
         <div className="flex flex-wrap mx-[-15px] py-[30px]">
           {!showLazy || isLoading ? (
             <>
