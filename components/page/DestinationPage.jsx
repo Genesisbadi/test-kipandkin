@@ -15,6 +15,11 @@ export default function DestinationDetails({ page, mediaHandler }) {
   const ButtonLink = dynamic(() =>
     import("../partials/buttons/ButtonLink").then((module) => module.default)
   );
+  const CarouselGallery = dynamic(() =>
+    import("../partials/gallery/CarouselGallery").then(
+      (module) => module.default
+    )
+  );
 
   const showLazy = globalState((state) => state.showLazy);
   const destinations = destinationEntriesData.destinationEntriesData;
@@ -22,6 +27,7 @@ export default function DestinationDetails({ page, mediaHandler }) {
   const { title } = page;
   const feature = page.data.main.items;
   const links = page.data.main.button_items;
+  const images = page.data.main.images;
   const router = useRouter();
   const [selectedValue, setSelectedValue] = useState(page.route_url);
 
@@ -157,56 +163,58 @@ export default function DestinationDetails({ page, mediaHandler }) {
                 className="text-[14px] leading-[25px] "
               />
             </div>
-            <div className="py-5">
-              {feature?.map((item, index) => {
-                const isOdd = index % 2 !== 0;
-                return (
-                  <div
-                    key={index}
-                    className={`flex flex-col md:flex-row w-full ${
-                      isOdd && "flex-col md:flex-row-reverse"
-                    }`}
-                  >
-                    <div className="w-full md:w-1/2">
-                      {mediaHandler[`main.items.${index}.image`]?.[0] && (
-                        <Image
-                          src={
-                            mediaHandler[`main.items.${index}.image`]?.[0]
-                              ?.conversions?.image ||
-                            mediaHandler[`main.items.${index}.image`]?.[0]
-                              ?.original
-                          }
-                          alt={item?.title || "Thubmanil"}
-                          height={1000}
-                          width={1000}
-                          quality={100}
-                          className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
-                        />
-                      )}
-                    </div>
-
-                    <div className="flex w-full md:w-1/2 bg-primary items-center">
-                      <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-[30px]">
-                        {item?.title && (
-                          <span className="text-secondary1 text-[20px] tracking-[2px]">
-                            {item?.title}
-                          </span>
-                        )}
-                        <span className="w-[75px] h-[2px] mt-[5px] bg-secondary1 block" />
-                        {item?.description && (
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: item?.description,
-                            }}
-                            className="text-[#d4bebe] text-[14px] leading-[21px] pt-5"
+            {feature && feature.length > 0 && (
+              <div className="py-5">
+                {feature?.map((item, index) => {
+                  const isOdd = index % 2 !== 0;
+                  return (
+                    <div
+                      key={index}
+                      className={`flex flex-col md:flex-row w-full ${
+                        isOdd && "flex-col md:flex-row-reverse"
+                      }`}
+                    >
+                      <div className="w-full md:w-1/2">
+                        {mediaHandler[`main.items.${index}.image`]?.[0] && (
+                          <Image
+                            src={
+                              mediaHandler[`main.items.${index}.image`]?.[0]
+                                ?.conversions?.image ||
+                              mediaHandler[`main.items.${index}.image`]?.[0]
+                                ?.original
+                            }
+                            alt={item?.title || "Thubmanil"}
+                            height={1000}
+                            width={1000}
+                            quality={100}
+                            className="w-full h-full sm:max-h-[630px] sm:min-h-[630px] object-cover"
                           />
                         )}
                       </div>
+
+                      <div className="flex w-full md:w-1/2 bg-primary items-center">
+                        <div className="flex flex-col px-5 md:px-[50px] py-[50px] md:py-[30px]">
+                          {item?.title && (
+                            <span className="text-secondary1 text-[20px] tracking-[2px]">
+                              {item?.title}
+                            </span>
+                          )}
+                          <span className="w-[75px] h-[2px] mt-[5px] bg-secondary1 block" />
+                          {item?.description && (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item?.description,
+                              }}
+                              className="text-[#d4bebe] text-[14px] leading-[21px] pt-5"
+                            />
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
             {links && links.length > 0 && (
               <div
                 className={`flex flex-col sm:flex-row w-full md:gap-y-3 sm:gap-y-0 justify-center px-5 2xl:px-0 gap-x-3`}
@@ -230,6 +238,14 @@ export default function DestinationDetails({ page, mediaHandler }) {
                   );
                 })}
               </div>
+            )}
+            {images && images?.length > 0 && (
+              <CarouselGallery
+                alt_title={page?.title || "Thumbnail"}
+                images={images}
+                title="Gallery"
+                className="bg-white"
+              />
             )}
           </>
         )}

@@ -124,10 +124,10 @@ export default function FooterNewsletter() {
               />
               <button
                 type="submit"
-                className={`w-full uppercase group flex items-center justify-center text-uppercase sm:w-[150px] text-secondary border-secondary border px-[15px] py-[15px] h-[60px] hover:bg-secondary hover:text-[#fff] ${
+                className={`w-full uppercase group flex items-center justify-center text-uppercase sm:w-[150px] text-secondary border-secondary border px-[15px] py-[15px] h-[60px] ${
                   process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                    ? "hover:bg-[#d51a69] hover:border-[#d51a69]"
-                    : ""
+                    ? "hover:bg-[#d51a69] hover:border-[#d51a69] hover:text-[#fff]"
+                    : "hover:bg-secondary hover:text-[#fff]"
                 } transition-all duration-300 ease-in-out ${
                   isSending
                     ? "cursor-not-allowed opacity-[.5]"
