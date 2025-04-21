@@ -84,6 +84,7 @@ body {
   .swiper-carousel-center .swiper-slide {
     display: flex;
     height: auto;
+    background: #f5f5f5;
   }
   
   .slide-wrapper {
@@ -172,12 +173,6 @@ body {
       max-width: 980px;
     }
     .st-2 .container {
-      max-width: 1200px;
-    }
-    .site-id-7 .container {
-      max-width: 1200px;
-    }
-    .site-id-8 .container {
       max-width: 1200px;
     }
   }
