@@ -27,12 +27,12 @@ export default function ButtonsBlock({ block }) {
                   item.variant === "filled"
                     ? `bg-primary text-white hover:bg-secondary hover:text-white ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                          ? "hover:bg-[#d51a69]"
+                          ? "hover:!bg-[#d51a69]"
                           : ""
                       }`
                     : `border border-secondary text-secondary hover:bg-secondary hover:text-white ${
                         process.env.NEXT_PUBLIC_MICROSITE_ID == 7
-                          ? "hover:bg-[#d51a69] hover:border-[#d51a69]"
+                          ? "hover:!bg-[#d51a69] hover:border-[#d51a69]"
                           : ""
                       }`
                 }`}
