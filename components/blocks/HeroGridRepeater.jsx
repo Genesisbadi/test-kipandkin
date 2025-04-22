@@ -22,7 +22,7 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
         <Swiper
           className="swiper-carousel-center relative"
           modules={[Virtual]}
-          spaceBetween={1}
+          spaceBetween={7}
           centeredSlides={false}
           loop={true}
           slidesPerView={1} // Default for mobile
@@ -42,10 +42,10 @@ export default function HeroGridRepeater({ block, mediaHandler }) {
             <SwiperSlide key={index} virtualIndex={index}>
               <div href={item} className="slide-wrapper h-full flex flex-col">
                 <SectionAccordion
-                  childrenClassname="bg-[#f5f5f5] pb-0 max-h-fit flex flex-col md:!flex h-full"
+                  childrenClassname="pb-0 max-h-fit flex flex-col md:!flex h-full"
                   key={index}
                   title={item.title}
-                  className="flex flex-col md:flex-1 w-full px-[3px] h-full"
+                  className="flex flex-col md:flex-1 w-full h-full"
                 >
                   {item?.link ? (
                     <Link href={item?.link || "#"}>
