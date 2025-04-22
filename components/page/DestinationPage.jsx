@@ -133,7 +133,13 @@ export default function DestinationDetails({ page, mediaHandler }) {
           </>
         ) : (
           <>
-            <div className="container py-[50px]">
+            <div
+              className={`container ${
+                process.env.NEXT_PUBLIC_MICROSITE_ID == 6
+                  ? "pt-[50px]"
+                  : "py-[50px]"
+              }`}
+            >
               <div className="flex flex-col pb-[40px]">
                 <span className="text-center pb-3 text-[14px]">
                   Other Destinations
