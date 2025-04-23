@@ -1,6 +1,7 @@
+import Link from "next/link";
 import body from "@/styles/body.module.css";
 export default function Introduction({ block }) {
-  const { description, title } = block.main;
+  const { description, title, button_label, button_link } = block.main;
   return (
     <>
       <section
@@ -39,6 +40,25 @@ export default function Introduction({ block }) {
               process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? body.kipkin : ""
             } text-[14px] leading-[25px] max-w-[957px]`}
           />
+          {button_link && button_label && (
+            <div className="flex justify-center pt-[30px]">
+              <Link
+                href={button_link || "#"}
+                target={button_link?.includes("http") ? "_blank" : "_self"}
+                className={`uppercase inline-block w-full sm:w-auto h-full border ${
+                  process.env.NEXT_PUBLIC_TEMPLATE == 1
+                    ? "hover:bg-[#d4bebe] text-[#d4bebe] hover:text-primary border-[#d4bebe]"
+                    : "hover:bg-white text-white hover:text-primary border-white"
+                } ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                    ? "hover:!bg-[#d51a69] hover:border-[#d51a69] hover:text-white"
+                    : ""
+                } text-[14px] text-center px-[30px] py-[15px] min-w-[130px] transition`}
+              >
+                {button_label}
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </>
