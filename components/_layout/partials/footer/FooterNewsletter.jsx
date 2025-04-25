@@ -168,7 +168,11 @@ export default function FooterNewsletter() {
             </div>
             <div className="text-[#555] text-[12px] mt-[15px] relative">
               <input
-                className={`absolute top-[8px] left-0 overflow-hidden cursor-pointer`}
+                className={`absolute ${
+                  process.env.NEXT_PUBLIC_MICROSITE_ID == 7
+                    ? "top-[2px]"
+                    : "top-[8px]"
+                } left-0 overflow-hidden cursor-pointer`}
                 type="checkbox"
                 name="agree"
                 id="agree"
