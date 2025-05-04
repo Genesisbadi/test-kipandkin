@@ -2,13 +2,14 @@ import Link from "next/link";
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import DropdownArrow from "@/components/icons/DropdownArrow";
 
 export default function MainMenu({ parentNodes, ...props }) {
   const router = useRouter();
 
-  const DropdownArrow = dynamic(() =>
-    import("@/components/icons/DropdownArrow")
-  );
+  // const DropdownArrow = dynamic(() =>
+  //   import("@/components/icons/DropdownArrow")
+  // );
 
   const DropdownMenu = ({ ...props }) => {
     const { parent, itemChildren } = props;
