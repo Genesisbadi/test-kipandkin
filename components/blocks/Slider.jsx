@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css";
+import Slick from "react-slick";
 import globalState from "@/lib/store/globalState";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
@@ -10,9 +11,9 @@ export default function Slider({ block, mediaHandler }) {
   const [isMobile, setIsMobile] = useState(useMobileDetector());
   const linkElementRef = useRef(null);
 
-  const Slick = dynamic(() =>
-    import("react-slick").then((module) => module.default)
-  );
+  // const Slick = dynamic(() =>
+  //   import("react-slick").then((module) => module.default)
+  // );
   let { slider_items } = block.main;
   const showLazy = globalState((state) => state.showLazy);
 
@@ -175,7 +176,7 @@ export default function Slider({ block, mediaHandler }) {
                 </picture>
 
                 <div
-                  className={`leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col ${
+                  className={`border-2 border-red-500 leading-normal py-[80px] mx-w-[1200px] lg:py-[50px] min-h-[calc(100dvh-67px)] xl:min-h-[600px] xl:h-[560px] 3xl:h-[812px] px-[30px] md:px-[100px] lg:px-[150px] w-full flex flex-col ${
                     item?.position === "bottom left"
                       ? "justify-end items-start"
                       : item?.position === "center"
