@@ -117,7 +117,9 @@ export default function Menu({ ...props }) {
           </>
         )}
         <div
-          className={`flex w-full items-center justify-between ${
+          className={`${
+            process.env.NEXT_PUBLIC_MICROSITE_ID == 7 ? "min-h-[71px]" : ""
+          } flex w-full items-center justify-between ${
             process.env.NEXT_PUBLIC_TEMPLATE != 1 ? "py-[10px] pr-[2px]" : ""
           }`}
         >
