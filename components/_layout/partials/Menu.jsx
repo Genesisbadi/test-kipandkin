@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import menus from "@/lib/preBuildScripts/static/headerMenu.json";
+import MainMenu from "./MainMenu";
+import MainMenuMobile from "./MainMenuMobile";
 import { useMobileDetector } from "@/lib/services/isMobileDetector";
 import tenantDetails from "@/lib/preBuildScripts/static/tenantDetailsMain.json";
 export default function Menu({ ...props }) {
@@ -24,9 +26,12 @@ export default function Menu({ ...props }) {
     import("@/components/icons/LangEn").then((module) => module.default)
   );
 
-  const Menu = dynamic(() =>
-    isMobile ? import("./MainMenuMobile") : import("./MainMenu")
-  );
+  // const Menu = dynamic(() =>
+  //   isMobile ? import("./MainMenuMobile") : import("./MainMenu")
+  // );
+
+  const Menu = isMobile ? MainMenuMobile : MainMenu;
+
   const DropdownArrow = dynamic(() =>
     import("@/components/icons/DropdownArrow")
   );
